@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getAuthStatus from '../../store/auth/selectors';
+import { getAuthStatus, getAuthError } from '../../store/auth/selectors';
 import { login } from '../../store/auth/actionCreator';
 
 export class Login extends Component {
@@ -26,12 +26,12 @@ export class Login extends Component {
     const { handleLogin } = this.props;
     e.preventDefault();
     this.resetState();
-    console.log(email, password);
-    handleLogin();
+    handleLogin(email, password);
   };
 
   render() {
     const { email, password } = this.state;
+    const { error } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="email">
@@ -43,6 +43,7 @@ export class Login extends Component {
           <input id="password" type="password" value={password} onChange={this.handleChange} />
         </label>
         <button type="submit">Log In</button>
+        <p>{error}</p>
       </form>
     );
   }
@@ -50,6 +51,7 @@ export class Login extends Component {
 
 const mapStateToProps = state => ({
   auth: getAuthStatus(state),
+  error: getAuthError(state),
 });
 
 export default connect(
@@ -59,4 +61,9 @@ export default connect(
 
 Login.propTypes = {
   handleLogin: PropTypes.func.isRequired,
+  error: PropTypes.string,
+};
+
+Login.defaultProps = {
+  error: null,
 };
