@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import getAuthStatus from '../../store/auth/selectors';
+import { login } from '../../store/auth/actionCreator';
 
-export default class LogIn extends Component {
+export class Login extends Component {
   state = {
-    login: '',
+    email: '',
     password: '',
   };
 
@@ -12,25 +16,27 @@ export default class LogIn extends Component {
 
   resetState = () => {
     this.setState({
-      login: '',
+      email: '',
       password: '',
     });
   };
 
   handleSubmit = (e) => {
-    const { login, password } = this.state;
+    const { email, password } = this.state;
+    const { handleLogin } = this.props;
     e.preventDefault();
     this.resetState();
-    console.log(login, password);
+    console.log(email, password);
+    handleLogin();
   };
 
   render() {
-    const { login, password } = this.state;
+    const { email, password } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="login">
-          <p>Login:</p>
-          <input id="login" type="text" value={login} onChange={this.handleChange} />
+        <label htmlFor="email">
+          <p>Email:</p>
+          <input id="email" type="text" value={email} onChange={this.handleChange} />
         </label>
         <label htmlFor="password">
           <p>Password:</p>
@@ -41,3 +47,16 @@ export default class LogIn extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: getAuthStatus(state),
+});
+
+export default connect(
+  mapStateToProps,
+  { handleLogin: login },
+)(Login);
+
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
+};
