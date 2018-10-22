@@ -2,9 +2,10 @@ import * as types from './types';
 
 const url = 'http://localhost:3004/';
 
-export const loginSucces = () => ({
+export const loginSucces = token => ({
   type: types.LOGIN,
   isAuth: true,
+  token,
 });
 
 export const loginFail = error => ({
@@ -31,6 +32,6 @@ export const login = (email, password) => dispatch => fetch(url, {
       dispatch(loginFail(res.error));
     }
     if (res.message) {
-      dispatch(loginSucces());
+      dispatch(loginSucces(res.token));
     }
   });
