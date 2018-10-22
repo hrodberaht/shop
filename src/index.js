@@ -7,7 +7,7 @@ import rootReducer from './store/rootReducer';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import './styles/index.css';
+import './index.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [thunk];

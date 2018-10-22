@@ -4,7 +4,7 @@ import ConnectedLogin from './LoginForm';
 export default class Auth extends Component {
   render() {
     return (
-      <div>
+      <div className="login-form">
         <ConnectedLogin />
       </div>
     );

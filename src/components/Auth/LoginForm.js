@@ -34,16 +34,30 @@ export class Login extends Component {
     const { error } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="email">
+        <label className="form-label" htmlFor="email">
           <p>Email:</p>
-          <input id="email" type="text" value={email} onChange={this.handleChange} />
+          <input
+            className="form-input"
+            id="email"
+            type="text"
+            value={email}
+            onChange={this.handleChange}
+            required
+          />
         </label>
-        <label htmlFor="password">
+        <label className="form-label" htmlFor="password">
           <p>Password:</p>
-          <input id="password" type="password" value={password} onChange={this.handleChange} />
+          <input
+            className="form-input"
+            id="password"
+            type="password"
+            value={password}
+            onChange={this.handleChange}
+            required
+          />
         </label>
         <button type="submit">Log In</button>
-        <p>{error}</p>
+        <p className="error-text">{error}</p>
       </form>
     );
   }
