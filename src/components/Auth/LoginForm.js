@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAuthStatus, getAuthError } from '../../store/auth/selectors';
+import { getAuthError } from '../../store/auth/selectors';
 import { login } from '../../store/auth/actionCreator';
 
-export class Login extends Component {
+export class LoginForm extends Component {
   state = {
     email: '',
     password: '',
@@ -64,20 +64,19 @@ export class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: getAuthStatus(state),
   error: getAuthError(state),
 });
 
 export default connect(
   mapStateToProps,
   { handleLogin: login },
-)(Login);
+)(LoginForm);
 
-Login.propTypes = {
+LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
   error: PropTypes.string,
 };
 
-Login.defaultProps = {
+LoginForm.defaultProps = {
   error: null,
 };
