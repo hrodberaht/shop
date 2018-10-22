@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import Auth from './components/Auth/Auth';
 
 class App extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <Auth />
+      </div>
+    );
   }
 }
 
