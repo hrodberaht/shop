@@ -31,9 +31,19 @@ async function isAuth(req) {
 
   return false;
 }
+
+function checkToken(token) {
+  return jwt.verify(token, SECRET_KEY, (err, decoded) => decoded !== undefined);
+}
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
-server.use(async (req, res) => {
+server.use(async (req, res, next) => {
+  if (req.headers.authorization) {
+    const token = req.headers.authorization.split(' ')[1];
+    if (checkToken(token)) {
+      return next();
+    }
+  }
   const response = await isAuth(req);
   if (response) {
     return res.send(response);

@@ -1,6 +1,5 @@
 import * as types from './types';
-
-const url = 'http://localhost:3004/';
+import config from '../../config/config';
 
 export const loginSucces = token => ({
   type: types.LOGIN_SUCCES,
@@ -20,7 +19,7 @@ export const logout = () => ({
   isAuth: false,
 });
 
-export const login = (email, password) => dispatch => fetch(url, {
+export const login = (email, password) => dispatch => fetch(config.url, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
