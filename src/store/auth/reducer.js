@@ -8,10 +8,12 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOGIN:
-      return { ...state, ...{ auth: action.isAuth, error: action.error, token: action.token } };
+    case types.LOGIN_SUCCES:
+      return { ...state, ...{ auth: action.isAuth, token: action.token } };
+    case types.LOGIN_FAIL:
+      return { ...state, ...{ auth: action.isAuth, error: action.error } };
     case types.LOGOUT:
-      return action.isAuth;
+      return { ...state, ...{ auth: action.isAuth, token: action.token } };
     default:
       return state;
   }

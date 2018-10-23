@@ -3,19 +3,20 @@ import * as types from './types';
 const url = 'http://localhost:3004/';
 
 export const loginSucces = token => ({
-  type: types.LOGIN,
+  type: types.LOGIN_SUCCES,
   isAuth: true,
   token,
 });
 
 export const loginFail = error => ({
-  type: types.LOGIN,
+  type: types.LOGIN_FAIL,
   isAuth: false,
   error,
 });
 
 export const logout = () => ({
   type: types.LOGOUT,
+  token: null,
   isAuth: false,
 });
 
