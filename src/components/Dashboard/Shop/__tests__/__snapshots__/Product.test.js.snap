@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Product /> should render without crash 1`] = `
+<div>
+  <h3>
+    Name:
+    test
+  </h3>
+  <h6>
+    Type:
+    printer
+  </h6>
+  <p>
+    Price:
+    12
+  </p>
+  <p
+    id="stock"
+  >
+    Stock:
+    <span
+      id="stock-message"
+    >
+      medium supply
+    </span>
+  </p>
+  Order:
+  <input
+    onChange={[Function]}
+    type="number"
+    value={0}
+  />
+  <p
+    id="stock-error"
+  />
+  <p>
+    Total price:
+    <span
+      id="total-price"
+    >
+      0
+    </span>
+  </p>
+  <button
+    type="button"
+  >
+    Add to cart
+  </button>
+</div>
+`;

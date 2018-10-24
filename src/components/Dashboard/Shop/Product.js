@@ -29,6 +29,8 @@ export default class Product extends Component {
     return this.setState({ error: null });
   };
 
+  calculateTotalPrice = (amoutOrder, price) => amoutOrder * price;
+
   render() {
     const {
       product: {
@@ -50,16 +52,16 @@ export default class Product extends Component {
           Price:
           {price}
         </p>
-        <p>
+        <p id="stock">
           Stock:
-          {this.changeInStockToText(+inStock)}
+          <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
         </p>
         Order:
         <input type="number" value={amoutOrder} onChange={this.handleChange} />
-        <p>{error}</p>
+        <p id="stock-error">{error}</p>
         <p>
           Total price:
-          {amoutOrder * price}
+          <span id="total-price">{this.calculateTotalPrice(amoutOrder, price)}</span>
         </p>
         <button type="button">Add to cart</button>
       </div>
