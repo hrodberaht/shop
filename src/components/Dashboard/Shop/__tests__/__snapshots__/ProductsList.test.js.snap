@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductsList /> should render products list if loaded true 1`] = `
-<div>
+<div
+  className="products-list"
+>
   <Product
     key="product-1"
     product={
@@ -30,7 +32,9 @@ exports[`<ProductsList /> should render products list if loaded true 1`] = `
 `;
 
 exports[`<ProductsList /> should render without crash 1`] = `
-<div>
+<div
+  className="products-list"
+>
   <p>
     Loading:
   </p>

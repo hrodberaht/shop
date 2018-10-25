@@ -1,8 +1,10 @@
 @import './styles/login-form.css';
 @import './styles/nav-bar.css';
+@import './styles/shop.css';
+
 
 body {
-    width: 1024px;
+    max-width: 1024px;
     margin: auto;
 }
 

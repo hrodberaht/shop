@@ -39,15 +39,9 @@ export default class Product extends Component {
     } = this.props;
     const { amoutOrder, error } = this.state;
     return (
-      <div>
-        <h3>
-          Name:
-          {name}
-        </h3>
-        <h6>
-          Type:
-          {type}
-        </h6>
+      <div className="product-item">
+        <h3>{name}</h3>
+        <h5>{type}</h5>
         <p>
           Price:
           {price}

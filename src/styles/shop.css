@@ -1,0 +1,15 @@
+.shop {
+
+}
+
+.products-list {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product-item {
+    padding: 20px;
+    max-width: 200px;
+}

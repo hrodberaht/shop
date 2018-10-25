@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Product /> should render without crash 1`] = `
-<div>
+<div
+  className="product-item"
+>
   <h3>
-    Name:
     test
   </h3>
-  <h6>
-    Type:
+  <h5>
     printer
-  </h6>
+  </h5>
   <p>
     Price:
     12

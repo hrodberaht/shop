@@ -15,7 +15,7 @@ export class ProductsList extends Component {
   render() {
     const { products, loaded } = this.props;
     return (
-      <div>
+      <div className="products-list">
         {loaded ? (
           products.map(product => <Product key={product.id} product={product} />)
         ) : (

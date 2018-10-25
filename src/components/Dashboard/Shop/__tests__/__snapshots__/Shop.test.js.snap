@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Shop /> should render without crash 1`] = `
-<div>
-  Products:
+<div
+  className="shop"
+>
   <Connect(ProductsList) />
 </div>
 `;
