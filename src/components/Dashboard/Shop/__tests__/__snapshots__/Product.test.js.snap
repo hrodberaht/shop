@@ -24,7 +24,7 @@ exports[`<Product /> should render without crash 1`] = `
       medium supply
     </span>
   </p>
-  Order:
+  Order amount:
   <input
     onChange={[Function]}
     type="number"
@@ -42,9 +42,10 @@ exports[`<Product /> should render without crash 1`] = `
     </span>
   </p>
   <button
+    className="btn btn-primary"
     type="button"
   >
-    Add to cart
+    Buy
   </button>
 </div>
 `;

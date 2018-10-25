@@ -1,6 +1,7 @@
 @import './styles/login-form.css';
 @import './styles/nav-bar.css';
 @import './styles/shop.css';
+@import './styles/buttons/btn.css';
 
 
 body {

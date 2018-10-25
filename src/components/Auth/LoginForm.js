@@ -56,7 +56,9 @@ export class LoginForm extends Component {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="btn btn-submit" type="submit">
+          Log In
+        </button>
         <p className="error-text">{error}</p>
       </form>
     );

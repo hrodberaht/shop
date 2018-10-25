@@ -50,14 +50,16 @@ export default class Product extends Component {
           Stock:
           <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
         </p>
-        Order:
+        Order amount:
         <input type="number" value={amoutOrder} onChange={this.handleChange} />
         <p id="stock-error">{error}</p>
         <p>
           Total price:
           <span id="total-price">{this.calculateTotalPrice(amoutOrder, price)}</span>
         </p>
-        <button type="button">Add to cart</button>
+        <button className="btn btn-primary" type="button">
+          Buy
+        </button>
       </div>
     );
   }
