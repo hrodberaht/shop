@@ -42,20 +42,28 @@ export default class Product extends Component {
       <div className="product-item">
         <h3>{name}</h3>
         <h5>{type}</h5>
-        <p>
-          Price:
+        <p className="product-item__price">
+          <span>$</span>
           {price}
         </p>
-        <p id="stock">
-          Stock:
+        <p>
+          <span>In stock:</span>
+          {'  '}
           <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
         </p>
-        Order amount:
-        <input type="number" value={amoutOrder} onChange={this.handleChange} />
+        <p className="product-item__order-amount">
+          {' '}
+          Order amount:
+          <input type="number" value={amoutOrder} onChange={this.handleChange} />
+        </p>
         <p id="stock-error">{error}</p>
-        <p>
-          Total price:
-          <span id="total-price">{this.calculateTotalPrice(amoutOrder, price)}</span>
+        <p className="product-item__total">
+          <span>Total price:</span>
+          {'  '}
+          <span id="total-price">
+            <span>$</span>
+            {this.calculateTotalPrice(amoutOrder, price)}
+          </span>
         </p>
         <button className="btn btn-primary" type="button">
           Buy

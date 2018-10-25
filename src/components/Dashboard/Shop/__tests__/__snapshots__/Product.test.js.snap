@@ -10,34 +10,52 @@ exports[`<Product /> should render without crash 1`] = `
   <h5>
     printer
   </h5>
-  <p>
-    Price:
+  <p
+    className="product-item__price"
+  >
+    <span>
+      $
+    </span>
     12
   </p>
-  <p
-    id="stock"
-  >
-    Stock:
+  <p>
+    <span>
+      In stock:
+    </span>
+      
     <span
       id="stock-message"
     >
       medium supply
     </span>
   </p>
-  Order amount:
-  <input
-    onChange={[Function]}
-    type="number"
-    value={0}
-  />
+  <p
+    className="product-item__order-amount"
+  >
+     
+    Order amount:
+    <input
+      onChange={[Function]}
+      type="number"
+      value={0}
+    />
+  </p>
   <p
     id="stock-error"
   />
-  <p>
-    Total price:
+  <p
+    className="product-item__total"
+  >
+    <span>
+      Total price:
+    </span>
+      
     <span
       id="total-price"
     >
+      <span>
+        $
+      </span>
       0
     </span>
   </p>
