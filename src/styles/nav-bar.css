@@ -1,0 +1,46 @@
+.nav-bar {
+    background-color: lightseagreen;
+    text-transform: uppercase;
+    color: white;
+    
+    
+}
+.nav-bar__list {
+    list-style: none;
+    display: flex;
+    margin: 5px 0px;
+    justify-content: flex-start;
+    padding: 0px;
+}
+
+.nav-bar .nav-bar__list .item {
+    margin-left: 0px;
+    padding: 5px 15px;
+    
+}
+
+.nav-bar .nav-bar__list .item a {
+    text-decoration: none;
+    
+    padding: 5px 15px;
+    font-size: 24px;
+}
+
+.nav-bar .nav-bar__list .item a:hover {
+    color: black;
+}
+.nav-bar .nav-bar__list .item:last-child {
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.nav-bar .nav-bar__list .item:hover {
+    background-color: orange;
+    
+}
+
+.active {
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+}

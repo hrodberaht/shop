@@ -1,2 +1,8 @@
 @import './styles/login-form.css';
+@import './styles/nav-bar.css';
+
+body {
+    width: 1024px;
+    margin: auto;
+}
 
