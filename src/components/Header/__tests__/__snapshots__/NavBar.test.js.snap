@@ -43,13 +43,9 @@ exports[`<NavBar /> should render without crash 1`] = `
     <li
       className="item"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        to="/logout"
-      >
-        Logout
-      </NavLink>
+      <Connect(Authorization)
+        logout={[Function]}
+      />
     </li>
   </ul>
 </div>

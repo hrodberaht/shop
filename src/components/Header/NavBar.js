@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import ConnectedAuthorization from '../Auth/Authorization';
 
 export default class NavBar extends Component {
   render() {
@@ -16,7 +17,13 @@ export default class NavBar extends Component {
             <NavLink to="/cart">Cart</NavLink>
           </li>
           <li className="item">
-            <NavLink to="/logout">Logout</NavLink>
+            <ConnectedAuthorization
+              logout={logout => (
+                <Link to="/" onClick={logout}>
+                  Logout
+                </Link>
+              )}
+            />
           </li>
         </ul>
       </div>

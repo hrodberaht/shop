@@ -13,6 +13,12 @@ const loginFail = error => ({
   error,
 });
 
+export const logoutSucces = () => ({
+  type: types.LOGOUT,
+  isAuth: false,
+  token: null,
+});
+
 const login = (email, password) => dispatch => fetch(config.url, {
   method: 'post',
   headers: {
