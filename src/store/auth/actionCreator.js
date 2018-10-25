@@ -1,25 +1,19 @@
 import * as types from './types';
 import config from '../../config/config';
 
-export const loginSucces = token => ({
+const loginSucces = token => ({
   type: types.LOGIN_SUCCES,
   isAuth: true,
   token,
 });
 
-export const loginFail = error => ({
+const loginFail = error => ({
   type: types.LOGIN_FAIL,
   isAuth: false,
   error,
 });
 
-export const logout = () => ({
-  type: types.LOGOUT,
-  token: null,
-  isAuth: false,
-});
-
-export const login = (email, password) => dispatch => fetch(config.url, {
+const login = (email, password) => dispatch => fetch(config.url, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
@@ -35,3 +29,5 @@ export const login = (email, password) => dispatch => fetch(config.url, {
       dispatch(loginSucces(res.token));
     }
   });
+
+export default login;

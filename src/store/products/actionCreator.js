@@ -7,6 +7,11 @@ const fetchProductsSucces = products => ({
   loaded: true,
 });
 
+const fetchProductsError = error => ({
+  type: types.FETCH_PRODUCTS_ERROR,
+  errors: error,
+});
+
 const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
   method: 'get',
   headers: {
@@ -17,6 +22,9 @@ const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
   .then(res => res.json())
   .then((res) => {
     dispatch(fetchProductsSucces(res));
+  })
+  .catch((error) => {
+    dispatch(fetchProductsError(error));
   });
 
 export default fetchProducts;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAuthError } from '../../store/auth/selectors';
-import { login } from '../../store/auth/actionCreator';
+import login from '../../store/auth/actionCreator';
 
 export class LoginForm extends Component {
   state = {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Product from './Product';
 import { getProductsAll, getProductsLoaded } from '../../../store/products/selectors';
-import fetchProducts from '../../../store/products/actionCreators';
+import fetchProducts from '../../../store/products/actionCreator';
 import { getAuthToken } from '../../../store/auth/selectors';
 
 export class ProductsList extends Component {
