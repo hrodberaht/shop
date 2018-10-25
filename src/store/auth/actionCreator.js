@@ -34,6 +34,9 @@ const login = (email, password) => dispatch => fetch(config.url, {
     if (res.message) {
       dispatch(loginSucces(res.token));
     }
+  })
+  .catch(() => {
+    dispatch(loginFail('Sorry server is down'));
   });
 
 export default login;

@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Product from './Product';
-import { getProductsAll, getProductsLoaded } from '../../../store/products/selectors';
+import {
+  getProductsAll,
+  getProductsLoaded,
+  getProductsError,
+} from '../../../store/products/selectors';
 import fetchProducts from '../../../store/products/actionCreator';
 import { getAuthToken } from '../../../store/auth/selectors';
 
@@ -13,7 +17,8 @@ export class ProductsList extends Component {
   }
 
   render() {
-    const { products, loaded } = this.props;
+    const { products, loaded, error } = this.props;
+    if (error) return <h4>{error}</h4>;
     return (
       <div className="products-list">
         {loaded ? (
@@ -30,6 +35,7 @@ const mapStateToProps = state => ({
   products: getProductsAll(state),
   token: getAuthToken(state),
   loaded: getProductsLoaded(state),
+  error: getProductsError(state),
 });
 
 export default connect(
@@ -42,4 +48,9 @@ ProductsList.propTypes = {
   handleFetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   loaded: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+};
+
+ProductsList.defaultProps = {
+  error: null,
 };

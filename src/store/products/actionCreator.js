@@ -23,8 +23,8 @@ const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
   .then((res) => {
     dispatch(fetchProductsSucces(res));
   })
-  .catch((error) => {
-    dispatch(fetchProductsError(error));
+  .catch(() => {
+    dispatch(fetchProductsError('Sorry server is down'));
   });
 
 export default fetchProducts;
