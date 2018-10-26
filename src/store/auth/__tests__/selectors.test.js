@@ -5,6 +5,7 @@ describe('selectors for auth', () => {
     auth: {
       auth: false,
       error: 'error',
+      token: '1234',
     },
   };
 
@@ -14,5 +15,8 @@ describe('selectors for auth', () => {
 
   it('should return value of error', () => {
     expect(selectors.getAuthError(state)).toBe('error');
+  });
+  it('should return value of token', () => {
+    expect(selectors.getAuthToken(state)).toBe('1234');
   });
 });

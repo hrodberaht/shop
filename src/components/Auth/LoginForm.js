@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAuthError } from '../../store/auth/selectors';
-import { login } from '../../store/auth/actionCreator';
+import login from '../../store/auth/actionCreator';
 
 export class LoginForm extends Component {
   state = {
@@ -56,7 +56,9 @@ export class LoginForm extends Component {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="btn btn-submit" type="submit">
+          Log In
+        </button>
         <p className="error-text">{error}</p>
       </form>
     );

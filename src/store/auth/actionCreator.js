@@ -1,26 +1,25 @@
 import * as types from './types';
+import config from '../../config/config';
 
-const url = 'http://localhost:3004/';
-
-export const loginSucces = token => ({
+const loginSucces = token => ({
   type: types.LOGIN_SUCCES,
   isAuth: true,
   token,
 });
 
-export const loginFail = error => ({
+const loginFail = error => ({
   type: types.LOGIN_FAIL,
   isAuth: false,
   error,
 });
 
-export const logout = () => ({
+export const logoutSucces = () => ({
   type: types.LOGOUT,
-  token: null,
   isAuth: false,
+  token: null,
 });
 
-export const login = (email, password) => dispatch => fetch(url, {
+const login = (email, password) => dispatch => fetch(config.url, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
@@ -35,4 +34,9 @@ export const login = (email, password) => dispatch => fetch(url, {
     if (res.message) {
       dispatch(loginSucces(res.token));
     }
+  })
+  .catch(() => {
+    dispatch(loginFail('Sorry server is down'));
   });
+
+export default login;

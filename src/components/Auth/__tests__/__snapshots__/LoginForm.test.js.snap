@@ -37,6 +37,7 @@ exports[`<LoginForm /> should render witout crash 1`] = `
     />
   </label>
   <button
+    className="btn btn-submit"
     type="submit"
   >
     Log In
