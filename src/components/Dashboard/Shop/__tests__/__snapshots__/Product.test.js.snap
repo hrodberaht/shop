@@ -30,15 +30,16 @@ exports[`<Product /> should render without crash 1`] = `
     </span>
   </p>
   <p
-    className="product-item__order-amount"
+    className="product-item__order"
   >
      
-    Order amount:
+    Order:
     <input
       onChange={[Function]}
       type="number"
       value={0}
     />
+    pcs
   </p>
   <p
     id="stock-error"

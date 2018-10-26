@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class Product extends Component {
   state = {
-    amoutOrder: 0,
+    pcsOrder: 0,
     error: null,
   };
 
@@ -19,17 +19,17 @@ export default class Product extends Component {
     const {
       product: { inStock },
     } = this.props;
-    this.setState({ amoutOrder: e.target.value });
+    this.setState({ pcsOrder: e.target.value });
     this.checkAmountOrder(+inStock, +e.target.value);
   };
 
-  checkAmountOrder = (inStock, amoutOrder) => {
-    if (amoutOrder > inStock) return this.setState({ error: 'Not enough products' });
-    if (amoutOrder < 0) return this.setState({ amoutOrder: 0 });
+  checkAmountOrder = (inStock, pcsOrder) => {
+    if (pcsOrder > inStock) return this.setState({ error: 'Not enough products' });
+    if (pcsOrder < 0) return this.setState({ pcsOrder: 0 });
     return this.setState({ error: null });
   };
 
-  calculateTotalPrice = (amoutOrder, price) => amoutOrder * price;
+  calculateTotalPrice = (pcsOrder, price) => pcsOrder * price;
 
   render() {
     const {
@@ -37,7 +37,7 @@ export default class Product extends Component {
         name, type, price, inStock,
       },
     } = this.props;
-    const { amoutOrder, error } = this.state;
+    const { pcsOrder, error } = this.state;
     return (
       <div className="product-item">
         <h3>{name}</h3>
@@ -51,10 +51,11 @@ export default class Product extends Component {
           {'  '}
           <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
         </p>
-        <p className="product-item__order-amount">
+        <p className="product-item__order">
           {' '}
-          Order amount:
-          <input type="number" value={amoutOrder} onChange={this.handleChange} />
+          Order:
+          <input type="number" value={pcsOrder} onChange={this.handleChange} />
+          pcs
         </p>
         <p id="stock-error">{error}</p>
         <p className="product-item__total">
@@ -62,7 +63,7 @@ export default class Product extends Component {
           {'  '}
           <span id="total-price">
             <span>$</span>
-            {this.calculateTotalPrice(amoutOrder, price)}
+            {this.calculateTotalPrice(pcsOrder, price)}
           </span>
         </p>
         <button className="btn btn-primary" type="button">
