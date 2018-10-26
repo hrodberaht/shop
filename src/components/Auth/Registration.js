@@ -14,8 +14,9 @@ const schema = yup.object().shape({
     .required()
     .min(6)
     .max(16),
-  companie: yup.string().required(),
+  companyId: yup.string().required(),
 });
+
 const asyncValidate = values => schema.validate(values, { abortEarly: false }).catch((err) => {
   const errorsForm = {};
   err.inner.forEach((error) => {
@@ -39,7 +40,7 @@ export class Registration extends Component {
   );
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine } = this.props;
     return (
       <div className="registration-form">
         <form onSubmit={handleSubmit(this.submit)}>
@@ -59,13 +60,13 @@ export class Registration extends Component {
             <p>Password:</p>
             <Field name="password" type="password" component={this.renderField} label="Password" />
           </label>
-          <Field name="companie" component="select">
+          <Field name="company" component="select">
             <option />
             <option value="com1">com1</option>
             <option value="com2">com2</option>
             <option value="com3">com3</option>
           </Field>
-          <button className="btn btn-submit" type="submit">
+          <button className="btn btn-submit" type="submit" disabled={pristine}>
             Register
           </button>
         </form>
