@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getAuthError } from '../../store/auth/selectors';
 import login from '../../store/auth/actionCreator';
@@ -33,34 +34,41 @@ export class LoginForm extends Component {
     const { email, password } = this.state;
     const { error } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label className="form-label" htmlFor="email">
-          <p>Email:</p>
-          <input
-            className="form-input"
-            id="email"
-            type="text"
-            value={email}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <label className="form-label" htmlFor="password">
-          <p>Password:</p>
-          <input
-            className="form-input"
-            id="password"
-            type="password"
-            value={password}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <button className="btn btn-submit" type="submit">
-          Log In
-        </button>
-        <p className="error-text">{error}</p>
-      </form>
+      <div>
+        <div className="login-form">
+          <form onSubmit={this.handleSubmit}>
+            <label className="form-label" htmlFor="email">
+              <p>Email:</p>
+              <input
+                className="form-input"
+                id="email"
+                type="text"
+                value={email}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+            <label className="form-label" htmlFor="password">
+              <p>Password:</p>
+              <input
+                className="form-input"
+                id="password"
+                type="password"
+                value={password}
+                onChange={this.handleChange}
+                required
+              />
+            </label>
+            <button className="btn btn-submit" type="submit">
+              Log In
+            </button>
+            <p className="error-text">{error}</p>
+          </form>
+        </div>
+        <div className="registartion-link">
+          <Link to="/registration">Registration</Link>
+        </div>
+      </div>
     );
   }
 }

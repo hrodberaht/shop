@@ -1,49 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LoginForm /> should render witout crash 1`] = `
-<form
-  onSubmit={[Function]}
->
-  <label
-    className="form-label"
-    htmlFor="email"
+<div>
+  <div
+    className="login-form"
   >
-    <p>
-      Email:
-    </p>
-    <input
-      className="form-input"
-      id="email"
-      onChange={[Function]}
-      required={true}
-      type="text"
-      value=""
-    />
-  </label>
-  <label
-    className="form-label"
-    htmlFor="password"
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        className="form-label"
+        htmlFor="email"
+      >
+        <p>
+          Email:
+        </p>
+        <input
+          className="form-input"
+          id="email"
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        className="form-label"
+        htmlFor="password"
+      >
+        <p>
+          Password:
+        </p>
+        <input
+          className="form-input"
+          id="password"
+          onChange={[Function]}
+          required={true}
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        className="btn btn-submit"
+        type="submit"
+      >
+        Log In
+      </button>
+      <p
+        className="error-text"
+      />
+    </form>
+  </div>
+  <div
+    className="registartion-link"
   >
-    <p>
-      Password:
-    </p>
-    <input
-      className="form-input"
-      id="password"
-      onChange={[Function]}
-      required={true}
-      type="password"
-      value=""
-    />
-  </label>
-  <button
-    className="btn btn-submit"
-    type="submit"
-  >
-    Log In
-  </button>
-  <p
-    className="error-text"
-  />
-</form>
+    <Link
+      replace={false}
+      to="/registration"
+    >
+      Registration
+    </Link>
+  </div>
+</div>
 `;
