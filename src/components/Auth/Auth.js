@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ConnectedLoginForm from './LoginForm';
-import Registration from './Registration';
+import ConnectedRegistration from './Registration';
 
 export default class Auth extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class Auth extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={ConnectedLoginForm} />
-            <Route path="/registration" component={Registration} />
+            <Route path="/registration" component={ConnectedRegistration} />
             <Route component={() => <p>Not Found</p>} />
           </Switch>
         </Router>
