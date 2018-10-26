@@ -3,16 +3,16 @@ import { shallow } from 'enzyme';
 
 global.buildSetup = (TestComponent, defaultProps, shallowOptions) => (
   overrideProps,
-  overrideOptions = {}
+  overrideOptions = {},
 ) => {
   const props = {
     ...defaultProps,
-    ...overrideProps
+    ...overrideProps,
   };
 
   const options = {
     ...shallowOptions,
-    ...overrideOptions
+    ...overrideOptions,
   };
 
   const wrapper = shallow(<TestComponent {...props} />, options);

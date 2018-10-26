@@ -1,0 +1,52 @@
+.login-form {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.form-label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-input{
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid lightblue
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom: 2px solid blue;
+}
+
+button {
+    width: 100px;
+    margin: auto;
+    margin-top: 20px;
+    border: 0px;
+    padding: 10px 20px;
+    background-color: orange;
+    border-radius: 5px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: lightcoral;
+}
+
+.error-text {
+    color: red;
+    font-size: 1rem;
+    letter-spacing: 1px;
+
+}
