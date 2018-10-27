@@ -1,5 +1,6 @@
 const yup = require('yup');
 const jsonServer = require('json-server');
+const bcrypt = require('bcrypt');
 
 const server = jsonServer.create();
 const router = jsonServer.router('./src/database/db.json');
@@ -31,6 +32,10 @@ function checkToken(token) {
   return jwt.verify(token, SECRET_KEY, (err, decoded) => decoded !== undefined);
 }
 
+function hashPasswords(password) {
+  return bcrypt.hash(password, 10);
+}
+
 async function isAuth(req) {
   const { email, password } = req.body;
   const user = await router.db
@@ -40,7 +45,8 @@ async function isAuth(req) {
   if (!user) {
     return false;
   }
-  if (password === user.password) {
+  const match = await bcrypt.compare(password, user.password);
+  if (match) {
     const accessToken = createToken({ email, password });
     const response = {
       token: accessToken,
@@ -48,18 +54,18 @@ async function isAuth(req) {
     };
     return response;
   }
-
   return false;
 }
 
-function addUserToDb(req) {
+async function addUserToDb(req) {
   const messages = {};
   return schema
     .validate(req.body, { abortEarly: false })
-    .then(() => {
+    .then(async () => {
+      const hashedPassword = await hashPasswords(req.body.password);
       const user = router.db
         .get('users')
-        .push(Object.assign(req.body, { role: 'user' }))
+        .push(Object.assign(req.body, { role: 'user', password: hashedPassword }))
         .write();
 
       if (user) {
@@ -86,8 +92,37 @@ function checkIfEmailIsTaken(req) {
   return false;
 }
 
+async function getAllCompanies() {
+  const companies = router.db.get('companies').value();
+
+  if (companies) return { companies };
+
+  return { error: 'Serwer not respond' };
+}
+
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
+
+server.post('/registration', async (req, res) => {
+  const check = await checkIfEmailIsTaken(req);
+  if (check.error) return res.status(422).json({ error: check.error });
+  const register = await addUserToDb(req);
+  if (register.message) return res.json({ message: register.message });
+  return res.status(422).json({ errors: register.errors.errors });
+});
+server.get('/companies', async (req, res) => {
+  const companies = await getAllCompanies();
+  if (companies) res.json(companies);
+  return res.json({ error: 'Server not working' });
+});
+server.post('/login', async (req, res) => {
+  const response = await isAuth(req);
+  if (response) {
+    return res.send(response);
+  }
+  return res.status(401).json({ error: 'Email or password is incorrect!' });
+});
+
 server.use(async (req, res, next) => {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(' ')[1];
@@ -96,19 +131,7 @@ server.use(async (req, res, next) => {
     }
   }
 
-  if (req.originalUrl === '/registration') {
-    const check = await checkIfEmailIsTaken(req);
-    if (check.error) return res.status(422).json({ error: check.error });
-    const register = await addUserToDb(req);
-    if (register.message) return res.send({ message: register.message });
-    return res.status(422).json({ errors: register.errors.errors });
-  }
-
-  const response = await isAuth(req);
-  if (response) {
-    return res.send(response);
-  }
-  return res.status(401).json({ error: 'Email or password is incorrect!' });
+  return res.status(401).json({ error: 'Unauthorized' });
 });
 
 server.use(router);

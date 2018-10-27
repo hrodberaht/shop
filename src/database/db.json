@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "email": "john",
-      "password": "my"
-    },
-    {
-      "email": "tom",
-      "password": "my"
+      "email": "john@joh.pl",
+      "firstName": "john",
+      "lastName": "john2",
+      "password": "$2b$10$N4p4rxXcT/30DhhGpZy53.OHavJ5es6L92x0EgInZ8oZ2YTDEDGjG",
+      "companyId": "1234567",
+      "role": "user"
     }
   ],
   "products": [

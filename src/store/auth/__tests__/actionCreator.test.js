@@ -9,7 +9,7 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('actions', () => {
-  const url = 'http://localhost:3004/';
+  const url = 'http://localhost:3004/login';
   afterEach(() => {
     fetchMock.restore();
   });

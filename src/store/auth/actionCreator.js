@@ -19,7 +19,7 @@ export const logoutSucces = () => ({
   token: null,
 });
 
-const login = (email, password) => dispatch => fetch(config.url, {
+const login = (email, password) => dispatch => fetch(`${config.url}login`, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
