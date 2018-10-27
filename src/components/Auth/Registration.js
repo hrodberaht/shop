@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -25,9 +25,36 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
   throw errorsForm;
 });
 
+const addUserToDB = async (values) => {
+  const errorsForm = {};
+  return fetch('http://localhost:3004/registration', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(values),
+  })
+    .then(data => data.json())
+    .then((res) => {
+      if (res.status === 422) {
+        errorsForm.email = res.error;
+        return errorsForm;
+      }
+
+      return res;
+    });
+};
+
 export class Registration extends Component {
-  submit = (values) => {
-    console.log(values);
+  submit = async (values) => {
+    const check = await addUserToDB(values);
+    if (check.error) {
+      return Promise.resolve().then(() => {
+        throw new SubmissionError({ email: check.error });
+      });
+    }
+
+    return alert('User added');
   };
 
   renderField = ({
@@ -60,7 +87,7 @@ export class Registration extends Component {
             <p>Password:</p>
             <Field name="password" type="password" component={this.renderField} label="Password" />
           </label>
-          <Field name="company" component="select">
+          <Field name="companyId" component="select">
             <option />
             <option value="com1">com1</option>
             <option value="com2">com2</option>

@@ -7,6 +7,22 @@
       "password": "$2b$10$N4p4rxXcT/30DhhGpZy53.OHavJ5es6L92x0EgInZ8oZ2YTDEDGjG",
       "companyId": "1234567",
       "role": "user"
+    },
+    {
+      "email": "john@johk.pl",
+      "firstName": "Robert",
+      "lastName": "Pszczółka",
+      "password": "$2b$10$Kc88GMXJwan.ant/SsAsF.gsNHUx2YdFo9yrj7gsb3lqBuT55O996",
+      "companyId": "com3",
+      "role": "user"
+    },
+    {
+      "email": "biuro@zefi.pl",
+      "firstName": "Robert",
+      "lastName": "Pszczółka",
+      "password": "$2b$10$9yKy5v9ccwmCTC5gwZgkIeOeocjKHFlnPmQoJCTp6.du0sGTWlS0u",
+      "companyId": "com1",
+      "role": "user"
     }
   ],
   "products": [
