@@ -63,6 +63,7 @@ async function addUserToDb(req) {
     .validate(req.body, { abortEarly: false })
     .then(async () => {
       const hashedPassword = await hashPasswords(req.body.password);
+      req.body.email = req.body.email.toLowerCase();
       const user = router.db
         .get('users')
         .push(Object.assign(req.body, { role: 'user', password: hashedPassword }))
@@ -84,7 +85,7 @@ async function addUserToDb(req) {
 function checkIfEmailIsTaken(req) {
   const user = router.db
     .get('users')
-    .find({ email: req.body.email })
+    .find({ email: req.body.email.toLowerCase() })
     .value();
 
   if (user) return { error: 'Email is taken' };
@@ -92,12 +93,12 @@ function checkIfEmailIsTaken(req) {
   return false;
 }
 
-async function getAllCompanies() {
+function getAllCompanies() {
   const companies = router.db.get('companies').value();
 
   if (companies) return { companies };
 
-  return { error: 'Serwer not respond' };
+  return false;
 }
 
 server.use(middlewares);
@@ -112,8 +113,8 @@ server.post('/registration', async (req, res) => {
 });
 server.get('/companies', async (req, res) => {
   const companies = await getAllCompanies();
-  if (companies) res.json(companies);
-  return res.json({ error: 'Server not working' });
+  if (companies) return res.json(companies);
+  return res.json({ error: 'No comapnies in DB' });
 });
 server.post('/login', async (req, res) => {
   const response = await isAuth(req);

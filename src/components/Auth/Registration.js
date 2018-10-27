@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Link, withRouter } from 'react-router-dom';
 import * as yup from 'yup';
+import config from '../../config/config';
 
 const schema = yup.object().shape({
   email: yup
@@ -27,7 +29,7 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
 
 const addUserToDB = async (values) => {
   const errorsForm = {};
-  return fetch('http://localhost:3004/registration', {
+  return fetch(`${config.url}registration`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -46,6 +48,23 @@ const addUserToDB = async (values) => {
 };
 
 export class Registration extends Component {
+  state = {
+    companies: [],
+    loaded: false,
+    error: false,
+  };
+
+  componentDidMount() {
+    fetch(`${config.url}companies`)
+      .then(data => data.json())
+      .then((companies) => {
+        this.setState({ companies: companies.companies, loaded: true });
+      })
+      .catch(() => {
+        this.setState({ error: 'Server not working' });
+      });
+  }
+
   submit = async (values) => {
     const check = await addUserToDB(values);
     if (check.error) {
@@ -53,8 +72,8 @@ export class Registration extends Component {
         throw new SubmissionError({ email: check.error });
       });
     }
-
-    return alert('User added');
+    alert('User added');
+    return this.props.history.push('/');
   };
 
   renderField = ({
@@ -68,8 +87,12 @@ export class Registration extends Component {
 
   render() {
     const { handleSubmit, pristine } = this.props;
+    if (this.state.error) return <div>{this.state.error}</div>;
     return (
       <div className="registration-form">
+        <div className="registartion-link">
+          <Link to="/">Back to login page</Link>
+        </div>
         <form onSubmit={handleSubmit(this.submit)}>
           <label className="form-label" htmlFor="email">
             <p>Email:</p>
@@ -88,10 +111,16 @@ export class Registration extends Component {
             <Field name="password" type="password" component={this.renderField} label="Password" />
           </label>
           <Field name="companyId" component="select">
-            <option />
-            <option value="com1">com1</option>
-            <option value="com2">com2</option>
-            <option value="com3">com3</option>
+            {this.state.loaded && (
+              <React.Fragment>
+                <option />
+                {this.state.companies.map(company => (
+                  <option key={company.id} value={company.id}>
+                    {company.name}
+                  </option>
+                ))}
+              </React.Fragment>
+            )}
           </Field>
           <button className="btn btn-submit" type="submit" disabled={pristine}>
             Register
@@ -101,6 +130,8 @@ export class Registration extends Component {
     );
   }
 }
+
+withRouter(Registration);
 export default reduxForm({
   asyncValidate,
   form: 'registration',
