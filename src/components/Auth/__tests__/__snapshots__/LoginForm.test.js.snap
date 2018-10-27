@@ -50,16 +50,16 @@ exports[`<LoginForm /> should render witout crash 1`] = `
         className="error-text"
       />
     </form>
-  </div>
-  <div
-    className="registartion-link"
-  >
-    <Link
-      replace={false}
-      to="/registration"
+    <div
+      className="registartion-link "
     >
-      Registration
-    </Link>
+      <Link
+        replace={false}
+        to="/registration"
+      >
+        Registration
+      </Link>
+    </div>
   </div>
 </div>
 `;

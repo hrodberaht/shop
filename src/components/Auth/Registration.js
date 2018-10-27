@@ -79,10 +79,21 @@ export class Registration extends Component {
   renderField = ({
     input, label, type, meta: { touched, error },
   }) => (
-    <div className="form-input">
-      <input {...input} type={type} placeholder={label} />
-      {touched && (error && <span>{error}</span>)}
+    <div>
+      <input className="form-input" {...input} type={type} placeholder={label} />
+      <p className="error-text">{touched && (error && <span>{error}</span>)}</p>
     </div>
+  );
+
+  selectOptions = () => (
+    <React.Fragment>
+      <option />
+      {this.state.companies.map(company => (
+        <option key={company.id} value={company.id}>
+          {company.name}
+        </option>
+      ))}
+    </React.Fragment>
   );
 
   render() {
@@ -90,9 +101,6 @@ export class Registration extends Component {
     if (this.state.error) return <div>{this.state.error}</div>;
     return (
       <div className="registration-form">
-        <div className="registartion-link">
-          <Link to="/">Back to login page</Link>
-        </div>
         <form onSubmit={handleSubmit(this.submit)}>
           <label className="form-label" htmlFor="email">
             <p>Email:</p>
@@ -110,21 +118,15 @@ export class Registration extends Component {
             <p>Password:</p>
             <Field name="password" type="password" component={this.renderField} label="Password" />
           </label>
-          <Field name="companyId" component="select">
-            {this.state.loaded && (
-              <React.Fragment>
-                <option />
-                {this.state.companies.map(company => (
-                  <option key={company.id} value={company.id}>
-                    {company.name}
-                  </option>
-                ))}
-              </React.Fragment>
-            )}
+          <Field className="registration-select" name="companyId" component="select">
+            {this.state.loaded && this.selectOptions()}
           </Field>
           <button className="btn btn-submit" type="submit" disabled={pristine}>
-            Register
+            Submit
           </button>
+          <div className="registartion-link">
+            <Link to="/">Login</Link>
+          </div>
         </form>
       </div>
     );

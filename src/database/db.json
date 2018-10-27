@@ -7,14 +7,6 @@
       "password": "$2b$10$HXaAxhbaUT2/Pf9lM6CYfOH62pHvWYQZm5zGDrFMzPquxXnCw29u6",
       "companyId": "company-1",
       "role": "user"
-    },
-    {
-      "email": "biuro@zefi.pl",
-      "firstName": "Robert",
-      "lastName": "Pszczółka",
-      "password": "$2b$10$A0O9BrCkW.hp9dPaIaLr2ON4jremuzBUMoXgi2ipGAaOX.9.Rjh76",
-      "companyId": "company-2",
-      "role": "user"
     }
   ],
   "products": [
@@ -58,17 +50,12 @@
     {
       "id": "company-1",
       "name": "IBM",
-      "usersIds": [
-        "user-1",
-        "user-2"
-      ]
+      "usersIds": ["user-1", "user-2"]
     },
     {
       "id": "company-2",
       "name": "Apple",
-      "usersIds": [
-        "user-3"
-      ]
+      "usersIds": ["user-3"]
     }
   ]
 }

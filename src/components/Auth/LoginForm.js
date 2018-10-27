@@ -64,9 +64,9 @@ export class LoginForm extends Component {
             </button>
             <p className="error-text">{error}</p>
           </form>
-        </div>
-        <div className="registartion-link">
-          <Link to="/registration">Registration</Link>
+          <div className="registartion-link ">
+            <Link to="/registration">Registration</Link>
+          </div>
         </div>
       </div>
     );
