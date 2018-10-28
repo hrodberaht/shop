@@ -29,11 +29,12 @@ Authorization.propTypes = {
   withOutAuth: PropTypes.element,
   logout: PropTypes.func,
   auth: PropTypes.bool.isRequired,
-  handleLogout: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func,
 };
 
 Authorization.defaultProps = {
   logout: null,
   withAuth: null,
   withOutAuth: null,
+  handleLogout: null,
 };

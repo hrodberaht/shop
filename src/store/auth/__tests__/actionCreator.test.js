@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock/es5/client';
 
-import login from '../actionCreator';
+import { login, clearLoginErrors, logoutSucces } from '../actionCreator';
 import * as types from '../types';
 
 const middlewares = [thunk];
@@ -40,5 +40,22 @@ describe('actions', () => {
     return store.dispatch(login()).then(() => {
       expect(store.getActions()[0]).toEqual(expect.objectContaining(expectedActionType));
     });
+  });
+
+  it('should create an action clear login errors', () => {
+    const expectedAction = {
+      type: types.CLEAR_ERRORS,
+      error: null,
+    };
+    expect(clearLoginErrors()).toEqual(expectedAction);
+  });
+
+  it('should create an action logout succes', () => {
+    const expectedAction = {
+      type: types.LOGOUT,
+      isAuth: false,
+      token: null,
+    };
+    expect(logoutSucces()).toEqual(expectedAction);
   });
 });

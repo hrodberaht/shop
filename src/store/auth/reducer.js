@@ -14,6 +14,8 @@ const auth = (state = initialState, action) => {
       return { ...state, ...{ auth: action.isAuth, error: action.error } };
     case types.LOGOUT:
       return { ...state, ...{ auth: action.isAuth, token: action.token } };
+    case types.CLEAR_ERRORS:
+      return { ...state, ...{ error: null } };
     default:
       return state;
   }

@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getAuthError } from '../../store/auth/selectors';
-import login from '../../store/auth/actionCreator';
+import { login, clearLoginErrors } from '../../store/auth/actionCreator';
 
 export class LoginForm extends Component {
   state = {
     email: '',
     password: '',
   };
+
+  componentWillUnmount() {
+    this.props.clearLoginErrors();
+  }
 
   handleChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
@@ -79,14 +83,19 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { handleLogin: login },
+  {
+    handleLogin: login,
+    clearLoginErrors,
+  },
 )(LoginForm);
 
 LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
+  clearLoginErrors: PropTypes.func,
   error: PropTypes.string,
 };
 
 LoginForm.defaultProps = {
   error: null,
+  clearLoginErrors: null,
 };

@@ -19,7 +19,12 @@ export const logoutSucces = () => ({
   token: null,
 });
 
-const login = (email, password) => dispatch => fetch(`${config.url}login`, {
+export const clearLoginErrors = () => ({
+  type: types.CLEAR_ERRORS,
+  error: null,
+});
+
+export const login = (email, password) => dispatch => fetch(`${config.url}login`, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
@@ -38,5 +43,3 @@ const login = (email, password) => dispatch => fetch(`${config.url}login`, {
   .catch(() => {
     dispatch(loginFail('Sorry server is down'));
   });
-
-export default login;

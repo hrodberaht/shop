@@ -29,7 +29,7 @@ describe('actions', () => {
     });
   });
 
-  it('call fetch Error action type when fetch data fail', () => {
+  it('call fetch error action type when fetch data fail', () => {
     fetchMock.get(url, { throws: Error });
 
     const expectedActionType = { type: types.FETCH_PRODUCTS_ERROR };

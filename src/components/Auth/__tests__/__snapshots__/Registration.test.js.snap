@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Registration /> should render without crash 1`] = `
+<div
+  className="registration-form"
+>
+  <form>
+    <label
+      className="form-label"
+      htmlFor="email"
+    >
+      <p>
+        Email:
+      </p>
+      <Field
+        component={[Function]}
+        label="Email"
+        name="email"
+        type="text"
+      />
+    </label>
+    <label
+      className="form-label"
+      htmlFor="first-name"
+    >
+      <p>
+        First name:
+      </p>
+      <Field
+        component={[Function]}
+        label="First name"
+        name="firstName"
+        type="text"
+      />
+    </label>
+    <label
+      className="form-label"
+      htmlFor="last-name"
+    >
+      <p>
+        Last name:
+      </p>
+      <Field
+        component={[Function]}
+        label="Last name"
+        name="lastName"
+        type="text"
+      />
+    </label>
+    <label
+      className="form-label"
+      htmlFor="password"
+    >
+      <p>
+        Password:
+      </p>
+      <Field
+        component={[Function]}
+        label="Password"
+        name="password"
+        type="password"
+      />
+    </label>
+    <Field
+      className="registration-select"
+      component="select"
+      name="companyId"
+    />
+    <button
+      className="btn btn-submit"
+      type="submit"
+    >
+      Submit
+    </button>
+    <div
+      className="registartion-link"
+    >
+      <Link
+        replace={false}
+        to="/"
+      >
+        Login
+      </Link>
+    </div>
+  </form>
+</div>
+`;
