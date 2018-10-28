@@ -16,15 +16,23 @@ export default class NavBar extends Component {
           <li className="item">
             <NavLink to="/cart">Cart</NavLink>
           </li>
-          <li className="item">
-            <ConnectedAuthorization
-              logout={logout => (
+          <ConnectedAuthorization
+            render
+            withRoleAdmin={(
+              <li className="item">
+                <Link to="/admin">Admin</Link>
+              </li>
+)}
+          />
+          <ConnectedAuthorization
+            logout={logout => (
+              <li className="item">
                 <Link to="/" onClick={logout}>
                   Logout
                 </Link>
-              )}
-            />
-          </li>
+              </li>
+            )}
+          />
         </ul>
       </div>
     );

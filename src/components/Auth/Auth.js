@@ -9,9 +9,8 @@ export default class Auth extends Component {
       <div>
         <Router>
           <Switch>
-            <Route exact path="/" component={ConnectedLoginForm} />
-            <Route path="/registration" component={ConnectedRegistration} />
-            <Route component={() => <p>Not Found</p>} />
+            <Route exact path="/registration" component={ConnectedRegistration} />
+            <Route path="/" component={ConnectedLoginForm} />
           </Switch>
         </Router>
       </div>

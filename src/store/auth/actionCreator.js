@@ -1,10 +1,11 @@
 import * as types from './types';
 import config from '../../config/config';
 
-const loginSucces = token => ({
+const loginSucces = (token, role) => ({
   type: types.LOGIN_SUCCES,
   isAuth: true,
   token,
+  role,
 });
 
 const loginFail = error => ({
@@ -37,7 +38,7 @@ export const login = (email, password) => dispatch => fetch(`${config.url}login`
       dispatch(loginFail(res.error));
     }
     if (res.message) {
-      dispatch(loginSucces(res.token));
+      dispatch(loginSucces(res.token, res.role));
     }
   })
   .catch(() => {

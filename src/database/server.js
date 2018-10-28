@@ -50,6 +50,7 @@ async function isAuth(req) {
     const accessToken = createToken({ email, password });
     const response = {
       token: accessToken,
+      role: user.role,
       message: 'auth',
     };
     return response;

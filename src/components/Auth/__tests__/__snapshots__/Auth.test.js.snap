@@ -7,14 +7,11 @@ exports[`<Auth /> should render without crash 1`] = `
       <Route
         component={[Function]}
         exact={true}
-        path="/"
-      />
-      <Route
-        component={[Function]}
         path="/registration"
       />
       <Route
         component={[Function]}
+        path="/"
       />
     </Switch>
   </BrowserRouter>

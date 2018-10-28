@@ -27,26 +27,6 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
   throw errorsForm;
 });
 
-const addUserToDB = async (values) => {
-  const errorsForm = {};
-  return fetch(`${config.url}registration`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(values),
-  })
-    .then(data => data.json())
-    .then((res) => {
-      if (res.status === 422) {
-        errorsForm.email = res.error;
-        return errorsForm;
-      }
-
-      return res;
-    });
-};
-
 export class Registration extends Component {
   state = {
     companies: [],
@@ -55,6 +35,10 @@ export class Registration extends Component {
   };
 
   componentDidMount() {
+    this.fetchCompanies();
+  }
+
+  fetchCompanies = () => {
     fetch(`${config.url}companies`)
       .then(data => data.json())
       .then((companies) => {
@@ -63,10 +47,30 @@ export class Registration extends Component {
       .catch(() => {
         this.setState({ error: 'Server not working' });
       });
-  }
+  };
+
+  addUserToDB = async (values) => {
+    const errorsForm = {};
+    return fetch(`${config.url}registration`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    })
+      .then(data => data.json())
+      .then((res) => {
+        if (res.status === 422) {
+          errorsForm.email = res.error;
+          return errorsForm;
+        }
+
+        return res;
+      });
+  };
 
   submit = async (values) => {
-    const check = await addUserToDB(values);
+    const check = await this.addUserToDB(values);
     if (check.error) {
       return Promise.resolve().then(() => {
         throw new SubmissionError({ email: check.error });
