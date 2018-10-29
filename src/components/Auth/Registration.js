@@ -38,18 +38,16 @@ export class Registration extends Component {
     this.fetchCompanies();
   }
 
-  fetchCompanies = () => {
-    fetch(`${config.url}companies`)
-      .then(data => data.json())
-      .then((companies) => {
-        this.setState({ companies: companies.companies, loaded: true });
-      })
-      .catch(() => {
-        this.setState({ error: 'Server not working' });
-      });
-  };
+  fetchCompanies = () => fetch(`${config.url}companies`)
+    .then(data => data.json())
+    .then((data) => {
+      this.setState({ companies: data.companies, loaded: true });
+    })
+    .catch(() => {
+      this.setState({ error: 'Server not working' });
+    });
 
-  addUserToDB = async (values) => {
+  addUserToDB = (values) => {
     const errorsForm = {};
     return fetch(`${config.url}registration`, {
       method: 'post',

@@ -97,7 +97,7 @@ function checkIfEmailIsTaken(req) {
 function getAllCompanies() {
   const companies = router.db.get('companies').value();
 
-  if (companies) return { companies };
+  if (companies) return companies;
 
   return false;
 }
