@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class Product extends Component {
   state = {
-    pcsOrder: 0,
+    pcsOrder: 1,
     error: null,
   };
 
@@ -25,7 +25,7 @@ export default class Product extends Component {
 
   checkAmountOrder = (inStock, pcsOrder) => {
     if (pcsOrder > inStock) return this.setState({ error: 'Not enough products' });
-    if (pcsOrder < 0) return this.setState({ pcsOrder: 0 });
+    if (pcsOrder < 1) return this.setState({ pcsOrder: 1 });
     return this.setState({ error: null });
   };
 
@@ -67,7 +67,7 @@ export default class Product extends Component {
           </span>
         </p>
         <button className="btn btn-primary" type="button">
-          Buy
+          Add to cart
         </button>
       </div>
     );
