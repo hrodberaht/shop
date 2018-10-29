@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Product from './Product';
+import ConnectedProduct from './Product';
 import {
   getProductsAll,
   getProductsLoaded,
@@ -22,7 +22,7 @@ export class ProductsList extends Component {
     return (
       <div className="products-list">
         {loaded ? (
-          products.map(product => <Product key={product.id} product={product} />)
+          products.map(product => <ConnectedProduct key={product.id} product={product} />)
         ) : (
           <p>Loading:</p>
         )}

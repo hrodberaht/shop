@@ -62,6 +62,8 @@ exports[`<Product /> should render without crash 1`] = `
   </p>
   <button
     className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
     type="button"
   >
     Add to cart

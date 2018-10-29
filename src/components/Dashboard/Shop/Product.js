@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addProductToCart } from '../../../store/cart/actionCreator';
 
-export default class Product extends Component {
+export class Product extends Component {
   state = {
     pcsOrder: 1,
     error: null,
@@ -31,13 +33,31 @@ export default class Product extends Component {
 
   calculateTotalPrice = (pcsOrder, price) => pcsOrder * price;
 
+  handleClick = (product) => {
+    this.props.addProduct(product);
+    alert('Product added to cart');
+  };
+
+  moreThanInStock = () => {
+    if (this.state.error) return true;
+    return false;
+  };
+
   render() {
     const {
       product: {
-        name, type, price, inStock,
+        id, name, type, price, inStock,
       },
     } = this.props;
     const { pcsOrder, error } = this.state;
+    const totalPrice = this.calculateTotalPrice(pcsOrder, price);
+    const productToCart = {
+      id,
+      name,
+      price,
+      pcsOrder,
+      totalPrice,
+    };
     return (
       <div className="product-item">
         <h3>{name}</h3>
@@ -63,10 +83,15 @@ export default class Product extends Component {
           {'  '}
           <span id="total-price">
             <span>$</span>
-            {this.calculateTotalPrice(pcsOrder, price)}
+            {totalPrice}
           </span>
         </p>
-        <button className="btn btn-primary" type="button">
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={() => this.handleClick(productToCart)}
+          disabled={this.moreThanInStock()}
+        >
           Add to cart
         </button>
       </div>
@@ -81,4 +106,10 @@ Product.propTypes = {
     price: PropTypes.string,
     inStock: PropTypes.string,
   }).isRequired,
+  addProduct: PropTypes.func.isRequired,
 };
+
+export default connect(
+  null,
+  { addProduct: addProductToCart },
+)(Product);
