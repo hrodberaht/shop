@@ -1,9 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Auth /> should render without crash 1`] = `
-<div
-  className="login-form"
->
-  <Connect(LoginForm) />
+<div>
+  <BrowserRouter>
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/registration"
+      />
+      <Route
+        component={[Function]}
+        path="/"
+      />
+    </Switch>
+  </BrowserRouter>
 </div>
 `;

@@ -7,6 +7,7 @@ describe('auth reducer', () => {
       auth: false,
       error: null,
       token: null,
+      role: null,
     });
   });
   it('should handle LOGIN_SUCCES', () => {
@@ -39,10 +40,12 @@ describe('auth reducer', () => {
         type: types.LOGOUT,
         isAuth: false,
         token: null,
+        role: null,
       }),
     ).toEqual({
       auth: false,
       token: null,
+      role: null,
     });
   });
 });

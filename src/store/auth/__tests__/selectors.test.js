@@ -6,6 +6,7 @@ describe('selectors for auth', () => {
       auth: false,
       error: 'error',
       token: '1234',
+      role: 'admin',
     },
   };
 
@@ -18,5 +19,8 @@ describe('selectors for auth', () => {
   });
   it('should return value of token', () => {
     expect(selectors.getAuthToken(state)).toBe('1234');
+  });
+  it('should return value of role', () => {
+    expect(selectors.getAuthRole(state)).toBe('admin');
   });
 });

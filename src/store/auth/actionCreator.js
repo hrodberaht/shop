@@ -1,10 +1,11 @@
 import * as types from './types';
 import config from '../../config/config';
 
-const loginSucces = token => ({
+const loginSucces = (token, role) => ({
   type: types.LOGIN_SUCCES,
   isAuth: true,
   token,
+  role,
 });
 
 const loginFail = error => ({
@@ -19,7 +20,12 @@ export const logoutSucces = () => ({
   token: null,
 });
 
-const login = (email, password) => dispatch => fetch(config.url, {
+export const clearLoginErrors = () => ({
+  type: types.CLEAR_ERRORS,
+  error: null,
+});
+
+export const login = (email, password) => dispatch => fetch(`${config.url}login`, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
@@ -32,11 +38,9 @@ const login = (email, password) => dispatch => fetch(config.url, {
       dispatch(loginFail(res.error));
     }
     if (res.message) {
-      dispatch(loginSucces(res.token));
+      dispatch(loginSucces(res.token, res.role));
     }
   })
   .catch(() => {
     dispatch(loginFail('Sorry server is down'));
   });
-
-export default login;
