@@ -13,7 +13,10 @@ export default class CartProduct extends Component {
         <td>{name}</td>
         <td>{price}</td>
         <td>{pcsOrder}</td>
-        <td>{totalPrice}</td>
+        <td>
+          <span>$</span>
+          {totalPrice}
+        </td>
       </tr>
     );
   }

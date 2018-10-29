@@ -28,21 +28,22 @@ export class Cart extends Component {
   render() {
     return (
       <div className="cart">
+        <h3>Products in your cart:</h3>
         <table>
           <tbody className="cart-produts__item">
             <tr>
               <th>Name:</th>
               <th>Price:</th>
-              <th>pcsOrder:</th>
-              <th>totalPrice:</th>
+              <th>Pcs:</th>
+              <th>Total price:</th>
             </tr>
             {this.props.products.map(product => (
               <CartProduct key={product.id} product={product} />
             ))}
           </tbody>
         </table>
-        <p className="cart__name">
-          Summary:
+        <p className="cart__sumary">
+          <span>$</span>
           {this.sumaryPrice()}
         </p>
         <button className="btn btn-primary" type="button" onClick={this.handleClick}>
