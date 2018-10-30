@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { addProductToCart } from '../../../store/cart/actionCreator';
+import AddedToCart from '../Cart/AddedToCart';
 
-export default class Product extends Component {
+export class Product extends Component {
   state = {
     pcsOrder: 1,
     error: null,
+    toggleAddedToCart: false,
   };
 
   changeInStockToText = (inStock) => {
@@ -31,44 +36,83 @@ export default class Product extends Component {
 
   calculateTotalPrice = (pcsOrder, price) => pcsOrder * price;
 
+  showAddedToCart = () => {
+    const { toggleAddedToCart } = this.state;
+    this.setState({ toggleAddedToCart: !toggleAddedToCart });
+  };
+
+  moreThanInStock = () => {
+    if (this.state.error) return true;
+    return false;
+  };
+
+  redirectToCart = () => this.props.history.push('/cart');
+
+  handleClick = (product) => {
+    this.props.addProduct(product);
+    this.showAddedToCart();
+  };
+
   render() {
     const {
       product: {
-        name, type, price, inStock,
+        id, name, type, price, inStock,
       },
     } = this.props;
-    const { pcsOrder, error } = this.state;
+    const { pcsOrder, error, toggleAddedToCart } = this.state;
+    const totalPrice = this.calculateTotalPrice(pcsOrder, price);
+    const productToCart = {
+      id,
+      name,
+      price: +price,
+      pcsOrder,
+      totalPrice,
+    };
     return (
-      <div className="product-item">
-        <h3>{name}</h3>
-        <h5>{type}</h5>
-        <p className="product-item__price">
-          <span>$</span>
-          {price}
-        </p>
-        <p>
-          <span>In stock:</span>
-          {'  '}
-          <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
-        </p>
-        <p className="product-item__order">
-          {' '}
-          Order:
-          <input type="number" value={pcsOrder} onChange={this.handleChange} />
-          pcs
-        </p>
-        <p id="stock-error">{error}</p>
-        <p className="product-item__total">
-          <span>Total price:</span>
-          {'  '}
-          <span id="total-price">
+      <div>
+        <div className="product-item">
+          <h3>{name}</h3>
+          <h5>{type}</h5>
+          <p className="product-item__price">
             <span>$</span>
-            {this.calculateTotalPrice(pcsOrder, price)}
-          </span>
-        </p>
-        <button className="btn btn-primary" type="button">
-          Add to cart
-        </button>
+            {price}
+          </p>
+          <p>
+            <span>In stock:</span>
+            {'  '}
+            <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
+          </p>
+          <p className="product-item__order">
+            {' '}
+            Order:
+            <input type="number" value={pcsOrder} onChange={this.handleChange} />
+            pcs
+          </p>
+          <p id="stock-error">{error}</p>
+          <p className="product-item__total">
+            <span>Total price:</span>
+            {'  '}
+            <span id="total-price">
+              <span>$</span>
+              {totalPrice}
+            </span>
+          </p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => this.handleClick(productToCart)}
+            disabled={this.moreThanInStock()}
+          >
+            Add to cart
+          </button>
+        </div>
+        {toggleAddedToCart && (
+          <AddedToCart
+            product={productToCart}
+            redirect={this.redirectToCart}
+            show={this.showAddedToCart}
+          />
+        )}
       </div>
     );
   }
@@ -81,4 +125,16 @@ Product.propTypes = {
     price: PropTypes.string,
     inStock: PropTypes.string,
   }).isRequired,
+  addProduct: PropTypes.func,
 };
+
+Product.defaultProps = {
+  addProduct: null,
+};
+
+export default withRouter(
+  connect(
+    null,
+    { addProduct: addProductToCart },
+  )(Product),
+);

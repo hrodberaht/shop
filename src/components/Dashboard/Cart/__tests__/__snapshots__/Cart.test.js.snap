@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cart /> should render witout crash 1`] = `
+<div
+  className="cart"
+>
+  <h3>
+    Products in your cart:
+  </h3>
+  <table>
+    <tbody
+      className="cart-produts__item"
+    >
+      <tr>
+        <th>
+          Name:
+        </th>
+        <th>
+          Price:
+        </th>
+        <th>
+          Pcs:
+        </th>
+        <th>
+          Total price:
+        </th>
+      </tr>
+      <CartProduct
+        key="1"
+        product={
+          Object {
+            "id": "1",
+            "name": "fx",
+            "pcsOrder": 2,
+            "price": 400,
+            "totalPrice": 800,
+          }
+        }
+      />
+      <CartProduct
+        key="2"
+        product={
+          Object {
+            "id": "2",
+            "name": "fx2",
+            "pcsOrder": 8,
+            "price": 600,
+            "totalPrice": 4800,
+          }
+        }
+      />
+    </tbody>
+  </table>
+  <p
+    className="cart__sumary"
+  >
+    <span>
+      $
+    </span>
+    5600
+  </p>
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+    type="button"
+  >
+    Buy
+  </button>
+</div>
+`;

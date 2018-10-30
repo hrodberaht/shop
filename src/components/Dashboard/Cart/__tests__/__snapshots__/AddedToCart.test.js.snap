@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddedToCart /> should render witout crash 1`] = `
+<div
+  className="cart-popup"
+>
+  <div
+    className="cart-popup__inside"
+  >
+    <h4>
+      Product added to cart:
+    </h4>
+    <p>
+      <span>
+        Name:
+      </span>
+      fx
+    </p>
+    <p>
+      <span>
+        Price:
+      </span>
+      400
+    </p>
+    <p>
+      <span>
+        Pcs:
+      </span>
+      2
+    </p>
+    <p>
+      <span>
+        Tota price:
+      </span>
+      800
+    </p>
+    <div
+      className="cart-popup__buttons"
+    >
+      <button
+        className="btn btn-primary"
+        id="more"
+        onClick={[MockFunction]}
+        type="button"
+      >
+        More
+      </button>
+      <button
+        className="btn btn-primary"
+        id="cart"
+        onClick={[MockFunction]}
+        type="button"
+      >
+        Cart
+      </button>
+    </div>
+  </div>
+</div>
+`;

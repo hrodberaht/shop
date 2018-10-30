@@ -1,0 +1,32 @@
+.cart-popup {
+    position: absolute;
+    width: 450px;
+    height: 350px;
+    background-color: azure;
+    top: 200px;
+    left: 260px;
+    font-size: 22px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.cart-popup__inside h4 {
+    color: rgb(26, 51, 71);
+    
+
+}
+
+
+.cart-popup__inside span {
+    margin-right: 10px;
+    font-weight: 200;
+}
+
+.cart-popup__inside p {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.cart-popup__buttons button:nth-child(2) {
+   margin-left: 150px;
+   
+}

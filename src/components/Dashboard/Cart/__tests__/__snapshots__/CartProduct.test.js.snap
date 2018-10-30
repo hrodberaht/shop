@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CartProduct /> should render witout crash 1`] = `
+<tr>
+  <td>
+    fx
+  </td>
+  <td>
+    400
+  </td>
+  <td>
+    2
+  </td>
+  <td>
+    <span>
+      $
+    </span>
+    800
+  </td>
+</tr>
+`;
