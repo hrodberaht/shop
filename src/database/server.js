@@ -1,6 +1,7 @@
 const yup = require('yup');
 const jsonServer = require('json-server');
 const bcrypt = require('bcrypt');
+const shortid = require('shortid');
 
 const server = jsonServer.create();
 const router = jsonServer.router('./src/database/db.json');
@@ -24,6 +25,13 @@ const schema = yup.object().shape({
   companyId: yup.string().required(),
 });
 
+function findUserByEmail(email) {
+  return router.db
+    .get('users')
+    .find({ email })
+    .value();
+}
+
 function createToken(payload) {
   return jwt.sign(payload, SECRET_KEY);
 }
@@ -38,10 +46,7 @@ function hashPasswords(password) {
 
 async function isAuth(req) {
   const { email, password } = req.body;
-  const user = await router.db
-    .get('users')
-    .find({ email })
-    .value();
+  const user = findUserByEmail(email);
   if (!user) {
     return false;
   }
@@ -58,6 +63,15 @@ async function isAuth(req) {
   return false;
 }
 
+function addUserIdToCompanies(companyId, userId) {
+  router.db
+    .get('companies')
+    .find({ id: companyId })
+    .get('usersIds')
+    .push(userId)
+    .write();
+}
+
 async function addUserToDb(req) {
   const messages = {};
   return schema
@@ -65,11 +79,19 @@ async function addUserToDb(req) {
     .then(async () => {
       const hashedPassword = await hashPasswords(req.body.password);
       req.body.email = req.body.email.toLowerCase();
-      const user = router.db
+      await router.db
         .get('users')
-        .push(Object.assign(req.body, { role: 'user', password: hashedPassword }))
+        .push(
+          Object.assign(req.body, {
+            id: shortid.generate(),
+            role: 'user',
+            password: hashedPassword,
+          }),
+        )
         .write();
 
+      const user = findUserByEmail(req.body.email);
+      addUserIdToCompanies(user.companyId, user.id);
       if (user) {
         messages.message = 'User added';
         return messages;
