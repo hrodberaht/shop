@@ -41,7 +41,7 @@ export class Registration extends Component {
   fetchCompanies = () => fetch(`${config.url}companies`)
     .then(data => data.json())
     .then((data) => {
-      this.setState({ companies: data.companies, loaded: true });
+      this.setState({ companies: data, loaded: true });
     })
     .catch(() => {
       this.setState({ error: 'Server not working' });
