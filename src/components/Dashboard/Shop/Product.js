@@ -65,7 +65,7 @@ export class Product extends Component {
       id,
       name,
       price: +price,
-      pcsOrder,
+      pcsOrder: +pcsOrder,
       totalPrice,
     };
     return (
