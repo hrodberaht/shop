@@ -37,7 +37,7 @@ describe('<Registration />', () => {
     ];
     fetchMock.get(`${config.url}companies`, {
       headers: { 'content-type': 'application/json' },
-      body: { companies },
+      body: companies,
     });
     await instance.fetchCompanies();
     expect(wrapper.state().companies).toEqual(companies);
