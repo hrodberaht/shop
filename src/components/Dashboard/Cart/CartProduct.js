@@ -24,10 +24,9 @@ export default class CartProduct extends Component {
 
 CartProduct.propTypes = {
   product: PropTypes.shape({
-    id: PropTypes.string,
     name: PropTypes.string,
-    type: PropTypes.string,
-    price: PropTypes.string,
-    inStock: PropTypes.string,
+    price: PropTypes.number,
+    pcsOrder: PropTypes.number,
+    totalPrice: PropTypes.number,
   }).isRequired,
 };

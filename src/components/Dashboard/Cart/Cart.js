@@ -20,8 +20,8 @@ export class Cart extends Component {
 
   handleClick = () => {
     const { emptyCart } = this.props;
-    alert('Thanks for order');
     emptyCart();
+    alert('Thanks for order');
     return this.props.history.push('/orders');
   };
 
