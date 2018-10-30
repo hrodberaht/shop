@@ -4,7 +4,7 @@ exports[`<ProductsList /> should render products list if loaded true 1`] = `
 <div
   className="products-list"
 >
-  <Connect(Product)
+  <withRouter(Connect(Product))
     key="product-1"
     product={
       Object {
@@ -16,7 +16,7 @@ exports[`<ProductsList /> should render products list if loaded true 1`] = `
       }
     }
   />
-  <Connect(Product)
+  <withRouter(Connect(Product))
     key="product-2"
     product={
       Object {

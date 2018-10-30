@@ -4,11 +4,13 @@
 @import './styles/buttons/btn.css';
 @import './styles/registration-form.css';
 @import './styles/cart.css';
+@import './styles/cart-popup.css';
 
 
 
 body {
     max-width: 1024px;
     margin: auto;
+    position: relative;
 }
 
