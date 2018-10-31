@@ -1,0 +1,3 @@
+export const FETCH_ORDERS_SUCCES = 'order/FETCH_ORDERS_SUCCES';
+export const FETCH_ORDERS_ERROR = 'order/FETCH_ORDERS_ERROR';
+export const CHANGE_STATUS = 'order/CHANGE_STATUS';
