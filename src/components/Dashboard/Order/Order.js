@@ -5,14 +5,14 @@ export default class Order extends Component {
   render() {
     const {
       order: {
-        id, userId, totalPrice, status,
+        id, person, totalPrice, status, date,
       },
     } = this.props;
     return (
       <React.Fragment>
         <td>{id}</td>
-        <td>{userId}</td>
-        <td>data</td>
+        <td>{person}</td>
+        <td>{date}</td>
         <td>{totalPrice}</td>
         <td>{status}</td>
       </React.Fragment>

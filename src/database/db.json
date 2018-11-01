@@ -85,5 +85,44 @@
       "name": "Apple",
       "usersIds": ["user-3"]
     }
+  ],
+  "orders": [
+    {
+      "id": "order-1",
+      "userId": "user-2",
+      "orderPositionIds": ["orderPosition-1", "orderPosition-2"],
+      "status": "realized",
+      "totalPrice": "2300"
+    },
+    {
+      "id": "order-2",
+      "userId": "user-3",
+      "orderPositionIds": ["orderPosition-3"],
+      "status": "in-progress",
+      "totalPrice": "2000"
+    }
+  ],
+  "orderPositions": [
+    {
+      "id": "orderPosition-1",
+      "productId": "product-2",
+      "amount": "3",
+      "pricePerUnit": "600",
+      "totalPrice": "1800"
+    },
+    {
+      "id": "orderPosition-2",
+      "productId": "product-5",
+      "amount": "10",
+      "pricePerUnit": "50",
+      "totalPrice": "500"
+    },
+    {
+      "id": "orderPosition-3",
+      "productId": "product-1",
+      "amount": "5",
+      "pricePerUnit": "400",
+      "totalPrice": "2000"
+    }
   ]
 }

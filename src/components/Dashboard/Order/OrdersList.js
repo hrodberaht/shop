@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getOrders } from '../../../store/orders/selectors';
+import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
 import Order from './Order';
 import ConnectedAuthorization from '../../Auth/Authorization';
-import { changeOrderStatus } from '../../../store/orders/actionCreator';
+import { changeOrderStatus, fetchOrders } from '../../../store/orders/actionCreator';
+import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
 
 export class OrdersList extends Component {
+  componentDidMount() {
+    const { getOrdersFromServer, token, userId } = this.props;
+    getOrdersFromServer(userId, token);
+  }
+
   render() {
-    const { orders, handleClick } = this.props;
+    const { orders, handleClick, loaded } = this.props;
+    if (!loaded) return <p>Loading...</p>;
     return (
       <div>
         <table>
@@ -44,14 +51,24 @@ export class OrdersList extends Component {
 }
 const mapStateToProps = state => ({
   orders: getOrders(state),
+  loaded: getLoadedStatus(state),
+  token: getAuthToken(state),
+  userId: getAuthUserId(state),
 });
 
 export default connect(
   mapStateToProps,
-  { handleClick: changeOrderStatus },
+  {
+    handleClick: changeOrderStatus,
+    getOrdersFromServer: fetchOrders,
+  },
 )(OrdersList);
 
 OrdersList.propTypes = {
   orders: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleClick: PropTypes.func.isRequired,
+  loaded: PropTypes.bool.isRequired,
+  getOrdersFromServer: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };

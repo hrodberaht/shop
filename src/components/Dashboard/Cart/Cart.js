@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import getProductsInCart from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
 import { clearCart } from '../../../store/cart/actionCreator';
+import { addOrderToDB } from '../../../store/orders/actionCreator';
+import { getAuthUserId, getAuthToken, getAuthPerson } from '../../../store/auth/selectors';
 
 export class Cart extends Component {
   sumaryPrice = () => {
@@ -18,8 +20,18 @@ export class Cart extends Component {
     return sumary;
   };
 
-  handleClick = () => {
-    const { emptyCart } = this.props;
+  handleClick = async () => {
+    const {
+      emptyCart, createOrder, userId, person, token,
+    } = this.props;
+    const order = {
+      userId,
+      person,
+      totalPrice: this.sumaryPrice(),
+      status: 'in-progress',
+      date: new Date(),
+    };
+    await createOrder(order, token);
     emptyCart();
     return this.props.history.push('/orders');
   };
@@ -56,14 +68,21 @@ export class Cart extends Component {
 withRouter(Cart);
 const mapStateToProps = state => ({
   products: getProductsInCart(state),
+  userId: getAuthUserId(state),
+  token: getAuthToken(state),
+  person: getAuthPerson(state),
 });
 
 export default connect(
   mapStateToProps,
-  { emptyCart: clearCart },
+  {
+    emptyCart: clearCart,
+    createOrder: addOrderToDB,
+  },
 )(Cart);
 
 Cart.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyCart: PropTypes.func.isRequired,
+  createOrder: PropTypes.func.isRequired,
 };

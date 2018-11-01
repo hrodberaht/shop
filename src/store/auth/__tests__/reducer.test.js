@@ -8,6 +8,7 @@ describe('auth reducer', () => {
       error: null,
       token: null,
       role: null,
+      userId: null,
     });
   });
   it('should handle LOGIN_SUCCES', () => {
