@@ -101,7 +101,23 @@
       ],
       "status": "realized",
       "totalPrice": "2300",
-      "companyId": "company-1"
+      "companyId": "company-1",
+      "productsOrder": [
+        {
+          "id": "orderPosition-1",
+          "productId": "product-2",
+          "amount": "3",
+          "pricePerUnit": "600",
+          "totalPrice": "1800"
+        },
+        {
+          "id": "orderPosition-2",
+          "productId": "product-5",
+          "amount": "10",
+          "pricePerUnit": "50",
+          "totalPrice": "500"
+        }
+      ]
     },
     {
       "id": "order-2",
@@ -114,13 +130,38 @@
       "companyId": "company-2"
     },
     {
-      "userId": "user-4",
-      "person": "Mark Spencer",
-      "totalPrice": 600,
-      "status": "realized",
-      "date": "2018-11-02T10:26:09.903Z",
-      "companyId": "",
-      "id": "fCOaU8w"
+      "userId": "user-2",
+      "person": "Tom Johns",
+      "totalPrice": 400,
+      "status": "in-progress",
+      "date": "2018-11-02T16:12:50.793Z",
+      "companyId": "company-1",
+      "orderPositionIds": [
+        "wPhBKnCGw"
+      ],
+      "id": "Gizg7iM",
+      "productsOrder": [
+        {
+          "productId": "product-1",
+          "name": "ZX3",
+          "price": 400,
+          "pcsOrder": 1,
+          "totalPrice": 400,
+          "id": "wPhBKnCGw"
+        }
+      ]
+    },
+    {
+      "userId": "user-2",
+      "person": "Tom Johns",
+      "totalPrice": 400,
+      "status": "in-progress",
+      "date": "2018-11-02T16:16:01.231Z",
+      "companyId": "company-1",
+      "orderPositionIds": [
+        "KORVVPi-T"
+      ],
+      "id": "IzaTGCt"
     }
   ],
   "orderPositions": [
@@ -144,6 +185,22 @@
       "amount": "5",
       "pricePerUnit": "400",
       "totalPrice": "2000"
+    },
+    {
+      "productId": "product-1",
+      "name": "ZX3",
+      "price": 400,
+      "pcsOrder": 1,
+      "totalPrice": 400,
+      "id": "wPhBKnCGw"
+    },
+    {
+      "productId": "product-1",
+      "name": "ZX3",
+      "price": 400,
+      "pcsOrder": 1,
+      "totalPrice": 400,
+      "id": "KORVVPi-T"
     }
   ]
 }

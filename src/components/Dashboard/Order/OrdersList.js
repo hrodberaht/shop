@@ -37,7 +37,11 @@ export class OrdersList extends Component {
                   render
                   withRoleAdmin={(
                     <td>
-                      <button type="button" onClick={() => handleClick(order.id, token)}>
+                      <button
+                        type="button"
+                        disabled={order.status === 'realized'}
+                        onClick={() => handleClick(order.id, token)}
+                      >
                         Realise
                       </button>
                     </td>

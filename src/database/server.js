@@ -140,6 +140,20 @@ function getAllCompanies() {
   return false;
 }
 
+function addProductsToOrder(orders) {
+  orders.forEach((order) => {
+    Object.assign(order, { productsOrder: [] });
+    order.orderPositionIds.forEach((position) => {
+      const pos = router.db
+        .get('orderPositions')
+        .find({ id: position })
+        .value();
+      order.productsOrder.push(pos);
+    });
+  });
+  return orders;
+}
+
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
@@ -185,13 +199,16 @@ server.use(async (req, res, next) => {
 server.get('/orders', async (req, res) => {
   const user = findUserById(req.query.id);
   if (user.role === 'admin') {
-    const orders = router.db.get('orders');
+    const orders = router.db.get('orders').value();
+    addProductsToOrder(orders);
     return res.json(orders);
   }
+
   const orders = router.db
     .get('orders')
     .filter({ companyId: user.companyId })
     .value();
+  addProductsToOrder(orders);
   return res.json(orders);
 });
 
@@ -200,14 +217,26 @@ server.post('/orders', async (req, res, next) => {
 });
 
 server.put('/orders/:id', async (req, res) => {
-  console.log(req.params.id);
-  const order = router.db
+  await router.db
     .get('orders')
     .find({ id: req.params.id })
     .assign({ status: req.body.status })
     .write();
-  console.log(order);
   return res.json({ message: 'status change' });
+});
+
+server.post('/orderPositions', async (req, res) => {
+  const id = shortid.generate();
+  const orderPosition = Object.assign(req.body, { id });
+  await router.db
+    .get('orderPositions')
+    .push(orderPosition)
+    .write();
+  const pos = router.db
+    .get('orderPositions')
+    .find({ id })
+    .value();
+  return res.json(pos);
 });
 
 server.use(router);

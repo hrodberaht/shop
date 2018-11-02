@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import getProductsInCart from '../../../store/cart/selectors';
+import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
 import { clearCart } from '../../../store/cart/actionCreator';
 import { addOrderToDB } from '../../../store/orders/actionCreator';
@@ -27,7 +27,13 @@ export class Cart extends Component {
 
   handleClick = async () => {
     const {
-      emptyCart, createOrder, userId, person, token, companyId,
+      emptyCart,
+      createOrder,
+      userId,
+      person,
+      token,
+      companyId,
+      orderPositionIds,
     } = this.props;
     const order = {
       userId,
@@ -36,6 +42,7 @@ export class Cart extends Component {
       status: 'in-progress',
       date: new Date(),
       companyId,
+      orderPositionIds,
     };
     await createOrder(order, token);
     emptyCart();
@@ -78,6 +85,7 @@ const mapStateToProps = state => ({
   token: getAuthToken(state),
   person: getAuthPerson(state),
   companyId: getAuthCompanyId(state),
+  orderPositionIds: getOrderPositionIds(state),
 });
 
 export default connect(
