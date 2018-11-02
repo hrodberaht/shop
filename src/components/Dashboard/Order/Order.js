@@ -25,7 +25,7 @@ Order.propTypes = {
     id: PropTypes.string,
     userId: PropTypes.string,
     data: PropTypes.string,
-    totalPrice: PropTypes.string,
+    totalPrice: PropTypes.number,
     status: PropTypes.string,
   }).isRequired,
 };

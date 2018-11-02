@@ -38,7 +38,7 @@ export class Cart extends Component {
     const order = {
       userId,
       person,
-      totalPrice: this.sumaryPrice(),
+      totalPrice: +this.sumaryPrice(),
       status: 'in-progress',
       date: new Date(),
       companyId,
