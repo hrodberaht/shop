@@ -199,6 +199,17 @@ server.post('/orders', async (req, res, next) => {
   next();
 });
 
+server.put('/orders/:id', async (req, res) => {
+  console.log(req.params.id);
+  const order = router.db
+    .get('orders')
+    .find({ id: req.params.id })
+    .assign({ status: req.body.status })
+    .write();
+  console.log(order);
+  return res.json({ message: 'status change' });
+});
+
 server.use(router);
 
 server.listen(3004);

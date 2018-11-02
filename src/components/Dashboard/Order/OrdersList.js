@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
 import Order from './Order';
 import ConnectedAuthorization from '../../Auth/Authorization';
-import { changeOrderStatus, fetchOrders } from '../../../store/orders/actionCreator';
+import { fetchOrders, fetchChangeOrderStatus } from '../../../store/orders/actionCreator';
 import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
 
 export class OrdersList extends Component {
@@ -14,7 +14,9 @@ export class OrdersList extends Component {
   }
 
   render() {
-    const { orders, handleClick, loaded } = this.props;
+    const {
+      orders, handleClick, loaded, token,
+    } = this.props;
     if (!loaded) return <p>Loading...</p>;
     return (
       <div>
@@ -35,7 +37,7 @@ export class OrdersList extends Component {
                   render
                   withRoleAdmin={(
                     <td>
-                      <button type="button" onClick={() => handleClick(order.id)}>
+                      <button type="button" onClick={() => handleClick(order.id, token)}>
                         Realise
                       </button>
                     </td>
@@ -59,7 +61,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    handleClick: changeOrderStatus,
+    handleClick: fetchChangeOrderStatus,
     getOrdersFromServer: fetchOrders,
   },
 )(OrdersList);

@@ -78,19 +78,27 @@
     {
       "id": "company-1",
       "name": "IBM",
-      "usersIds": ["user-1", "user-2"]
+      "usersIds": [
+        "user-1",
+        "user-2"
+      ]
     },
     {
       "id": "company-2",
       "name": "Apple",
-      "usersIds": ["user-3"]
+      "usersIds": [
+        "user-3"
+      ]
     }
   ],
   "orders": [
     {
       "id": "order-1",
       "userId": "user-2",
-      "orderPositionIds": ["orderPosition-1", "orderPosition-2"],
+      "orderPositionIds": [
+        "orderPosition-1",
+        "orderPosition-2"
+      ],
       "status": "realized",
       "totalPrice": "2300",
       "companyId": "company-1"
@@ -98,10 +106,21 @@
     {
       "id": "order-2",
       "userId": "user-3",
-      "orderPositionIds": ["orderPosition-3"],
-      "status": "in-progress",
+      "orderPositionIds": [
+        "orderPosition-3"
+      ],
+      "status": "realized",
       "totalPrice": "2000",
       "companyId": "company-2"
+    },
+    {
+      "userId": "user-4",
+      "person": "Mark Spencer",
+      "totalPrice": 600,
+      "status": "realized",
+      "date": "2018-11-02T10:26:09.903Z",
+      "companyId": "",
+      "id": "fCOaU8w"
     }
   ],
   "orderPositions": [

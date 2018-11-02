@@ -21,7 +21,7 @@ const addOrderError = error => ({
 export const changeOrderStatus = orderId => ({
   type: types.CHANGE_STATUS,
   orderId,
-  status: 'realised',
+  status: 'realized',
 });
 
 export const fetchOrders = (userId, token) => (dispatch) => {
@@ -49,4 +49,20 @@ export const addOrderToDB = (order, token) => (dispatch) => {
     },
     body: JSON.stringify(order),
   }).catch(error => dispatch(addOrderError(error)));
+};
+
+export const fetchChangeOrderStatus = (orderId, token) => (dispatch) => {
+  fetch(`${config.url}orders/${orderId}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ status: 'realized' }),
+  })
+    .then(res => res.json())
+    .then((res) => {
+      if (res.message) dispatch(changeOrderStatus(orderId));
+    })
+    .catch(error => dispatch(fetchOrdersError(error)));
 };
