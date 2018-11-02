@@ -6,7 +6,12 @@ import getProductsInCart from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
 import { clearCart } from '../../../store/cart/actionCreator';
 import { addOrderToDB } from '../../../store/orders/actionCreator';
-import { getAuthUserId, getAuthToken, getAuthPerson } from '../../../store/auth/selectors';
+import {
+  getAuthUserId,
+  getAuthToken,
+  getAuthPerson,
+  getAuthCompanyId,
+} from '../../../store/auth/selectors';
 
 export class Cart extends Component {
   sumaryPrice = () => {
@@ -22,7 +27,7 @@ export class Cart extends Component {
 
   handleClick = async () => {
     const {
-      emptyCart, createOrder, userId, person, token,
+      emptyCart, createOrder, userId, person, token, companyId,
     } = this.props;
     const order = {
       userId,
@@ -30,6 +35,7 @@ export class Cart extends Component {
       totalPrice: this.sumaryPrice(),
       status: 'in-progress',
       date: new Date(),
+      companyId,
     };
     await createOrder(order, token);
     emptyCart();
@@ -71,6 +77,7 @@ const mapStateToProps = state => ({
   userId: getAuthUserId(state),
   token: getAuthToken(state),
   person: getAuthPerson(state),
+  companyId: getAuthCompanyId(state),
 });
 
 export default connect(
@@ -85,4 +92,5 @@ Cart.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
+  companyId: PropTypes.func.isRequired,
 };

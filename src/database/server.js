@@ -184,9 +184,15 @@ server.use(async (req, res, next) => {
 // This routes are auth by token
 server.get('/orders', async (req, res) => {
   const user = findUserById(req.query.id);
-  console.log(user);
-  const orders = router.db.get('orders');
-  res.json(orders);
+  if (user.role === 'admin') {
+    const orders = router.db.get('orders');
+    return res.json(orders);
+  }
+  const orders = router.db
+    .get('orders')
+    .filter({ companyId: user.companyId })
+    .value();
+  return res.json(orders);
 });
 
 server.post('/orders', async (req, res, next) => {

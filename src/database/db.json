@@ -92,14 +92,16 @@
       "userId": "user-2",
       "orderPositionIds": ["orderPosition-1", "orderPosition-2"],
       "status": "realized",
-      "totalPrice": "2300"
+      "totalPrice": "2300",
+      "companyId": "company-1"
     },
     {
       "id": "order-2",
       "userId": "user-3",
       "orderPositionIds": ["orderPosition-3"],
       "status": "in-progress",
-      "totalPrice": "2000"
+      "totalPrice": "2000",
+      "companyId": "company-2"
     }
   ],
   "orderPositions": [

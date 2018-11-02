@@ -6,7 +6,9 @@ describe('selectors for auth', () => {
       auth: false,
       error: 'error',
       token: '1234',
-      role: 'admin',
+      user: {
+        role: 'admin',
+      },
     },
   };
 
