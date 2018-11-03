@@ -100,5 +100,9 @@ Cart.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
-  companyId: PropTypes.func.isRequired,
+  companyId: PropTypes.func,
+};
+
+Cart.defaultProps = {
+  companyId: null,
 };

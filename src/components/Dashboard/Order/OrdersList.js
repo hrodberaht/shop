@@ -82,6 +82,11 @@ OrdersList.propTypes = {
   handleClick: PropTypes.func.isRequired,
   loaded: PropTypes.bool.isRequired,
   getOrdersFromServer: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  token: PropTypes.string,
+  userId: PropTypes.string,
+};
+
+OrdersList.defaultProps = {
+  token: null,
+  userId: null,
 };
