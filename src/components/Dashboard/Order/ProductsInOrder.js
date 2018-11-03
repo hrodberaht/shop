@@ -9,7 +9,7 @@ export default class ProductsInOrder extends Component {
     return (
       <td colSpan="5">
         <table>
-          <tbody>
+          <tbody className="order-table-products">
             <tr>
               <th>Name:</th>
               <th>Pcs:</th>

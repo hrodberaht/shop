@@ -25,7 +25,7 @@ export class OrdersList extends Component {
           <tbody>
             {orders.map(order => (
               <React.Fragment>
-                <tr>
+                <tr className="order-table-title">
                   <th>Id:</th>
                   <th>Person:</th>
                   <th>Date:</th>
@@ -33,7 +33,7 @@ export class OrdersList extends Component {
                   <th>Status:</th>
                   <ConnectedAuthorization render withRoleAdmin={<th>Change status:</th>} />
                 </tr>
-                <tr key={order.id}>
+                <tr key={order.id} className="order-table">
                   <Order order={order} />
                   <ConnectedAuthorization
                     render

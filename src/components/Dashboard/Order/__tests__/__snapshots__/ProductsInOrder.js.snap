@@ -5,7 +5,9 @@ exports[`<ProductsInOrder /> should render without crash 1`] = `
   colSpan="5"
 >
   <table>
-    <tbody>
+    <tbody
+      className="order-table-products"
+    >
       <tr>
         <th>
           Name:
