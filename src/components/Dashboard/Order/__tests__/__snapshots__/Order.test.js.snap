@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Order /> should render without crash 1`] = `
+<Fragment>
+  <td>
+    1234
+  </td>
+  <td />
+  <td />
+  <td>
+    400
+  </td>
+  <td>
+    in-progress
+  </td>
+</Fragment>
+`;

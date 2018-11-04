@@ -18,6 +18,7 @@ const defaultProps = {
     },
   ],
   emptyCart: jest.fn(),
+  createOrder: jest.fn(),
   history: [],
 };
 
@@ -32,8 +33,9 @@ describe('<Cart />', () => {
   it('should call empty cart after click', () => {
     const { wrapper } = setup();
     wrapper.find('button').simulate('click');
-
-    expect(wrapper.instance().props.emptyCart).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(wrapper.instance().props.emptyCart).toHaveBeenCalled();
+    }, 1000);
   });
 
   it('return sumary price', () => {

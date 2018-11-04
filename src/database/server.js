@@ -32,6 +32,13 @@ function findUserByEmail(email) {
     .value();
 }
 
+function findUserById(id) {
+  return router.db
+    .get('users')
+    .find({ id })
+    .value();
+}
+
 function createToken(payload) {
   return jwt.sign(payload, SECRET_KEY);
 }
@@ -47,6 +54,9 @@ function hashPasswords(password) {
 async function isAuth(req) {
   const { email, password } = req.body;
   const user = findUserByEmail(email);
+  const {
+    id, firstName, lastName, role, companyId,
+  } = user;
   if (!user) {
     return false;
   }
@@ -55,7 +65,13 @@ async function isAuth(req) {
     const accessToken = createToken({ email, password });
     const response = {
       token: accessToken,
-      role: user.role,
+      user: {
+        id,
+        firstName,
+        lastName,
+        role,
+        companyId,
+      },
       message: 'auth',
     };
     return response;
@@ -124,9 +140,30 @@ function getAllCompanies() {
   return false;
 }
 
+function addProductsToOrder(orders) {
+  orders.forEach((order) => {
+    Object.assign(order, { productsOrder: [] });
+    order.orderPositionIds.forEach((position) => {
+      const pos = router.db
+        .get('orderPositions')
+        .find({ id: position })
+        .value();
+      order.productsOrder.push(pos);
+    });
+  });
+  return orders;
+}
+
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
+server.post('/login', async (req, res) => {
+  const response = await isAuth(req);
+  if (response) {
+    return res.send(response);
+  }
+  return res.status(401).json({ error: 'Email or password is incorrect!' });
+});
 server.post('/registration', async (req, res) => {
   const check = await checkIfEmailIsTaken(req);
   if (check.error) return res.status(422).json({ error: check.error });
@@ -139,6 +176,7 @@ server.get('/companies', async (req, res) => {
   if (companies) return res.json(companies);
   return res.json({ error: 'No comapnies in DB' });
 });
+
 server.post('/login', async (req, res) => {
   const response = await isAuth(req);
   if (response) {
@@ -156,6 +194,49 @@ server.use(async (req, res, next) => {
   }
 
   return res.status(401).json({ error: 'Unauthorized' });
+});
+// This routes are auth by token
+server.get('/orders', async (req, res) => {
+  const user = findUserById(req.query.id);
+  if (user.role === 'admin') {
+    const orders = router.db.get('orders').value();
+    addProductsToOrder(orders);
+    return res.json(orders);
+  }
+
+  const orders = router.db
+    .get('orders')
+    .filter({ companyId: user.companyId })
+    .value();
+  addProductsToOrder(orders);
+  return res.json(orders);
+});
+
+server.post('/orders', async (req, res, next) => {
+  next();
+});
+
+server.put('/orders/:id', async (req, res) => {
+  await router.db
+    .get('orders')
+    .find({ id: req.params.id })
+    .assign({ status: req.body.status })
+    .write();
+  return res.json({ message: 'status change' });
+});
+
+server.post('/orderPositions', async (req, res) => {
+  const id = shortid.generate();
+  const orderPosition = Object.assign(req.body, { id });
+  await router.db
+    .get('orderPositions')
+    .push(orderPosition)
+    .write();
+  const pos = router.db
+    .get('orderPositions')
+    .find({ id })
+    .value();
+  return res.json(pos);
 });
 
 server.use(router);

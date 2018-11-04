@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import getProductsInCart from '../../../store/cart/selectors';
+import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
 import { clearCart } from '../../../store/cart/actionCreator';
+import { addOrderToDB } from '../../../store/orders/actionCreator';
+import {
+  getAuthUserId,
+  getAuthToken,
+  getAuthPerson,
+  getAuthCompanyId,
+} from '../../../store/auth/selectors';
 
 export class Cart extends Component {
   sumaryPrice = () => {
@@ -18,8 +25,26 @@ export class Cart extends Component {
     return sumary;
   };
 
-  handleClick = () => {
-    const { emptyCart } = this.props;
+  handleClick = async () => {
+    const {
+      emptyCart,
+      createOrder,
+      userId,
+      person,
+      token,
+      companyId,
+      orderPositionIds,
+    } = this.props;
+    const order = {
+      userId,
+      person,
+      totalPrice: +this.sumaryPrice(),
+      status: 'in-progress',
+      date: new Date(),
+      companyId,
+      orderPositionIds,
+    };
+    await createOrder(order, token);
     emptyCart();
     return this.props.history.push('/orders');
   };
@@ -56,14 +81,28 @@ export class Cart extends Component {
 withRouter(Cart);
 const mapStateToProps = state => ({
   products: getProductsInCart(state),
+  userId: getAuthUserId(state),
+  token: getAuthToken(state),
+  person: getAuthPerson(state),
+  companyId: getAuthCompanyId(state),
+  orderPositionIds: getOrderPositionIds(state),
 });
 
 export default connect(
   mapStateToProps,
-  { emptyCart: clearCart },
+  {
+    emptyCart: clearCart,
+    createOrder: addOrderToDB,
+  },
 )(Cart);
 
 Cart.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyCart: PropTypes.func.isRequired,
+  createOrder: PropTypes.func.isRequired,
+  companyId: PropTypes.func,
+};
+
+Cart.defaultProps = {
+  companyId: null,
 };

@@ -1,0 +1,16 @@
+.order-table-products tr:nth-child(odd) {
+    background-color: rgb(228, 252, 252);
+}
+
+
+
+.order-table-title th {
+    border: 1px solid lightblue;
+    text-align: right;
+    color: darkblue;
+    padding: 15px;
+    background-color: rgb(108, 243, 243);
+}
+.order-table td {
+    background-color: white;
+}

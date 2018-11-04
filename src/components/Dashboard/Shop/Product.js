@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addProductToCart } from '../../../store/cart/actionCreator';
 import AddedToCart from '../Cart/AddedToCart';
+import { getAuthToken } from '../../../store/auth/selectors';
 
 export class Product extends Component {
   state = {
@@ -49,7 +50,7 @@ export class Product extends Component {
   redirectToCart = () => this.props.history.push('/cart');
 
   handleClick = (product) => {
-    this.props.addProduct(product);
+    this.props.addProduct(product, this.props.token);
     this.showAddedToCart();
   };
 
@@ -62,10 +63,10 @@ export class Product extends Component {
     const { pcsOrder, error, toggleAddedToCart } = this.state;
     const totalPrice = this.calculateTotalPrice(pcsOrder, price);
     const productToCart = {
-      id,
+      productId: id,
       name,
       price: +price,
-      pcsOrder,
+      pcsOrder: +pcsOrder,
       totalPrice,
     };
     return (
@@ -126,15 +127,19 @@ Product.propTypes = {
     inStock: PropTypes.string,
   }).isRequired,
   addProduct: PropTypes.func,
+  token: PropTypes.string.isRequired,
 };
 
 Product.defaultProps = {
   addProduct: null,
 };
 
+const mapStateToProps = state => ({
+  token: getAuthToken(state),
+});
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     { addProduct: addProductToCart },
   )(Product),
 );

@@ -4,17 +4,24 @@ const initialState = {
   auth: false,
   error: null,
   token: null,
-  role: null,
+  user: {},
 };
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN_SUCCES:
-      return { ...state, ...{ auth: action.isAuth, token: action.token, role: action.role } };
+      return {
+        ...state,
+        ...{
+          auth: action.isAuth,
+          token: action.token,
+          user: action.user,
+        },
+      };
     case types.LOGIN_FAIL:
       return { ...state, ...{ auth: action.isAuth, error: action.error } };
     case types.LOGOUT:
-      return { ...state, ...{ auth: action.isAuth, token: action.token, role: null } };
+      return { ...state, ...{ auth: action.isAuth, token: action.token, user: {} } };
     case types.CLEAR_ERRORS:
       return { ...state, ...{ error: null } };
     default:

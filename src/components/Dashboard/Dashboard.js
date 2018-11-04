@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shop from './Shop/Shop';
 import Header from '../Header/Header';
 import ConnectedCart from './Cart/Cart';
+import ConnectedOrdersList from './Order/OrdersList';
 
 export default class Dashboard extends Component {
   render() {
@@ -12,7 +13,7 @@ export default class Dashboard extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Shop} />
-            <Route path="/orders" component={() => <p>Orders</p>} />
+            <Route path="/orders" component={ConnectedOrdersList} />
             <Route path="/cart" component={ConnectedCart} />
             <Route component={() => <p>Not Found</p>} />
           </Switch>

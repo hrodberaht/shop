@@ -1,4 +1,4 @@
-import getProductsInCart from '../selectors';
+import { getProductsInCart } from '../selectors';
 
 describe('cart selectors', () => {
   const state = {

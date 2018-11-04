@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductsInOrder /> should render without crash 1`] = `
+<td
+  colSpan="5"
+>
+  <table>
+    <tbody
+      className="order-table-products"
+    >
+      <tr>
+        <th>
+          Name:
+        </th>
+        <th>
+          Pcs:
+        </th>
+        <th>
+          Price
+        </th>
+        <th>
+          Total price:
+        </th>
+      </tr>
+      <tr
+        key="Ld6GsMELf"
+      >
+        <td>
+          ZX3
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          400
+        </td>
+        <td>
+          400
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>
+`;
