@@ -12,6 +12,10 @@ const products = (state = initialState, action) => {
       return { ...state, ...{ products: action.products, loaded: action.loaded } };
     case types.FETCH_PRODUCTS_ERROR:
       return { ...state, errors: action.errors };
+    case types.ADD_PRODUCT:
+      return { ...state, ...{ products: state.products.concat(action.product) } };
+    case types.ADD_PRODUCT_ERROR:
+      return { ...state, errors: action.errors };
     default:
       return state;
   }

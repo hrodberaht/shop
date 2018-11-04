@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
+import { connect } from 'react-redux';
+import { addProduct } from '../../../store/products/actionCreator';
+import { getAuthToken } from '../../../store/auth/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
   type: yup.string().required(),
   price: yup.number().required(),
-  stock: yup.number().required(),
+  inStock: yup.number().required(),
 });
 
 const asyncValidate = values => schema.validate(values, { abortEarly: false }).catch((err) => {
@@ -19,8 +22,11 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
 });
 
 export class AddProductForm extends Component {
+  componentDidMount() {}
+
   submit = (values) => {
-    console.log(values);
+    const { addProductToDB, token } = this.props;
+    addProductToDB(values, token);
   };
 
   renderField = ({ input, meta: { touched, error } }) => (
@@ -49,9 +55,9 @@ export class AddProductForm extends Component {
             <span>Price:</span>
             <Field id="price" name="price" component={this.renderField} />
           </label>
-          <label htmlFor="stock">
+          <label htmlFor="inStock">
             <span>Stock:</span>
-            <Field id="stock" name="stock" component={this.renderField} />
+            <Field id="inStock" name="inStock" component={this.renderField} />
           </label>
           <button type="submit" disabled={pristine}>
             Add
@@ -62,10 +68,19 @@ export class AddProductForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  token: getAuthToken(state),
+});
+
+const ConnectedAddProductForm = connect(
+  mapStateToProps,
+  { addProductToDB: addProduct },
+)(AddProductForm);
+
 export default reduxForm({
   asyncValidate,
   form: 'addProduct',
-})(AddProductForm);
+})(ConnectedAddProductForm);
 
 AddProductForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
