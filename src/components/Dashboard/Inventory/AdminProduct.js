@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ConnectedAddProductForm from './AddProductForm';
+import { removeProduct } from '../../../store/products/actionCreator';
+import { getAuthToken } from '../../../store/auth/selectors';
 
-export default class AdminProduct extends Component {
+export class AdminProduct extends Component {
   state = {
     toggleEdit: false,
   };
@@ -13,10 +16,15 @@ export default class AdminProduct extends Component {
     }));
   };
 
+  handleRemoveClick = (id) => {
+    const { remove, token } = this.props;
+    remove(id, token);
+  };
+
   render() {
     const {
       product: {
-        name, type, price, inStock,
+        id, name, type, price, inStock, remove,
       },
     } = this.props;
 
@@ -34,14 +42,16 @@ export default class AdminProduct extends Component {
             <td>{name}</td>
             <td>{type}</td>
             <td>{+price}</td>
-            <td>{inStock}</td>
+            <td>{+inStock}</td>
             <td>
               <button type="button" onClick={this.handleEditClick}>
                 Edit
               </button>
             </td>
             <td>
-              <button type="button">Remove</button>
+              <button type="button" onClick={() => this.handleRemoveClick(id)} disabled={remove}>
+                Remove
+              </button>
             </td>
           </React.Fragment>
         )}
@@ -49,6 +59,14 @@ export default class AdminProduct extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  token: getAuthToken(state),
+});
+
+export default connect(
+  mapStateToProps,
+  { remove: removeProduct },
+)(AdminProduct);
 
 AdminProduct.propTypes = {
   product: PropTypes.shape({
@@ -57,4 +75,6 @@ AdminProduct.propTypes = {
     price: PropTypes.string.isRequired,
     inStock: PropTypes.string.isRequired,
   }).isRequired,
+  remove: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };

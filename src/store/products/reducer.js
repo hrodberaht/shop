@@ -16,6 +16,8 @@ const products = (state = initialState, action) => {
       return { ...state, ...{ products: state.products.concat(action.product) } };
     case types.ADD_PRODUCT_ERROR:
       return { ...state, errors: action.errors };
+    case types.REMOVE_PRODUCT:
+      return { ...state };
     default:
       return state;
   }

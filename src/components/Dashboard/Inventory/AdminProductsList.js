@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AdminProduct from './AdminProduct';
+import ConnectedAdminProduct from './AdminProduct';
 import { getProductsAll } from '../../../store/products/selectors';
 
 export class AdminProductsList extends Component {
@@ -23,7 +23,7 @@ export class AdminProductsList extends Component {
             </tr>
             {products.map(product => (
               <tr key={product.id}>
-                <AdminProduct product={product} />
+                <ConnectedAdminProduct product={product} />
               </tr>
             ))}
           </tbody>

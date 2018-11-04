@@ -16,13 +16,18 @@ export class ProductsList extends Component {
     handleFetch(token);
   }
 
+  list = () => {
+    const { products } = this.props;
+    return products.filter(product => !product.remove);
+  };
+
   render() {
-    const { products, loaded, error } = this.props;
+    const { loaded, error } = this.props;
     if (error) return <h4>{error}</h4>;
     return (
       <div className="products-list">
         {loaded ? (
-          products.map(product => <ConnectedProduct key={product.id} product={product} />)
+          this.list().map(product => <ConnectedProduct key={product.id} product={product} />)
         ) : (
           <p>Loading:</p>
         )}

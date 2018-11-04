@@ -22,6 +22,16 @@ const addProductError = error => ({
   errors: error,
 });
 
+const removeProductSucces = id => ({
+  type: types.REMOVE_PRODUCT,
+  id,
+});
+
+const removeProductError = error => ({
+  type: types.ADD_PRODUCT_ERROR,
+  errors: error,
+});
+
 export const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
   method: 'get',
   headers: {
@@ -48,3 +58,15 @@ export const addProduct = (product, token) => dispatch => fetch(`${config.url}pr
   .then(res => res.json())
   .then(() => dispatch(addProductSucces(product)))
   .catch(error => dispatch(addProductError(error)));
+
+export const removeProduct = (id, token) => dispatch => fetch(`${config.url}products/${id}`, {
+  method: 'put',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify({ remove: true }),
+})
+  .then(res => res.json())
+  .then(() => dispatch(removeProductSucces(id)))
+  .catch(error => dispatch(removeProductError(error)));

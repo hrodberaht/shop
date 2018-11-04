@@ -239,6 +239,17 @@ server.post('/orderPositions', async (req, res) => {
   return res.json(pos);
 });
 
+server.put('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  router.db
+    .get('products')
+    .find({ id })
+    .assign({ remove: true })
+    .write();
+
+  return res.json({ message: 'ok' });
+});
+
 server.use(router);
 
 server.listen(3004);
