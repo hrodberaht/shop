@@ -17,8 +17,8 @@ export class AdminProduct extends Component {
   };
 
   handleRemoveClick = (id) => {
-    const { remove, token } = this.props;
-    remove(id, token);
+    const { removeProd, token } = this.props;
+    removeProd(id, token);
   };
 
   render() {
@@ -27,7 +27,6 @@ export class AdminProduct extends Component {
         id, name, type, price, inStock, remove,
       },
     } = this.props;
-
     return (
       <React.Fragment>
         {this.state.toggleEdit ? (
@@ -65,7 +64,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { remove: removeProduct },
+  { removeProd: removeProduct },
 )(AdminProduct);
 
 AdminProduct.propTypes = {
@@ -75,6 +74,6 @@ AdminProduct.propTypes = {
     price: PropTypes.string.isRequired,
     inStock: PropTypes.string.isRequired,
   }).isRequired,
-  remove: PropTypes.func.isRequired,
+  removeProd: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
 };

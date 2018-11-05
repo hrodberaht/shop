@@ -17,7 +17,14 @@ const products = (state = initialState, action) => {
     case types.ADD_PRODUCT_ERROR:
       return { ...state, errors: action.errors };
     case types.REMOVE_PRODUCT:
-      return { ...state };
+      return {
+        ...state,
+        ...{
+          products: state.products.map(
+            product => (product.id === action.id ? Object.assign(product, { remove: true }) : product),
+          ),
+        },
+      };
     default:
       return state;
   }

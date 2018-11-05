@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ConnectedAdminProduct from './AdminProduct';
-import { getProductsAll } from '../../../store/products/selectors';
+import { getProductsAll, getProductsLoaded } from '../../../store/products/selectors';
+import { fetchProducts } from '../../../store/products/actionCreator';
+import { getAuthToken } from '../../../store/auth/selectors';
 
 export class AdminProductsList extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    const { getProducts, token } = this.props;
+    getProducts(token);
+  }
 
   render() {
-    const { products } = this.props;
+    const { products, loaded } = this.props;
+    if (!loaded) return <p>Loading...</p>;
     return (
       <div>
         <table>
@@ -34,10 +40,20 @@ export class AdminProductsList extends Component {
 }
 const mapStateToProps = state => ({
   products: getProductsAll(state),
+  token: getAuthToken(state),
+  loaded: getProductsLoaded(state),
 });
 
-export default connect(mapStateToProps)(AdminProductsList);
+export default connect(
+  mapStateToProps,
+  {
+    getProducts: fetchProducts,
+  },
+)(AdminProductsList);
 
 AdminProductsList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getProducts: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  loaded: PropTypes.bool.isRequired,
 };

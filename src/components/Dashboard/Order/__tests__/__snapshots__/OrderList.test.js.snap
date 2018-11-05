@@ -3,7 +3,9 @@
 exports[`<OrderList /> should render if loaded true  1`] = `
 <div>
   <table>
-    <tbody>
+    <tbody
+      key="e1oPVJh"
+    >
       <tr
         className="order-table-title"
       >
@@ -33,7 +35,6 @@ exports[`<OrderList /> should render if loaded true  1`] = `
       </tr>
       <tr
         className="order-table"
-        key="e1oPVJh"
       >
         <Order
           order={
