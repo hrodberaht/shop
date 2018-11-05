@@ -5,3 +5,7 @@
 .btn-primary:hover {
     background-color:lightgreen;
 }
+
+.btn-primary:disabled {
+    background-color:rgb(200, 245, 200);
+}

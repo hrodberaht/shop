@@ -20,11 +20,11 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
 });
 
 export class AddProductForm extends Component {
-  renderField = ({ input, meta: { touched, error } }) => (
+  renderField = ({ input, type, meta: { touched, error } }) => (
     <div>
       <div>
-        <input {...input} />
-        {touched && error && <span>{error}</span>}
+        <input className="form-input" {...input} type={type} />
+        {touched && error && <p className="error-text">{error}</p>}
       </div>
     </div>
   );
@@ -37,21 +37,21 @@ export class AddProductForm extends Component {
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">
             <span>Name:</span>
-            <Field id="name" name="name" component={this.renderField} />
+            <Field id="name" name="name" component={this.renderField} type="text" />
           </label>
           <label htmlFor="type">
             <span>Type:</span>
-            <Field id="type" name="type" component={this.renderField} />
+            <Field id="type" name="type" component={this.renderField} type="text" />
           </label>
           <label htmlFor="price">
             <span>Price:</span>
-            <Field id="price" name="price" component={this.renderField} />
+            <Field id="price" name="price" component={this.renderField} type="number" />
           </label>
           <label htmlFor="inStock">
             <span>Stock:</span>
-            <Field id="inStock" name="inStock" component={this.renderField} />
+            <Field id="inStock" name="inStock" component={this.renderField} type="number" />
           </label>
-          <button type="submit" disabled={pristine}>
+          <button className="btn btn-submit" type="submit" disabled={pristine}>
             Add
           </button>
         </form>

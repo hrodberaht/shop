@@ -61,6 +61,7 @@ exports[`<Cart /> should render witout crash 1`] = `
   </p>
   <button
     className="btn btn-primary"
+    disabled={false}
     onClick={[Function]}
     type="button"
   >

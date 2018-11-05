@@ -15,8 +15,8 @@ export default class Inventory extends Component {
 
   render() {
     return (
-      <div>
-        <button type="button" onClick={this.handleClick}>
+      <div className="inventory">
+        <button className="btn btn-primary" type="button" onClick={this.handleClick}>
           {this.state.toggleAddProduct ? <span>Close</span> : <span>Add new item</span>}
         </button>
         {this.state.toggleAddProduct && <ConnectedAddProduct />}

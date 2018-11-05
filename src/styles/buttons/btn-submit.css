@@ -1,7 +1,11 @@
 .btn-submit {
-    background-color: lightblue;
+    background-color: blue;
  }
  
  .btn-submit:hover {
-     background-color: blue;
+     background-color:lightblue;
  }
+
+ .btn-submit:disabled {
+    background-color: rgb(223, 223, 248); 
+}

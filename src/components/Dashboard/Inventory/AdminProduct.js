@@ -38,7 +38,7 @@ export class AdminProduct extends Component {
         {this.state.toggleEdit ? (
           <td colSpan="6">
             <ConnectedAddProductForm product={product} onSubmit={this.submit} />
-            <button type="button" onClick={this.handleEditClick}>
+            <button className="btn btn-primary" type="button" onClick={this.handleEditClick}>
               Close
             </button>
           </td>
@@ -49,13 +49,18 @@ export class AdminProduct extends Component {
             <td>{+price}</td>
             <td>{+inStock}</td>
             <td>
-              <button type="button" onClick={this.handleEditClick}>
+              <button className="btn btn-primary" type="button" onClick={this.handleEditClick}>
                 Edit
               </button>
             </td>
             <td>
-              <button type="button" onClick={() => this.handleRemoveClick(id)} disabled={remove}>
-                Remove
+              <button
+                className="btn btn-danger"
+                type="button"
+                onClick={() => this.handleRemoveClick(id)}
+                disabled={remove}
+              >
+                X
               </button>
             </td>
           </React.Fragment>
