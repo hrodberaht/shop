@@ -22,7 +22,7 @@ export default class NavBar extends Component {
             render
             withRoleAdmin={(
               <li className="item">
-                <NavLink to="/admin">Admin</NavLink>
+                <NavLink to="/inventory">Inventory</NavLink>
               </li>
 )}
           />

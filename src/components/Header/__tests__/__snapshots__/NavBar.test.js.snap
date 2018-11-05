@@ -50,9 +50,9 @@ exports[`<NavBar /> should render without crash 1`] = `
           <NavLink
             activeClassName="active"
             aria-current="page"
-            to="/admin"
+            to="/inventory"
           >
-            Admin
+            Inventory
           </NavLink>
         </li>
       }

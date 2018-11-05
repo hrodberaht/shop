@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
             <Route path="/cart" component={ConnectedCart} />
             <ConnectedAuthorization
               render
-              withRoleAdmin={<Route path="/admin" component={Inventory} />}
+              withRoleAdmin={<Route path="/inventory" component={Inventory} />}
               withNoAdmin={<Route component={() => <p>Not Found</p>} />}
             />
             <Route component={() => <p>Not Found</p>} />
