@@ -16,12 +16,21 @@ const products = (state = initialState, action) => {
       return { ...state, ...{ products: state.products.concat(action.product) } };
     case types.ADD_PRODUCT_ERROR:
       return { ...state, errors: action.errors };
+    case types.UDATE_PRODUCT:
+      return {
+        ...state,
+        ...{
+          products: state.products.map(
+            product => (product.id === action.product.id ? action.product : product),
+          ),
+        },
+      };
     case types.REMOVE_PRODUCT:
       return {
         ...state,
         ...{
           products: state.products.map(
-            product => (product.id === action.id ? Object.assign(product, { remove: true }) : product),
+            product => (product.id === action.product.id ? action.product : product),
           ),
         },
       };

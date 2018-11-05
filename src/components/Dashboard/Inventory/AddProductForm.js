@@ -3,8 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import { addProduct } from '../../../store/products/actionCreator';
-import { getAuthToken } from '../../../store/auth/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -22,13 +20,6 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
 });
 
 export class AddProductForm extends Component {
-  componentDidMount() {}
-
-  submit = (values) => {
-    const { addProductToDB, token } = this.props;
-    addProductToDB(values, token);
-  };
-
   renderField = ({ input, meta: { touched, error } }) => (
     <div>
       <div>
@@ -40,9 +31,10 @@ export class AddProductForm extends Component {
 
   render() {
     const { handleSubmit, pristine } = this.props;
+
     return (
       <div className="product-form">
-        <form onSubmit={handleSubmit(this.submit)}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="name">
             <span>Name:</span>
             <Field id="name" name="name" component={this.renderField} />
@@ -68,21 +60,19 @@ export class AddProductForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  token: getAuthToken(state),
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: ownProps.product,
+  form: ownProps.product.id,
 });
 
-const ConnectedAddProductForm = connect(
-  mapStateToProps,
-  { addProductToDB: addProduct },
-)(AddProductForm);
-
-export default reduxForm({
-  asyncValidate,
-  form: 'addProduct',
-})(ConnectedAddProductForm);
+export default connect(mapStateToProps)(
+  reduxForm({
+    asyncValidate,
+    enableReinitialize: true,
+    form: 'addProduct',
+  })(AddProductForm),
+);
 
 AddProductForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.bool.isRequired,
 };

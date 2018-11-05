@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FormAddProductForm from './AddProductForm';
 import ConnectedAdminProductsList from './AdminProductsList';
+import ConnectedAddProduct from './AddProduct';
 
 export default class Inventory extends Component {
   state = {
@@ -19,7 +19,7 @@ export default class Inventory extends Component {
         <button type="button" onClick={this.handleClick}>
           {this.state.toggleAddProduct ? <span>Close</span> : <span>Add new item</span>}
         </button>
-        {this.state.toggleAddProduct && <FormAddProductForm />}
+        {this.state.toggleAddProduct && <ConnectedAddProduct />}
         <hr />
         <ConnectedAdminProductsList />
       </div>

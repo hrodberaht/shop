@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConnectedAddProductForm from './AddProductForm';
-import { removeProduct } from '../../../store/products/actionCreator';
+import { removeProduct, updateProduct } from '../../../store/products/actionCreator';
 import { getAuthToken } from '../../../store/auth/selectors';
 
 export class AdminProduct extends Component {
@@ -21,8 +21,14 @@ export class AdminProduct extends Component {
     removeProd(id, token);
   };
 
+  submit = (values) => {
+    const { updateProductinDB, token } = this.props;
+    updateProductinDB(values, token);
+  };
+
   render() {
     const {
+      product,
       product: {
         id, name, type, price, inStock, remove,
       },
@@ -31,7 +37,7 @@ export class AdminProduct extends Component {
       <React.Fragment>
         {this.state.toggleEdit ? (
           <td colSpan="6">
-            <ConnectedAddProductForm />
+            <ConnectedAddProductForm product={product} onSubmit={this.submit} />
             <button type="button" onClick={this.handleEditClick}>
               Close
             </button>
@@ -64,7 +70,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { removeProd: removeProduct },
+  {
+    removeProd: removeProduct,
+    updateProductinDB: updateProduct,
+  },
 )(AdminProduct);
 
 AdminProduct.propTypes = {
@@ -76,4 +85,5 @@ AdminProduct.propTypes = {
   }).isRequired,
   removeProd: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  updateProductinDB: PropTypes.func.isRequired,
 };

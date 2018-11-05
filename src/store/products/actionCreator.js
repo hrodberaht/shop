@@ -22,14 +22,19 @@ const addProductError = error => ({
   errors: error,
 });
 
-const removeProductSucces = id => ({
+const removeProductSucces = product => ({
   type: types.REMOVE_PRODUCT,
-  id,
+  product,
 });
 
 const removeProductError = error => ({
   type: types.ADD_PRODUCT_ERROR,
   errors: error,
+});
+
+const updateProductSucces = product => ({
+  type: types.UDATE_PRODUCT,
+  product,
 });
 
 export const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
@@ -56,7 +61,7 @@ export const addProduct = (product, token) => dispatch => fetch(`${config.url}pr
   body: JSON.stringify(product),
 })
   .then(res => res.json())
-  .then(() => dispatch(addProductSucces(product)))
+  .then(res => dispatch(addProductSucces(res)))
   .catch(error => dispatch(addProductError(error)));
 
 export const removeProduct = (id, token) => dispatch => fetch(`${config.url}products/${id}`, {
@@ -68,5 +73,21 @@ export const removeProduct = (id, token) => dispatch => fetch(`${config.url}prod
   body: JSON.stringify({ remove: true }),
 })
   .then(res => res.json())
-  .then(() => dispatch(removeProductSucces(id)))
+  .then((res) => {
+    dispatch(removeProductSucces(res));
+  })
+  .catch(error => dispatch(removeProductError(error)));
+
+export const updateProduct = (product, token) => dispatch => fetch(`${config.url}product/${product.id}`, {
+  method: 'post',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(product),
+})
+  .then(res => res.json())
+  .then((res) => {
+    dispatch(updateProductSucces(res));
+  })
   .catch(error => dispatch(removeProductError(error)));
