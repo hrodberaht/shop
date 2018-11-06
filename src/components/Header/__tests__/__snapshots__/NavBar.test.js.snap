@@ -13,6 +13,7 @@ exports[`<NavBar /> should render without crash 1`] = `
       <NavLink
         activeClassName="active"
         aria-current="page"
+        exact={true}
         to="/"
       >
         Shop
@@ -46,12 +47,13 @@ exports[`<NavBar /> should render without crash 1`] = `
         <li
           className="item"
         >
-          <Link
-            replace={false}
-            to="/admin"
+          <NavLink
+            activeClassName="active"
+            aria-current="page"
+            to="/inventory"
           >
-            Admin
-          </Link>
+            Inventory
+          </NavLink>
         </li>
       }
     />

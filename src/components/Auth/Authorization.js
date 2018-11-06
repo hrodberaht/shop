@@ -12,11 +12,13 @@ export class Authorization extends Component {
       withOutAuth,
       logout,
       withRoleAdmin,
+      withNoAdmin,
       handleLogout,
       role,
       render,
     } = this.props;
     if (role === 'admin' && render) return withRoleAdmin;
+    if (role !== 'admin' && render) return withNoAdmin;
     if (logout) return logout(handleLogout);
     if (auth) return withAuth;
 
@@ -40,6 +42,7 @@ Authorization.propTypes = {
   withOutAuth: PropTypes.element,
   logout: PropTypes.func,
   withRoleAdmin: PropTypes.element,
+  withNoAdmin: PropTypes.element,
   handleLogout: PropTypes.func,
   role: PropTypes.string,
   render: PropTypes.bool,
@@ -50,6 +53,7 @@ Authorization.defaultProps = {
   withOutAuth: null,
   logout: null,
   withRoleAdmin: null,
+  withNoAdmin: null,
   handleLogout: null,
   role: null,
   render: false,

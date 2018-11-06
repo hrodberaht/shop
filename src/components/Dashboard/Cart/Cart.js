@@ -50,6 +50,7 @@ export class Cart extends Component {
   };
 
   render() {
+    const { products } = this.props;
     return (
       <div className="cart">
         <h3>Products in your cart:</h3>
@@ -61,7 +62,7 @@ export class Cart extends Component {
               <th>Pcs:</th>
               <th>Total price:</th>
             </tr>
-            {this.props.products.map(product => (
+            {products.map(product => (
               <CartProduct key={product.id} product={product} />
             ))}
           </tbody>
@@ -70,7 +71,12 @@ export class Cart extends Component {
           <span>$</span>
           {this.sumaryPrice()}
         </p>
-        <button className="btn btn-primary" type="button" onClick={this.handleClick}>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={this.handleClick}
+          disabled={products.length === 0}
+        >
           Buy
         </button>
       </div>
@@ -100,7 +106,7 @@ Cart.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
-  companyId: PropTypes.func,
+  companyId: PropTypes.string,
 };
 
 Cart.defaultProps = {

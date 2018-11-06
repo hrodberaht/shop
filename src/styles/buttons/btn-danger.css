@@ -5,3 +5,7 @@
 .btn-danger {
     background-color:darkred;
 }
+
+.btn-danger:disabled {
+    background-color:rgb(252, 161, 161);
+}

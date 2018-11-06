@@ -22,41 +22,39 @@ export class OrdersList extends Component {
     return (
       <div>
         <table>
-          <tbody>
-            {orders.map(order => (
-              <React.Fragment>
-                <tr className="order-table-title">
-                  <th>Id:</th>
-                  <th>Person:</th>
-                  <th>Date:</th>
-                  <th>Total price:</th>
-                  <th>Status:</th>
-                  <ConnectedAuthorization render withRoleAdmin={<th>Change status:</th>} />
-                </tr>
-                <tr key={order.id} className="order-table">
-                  <Order order={order} />
-                  <ConnectedAuthorization
-                    render
-                    withRoleAdmin={(
-                      <td>
-                        <button
-                          className="btn btn-submit"
-                          type="button"
-                          disabled={order.status === 'realized'}
-                          onClick={() => handleClick(order.id, token)}
-                        >
-                          Realise
-                        </button>
-                      </td>
+          {orders.map(order => (
+            <tbody key={order.id}>
+              <tr className="order-table-title">
+                <th>Id:</th>
+                <th>Person:</th>
+                <th>Date:</th>
+                <th>Total price:</th>
+                <th>Status:</th>
+                <ConnectedAuthorization render withRoleAdmin={<th>Change status:</th>} />
+              </tr>
+              <tr className="order-table">
+                <Order order={order} />
+                <ConnectedAuthorization
+                  render
+                  withRoleAdmin={(
+                    <td>
+                      <button
+                        className="btn btn-submit"
+                        type="button"
+                        disabled={order.status === 'realized'}
+                        onClick={() => handleClick(order.id, token)}
+                      >
+                        Realise
+                      </button>
+                    </td>
 )}
-                  />
-                </tr>
-                <tr key={order.date}>
-                  <ProductsInOrder order={order} />
-                </tr>
-              </React.Fragment>
-            ))}
-          </tbody>
+                />
+              </tr>
+              <tr key={order.date}>
+                <ProductsInOrder order={order} />
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
     );

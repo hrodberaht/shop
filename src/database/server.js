@@ -239,6 +239,31 @@ server.post('/orderPositions', async (req, res) => {
   return res.json(pos);
 });
 
+server.post('/product/:id', async (req, res) => {
+  const { id } = req.params;
+  router.db
+    .get('products')
+    .find({ id })
+    .assign(req.body)
+    .write();
+  const product = router.db.get('products').find({ id });
+  return res.json(product);
+});
+
+server.put('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  router.db
+    .get('products')
+    .find({ id })
+    .assign({ remove: true })
+    .write();
+  const product = router.db
+    .get('products')
+    .find({ id })
+    .value();
+  return res.json(product);
+});
+
 server.use(router);
 
 server.listen(3004);

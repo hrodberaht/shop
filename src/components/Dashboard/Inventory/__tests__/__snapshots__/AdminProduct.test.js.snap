@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AdminProduct /> should change state after click button close and hide form 1`] = `
+<Fragment>
+  <td>
+    ZX3
+  </td>
+  <td>
+    Printer
+  </td>
+  <td>
+    400
+  </td>
+  <td>
+    30
+  </td>
+  <td>
+    <button
+      className="btn btn-primary"
+      id="editButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Edit
+    </button>
+  </td>
+  <td>
+    <button
+      className="btn btn-danger"
+      id="removeButton"
+      onClick={[Function]}
+      type="button"
+    >
+      X
+    </button>
+  </td>
+</Fragment>
+`;
+
+exports[`<AdminProduct /> should change state after click button edit and show form 1`] = `
+<Fragment>
+  <td
+    colSpan="6"
+  >
+    <Connect(ReduxForm)
+      onSubmit={[Function]}
+      product={
+        Object {
+          "id": "product-1",
+          "inStock": "30",
+          "name": "ZX3",
+          "price": "400",
+          "type": "Printer",
+        }
+      }
+    />
+    <button
+      className="btn btn-primary"
+      id="closeButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Close
+    </button>
+  </td>
+</Fragment>
+`;
+
+exports[`<AdminProduct /> should render without crash 1`] = `
+<Fragment>
+  <td>
+    ZX3
+  </td>
+  <td>
+    Printer
+  </td>
+  <td>
+    400
+  </td>
+  <td>
+    30
+  </td>
+  <td>
+    <button
+      className="btn btn-primary"
+      id="editButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Edit
+    </button>
+  </td>
+  <td>
+    <button
+      className="btn btn-danger"
+      id="removeButton"
+      onClick={[Function]}
+      type="button"
+    >
+      X
+    </button>
+  </td>
+</Fragment>
+`;

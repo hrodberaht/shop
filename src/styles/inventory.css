@@ -1,0 +1,32 @@
+.inventory {
+    text-align: center;
+}
+
+.admin-product-list th, td {
+    text-align: center;
+}
+
+.admin-product-list th {
+    background-color: aqua;
+}
+
+.admin-product-list tr:nth-child(odd) {
+    background-color: rgb(234, 250, 250);
+}
+
+.admin-product-list button {
+    margin: 0;
+    padding: 10px 0;
+    width: 100px;
+}
+
+.admin-product-list .btn-danger {
+    width: 50px;
+}
+
+hr {
+    max-width: 600px;
+    border: 0;
+    border: 1px solid lightblue;
+    
+}

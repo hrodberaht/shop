@@ -8,7 +8,9 @@ export default class NavBar extends Component {
       <div className="nav-bar">
         <ul className="nav-bar__list">
           <li className="item">
-            <NavLink to="/">Shop</NavLink>
+            <NavLink exact to="/">
+              Shop
+            </NavLink>
           </li>
           <li className="item">
             <NavLink to="/orders">Orders</NavLink>
@@ -20,7 +22,7 @@ export default class NavBar extends Component {
             render
             withRoleAdmin={(
               <li className="item">
-                <Link to="/admin">Admin</Link>
+                <NavLink to="/inventory">Inventory</NavLink>
               </li>
 )}
           />

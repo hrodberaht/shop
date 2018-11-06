@@ -127,11 +127,12 @@ Product.propTypes = {
     inStock: PropTypes.string,
   }).isRequired,
   addProduct: PropTypes.func,
-  token: PropTypes.string.isRequired,
+  token: PropTypes.string,
 };
 
 Product.defaultProps = {
   addProduct: null,
+  token: null,
 };
 
 const mapStateToProps = state => ({

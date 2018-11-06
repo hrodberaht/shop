@@ -7,12 +7,27 @@ const fetchProductsSucces = products => ({
   loaded: true,
 });
 
-const fetchProductsError = error => ({
-  type: types.FETCH_PRODUCTS_ERROR,
+const addProductSucces = product => ({
+  type: types.ADD_PRODUCT,
+  product,
+});
+
+const productErrors = error => ({
+  type: types.PRODUCTS_ERROR,
   errors: error,
 });
 
-const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
+const removeProductSucces = product => ({
+  type: types.REMOVE_PRODUCT,
+  product,
+});
+
+const updateProductSucces = product => ({
+  type: types.UDATE_PRODUCT,
+  product,
+});
+
+export const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
   method: 'get',
   headers: {
     'Content-Type': 'application/json',
@@ -24,7 +39,45 @@ const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
     dispatch(fetchProductsSucces(res));
   })
   .catch(() => {
-    dispatch(fetchProductsError('Sorry server is down'));
+    dispatch(productErrors('Sorry server is down'));
   });
 
-export default fetchProducts;
+export const addProduct = (product, token) => dispatch => fetch(`${config.url}products`, {
+  method: 'post',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(product),
+})
+  .then(res => res.json())
+  .then(res => dispatch(addProductSucces(res)))
+  .catch(error => dispatch(productErrors(error)));
+
+export const removeProduct = (id, token) => dispatch => fetch(`${config.url}products/${id}`, {
+  method: 'put',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify({ remove: true }),
+})
+  .then(res => res.json())
+  .then((res) => {
+    dispatch(removeProductSucces(res));
+  })
+  .catch(error => dispatch(productErrors(error)));
+
+export const updateProduct = (product, token) => dispatch => fetch(`${config.url}product/${product.id}`, {
+  method: 'post',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(product),
+})
+  .then(res => res.json())
+  .then((res) => {
+    dispatch(updateProductSucces(res));
+  })
+  .catch(error => dispatch(productErrors(error)));

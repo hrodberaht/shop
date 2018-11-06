@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Inventory /> should render witout crash 1`] = `
+<div
+  className="inventory"
+>
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Add new item
+    </span>
+  </button>
+  <hr />
+  <Connect(AdminProductsList) />
+</div>
+`;
+
+exports[`<Inventory /> should show AddProduct if toggle is true 1`] = `
+<div
+  className="inventory"
+>
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+    type="button"
+  >
+    <span>
+      Close
+    </span>
+  </button>
+  <Connect(AddProduct) />
+  <hr />
+  <Connect(AdminProductsList) />
+</div>
+`;
