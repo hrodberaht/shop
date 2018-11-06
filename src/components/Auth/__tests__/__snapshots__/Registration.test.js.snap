@@ -77,11 +77,19 @@ exports[`<Registration /> should render without crash 1`] = `
         type="password"
       />
     </label>
-    <Field
-      className="registration-select"
-      component="select"
-      name="companyId"
-    />
+    <label
+      className="form-label"
+      htmlFor="password"
+    >
+      <p>
+        Your Company
+      </p>
+      <Field
+        className="registration-select"
+        component="select"
+        name="companyId"
+      />
+    </label>
     <button
       className="btn btn-submit"
       type="submit"
