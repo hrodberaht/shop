@@ -7,29 +7,19 @@ const fetchProductsSucces = products => ({
   loaded: true,
 });
 
-const fetchProductsError = error => ({
-  type: types.FETCH_PRODUCTS_ERROR,
-  errors: error,
-});
-
 const addProductSucces = product => ({
   type: types.ADD_PRODUCT,
   product,
 });
 
-const addProductError = error => ({
-  type: types.ADD_PRODUCT_ERROR,
+const productErrors = error => ({
+  type: types.PRODUCTS_ERROR,
   errors: error,
 });
 
 const removeProductSucces = product => ({
   type: types.REMOVE_PRODUCT,
   product,
-});
-
-const removeProductError = error => ({
-  type: types.ADD_PRODUCT_ERROR,
-  errors: error,
 });
 
 const updateProductSucces = product => ({
@@ -49,7 +39,7 @@ export const fetchProducts = token => dispatch => fetch(`${config.url}products`,
     dispatch(fetchProductsSucces(res));
   })
   .catch(() => {
-    dispatch(fetchProductsError('Sorry server is down'));
+    dispatch(productErrors('Sorry server is down'));
   });
 
 export const addProduct = (product, token) => dispatch => fetch(`${config.url}products`, {
@@ -62,7 +52,7 @@ export const addProduct = (product, token) => dispatch => fetch(`${config.url}pr
 })
   .then(res => res.json())
   .then(res => dispatch(addProductSucces(res)))
-  .catch(error => dispatch(addProductError(error)));
+  .catch(error => dispatch(productErrors(error)));
 
 export const removeProduct = (id, token) => dispatch => fetch(`${config.url}products/${id}`, {
   method: 'put',
@@ -76,7 +66,7 @@ export const removeProduct = (id, token) => dispatch => fetch(`${config.url}prod
   .then((res) => {
     dispatch(removeProductSucces(res));
   })
-  .catch(error => dispatch(removeProductError(error)));
+  .catch(error => dispatch(productErrors(error)));
 
 export const updateProduct = (product, token) => dispatch => fetch(`${config.url}product/${product.id}`, {
   method: 'post',
@@ -90,4 +80,4 @@ export const updateProduct = (product, token) => dispatch => fetch(`${config.url
   .then((res) => {
     dispatch(updateProductSucces(res));
   })
-  .catch(error => dispatch(removeProductError(error)));
+  .catch(error => dispatch(productErrors(error)));

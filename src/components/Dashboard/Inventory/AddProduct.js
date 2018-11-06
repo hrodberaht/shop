@@ -14,7 +14,7 @@ export class AddProduct extends Component {
   render() {
     return (
       <div>
-        <ConnectedAddProductForm product={{}} onSubmit={this.submit} />
+        <ConnectedAddProductForm onSubmit={this.submit} />
       </div>
     );
   }

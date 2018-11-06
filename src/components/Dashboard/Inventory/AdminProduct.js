@@ -22,8 +22,8 @@ export class AdminProduct extends Component {
   };
 
   submit = (values) => {
-    const { updateProductinDB, token } = this.props;
-    updateProductinDB(values, token);
+    const { updateProductInDB, token } = this.props;
+    updateProductInDB(values, token);
   };
 
   render() {
@@ -38,7 +38,12 @@ export class AdminProduct extends Component {
         {this.state.toggleEdit ? (
           <td colSpan="6">
             <ConnectedAddProductForm product={product} onSubmit={this.submit} />
-            <button className="btn btn-primary" type="button" onClick={this.handleEditClick}>
+            <button
+              id="closeButton"
+              className="btn btn-primary"
+              type="button"
+              onClick={this.handleEditClick}
+            >
               Close
             </button>
           </td>
@@ -49,12 +54,18 @@ export class AdminProduct extends Component {
             <td>{+price}</td>
             <td>{+inStock}</td>
             <td>
-              <button className="btn btn-primary" type="button" onClick={this.handleEditClick}>
+              <button
+                id="editButton"
+                className="btn btn-primary"
+                type="button"
+                onClick={this.handleEditClick}
+              >
                 Edit
               </button>
             </td>
             <td>
               <button
+                id="removeButton"
                 className="btn btn-danger"
                 type="button"
                 onClick={() => this.handleRemoveClick(id)}
@@ -77,7 +88,7 @@ export default connect(
   mapStateToProps,
   {
     removeProd: removeProduct,
-    updateProductinDB: updateProduct,
+    updateProductInDB: updateProduct,
   },
 )(AdminProduct);
 
@@ -90,5 +101,5 @@ AdminProduct.propTypes = {
   }).isRequired,
   removeProd: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
-  updateProductinDB: PropTypes.func.isRequired,
+  updateProductInDB: PropTypes.func.isRequired,
 };

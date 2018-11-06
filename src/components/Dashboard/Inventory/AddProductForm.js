@@ -62,7 +62,7 @@ export class AddProductForm extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   initialValues: ownProps.product,
-  form: ownProps.product.id,
+  form: ownProps.product ? ownProps.product.id : 'addProduct',
 });
 
 export default connect(mapStateToProps)(

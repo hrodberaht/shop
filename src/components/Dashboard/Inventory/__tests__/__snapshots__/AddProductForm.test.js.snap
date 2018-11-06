@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddProductForm /> should render without crash 1`] = `
+<div
+  className="product-form"
+>
+  <form
+    onSubmit={[MockFunction]}
+  >
+    <label
+      htmlFor="name"
+    >
+      <span>
+        Name:
+      </span>
+      <Field
+        component={[Function]}
+        id="name"
+        name="name"
+        type="text"
+      />
+    </label>
+    <label
+      htmlFor="type"
+    >
+      <span>
+        Type:
+      </span>
+      <Field
+        component={[Function]}
+        id="type"
+        name="type"
+        type="text"
+      />
+    </label>
+    <label
+      htmlFor="price"
+    >
+      <span>
+        Price:
+      </span>
+      <Field
+        component={[Function]}
+        id="price"
+        name="price"
+        type="number"
+      />
+    </label>
+    <label
+      htmlFor="inStock"
+    >
+      <span>
+        Stock:
+      </span>
+      <Field
+        component={[Function]}
+        id="inStock"
+        name="inStock"
+        type="number"
+      />
+    </label>
+    <button
+      className="btn btn-submit"
+      type="submit"
+    >
+      Add
+    </button>
+  </form>
+</div>
+`;

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AdminProductsList /> should render list product component if loaded true 1`] = `
+<div
+  className="admin-product-list"
+>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          Name:
+        </th>
+        <th>
+          Type:
+        </th>
+        <th>
+          Price:
+        </th>
+        <th>
+          Stock:
+        </th>
+        <th>
+          Edit:
+        </th>
+        <th>
+          Remove:
+        </th>
+      </tr>
+      <tr
+        key="product-1"
+      >
+        <Connect(AdminProduct)
+          product={
+            Object {
+              "id": "product-1",
+              "inStock": "30",
+              "name": "ZX3",
+              "price": "400",
+              "type": "Printer",
+            }
+          }
+        />
+      </tr>
+      <tr
+        key="product-2"
+      >
+        <Connect(AdminProduct)
+          product={
+            Object {
+              "id": "product-2",
+              "inStock": "40",
+              "name": "ZX8",
+              "price": "800",
+              "type": "Printer",
+            }
+          }
+        />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<AdminProductsList /> should render loading component if loaded false 1`] = `
+<p>
+  Loading...
+</p>
+`;
