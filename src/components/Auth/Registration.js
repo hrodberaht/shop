@@ -120,9 +120,12 @@ export class Registration extends Component {
             <p>Password:</p>
             <Field name="password" type="password" component={this.renderField} label="Password" />
           </label>
-          <Field className="registration-select" name="companyId" component="select">
-            {this.state.loaded && this.selectOptions()}
-          </Field>
+          <label className="form-label" htmlFor="password">
+            <p>Your Company</p>
+            <Field className="registration-select" name="companyId" component="select">
+              {this.state.loaded && this.selectOptions()}
+            </Field>
+          </label>
           <button className="btn btn-submit" type="submit" disabled={pristine}>
             Submit
           </button>
