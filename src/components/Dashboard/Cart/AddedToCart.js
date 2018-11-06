@@ -11,32 +11,34 @@ export default class AddedToCart extends Component {
       redirect,
     } = this.props;
     return (
-      <div className="cart-popup">
-        <div className="cart-popup__inside">
-          <h4>Product added to cart:</h4>
-          <p>
-            <span>Name:</span>
-            {name}
-          </p>
-          <p>
-            <span>Price:</span>
-            {price}
-          </p>
-          <p>
-            <span>Pcs:</span>
-            {pcsOrder}
-          </p>
-          <p>
-            <span>Tota price:</span>
-            {totalPrice}
-          </p>
-          <div className="cart-popup__buttons">
-            <button id="more" className="btn btn-primary" type="button" onClick={show}>
-              More
-            </button>
-            <button id="cart" className="btn btn-primary" type="button" onClick={redirect}>
-              Cart
-            </button>
+      <div className="cart-background">
+        <div className="cart-popup">
+          <div className="cart-popup__inside">
+            <h4>Product added to cart:</h4>
+            <p>
+              <span>Name:</span>
+              {name}
+            </p>
+            <p>
+              <span>Price:</span>
+              {price}
+            </p>
+            <p>
+              <span>Pcs:</span>
+              {pcsOrder}
+            </p>
+            <p>
+              <span>Tota price:</span>
+              {totalPrice}
+            </p>
+            <div className="cart-popup__buttons">
+              <button id="more" className="btn btn-primary" type="button" onClick={show}>
+                More
+              </button>
+              <button id="cart" className="btn btn-primary" type="button" onClick={redirect}>
+                Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
