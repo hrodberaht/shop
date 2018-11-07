@@ -30,3 +30,8 @@ hr {
     border: 1px solid lightblue;
     
 }
+
+.admin-product-list .error-text {
+    font-size: 12px;
+}
+

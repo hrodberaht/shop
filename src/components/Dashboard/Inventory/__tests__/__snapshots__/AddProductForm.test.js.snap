@@ -10,9 +10,9 @@ exports[`<AddProductForm /> should render without crash 1`] = `
     <label
       htmlFor="name"
     >
-      <span>
+      <p>
         Name:
-      </span>
+      </p>
       <Field
         component={[Function]}
         id="name"
@@ -23,9 +23,9 @@ exports[`<AddProductForm /> should render without crash 1`] = `
     <label
       htmlFor="type"
     >
-      <span>
+      <p>
         Type:
-      </span>
+      </p>
       <Field
         component={[Function]}
         id="type"
@@ -36,9 +36,9 @@ exports[`<AddProductForm /> should render without crash 1`] = `
     <label
       htmlFor="price"
     >
-      <span>
+      <p>
         Price:
-      </span>
+      </p>
       <Field
         component={[Function]}
         id="price"
@@ -49,9 +49,9 @@ exports[`<AddProductForm /> should render without crash 1`] = `
     <label
       htmlFor="inStock"
     >
-      <span>
+      <p>
         Stock:
-      </span>
+      </p>
       <Field
         component={[Function]}
         id="inStock"

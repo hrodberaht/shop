@@ -22,10 +22,10 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
 export class AddProductForm extends Component {
   renderField = ({ input, type, meta: { touched, error } }) => (
     <div>
-      <div>
+      <p>
         <input className="form-input" {...input} type={type} />
-        {touched && error && <p className="error-text">{error}</p>}
-      </div>
+      </p>
+      {touched && error && <p className="error-text">{error}</p>}
     </div>
   );
 
@@ -36,19 +36,19 @@ export class AddProductForm extends Component {
       <div className="product-form">
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">
-            <span>Name:</span>
+            <p>Name:</p>
             <Field id="name" name="name" component={this.renderField} type="text" />
           </label>
           <label htmlFor="type">
-            <span>Type:</span>
+            <p>Type:</p>
             <Field id="type" name="type" component={this.renderField} type="text" />
           </label>
           <label htmlFor="price">
-            <span>Price:</span>
+            <p>Price:</p>
             <Field id="price" name="price" component={this.renderField} type="number" />
           </label>
           <label htmlFor="inStock">
-            <span>Stock:</span>
+            <p>Stock:</p>
             <Field id="inStock" name="inStock" component={this.renderField} type="number" />
           </label>
           <button className="btn btn-submit" type="submit" disabled={pristine}>

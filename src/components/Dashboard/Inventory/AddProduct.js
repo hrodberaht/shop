@@ -13,7 +13,7 @@ export class AddProduct extends Component {
 
   render() {
     return (
-      <div>
+      <div className="add-product-inventory">
         <ConnectedAddProductForm onSubmit={this.submit} />
       </div>
     );
