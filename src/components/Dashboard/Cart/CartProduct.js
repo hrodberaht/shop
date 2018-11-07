@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class CartProduct extends Component {
+  handleClick = () => {
+    const {
+      remove,
+      product: { id },
+    } = this.props;
+    remove(id);
+  };
+
   render() {
     const {
       product: {
@@ -17,6 +25,11 @@ export default class CartProduct extends Component {
           <span>$</span>
           {totalPrice}
         </td>
+        <td>
+          <button type="button" className="btn btn-danger" onClick={this.handleClick}>
+            X
+          </button>
+        </td>
       </tr>
     );
   }
@@ -29,4 +42,5 @@ CartProduct.propTypes = {
     pcsOrder: PropTypes.number,
     totalPrice: PropTypes.number,
   }).isRequired,
+  remove: PropTypes.func.isRequired,
 };

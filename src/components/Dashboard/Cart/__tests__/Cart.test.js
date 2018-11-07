@@ -20,6 +20,11 @@ const defaultProps = {
   emptyCart: jest.fn(),
   createOrder: jest.fn(),
   history: [],
+  removeFrom: jest.fn(),
+  userId: '1234',
+  person: 'Tom Johns',
+  token: '1234',
+  orderPositionIds: [],
 };
 
 const setup = buildSetup(Cart, defaultProps);
@@ -42,5 +47,10 @@ describe('<Cart />', () => {
     const { wrapper } = setup();
     wrapper.instance().sumaryPrice();
     expect(wrapper.instance().sumaryPrice()).toBe(5600);
+  });
+  it('remove should call removeFrom', () => {
+    const { wrapper } = setup();
+    wrapper.instance().remove();
+    expect(wrapper.instance().props.removeFrom).toHaveBeenCalled();
   });
 });

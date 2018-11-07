@@ -17,5 +17,14 @@ exports[`<CartProduct /> should render witout crash 1`] = `
     </span>
     800
   </td>
+  <td>
+    <button
+      className="btn btn-danger"
+      onClick={[Function]}
+      type="button"
+    >
+      X
+    </button>
+  </td>
 </tr>
 `;

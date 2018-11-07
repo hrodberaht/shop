@@ -24,6 +24,9 @@ exports[`<Cart /> should render witout crash 1`] = `
         <th>
           Total price:
         </th>
+        <th>
+          Delete:
+        </th>
       </tr>
       <CartProduct
         key="1"
@@ -36,6 +39,7 @@ exports[`<Cart /> should render witout crash 1`] = `
             "totalPrice": 800,
           }
         }
+        remove={[Function]}
       />
       <CartProduct
         key="2"
@@ -48,6 +52,7 @@ exports[`<Cart /> should render witout crash 1`] = `
             "totalPrice": 4800,
           }
         }
+        remove={[Function]}
       />
     </tbody>
   </table>

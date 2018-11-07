@@ -1,9 +1,9 @@
 .btn-danger {
-    background-color: red;
+    background-color:darkred;
 }
 
-.btn-danger {
-    background-color:darkred;
+.btn-danger:hover {
+    background-color: red;
 }
 
 .btn-danger:disabled {

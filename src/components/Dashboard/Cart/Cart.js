@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
-import { clearCart } from '../../../store/cart/actionCreator';
+import { clearCart, removeFromCart } from '../../../store/cart/actionCreator';
 import { addOrderToDB } from '../../../store/orders/actionCreator';
 import {
   getAuthUserId,
@@ -25,7 +25,11 @@ export class Cart extends Component {
     return sumary;
   };
 
-  handleClick = async () => {
+  remove = (id) => {
+    this.props.removeFrom(id);
+  };
+
+  handleClick = () => {
     const {
       emptyCart,
       createOrder,
@@ -44,7 +48,7 @@ export class Cart extends Component {
       companyId,
       orderPositionIds,
     };
-    await createOrder(order, token);
+    createOrder(order, token);
     emptyCart();
     return this.props.history.push('/orders');
   };
@@ -61,9 +65,10 @@ export class Cart extends Component {
               <th>Price:</th>
               <th>Pcs:</th>
               <th>Total price:</th>
+              <th>Delete:</th>
             </tr>
             {products.map(product => (
-              <CartProduct key={product.id} product={product} />
+              <CartProduct key={product.id} product={product} remove={this.remove} />
             ))}
           </tbody>
         </table>
@@ -99,6 +104,7 @@ export default connect(
   {
     emptyCart: clearCart,
     createOrder: addOrderToDB,
+    removeFrom: removeFromCart,
   },
 )(Cart);
 
@@ -106,7 +112,12 @@ Cart.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
+  removeFrom: PropTypes.func.isRequired,
   companyId: PropTypes.string,
+  userId: PropTypes.string.isRequired,
+  person: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  orderPositionIds: PropTypes.arrayOf(PropTypes.arrayOf).isRequired,
 };
 
 Cart.defaultProps = {
