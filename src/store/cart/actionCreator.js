@@ -11,6 +11,11 @@ export const clearCart = () => ({
   empty: [],
 });
 
+export const removeFromCart = id => ({
+  type: types.REMOVE_FROM_CART,
+  id,
+});
+
 export const addProductToCart = (product, token) => (dispatch) => {
   fetch(`${config.url}orderPositions`, {
     method: 'post',

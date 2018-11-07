@@ -26,6 +26,10 @@
     background-color: rgb(108, 243, 243);
 }
 
+.cart-produts__item button {
+    width: 50px;
+}
+
 .cart-produts__item tr:nth-child(odd) {
     background-color: rgb(228, 252, 252);
 }
