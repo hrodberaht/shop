@@ -6,6 +6,10 @@ const cart = (state = [], action) => {
       return state.concat(action.product);
     case types.REMOVE_FROM_CART:
       return state.filter(prod => prod.id !== action.id);
+    case types.UPDATE_IN_CART:
+      return state.map(
+        prod => (prod.id === action.product.id ? Object.assign(prod, action.product) : prod),
+      );
     case types.CLEAR_CART:
       return action.empty;
     default:

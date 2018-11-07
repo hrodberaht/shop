@@ -16,6 +16,11 @@ export const removeFromCart = id => ({
   id,
 });
 
+export const updateProductInCartSucces = product => ({
+  type: types.UPDATE_IN_CART,
+  product,
+});
+
 export const addProductToCart = (product, token) => (dispatch) => {
   fetch(`${config.url}orderPositions`, {
     method: 'post',
@@ -28,6 +33,22 @@ export const addProductToCart = (product, token) => (dispatch) => {
     .then(res => res.json())
     .then((res) => {
       dispatch(addProductToCartSucces(res));
+    })
+    .catch(error => console.log(error));
+};
+
+export const updateProductInCart = (product, token) => (dispatch) => {
+  fetch(`${config.url}orderPositions/${product.id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(product),
+  })
+    .then(res => res.json())
+    .then((res) => {
+      dispatch(updateProductInCartSucces(res));
     })
     .catch(error => console.log(error));
 };
