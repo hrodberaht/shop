@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addProductToCart } from '../../../store/cart/actionCreator';
+import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreator';
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken } from '../../../store/auth/selectors';
+import { getProductsInCart } from '../../../store/cart/selectors';
 
 export class Product extends Component {
   state = {
@@ -50,7 +51,21 @@ export class Product extends Component {
   redirectToCart = () => this.props.history.push('/cart');
 
   handleClick = (product) => {
-    this.props.addProduct(product, this.props.token);
+    const {
+      addProduct, cart, updateProduct, token,
+    } = this.props;
+    const inCart = cart.find(prod => prod.productId === product.productId);
+
+    if (inCart) {
+      const combProd = Object.assign(inCart, {
+        pcsOrder: inCart.pcsOrder + product.pcsOrder,
+        totalPrice: inCart.totalPrice + product.totalPrice,
+      });
+      updateProduct(combProd, token);
+    } else {
+      addProduct(product, this.props.token);
+    }
+
     this.showAddedToCart();
   };
 
@@ -128,19 +143,26 @@ Product.propTypes = {
   }).isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
+  cart: PropTypes.arrayOf(PropTypes.objectOf),
+  updateProduct: PropTypes.func.isRequired,
 };
 
 Product.defaultProps = {
   addProduct: null,
   token: null,
+  cart: [],
 };
 
 const mapStateToProps = state => ({
   token: getAuthToken(state),
+  cart: getProductsInCart(state),
 });
 export default withRouter(
   connect(
     mapStateToProps,
-    { addProduct: addProductToCart },
+    {
+      addProduct: addProductToCart,
+      updateProduct: updateProductInCart,
+    },
   )(Product),
 );

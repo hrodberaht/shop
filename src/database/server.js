@@ -240,6 +240,9 @@ server.post('/orderPositions', async (req, res) => {
     .value();
   return res.json(pos);
 });
+server.put('/orderPositions/:id', async (req, res, next) => {
+  next();
+});
 
 server.post('/product/:id', async (req, res) => {
   const { id } = req.params;
