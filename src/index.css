@@ -10,11 +10,7 @@
 @import './styles/inventory.css';
 @import './styles/form.css';
 @import './styles/edit-product.css';
-
-
-
-
-
+@import './styles/add-product-inventory.css';
 
 body {
     max-width: 1024px;

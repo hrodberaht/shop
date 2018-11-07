@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
 import { clearCart, removeFromCart } from '../../../store/cart/actionCreator';
@@ -44,13 +45,13 @@ export class Cart extends Component {
       person,
       totalPrice: +this.sumaryPrice(),
       status: 'in-progress',
-      date: new Date(),
+      date: moment().format('MMMM Do YYYY, h:mm:ss a'),
       companyId,
       orderPositionIds,
     };
     createOrder(order, token);
     emptyCart();
-    return this.props.history.push('/orders');
+    this.props.history.push('/orders');
   };
 
   render() {
