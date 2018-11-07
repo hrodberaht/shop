@@ -51,7 +51,7 @@ export class Cart extends Component {
     };
     createOrder(order, token);
     emptyCart();
-    return this.props.history.push('/orders');
+    this.props.history.push('/orders');
   };
 
   render() {

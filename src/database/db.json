@@ -87,12 +87,18 @@
     {
       "id": "company-1",
       "name": "IBM",
-      "usersIds": ["user-1", "user-2"]
+      "usersIds": [
+        "user-1",
+        "user-2"
+      ]
     },
     {
       "id": "company-2",
       "name": "Apple",
-      "usersIds": ["user-3", "7Shi6qZHm"]
+      "usersIds": [
+        "user-3",
+        "7Shi6qZHm"
+      ]
     }
   ],
   "orders": [
@@ -103,8 +109,32 @@
       "status": "in-progress",
       "date": "November 7th 2018, 5:59:40 pm",
       "companyId": "",
-      "orderPositionIds": ["orzQHxOzT"],
+      "orderPositionIds": [
+        "orzQHxOzT"
+      ],
       "id": "q5uMm08"
+    },
+    {
+      "userId": "user-2",
+      "person": "Tom Johns",
+      "totalPrice": 400,
+      "status": "in-progress",
+      "date": "November 7th 2018, 7:18:36 pm",
+      "companyId": "company-1",
+      "orderPositionIds": [
+        "Qe3te_24r"
+      ],
+      "productsOrder": [
+        {
+          "productId": "product-1",
+          "name": "ZX3",
+          "price": 400,
+          "pcsOrder": 1,
+          "totalPrice": 400,
+          "id": "Qe3te_24r"
+        }
+      ],
+      "id": "cdAakTQ"
     }
   ],
   "orderPositions": [
@@ -136,6 +166,14 @@
       "pcsOrder": 1,
       "totalPrice": 400,
       "id": "orzQHxOzT"
+    },
+    {
+      "productId": "product-1",
+      "name": "ZX3",
+      "price": 400,
+      "pcsOrder": 1,
+      "totalPrice": 400,
+      "id": "Qe3te_24r"
     }
   ]
 }

@@ -13,8 +13,9 @@ const fetchOrdersError = error => ({
   loaded: false,
 });
 
-const addOrderSucces = () => ({
+const addOrderSucces = order => ({
   type: types.ADD_ORDER_SUCCES,
+  order,
 });
 
 const addOrderError = error => ({

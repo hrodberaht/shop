@@ -213,6 +213,8 @@ server.get('/orders', async (req, res) => {
 });
 
 server.post('/orders', async (req, res, next) => {
+  const order = addProductsToOrder([req.body]);
+  [req.body] = order;
   next();
 });
 
