@@ -112,7 +112,17 @@
       "orderPositionIds": [
         "orzQHxOzT"
       ],
-      "id": "q5uMm08"
+      "id": "q5uMm08",
+      "productsOrder": [
+        {
+          "productId": "product-1",
+          "name": "ZX3",
+          "price": 400,
+          "pcsOrder": 1,
+          "totalPrice": 400,
+          "id": "orzQHxOzT"
+        }
+      ]
     },
     {
       "userId": "user-2",
@@ -174,6 +184,22 @@
       "pcsOrder": 1,
       "totalPrice": 400,
       "id": "Qe3te_24r"
+    },
+    {
+      "productId": "product-1",
+      "name": "ZX3",
+      "price": 400,
+      "pcsOrder": 2,
+      "totalPrice": 800,
+      "id": "OJwYuh653"
+    },
+    {
+      "productId": "product-1",
+      "name": "ZX3",
+      "price": 400,
+      "pcsOrder": 1,
+      "totalPrice": 400,
+      "id": "g4p1Acyy_"
     }
   ]
 }
