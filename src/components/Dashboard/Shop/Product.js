@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreator';
 import AddedToCart from '../Cart/AddedToCart';
-import { getAuthToken } from '../../../store/auth/selectors';
+import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
+import { addtoWhisListSucces } from '../../../store/whislist/actionCerator';
 
 export class Product extends Component {
   state = {
@@ -69,6 +70,11 @@ export class Product extends Component {
     this.showAddedToCart();
   };
 
+  handleClickWhislist = (product) => {
+    const { addToWhis, userId } = this.props;
+    addToWhis(product, userId);
+  };
+
   render() {
     const {
       product: {
@@ -121,6 +127,13 @@ export class Product extends Component {
           >
             Add to cart
           </button>
+          <button
+            className="btn btn-danger"
+            type="button"
+            onClick={() => this.handleClickWhislist(productToCart)}
+          >
+            Whislist
+          </button>
         </div>
         {toggleAddedToCart && (
           <AddedToCart
@@ -145,6 +158,8 @@ Product.propTypes = {
   token: PropTypes.string,
   cart: PropTypes.arrayOf(PropTypes.objectOf),
   updateProduct: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+  addToWhis: PropTypes.func.isRequired,
 };
 
 Product.defaultProps = {
@@ -156,6 +171,7 @@ Product.defaultProps = {
 const mapStateToProps = state => ({
   token: getAuthToken(state),
   cart: getProductsInCart(state),
+  userId: getAuthUserId(state),
 });
 export default withRouter(
   connect(
@@ -163,6 +179,7 @@ export default withRouter(
     {
       addProduct: addProductToCart,
       updateProduct: updateProductInCart,
+      addToWhis: addtoWhisListSucces,
     },
   )(Product),
 );
