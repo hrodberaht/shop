@@ -255,9 +255,11 @@ server.post('/product/:id', async (req, res) => {
   return res.json(product);
 });
 server.post('/whislists', (req, res) => {
-  console.log(req.body);
   const { userId, product } = req.body;
-  const user = router.db.get('whislists').find({ userId });
+  const user = router.db
+    .get('whislists')
+    .find({ userId })
+    .value();
   if (user) {
     router.db
       .get('whislists')
@@ -267,6 +269,16 @@ server.post('/whislists', (req, res) => {
       .write();
     return res.json(req.body);
   }
+
+  router.db
+    .get('whislists')
+    .push({
+      products: [product],
+      userId,
+      id: shortid.generate(),
+    })
+    .write();
+  return res.json(req.body);
 });
 
 server.delete('/whislists', (req, res) => {
