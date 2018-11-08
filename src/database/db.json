@@ -209,5 +209,18 @@
       "totalPrice": 400,
       "id": "DbVk6GZy7"
     }
+  ],
+  "whislists": [
+    {
+      "product": {
+        "productId": "product-2",
+        "name": "ZX5",
+        "price": 600,
+        "pcsOrder": 1,
+        "totalPrice": 600
+      },
+      "userId": "user-4",
+      "id": 1
+    }
   ]
 }

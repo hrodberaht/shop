@@ -6,7 +6,7 @@ import { addProductToCart, updateProductInCart } from '../../../store/cart/actio
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
-import { addtoWhisListSucces } from '../../../store/whislist/actionCerator';
+import { addToWhisList } from '../../../store/whislist/actionCerator';
 
 export class Product extends Component {
   state = {
@@ -71,8 +71,8 @@ export class Product extends Component {
   };
 
   handleClickWhislist = (product) => {
-    const { addToWhis, userId } = this.props;
-    addToWhis(product, userId);
+    const { addToWhis, userId, token } = this.props;
+    addToWhis(product, userId, token);
   };
 
   render() {
@@ -179,7 +179,7 @@ export default withRouter(
     {
       addProduct: addProductToCart,
       updateProduct: updateProductInCart,
-      addToWhis: addtoWhisListSucces,
+      addToWhis: addToWhisList,
     },
   )(Product),
 );
