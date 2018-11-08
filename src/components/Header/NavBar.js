@@ -18,6 +18,9 @@ export default class NavBar extends Component {
           <li className="item">
             <NavLink to="/cart">Cart</NavLink>
           </li>
+          <li className="item">
+            <NavLink to="/whislist">Whislist</NavLink>
+          </li>
           <ConnectedAuthorization
             render
             withRoleAdmin={(

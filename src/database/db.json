@@ -212,13 +212,15 @@
   ],
   "whislists": [
     {
-      "product": {
-        "productId": "product-2",
-        "name": "ZX5",
-        "price": 600,
-        "pcsOrder": 1,
-        "totalPrice": 600
-      },
+      "products": [
+        {
+          "productId": "product-2",
+          "name": "ZX5",
+          "price": 600,
+          "pcsOrder": 1,
+          "totalPrice": 600
+        }
+      ],
       "userId": "user-4",
       "id": 1
     }

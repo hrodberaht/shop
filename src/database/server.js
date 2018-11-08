@@ -254,6 +254,32 @@ server.post('/product/:id', async (req, res) => {
   const product = router.db.get('products').find({ id });
   return res.json(product);
 });
+server.post('/whislists', (req, res) => {
+  console.log(req.body);
+  const { userId, product } = req.body;
+  const user = router.db.get('whislists').find({ userId });
+  if (user) {
+    router.db
+      .get('whislists')
+      .find({ userId })
+      .get('products')
+      .push(product)
+      .write();
+    return res.json(req.body);
+  }
+});
+
+server.delete('/whislists', (req, res) => {
+  const { userId, productId } = req.body;
+  router.db
+    .get('whislists')
+    .find({ userId })
+    .get('products')
+    .remove({ productId })
+    .write();
+
+  res.json(productId);
+});
 
 server.put('/products/:id', async (req, res) => {
   const { id } = req.params;

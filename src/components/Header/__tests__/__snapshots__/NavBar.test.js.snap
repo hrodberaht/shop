@@ -41,6 +41,17 @@ exports[`<NavBar /> should render without crash 1`] = `
         Cart
       </NavLink>
     </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/whislist"
+      >
+        Whislist
+      </NavLink>
+    </li>
     <Connect(Authorization)
       render={true}
       withRoleAdmin={
