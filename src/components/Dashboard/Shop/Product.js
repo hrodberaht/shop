@@ -132,7 +132,7 @@ export class Product extends Component {
             type="button"
             onClick={() => this.handleClickWhislist(productToCart)}
           >
-            Whislist
+            Whis
           </button>
         </div>
         {toggleAddedToCart && (

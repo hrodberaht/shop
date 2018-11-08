@@ -74,7 +74,7 @@ exports[`<Product /> should render without crash 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Whislist
+      Whis
     </button>
   </div>
 </div>

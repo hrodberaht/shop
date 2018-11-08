@@ -50,8 +50,8 @@ export default connect(
 )(Whislist);
 
 Whislist.propTypes = {
-  getWhislist: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
+  getWhislist: PropTypes.func,
+  userId: PropTypes.string,
   token: PropTypes.string.isRequired,
   loaded: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.objectOf),
@@ -60,4 +60,6 @@ Whislist.propTypes = {
 
 Whislist.defaultProps = {
   products: null,
+  getWhislist: null,
+  userId: null,
 };

@@ -60,3 +60,8 @@
    width: 40px;
    padding-left: 20px;
 }
+
+.product-item .btn-danger {
+    width: 80px;
+    margin-left: 20px;
+}
