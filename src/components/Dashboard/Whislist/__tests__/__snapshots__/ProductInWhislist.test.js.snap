@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductInWhislist /> should render without crash 1`] = `
+<tr>
+  <td>
+    ZX3
+  </td>
+  <td>
+    400
+  </td>
+  <td />
+  <td>
+    <span>
+      $
+    </span>
+  </td>
+  <td>
+    <button
+      className="btn btn-danger"
+      onClick={[Function]}
+      type="button"
+    >
+      X
+    </button>
+  </td>
+</tr>
+`;

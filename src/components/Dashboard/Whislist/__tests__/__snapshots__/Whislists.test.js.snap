@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Whislist /> should render products list if loaded true 1`] = `
+<div>
+  <table>
+    <tbody>
+      <ProductInWhislist
+        key="product-1"
+        product={
+          Object {
+            "inStock": "30",
+            "name": "ZX3",
+            "price": 400,
+            "productId": "product-1",
+            "type": "Printer",
+          }
+        }
+        remove={[Function]}
+      />
+      <ProductInWhislist
+        key="product-2"
+        product={
+          Object {
+            "inStock": "5",
+            "name": "ZX5",
+            "price": 600,
+            "productId": "product-2",
+            "type": "Printer",
+          }
+        }
+        remove={[Function]}
+      />
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`<Whislist /> should render without crash 1`] = `
+<h4>
+  Loading
+</h4>
+`;

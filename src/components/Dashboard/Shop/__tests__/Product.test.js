@@ -7,6 +7,11 @@ const defaultProps = {
     price: '12',
     inStock: '30',
   },
+  addProduct: jest.fn(),
+  token: '1234',
+  updateProduct: jest.fn(),
+  userId: '12',
+  addToWhis: jest.fn(),
 };
 const setup = buildSetup(Product, defaultProps);
 

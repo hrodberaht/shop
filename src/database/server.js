@@ -254,6 +254,57 @@ server.post('/product/:id', async (req, res) => {
   const product = router.db.get('products').find({ id });
   return res.json(product);
 });
+server.post('/whislists', (req, res) => {
+  const {
+    userId,
+    product,
+    product: { productId },
+  } = req.body;
+  const user = router.db
+    .get('whislists')
+    .find({ userId })
+    .value();
+  if (user) {
+    const productInWhislist = router.db
+      .get('whislists')
+      .find({ userId })
+      .get('products')
+      .find({ productId })
+      .value();
+
+    if (productInWhislist) return res.json({ message: 'product in whislist' });
+
+    router.db
+      .get('whislists')
+      .find({ userId })
+      .get('products')
+      .push(product)
+      .write();
+    return res.json(req.body);
+  }
+
+  router.db
+    .get('whislists')
+    .push({
+      products: [product],
+      userId,
+      id: shortid.generate(),
+    })
+    .write();
+  return res.json(req.body);
+});
+
+server.delete('/whislists', (req, res) => {
+  const { userId, productId } = req.body;
+  router.db
+    .get('whislists')
+    .find({ userId })
+    .get('products')
+    .remove({ productId })
+    .write();
+
+  res.json(productId);
+});
 
 server.put('/products/:id', async (req, res) => {
   const { id } = req.params;
