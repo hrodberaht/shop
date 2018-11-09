@@ -255,12 +255,25 @@ server.post('/product/:id', async (req, res) => {
   return res.json(product);
 });
 server.post('/whislists', (req, res) => {
-  const { userId, product } = req.body;
+  const {
+    userId,
+    product,
+    product: { productId },
+  } = req.body;
   const user = router.db
     .get('whislists')
     .find({ userId })
     .value();
   if (user) {
+    const productInWhislist = router.db
+      .get('whislists')
+      .find({ userId })
+      .get('products')
+      .find({ productId })
+      .value();
+
+    if (productInWhislist) return res.json({ message: 'product in whislist' });
+
     router.db
       .get('whislists')
       .find({ userId })

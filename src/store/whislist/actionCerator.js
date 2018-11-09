@@ -42,6 +42,7 @@ export const addToWhisList = (product, userId, token) => dispatch => fetch(`${co
 })
   .then(res => res.json())
   .then((res) => {
+    if (res.message) return;
     dispatch(addtoWhisListSucces(res.product, res.userId));
   })
   .catch(error => console.log(error));
