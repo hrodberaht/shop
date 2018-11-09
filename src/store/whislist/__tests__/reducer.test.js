@@ -5,6 +5,7 @@ const initialState = {
   products: [],
   loaded: false,
   userId: null,
+  errors: null,
 };
 
 describe('whislist reducer', () => {
@@ -13,6 +14,7 @@ describe('whislist reducer', () => {
       products: [],
       loaded: false,
       userId: null,
+      errors: null,
     });
   });
   it('should handle FETCH_WHISLIST', () => {
@@ -55,6 +57,7 @@ describe('whislist reducer', () => {
       products: [],
       loaded: false,
       userId: null,
+      errors: null,
     };
     const product = {
       id: 'product-1',
@@ -67,6 +70,22 @@ describe('whislist reducer', () => {
       whislist(initialState, {
         type: types.REMOVE_FROM_WHISLIST,
         product,
+      }),
+    ).toEqual(expected);
+  });
+  it('should handle ERROR_WHISLIST', () => {
+    const error = 'error';
+    const expected = {
+      products: [],
+      loaded: false,
+      userId: null,
+      errors: error,
+    };
+
+    expect(
+      whislist(initialState, {
+        type: types.ERROR_WHISLIST,
+        error,
       }),
     ).toEqual(expected);
   });

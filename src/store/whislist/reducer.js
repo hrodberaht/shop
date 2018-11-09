@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   userId: null,
   loaded: false,
+  errors: null,
 };
 
 const whislist = (state = initialState, action) => {
@@ -19,6 +20,11 @@ const whislist = (state = initialState, action) => {
       return {
         ...state,
         products: state.products.filter(prod => prod.productId !== action.productId),
+      };
+    case types.ERROR_WHISLIST:
+      return {
+        ...state,
+        ...{ errors: action.error },
       };
     default:
       return state;

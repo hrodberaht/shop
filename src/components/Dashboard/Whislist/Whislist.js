@@ -12,9 +12,9 @@ export class Whislist extends Component {
     getWhislist(userId, token);
   }
 
-  remove = (product) => {
+  remove = (productId) => {
     const { removeProd, userId, token } = this.props;
-    removeProd(product, userId, token);
+    removeProd(productId, userId, token);
   };
 
   render() {

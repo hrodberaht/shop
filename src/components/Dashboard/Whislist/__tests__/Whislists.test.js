@@ -3,39 +3,53 @@ import { Whislist } from '../Whislist';
 const defaultProps = {
   products: [
     {
-      id: 'product-1',
+      productId: 'product-1',
       type: 'Printer',
       name: 'ZX3',
-      price: '400',
+      price: 400,
       inStock: '30',
     },
     {
-      id: 'product-2',
+      productId: 'product-2',
       type: 'Printer',
       name: 'ZX5',
-      price: '600',
+      price: 600,
       inStock: '5',
     },
   ],
-  getWishlist: jest.fn(),
+  userId: '1234',
+  getWhislist: jest.fn(),
   token: '12345',
   loaded: false,
+  removeProd: jest.fn(),
 };
 
 const setup = buildSetup(Whislist, defaultProps);
 
 describe('<Whislist />', () => {
-  //   it('should render without crash', () => {
-  //     const { wrapper } = setup();
-  //     expect(wrapper).toMatchSnapshot();
-  //   });
-  //   it('should render products list if loaded true', () => {
-  //     const { wrapper } = setup();
-  //     wrapper.setProps({ loaded: true });
-  //     expect(wrapper).toMatchSnapshot();
-  //   });
-  //   it('should call handleFetch with token', () => {
-  //     const { wrapper } = setup();
-  //     expect(wrapper.instance().props.handleFetch).toHaveBeenCalledWith('12345');
-  //   });
+  it('should render without crash', () => {
+    const { wrapper } = setup();
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should render products list if loaded true', () => {
+    const { wrapper } = setup();
+    wrapper.setProps({ loaded: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should call handleFetch with token', () => {
+    const {
+      wrapper,
+      props: { userId, token },
+    } = setup();
+    expect(wrapper.instance().props.getWhislist).toHaveBeenCalledWith(userId, token);
+  });
+  it('should call removeProd if remove is call', () => {
+    const {
+      wrapper,
+      props: { products, userId, token },
+    } = setup();
+    const { productId } = products[0];
+    wrapper.instance().remove(productId);
+    expect(wrapper.instance().props.removeProd).toHaveBeenCalledWith(productId, userId, token);
+  });
 });

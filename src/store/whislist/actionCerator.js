@@ -13,9 +13,14 @@ const fetchWhislistSucces = products => ({
   loaded: true,
 });
 
-export const removeProductFromWhisListSucces = productId => ({
+const removeProductFromWhisListSucces = productId => ({
   type: types.REMOVE_FROM_WHISLIST,
   productId,
+});
+
+export const whislistsErrors = error => ({
+  type: types.ERROR_WHISLIST,
+  errors: error,
 });
 
 export const fetchWhislist = (userId, token) => dispatch => fetch(`${config.url}whislists`, {
@@ -30,7 +35,7 @@ export const fetchWhislist = (userId, token) => dispatch => fetch(`${config.url}
     const products = res.find(prod => prod.userId === userId);
     dispatch(fetchWhislistSucces(products));
   })
-  .catch(err => console.log(err));
+  .catch(error => dispatch(whislistsErrors(error)));
 
 export const addToWhisList = (product, userId, token) => dispatch => fetch(`${config.url}whislists`, {
   method: 'post',
@@ -45,9 +50,9 @@ export const addToWhisList = (product, userId, token) => dispatch => fetch(`${co
     if (res.message) return;
     dispatch(addtoWhisListSucces(res.product, res.userId));
   })
-  .catch(error => console.log(error));
+  .catch(error => dispatch(whislistsErrors(error)));
 
-export const removeProductWhisList = (productId, userId, token) => dispatch => fetch(`${config.url}whislists/`, {
+export const removeProductWhisList = (productId, userId, token) => dispatch => fetch(`${config.url}whislists`, {
   method: 'delete',
   headers: {
     'Content-Type': 'application/json',
@@ -59,4 +64,4 @@ export const removeProductWhisList = (productId, userId, token) => dispatch => f
   .then((res) => {
     dispatch(removeProductFromWhisListSucces(res));
   })
-  .catch(error => console.log(error));
+  .catch(error => dispatch(whislistsErrors(error)));
