@@ -23,3 +23,5 @@ yarn-error.log*
 # rubymine
 .idea
 
+# data
+/src/database/db.json
