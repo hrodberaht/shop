@@ -24,4 +24,4 @@ yarn-error.log*
 .idea
 
 # data
-
+src/database/db.json
