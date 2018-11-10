@@ -35,15 +35,6 @@
       "password": "$2b$10$hDuWIf8jPPHxd7ixrI/Inu4Ksy/BTKqMC9TTGTta8g2AcmbZif1Jy",
       "companyId": "",
       "role": "admin"
-    },
-    {
-      "email": "test@test.pl",
-      "firstName": "test",
-      "lastName": "test",
-      "password": "$2b$10$FNdIlgIzTQ5AzucdRKSep.7OrMEh2pJ6.16sh9.vNIUbcULW5Atim",
-      "companyId": "company-2",
-      "id": "7Shi6qZHm",
-      "role": "user"
     }
   ],
   "products": [
