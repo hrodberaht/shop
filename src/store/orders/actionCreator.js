@@ -13,9 +13,9 @@ const fetchOrdersError = error => ({
   loaded: false,
 });
 
-const addOrderSucces = order => ({
+const addOrderSucces = orders => ({
   type: types.ADD_ORDER_SUCCES,
-  order,
+  orders,
 });
 
 const addOrderError = error => ({
@@ -49,7 +49,11 @@ export const addOrderToDB = (order, token) => dispatch => fetch(`${config.url}or
   body: JSON.stringify(order),
 })
   .then(res => res.json())
-  .then(res => dispatch(addOrderSucces(res)))
+  .then((res) => {
+    setTimeout(() => {
+      dispatch(addOrderSucces(res));
+    }, 3000);
+  })
   .catch(error => dispatch(addOrderError(error)));
 
 export const fetchChangeOrderStatus = (orderId, token) => dispatch => fetch(`${config.url}orders/${orderId}`, {

@@ -94,7 +94,7 @@
       "orderPositionIds": ["orderPosition-1", "orderPosition-2"],
       "status": "realized",
       "date": "November 08th 2018, 10:14:27 am",
-      "totalPrice": "2300",
+      "totalPrice": 2300,
       "companyId": "company-1",
       "productsOrder": [
         {
@@ -122,7 +122,7 @@
       "orderPositionIds": ["orderPosition-3"],
       "status": "in-progress",
       "date": "November 09th 2018, 10:14:27 am",
-      "totalPrice": "2000",
+      "totalPrice": 2000,
       "companyId": "company-2",
       "productsOrder": [
         {

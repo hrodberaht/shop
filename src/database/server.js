@@ -140,17 +140,29 @@ function getAllCompanies() {
   return false;
 }
 
-function addProductsToOrder(orders) {
-  orders.forEach((order) => {
-    Object.assign(order, { productsOrder: [] });
-    order.orderPositionIds.forEach((position) => {
-      const pos = router.db
-        .get('orderPositions')
-        .find({ id: position })
-        .value();
-      order.productsOrder.push(pos);
-    });
+function addProductsToOrder(order) {
+  Object.assign(order, { productsOrder: [], id: shortid.generate() });
+  order.orderPositionIds.forEach((position) => {
+    const pos = router.db
+      .get('orderPositions')
+      .find({ id: position })
+      .value();
+    order.productsOrder.push(pos);
   });
+  return order;
+}
+
+function returnOrdersForDifrentTypeOfUser(id) {
+  const user = findUserById(id);
+  if (user.role === 'admin') {
+    const orders = router.db.get('orders').value();
+    return orders;
+  }
+
+  const orders = router.db
+    .get('orders')
+    .filter({ companyId: user.companyId })
+    .value();
   return orders;
 }
 
@@ -197,25 +209,14 @@ server.use(async (req, res, next) => {
 });
 // This routes are auth by token
 server.get('/orders', async (req, res) => {
-  const user = findUserById(req.query.id);
-  if (user.role === 'admin') {
-    const orders = router.db.get('orders').value();
-    addProductsToOrder(orders);
-    return res.json(orders);
-  }
-
-  const orders = router.db
-    .get('orders')
-    .filter({ companyId: user.companyId })
-    .value();
-  addProductsToOrder(orders);
-  return res.json(orders);
+  res.json(returnOrdersForDifrentTypeOfUser(req.query.id));
 });
 
-server.post('/orders', async (req, res, next) => {
-  const order = addProductsToOrder([req.body]);
-  [req.body] = order;
-  next();
+server.post('/orders', async (req, res) => {
+  const order = addProductsToOrder(req.body);
+  const orders = router.db.get('orders');
+  orders.push(order).write();
+  res.json(returnOrdersForDifrentTypeOfUser(order.userId));
 });
 
 server.put('/orders/:id', async (req, res) => {
