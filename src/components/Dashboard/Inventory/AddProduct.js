@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { reset } from 'redux-form';
 import ConnectedAddProductForm from './AddProductForm';
 import { addProduct } from '../../../store/products/actionCreator';
 import { getAuthToken } from '../../../store/auth/selectors';
 
 export class AddProduct extends Component {
   submit = (values) => {
-    const { addProductToDB, token } = this.props;
+    const { addProductToDB, token, clearForm } = this.props;
     addProductToDB(values, token);
+    clearForm('addProduct');
   };
 
   render() {
@@ -28,10 +30,12 @@ export default connect(
   mapStateToProps,
   {
     addProductToDB: addProduct,
+    clearForm: reset,
   },
 )(AddProduct);
 
 AddProduct.propTypes = {
   token: PropTypes.string.isRequired,
   addProductToDB: PropTypes.func.isRequired,
+  clearForm: PropTypes.func.isRequired,
 };
