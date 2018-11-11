@@ -49,11 +49,7 @@ export const addOrderToDB = (order, token) => dispatch => fetch(`${config.url}or
   body: JSON.stringify(order),
 })
   .then(res => res.json())
-  .then((res) => {
-    setTimeout(() => {
-      dispatch(addOrderSucces(res));
-    }, 3000);
-  })
+  .then(res => dispatch(addOrderSucces(res)))
   .catch(error => dispatch(addOrderError(error)));
 
 export const fetchChangeOrderStatus = (orderId, token) => dispatch => fetch(`${config.url}orders/${orderId}`, {
