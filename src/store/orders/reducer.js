@@ -15,7 +15,7 @@ const orders = (state = initalState, action) => {
     case types.ADD_ORDER_ERROR:
       return { ...state, ...{ errors: action.errors } };
     case types.ADD_ORDER_SUCCES:
-      return { ...state, orders: state.orders.concat(action.order) };
+      return { ...state, orders: action.orders };
     case types.CHANGE_STATUS:
       return {
         ...state,
