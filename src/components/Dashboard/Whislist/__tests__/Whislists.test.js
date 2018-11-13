@@ -1,4 +1,4 @@
-import { Whislist } from '../Whislist';
+import { Wishlist } from '../Wishlist';
 
 const defaultProps = {
   products: [
@@ -18,15 +18,15 @@ const defaultProps = {
     },
   ],
   userId: '1234',
-  getWhislist: jest.fn(),
+  getWishlist: jest.fn(),
   token: '12345',
   loaded: false,
   removeProd: jest.fn(),
 };
 
-const setup = buildSetup(Whislist, defaultProps);
+const setup = buildSetup(Wishlist, defaultProps);
 
-describe('<Whislist />', () => {
+describe('<Wishlist />', () => {
   it('should render without crash', () => {
     const { wrapper } = setup();
     expect(wrapper).toMatchSnapshot();
@@ -41,7 +41,7 @@ describe('<Whislist />', () => {
       wrapper,
       props: { userId, token },
     } = setup();
-    expect(wrapper.instance().props.getWhislist).toHaveBeenCalledWith(userId, token);
+    expect(wrapper.instance().props.getWishlist).toHaveBeenCalledWith(userId, token);
   });
   it('should call removeProd if remove is call', () => {
     const {

@@ -6,7 +6,7 @@ import ConnectedCart from './Cart/Cart';
 import ConnectedOrdersList from './Order/OrdersList';
 import Inventory from './Inventory/Inventory';
 import ConnectedAuthorization from '../Auth/Authorization';
-import ConnectedWhislist from './Whislist/Whislist';
+import ConnectedWishlist from './Whislist/Wishlist';
 
 export default class Dashboard extends Component {
   render() {
@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
             <Route exact path="/" component={Shop} />
             <Route path="/orders" component={ConnectedOrdersList} />
             <Route path="/cart" component={ConnectedCart} />
-            <Route path="/wishlist" component={ConnectedWhislist} />
+            <Route path="/wishlist" component={ConnectedWishlist} />
             <ConnectedAuthorization
               render
               withRoleAdmin={<Route path="/inventory" component={Inventory} />}
