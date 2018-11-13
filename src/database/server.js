@@ -54,12 +54,13 @@ function hashPasswords(password) {
 async function isAuth(req) {
   const { email, password } = req.body;
   const user = findUserByEmail(email);
-  const {
-    id, firstName, lastName, role, companyId,
-  } = user;
   if (!user) {
     return false;
   }
+
+  const {
+    id, firstName, lastName, role, companyId,
+  } = user;
   const match = await bcrypt.compare(password, user.password);
   if (match) {
     const accessToken = createToken({ email, password });
@@ -191,6 +192,7 @@ server.get('/companies', async (req, res) => {
 
 server.post('/login', async (req, res) => {
   const response = await isAuth(req);
+  console.log(response);
   if (response) {
     return res.send(response);
   }
