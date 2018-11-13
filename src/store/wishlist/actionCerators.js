@@ -37,7 +37,7 @@ export const fetchWishlist = (userId, token) => dispatch => fetch(`${config.url}
   })
   .catch(error => dispatch(wishlistsErrors(error)));
 
-export const addToWishlist = (product, userId, token) => dispatch => fetch(`${config.url}Wishlists`, {
+export const addToWishlist = (product, userId, token) => dispatch => fetch(`${config.url}wishlists`, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const addToWishlist = (product, userId, token) => dispatch => fetch(`${co
   })
   .catch(error => dispatch(wishlistsErrors(error)));
 
-export const removeProductWishlist = (productId, userId, token) => dispatch => fetch(`${config.url}Wishlists`, {
+export const removeProductWishlist = (productId, userId, token) => dispatch => fetch(`${config.url}wishlists`, {
   method: 'delete',
   headers: {
     'Content-Type': 'application/json',

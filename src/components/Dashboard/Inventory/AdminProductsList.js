@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ConnectedAdminProduct from './AdminProduct';
 import { getProductsAll, getProductsLoaded } from '../../../store/products/selectors';
-import { fetchProducts } from '../../../store/products/actionCreator';
+import { fetchProducts } from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/auth/selectors';
 
 export class AdminProductsList extends Component {

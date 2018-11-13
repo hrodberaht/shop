@@ -1,4 +1,4 @@
-import { clearCart } from '../actionCreator';
+import { clearCart } from '../actionCreators';
 import * as types from '../types';
 
 describe('cart actions', () => {

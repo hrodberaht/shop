@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConnectedAddProductForm from './AddProductForm';
-import { removeProduct, updateProduct } from '../../../store/products/actionCreator';
+import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/auth/selectors';
 
 export class AdminProduct extends Component {

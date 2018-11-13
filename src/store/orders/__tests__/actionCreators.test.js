@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock/es5/client';
 
-import { fetchOrders, addOrderToDB, fetchChangeOrderStatus } from '../actionCreator';
+import { fetchOrders, addOrderToDB, fetchChangeOrderStatus } from '../actionCreators';
 import * as types from '../types';
 
 const middlewares = [thunk];

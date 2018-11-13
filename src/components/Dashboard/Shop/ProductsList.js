@@ -7,7 +7,7 @@ import {
   getProductsLoaded,
   getProductsError,
 } from '../../../store/products/selectors';
-import { fetchProducts } from '../../../store/products/actionCreator';
+import { fetchProducts } from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/auth/selectors';
 
 export class ProductsList extends Component {

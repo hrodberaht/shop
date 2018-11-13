@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock/es5/client';
 
 import {
   fetchProducts, addProduct, removeProduct, updateProduct,
-} from '../actionCreator';
+} from '../actionCreators';
 import * as types from '../types';
 
 const middlewares = [thunk];

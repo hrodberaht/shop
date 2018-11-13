@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
-import { clearCart, removeFromCart } from '../../../store/cart/actionCreator';
-import { addOrderToDB } from '../../../store/orders/actionCreator';
+import { clearCart, removeFromCart } from '../../../store/cart/actionCreators';
+import { addOrderToDB } from '../../../store/orders/actionCreators';
 import {
   getAuthUserId,
   getAuthToken,
