@@ -1,7 +1,7 @@
 import * as types from './types';
 import config from '../../config/config';
 
-export const addProductToCartSucces = product => ({
+export const addProductToCartSuccess = product => ({
   type: types.ADD_TO_CART,
   product,
 });
@@ -16,7 +16,7 @@ export const removeFromCart = id => ({
   id,
 });
 
-export const updateProductInCartSucces = product => ({
+export const updateProductInCartSuccess = product => ({
   type: types.UPDATE_IN_CART,
   product,
 });
@@ -32,7 +32,7 @@ export const addProductToCart = (product, token) => (dispatch) => {
   })
     .then(res => res.json())
     .then((res) => {
-      dispatch(addProductToCartSucces(res));
+      dispatch(addProductToCartSuccess(res));
     })
     .catch(error => console.log(error));
 };
@@ -48,7 +48,7 @@ export const updateProductInCart = (product, token) => (dispatch) => {
   })
     .then(res => res.json())
     .then((res) => {
-      dispatch(updateProductInCartSucces(res));
+      dispatch(updateProductInCartSuccess(res));
     })
     .catch(error => console.log(error));
 };

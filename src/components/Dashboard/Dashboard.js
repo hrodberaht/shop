@@ -6,7 +6,7 @@ import ConnectedCart from './Cart/Cart';
 import ConnectedOrdersList from './Order/OrdersList';
 import Inventory from './Inventory/Inventory';
 import ConnectedAuthorization from '../Auth/Authorization';
-import ConnectedWishlist from './Whislist/Wishlist';
+import ConnectedWishlist from './Wishlist/Wishlist';
 
 export default class Dashboard extends Component {
   render() {

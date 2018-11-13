@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAuthStatus, getAuthRole } from '../../store/auth/selectors';
-import { logoutSucces } from '../../store/auth/actionCreators';
+import { logoutSuccess } from '../../store/auth/actionCreators';
 
 export class Authorization extends Component {
   render() {
@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { handleLogout: logoutSucces },
+  { handleLogout: logoutSuccess },
 )(Authorization);
 
 Authorization.propTypes = {

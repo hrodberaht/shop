@@ -31,12 +31,12 @@ describe('products reducer', () => {
       errors: null,
     });
   });
-  it('should handle FETCH_ORDERS_SUCCES', () => {
+  it('should handle FETCH_ORDERS_SUCCESS', () => {
     expect(
       orders(
         {},
         {
-          type: types.FETCH_ORDERS_SUCCES,
+          type: types.FETCH_ORDERS_SUCCESS,
           orders: [],
           loaded: true,
         },

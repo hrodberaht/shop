@@ -1,13 +1,13 @@
 import * as types from './types';
 import config from '../../config/config';
 
-const fetchProductsSucces = products => ({
+const fetchProductsSuccess = products => ({
   type: types.FETCH_PRODUCTS,
   products,
   loaded: true,
 });
 
-const addProductSucces = product => ({
+const addProductSuccess = product => ({
   type: types.ADD_PRODUCT,
   product,
 });
@@ -17,12 +17,12 @@ const productErrors = error => ({
   errors: error,
 });
 
-const removeProductSucces = product => ({
+const removeProductSuccess = product => ({
   type: types.REMOVE_PRODUCT,
   product,
 });
 
-const updateProductSucces = product => ({
+const updateProductSuccess = product => ({
   type: types.UDATE_PRODUCT,
   product,
 });
@@ -36,7 +36,7 @@ export const fetchProducts = token => dispatch => fetch(`${config.url}products`,
 })
   .then(res => res.json())
   .then((res) => {
-    dispatch(fetchProductsSucces(res));
+    dispatch(fetchProductsSuccess(res));
   })
   .catch(() => {
     dispatch(productErrors('Sorry server is down'));
@@ -51,7 +51,7 @@ export const addProduct = (product, token) => dispatch => fetch(`${config.url}pr
   body: JSON.stringify(product),
 })
   .then(res => res.json())
-  .then(res => dispatch(addProductSucces(res)))
+  .then(res => dispatch(addProductSuccess(res)))
   .catch(error => dispatch(productErrors(error)));
 
 export const removeProduct = (id, token) => dispatch => fetch(`${config.url}products/${id}`, {
@@ -64,7 +64,7 @@ export const removeProduct = (id, token) => dispatch => fetch(`${config.url}prod
 })
   .then(res => res.json())
   .then((res) => {
-    dispatch(removeProductSucces(res));
+    dispatch(removeProductSuccess(res));
   })
   .catch(error => dispatch(productErrors(error)));
 
@@ -78,6 +78,6 @@ export const updateProduct = (product, token) => dispatch => fetch(`${config.url
 })
   .then(res => res.json())
   .then((res) => {
-    dispatch(updateProductSucces(res));
+    dispatch(updateProductSuccess(res));
   })
   .catch(error => dispatch(productErrors(error)));

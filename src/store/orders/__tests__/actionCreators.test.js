@@ -13,7 +13,7 @@ describe('cart actions', () => {
   afterEach(() => {
     fetchMock.restore();
   });
-  it('call fetch succes action type when fetch data succes', () => {
+  it('call fetch success action type when fetch data success', () => {
     fetchMock.get(`${url}?id=1234`, {
       headers: { 'content-type': 'application/json' },
       body: {
@@ -21,7 +21,7 @@ describe('cart actions', () => {
       },
     });
 
-    const expectedActionType = { type: types.FETCH_ORDERS_SUCCES };
+    const expectedActionType = { type: types.FETCH_ORDERS_SUCCESS };
     const store = mockStore();
 
     return store.dispatch(fetchOrders('1234')).then(() => {
@@ -48,7 +48,7 @@ describe('cart actions', () => {
       },
     });
 
-    const expectedActionType = { type: types.ADD_ORDER_SUCCES };
+    const expectedActionType = { type: types.ADD_ORDER_SUCCESS };
     const store = mockStore();
 
     return store.dispatch(addOrderToDB()).then(() => {

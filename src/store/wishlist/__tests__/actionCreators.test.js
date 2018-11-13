@@ -14,7 +14,7 @@ describe('actions', () => {
   afterEach(() => {
     fetchMock.restore();
   });
-  it('call fetch succes action type when fetch data succes', () => {
+  it('call fetch success action type when fetch data success', () => {
     fetchMock.get(url, {
       headers: { 'content-type': 'application/json' },
       body: [],
@@ -41,7 +41,7 @@ describe('actions', () => {
       expect(store.getActions()[0]).toEqual(expect.objectContaining(expectedActionType));
     });
   });
-  it('call remove product action type when fetch data succes', () => {
+  it('call remove product action type when fetch data success', () => {
     fetchMock.delete(url, {
       headers: { 'content-type': 'application/json' },
       body: {},

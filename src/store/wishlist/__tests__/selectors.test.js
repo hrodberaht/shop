@@ -2,7 +2,7 @@ import * as selectors from '../selectors';
 
 describe('selectors for auth', () => {
   const state = {
-    whislist: {
+    wishlist: {
       products: [],
       loaded: false,
       errors: 'error',
@@ -10,9 +10,9 @@ describe('selectors for auth', () => {
   };
 
   it('should return array of products', () => {
-    expect(selectors.getWhislistProducts(state)).toEqual([]);
+    expect(selectors.getWishlistProducts(state)).toEqual([]);
   });
   it('should return value loaded', () => {
-    expect(selectors.getWhislistLoaded(state)).toBe(false);
+    expect(selectors.getWishlistLoaded(state)).toBe(false);
   });
 });

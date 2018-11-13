@@ -1,4 +1,4 @@
-import ProductInWhislist from '../ProductInWhislist';
+import ProductInWishlist from '../ProductInWishlist';
 
 const defaultProps = {
   product: {
@@ -11,9 +11,9 @@ const defaultProps = {
   remove: jest.fn(),
 };
 
-const setup = buildSetup(ProductInWhislist, defaultProps);
+const setup = buildSetup(ProductInWishlist, defaultProps);
 
-describe('ProductInWhislist />', () => {
+describe('ProductInWishlist />', () => {
   it('should render without crash', () => {
     const { wrapper } = setup();
     expect(wrapper).toMatchSnapshot();
