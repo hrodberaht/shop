@@ -5,7 +5,7 @@ import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
 import Order from './Order';
 import ConnectedAuthorization from '../../Auth/Authorization';
 import { fetchOrders, fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
-import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
+import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import ProductsInOrder from './ProductsInOrder';
 
 export class OrdersList extends Component {

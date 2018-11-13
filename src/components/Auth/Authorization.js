@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAuthStatus, getAuthRole } from '../../store/auth/selectors';
-import { logoutSuccess } from '../../store/auth/actionCreators';
+import { getAuthStatus, getAuthRole } from '../../store/authenticate/selectors';
+import { logoutSuccess } from '../../store/authenticate/actionCreators';
 
 export class Authorization extends Component {
   render() {

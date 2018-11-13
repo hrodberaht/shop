@@ -1,6 +1,6 @@
 import * as selectors from '../selectors';
 
-describe('selectors for auth', () => {
+describe('selectors for whislist', () => {
   const state = {
     wishlist: {
       products: [],

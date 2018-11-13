@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConnectedAddProductForm from './AddProductForm';
 import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
-import { getAuthToken } from '../../../store/auth/selectors';
+import { getAuthToken } from '../../../store/authenticate/selectors';
 
 export class AdminProduct extends Component {
   state = {

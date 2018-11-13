@@ -7,7 +7,7 @@ const initialState = {
   user: {},
 };
 
-const auth = (state = initialState, action) => {
+const authenticate = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN_SUCCESS:
       return {
@@ -29,4 +29,4 @@ const auth = (state = initialState, action) => {
   }
 };
 
-export default auth;
+export default authenticate;

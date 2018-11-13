@@ -8,7 +8,7 @@ import {
   getProductsError,
 } from '../../../store/products/selectors';
 import { fetchProducts } from '../../../store/products/actionCreators';
-import { getAuthToken } from '../../../store/auth/selectors';
+import { getAuthToken } from '../../../store/authenticate/selectors';
 
 export class ProductsList extends Component {
   componentDidMount() {

@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import auth from './auth/reducer';
+import authenticate from './authenticate/reducer';
 import products from './products/reducer';
 import cart from './cart/reducer';
 import orders from './orders/reducer';
 import wishlist from './wishlist/reducer';
-import * as types from './auth/types';
+import * as types from './authenticate/types';
 
 const appReducer = combineReducers({
-  auth,
+  authenticate,
   products,
   cart,
   orders,

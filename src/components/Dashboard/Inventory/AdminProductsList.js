@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ConnectedAdminProduct from './AdminProduct';
 import { getProductsAll, getProductsLoaded } from '../../../store/products/selectors';
 import { fetchProducts } from '../../../store/products/actionCreators';
-import { getAuthToken } from '../../../store/auth/selectors';
+import { getAuthToken } from '../../../store/authenticate/selectors';
 
 export class AdminProductsList extends Component {
   componentDidMount() {

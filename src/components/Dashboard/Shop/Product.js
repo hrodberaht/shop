@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
 import AddedToCart from '../Cart/AddedToCart';
-import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
+import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
 

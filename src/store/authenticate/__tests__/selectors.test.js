@@ -2,7 +2,7 @@ import * as selectors from '../selectors';
 
 describe('selectors for auth', () => {
   const state = {
-    auth: {
+    authenticate: {
       auth: false,
       error: 'error',
       token: '1234',

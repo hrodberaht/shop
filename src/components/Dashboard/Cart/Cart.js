@@ -12,7 +12,7 @@ import {
   getAuthToken,
   getAuthPerson,
   getAuthCompanyId,
-} from '../../../store/auth/selectors';
+} from '../../../store/authenticate/selectors';
 
 export class Cart extends Component {
   sumaryPrice = () => {
