@@ -255,28 +255,28 @@ server.post('/product/:id', async (req, res) => {
   const product = router.db.get('products').find({ id });
   return res.json(product);
 });
-server.post('/whislists', (req, res) => {
+server.post('/wishlists', (req, res) => {
   const {
     userId,
     product,
     product: { productId },
   } = req.body;
   const user = router.db
-    .get('whislists')
+    .get('wishlists')
     .find({ userId })
     .value();
   if (user) {
-    const productInWhislist = router.db
-      .get('whislists')
+    const productInWishlist = router.db
+      .get('wishlists')
       .find({ userId })
       .get('products')
       .find({ productId })
       .value();
 
-    if (productInWhislist) return res.json({ message: 'product in whislist' });
+    if (productInWishlist) return res.json({ message: 'product in wishlist' });
 
     router.db
-      .get('whislists')
+      .get('wishlists')
       .find({ userId })
       .get('products')
       .push(product)
@@ -285,7 +285,7 @@ server.post('/whislists', (req, res) => {
   }
 
   router.db
-    .get('whislists')
+    .get('wishlists')
     .push({
       products: [product],
       userId,
@@ -295,10 +295,10 @@ server.post('/whislists', (req, res) => {
   return res.json(req.body);
 });
 
-server.delete('/whislists', (req, res) => {
+server.delete('/wishlists', (req, res) => {
   const { userId, productId } = req.body;
   router.db
-    .get('whislists')
+    .get('wishlists')
     .find({ userId })
     .get('products')
     .remove({ productId })

@@ -4,7 +4,7 @@ import auth from './auth/reducer';
 import products from './products/reducer';
 import cart from './cart/reducer';
 import orders from './orders/reducer';
-import whislist from './whislist/reducer';
+import wishlist from './wishlist/reducer';
 import * as types from './auth/types';
 
 const appReducer = combineReducers({
@@ -12,7 +12,7 @@ const appReducer = combineReducers({
   products,
   cart,
   orders,
-  whislist,
+  wishlist,
   form: formReducer,
 });
 

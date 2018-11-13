@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchWhislist, removeProductWhisList } from '../../../store/whislist/actionCerator';
+import { fetchWishlist, removeProductWishlist } from '../../../store/wishlist/actionCerator';
 import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
-import { getWhislistLoaded, getWhislistProducts } from '../../../store/whislist/selectors';
-import ProductInWhislist from './ProductInWhislist';
+import { getWishlistLoaded, getWishlistProducts } from '../../../store/wishlist/selectors';
+import ProductInWishlist from './ProductInWishlist';
 
-export class Whislist extends Component {
+export class Wishlist extends Component {
   componentDidMount() {
-    const { getWhislist, userId, token } = this.props;
-    getWhislist(userId, token);
+    const { getWishlist, userId, token } = this.props;
+    getWishlist(userId, token);
   }
 
   remove = (productId) => {
@@ -22,10 +22,11 @@ export class Whislist extends Component {
     if (!loaded) return <h4>Loading</h4>;
     return (
       <div>
+        <h2>Wish list:</h2>
         <table>
           <tbody>
             {products.map(prod => (
-              <ProductInWhislist product={prod} remove={this.remove} key={prod.productId} />
+              <ProductInWishlist product={prod} remove={this.remove} key={prod.productId} />
             ))}
           </tbody>
         </table>
@@ -37,20 +38,20 @@ export class Whislist extends Component {
 const mapStateToProps = state => ({
   token: getAuthToken(state),
   userId: getAuthUserId(state),
-  loaded: getWhislistLoaded(state),
-  products: getWhislistProducts(state),
+  loaded: getWishlistLoaded(state),
+  products: getWishlistProducts(state),
 });
 
 export default connect(
   mapStateToProps,
   {
-    getWhislist: fetchWhislist,
-    removeProd: removeProductWhisList,
+    getWishlist: fetchWishlist,
+    removeProd: removeProductWishlist,
   },
-)(Whislist);
+)(Wishlist);
 
-Whislist.propTypes = {
-  getWhislist: PropTypes.func,
+Wishlist.propTypes = {
+  getWishlist: PropTypes.func,
   userId: PropTypes.string,
   token: PropTypes.string.isRequired,
   loaded: PropTypes.bool.isRequired,
@@ -58,8 +59,8 @@ Whislist.propTypes = {
   removeProd: PropTypes.func.isRequired,
 };
 
-Whislist.defaultProps = {
+Wishlist.defaultProps = {
   products: null,
-  getWhislist: null,
+  getWishlist: null,
   userId: null,
 };

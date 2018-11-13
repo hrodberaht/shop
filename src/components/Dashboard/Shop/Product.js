@@ -6,7 +6,7 @@ import { addProductToCart, updateProductInCart } from '../../../store/cart/actio
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
-import { addToWhisList } from '../../../store/whislist/actionCerator';
+import { addToWishlist } from '../../../store/wishlist/actionCerator';
 
 export class Product extends Component {
   state = {
@@ -70,9 +70,9 @@ export class Product extends Component {
     this.showAddedToCart();
   };
 
-  handleClickWhislist = (product) => {
-    const { addToWhis, userId, token } = this.props;
-    addToWhis(product, userId, token);
+  handleClickWishlist = (product) => {
+    const { addToWish, userId, token } = this.props;
+    addToWish(product, userId, token);
   };
 
   render() {
@@ -101,11 +101,9 @@ export class Product extends Component {
           </p>
           <p>
             <span>In stock:</span>
-            {'  '}
             <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
           </p>
           <p className="product-item__order">
-            {' '}
             Order:
             <input type="number" value={pcsOrder} onChange={this.handleChange} />
             pcs
@@ -113,7 +111,6 @@ export class Product extends Component {
           <p id="stock-error">{error}</p>
           <p className="product-item__total">
             <span>Total price:</span>
-            {'  '}
             <span id="total-price">
               <span>$</span>
               {totalPrice}
@@ -130,9 +127,9 @@ export class Product extends Component {
           <button
             className="btn btn-danger"
             type="button"
-            onClick={() => this.handleClickWhislist(productToCart)}
+            onClick={() => this.handleClickWishlist(productToCart)}
           >
-            Whis
+            Wish
           </button>
         </div>
         {toggleAddedToCart && (
@@ -159,7 +156,7 @@ Product.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.objectOf),
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
-  addToWhis: PropTypes.func.isRequired,
+  addToWish: PropTypes.func.isRequired,
 };
 
 Product.defaultProps = {
@@ -179,7 +176,7 @@ export default withRouter(
     {
       addProduct: addProductToCart,
       updateProduct: updateProductInCart,
-      addToWhis: addToWhisList,
+      addToWish: addToWishlist,
     },
   )(Product),
 );
