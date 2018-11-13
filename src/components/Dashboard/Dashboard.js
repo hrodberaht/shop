@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
             <Route exact path="/" component={Shop} />
             <Route path="/orders" component={ConnectedOrdersList} />
             <Route path="/cart" component={ConnectedCart} />
-            <Route path="/whislist" component={ConnectedWhislist} />
+            <Route path="/wishlist" component={ConnectedWhislist} />
             <ConnectedAuthorization
               render
               withRoleAdmin={<Route path="/inventory" component={Inventory} />}

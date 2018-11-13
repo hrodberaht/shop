@@ -47,9 +47,9 @@ exports[`<NavBar /> should render without crash 1`] = `
       <NavLink
         activeClassName="active"
         aria-current="page"
-        to="/whislist"
+        to="/wishlist"
       >
-        Whislist
+        Wish list
       </NavLink>
     </li>
     <Connect(Authorization)

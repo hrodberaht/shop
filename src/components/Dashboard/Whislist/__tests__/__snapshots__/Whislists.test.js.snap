@@ -2,6 +2,9 @@
 
 exports[`<Whislist /> should render products list if loaded true 1`] = `
 <div>
+  <h2>
+    Wish list:
+  </h2>
   <table>
     <tbody>
       <ProductInWhislist

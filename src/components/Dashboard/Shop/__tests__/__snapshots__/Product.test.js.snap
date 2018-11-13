@@ -23,7 +23,6 @@ exports[`<Product /> should render without crash 1`] = `
       <span>
         In stock:
       </span>
-        
       <span
         id="stock-message"
       >
@@ -33,7 +32,6 @@ exports[`<Product /> should render without crash 1`] = `
     <p
       className="product-item__order"
     >
-       
       Order:
       <input
         onChange={[Function]}
@@ -51,7 +49,6 @@ exports[`<Product /> should render without crash 1`] = `
       <span>
         Total price:
       </span>
-        
       <span
         id="total-price"
       >

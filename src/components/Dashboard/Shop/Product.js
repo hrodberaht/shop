@@ -101,11 +101,9 @@ export class Product extends Component {
           </p>
           <p>
             <span>In stock:</span>
-            {'  '}
             <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
           </p>
           <p className="product-item__order">
-            {' '}
             Order:
             <input type="number" value={pcsOrder} onChange={this.handleChange} />
             pcs
@@ -113,7 +111,6 @@ export class Product extends Component {
           <p id="stock-error">{error}</p>
           <p className="product-item__total">
             <span>Total price:</span>
-            {'  '}
             <span id="total-price">
               <span>$</span>
               {totalPrice}

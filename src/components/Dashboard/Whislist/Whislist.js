@@ -22,6 +22,7 @@ export class Whislist extends Component {
     if (!loaded) return <h4>Loading</h4>;
     return (
       <div>
+        <h2>Wish list:</h2>
         <table>
           <tbody>
             {products.map(prod => (

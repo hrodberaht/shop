@@ -19,7 +19,7 @@ export default class NavBar extends Component {
             <NavLink to="/cart">Cart</NavLink>
           </li>
           <li className="item">
-            <NavLink to="/whislist">Whislist</NavLink>
+            <NavLink to="/wishlist">Wish list</NavLink>
           </li>
           <ConnectedAuthorization
             render
