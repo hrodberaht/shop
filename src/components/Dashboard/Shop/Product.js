@@ -44,10 +44,7 @@ export class Product extends Component {
     this.setState({ toggleAddedToCart: !toggleAddedToCart });
   };
 
-  moreThanInStock = () => {
-    if (this.state.error) return true;
-    return false;
-  };
+  moreThanInStock = () => (!!this.state.error);
 
   redirectToCart = () => this.props.history.push('/cart');
 
