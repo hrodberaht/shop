@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 
 export default class CartProduct extends Component {
   handleClick = () => {
-    const {
-      remove,
-      product: { id },
-    } = this.props;
-    remove(id);
+    const { remove, product } = this.props;
+    remove(product);
   };
 
   render() {

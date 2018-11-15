@@ -1,9 +1,9 @@
 import * as types from './types';
 import config from '../../config/config';
 
-export const addProductToCartSuccess = product => ({
+export const addProductToCartSuccess = payload => ({
   type: types.ADD_TO_CART,
-  product,
+  payload,
 });
 
 export const clearCart = () => ({
@@ -11,9 +11,9 @@ export const clearCart = () => ({
   empty: [],
 });
 
-export const removeFromCart = id => ({
+export const removeFromCart = payload => ({
   type: types.REMOVE_FROM_CART,
-  id,
+  payload,
 });
 
 export const updateProductInCartSuccess = product => ({
@@ -38,7 +38,7 @@ export const addProductToCart = (product, token) => (dispatch) => {
 };
 
 export const updateProductInCart = (product, token) => (dispatch) => {
-  fetch(`${config.url}orderPositions/${product.id}`, {
+  fetch(`${config.url}orderPositions/`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',

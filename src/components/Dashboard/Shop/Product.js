@@ -44,21 +44,26 @@ export class Product extends Component {
     this.setState({ toggleAddedToCart: !toggleAddedToCart });
   };
 
-  moreThanInStock = () => (!!this.state.error);
+  moreThanInStock = () => !!this.state.error;
 
   redirectToCart = () => this.props.history.push('/cart');
 
   handleClick = (product) => {
     const {
-      addProduct, cart, updateProduct, token,
+      addProduct,
+      cart: { productsInCart, list },
+      updateProduct,
+      token,
     } = this.props;
-    const inCart = cart.find(prod => prod.productId === product.productId);
-
-    if (inCart) {
-      const combProd = Object.assign(inCart, {
-        pcsOrder: inCart.pcsOrder + product.pcsOrder,
-        totalPrice: inCart.totalPrice + product.totalPrice,
-      });
+    const { pcsOrder, totalPrice } = product;
+    const idOfProduct = productsInCart.find(item => item === product.productId);
+    if (idOfProduct) {
+      const combProd = {
+        idOfProduct,
+        pcsOrder,
+        totalPrice,
+        orderPositionIds: list,
+      };
       updateProduct(combProd, token);
     } else {
       addProduct(product, token);
