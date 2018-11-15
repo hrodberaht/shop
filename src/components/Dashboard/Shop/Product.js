@@ -61,7 +61,7 @@ export class Product extends Component {
       });
       updateProduct(combProd, token);
     } else {
-      addProduct(product, this.props.token);
+      addProduct(product, token);
     }
 
     this.showAddedToCart();
