@@ -35,7 +35,11 @@ const cart = (state = initialState, action) => {
         payload,
         payload: { id },
       } = action;
-      return { ...state.byId, [id]: payload };
+      state.byId[id] = {
+        ...state.byId[id],
+        ...payload,
+      };
+      return { ...state };
     }
     case types.CLEAR_CART:
       return action.empty;

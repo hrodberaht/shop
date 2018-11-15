@@ -16,9 +16,9 @@ export const removeFromCart = payload => ({
   payload,
 });
 
-export const updateProductInCartSuccess = product => ({
+export const updateProductInCartSuccess = payload => ({
   type: types.UPDATE_IN_CART,
-  product,
+  payload,
 });
 
 export const addProductToCart = (product, token) => (dispatch) => {
@@ -38,7 +38,7 @@ export const addProductToCart = (product, token) => (dispatch) => {
 };
 
 export const updateProductInCart = (product, token) => (dispatch) => {
-  fetch(`${config.url}orderPositions/`, {
+  fetch(`${config.url}orderPositions`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',

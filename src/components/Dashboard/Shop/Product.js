@@ -51,18 +51,18 @@ export class Product extends Component {
   handleClick = (product) => {
     const {
       addProduct,
-      cart: { productsInCart, list },
+      cart: { productsInCart, list, byId },
       updateProduct,
       token,
     } = this.props;
     const { pcsOrder, totalPrice } = product;
     const idOfProduct = productsInCart.find(item => item === product.productId);
     if (idOfProduct) {
+      const orderPositionId = list.find(item => byId[item].productId === idOfProduct);
       const combProd = {
-        idOfProduct,
-        pcsOrder,
-        totalPrice,
-        orderPositionIds: list,
+        orderPositionId,
+        pcsOrder: byId[orderPositionId].pcsOrder + pcsOrder,
+        totalPrice: byId[orderPositionId].totalPrice + totalPrice,
       };
       updateProduct(combProd, token);
     } else {
@@ -155,7 +155,7 @@ Product.propTypes = {
   }).isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
-  cart: PropTypes.arrayOf(PropTypes.objectOf),
+  cart: PropTypes.objectOf(PropTypes.objectOf),
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,
