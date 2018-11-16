@@ -20,6 +20,8 @@ describe('cart reducer', () => {
     totalPrice: 1600,
   };
 
+  const error = 'error';
+
   const stateAfterAddProduct = {
     byId: {
       1: {
@@ -57,6 +59,16 @@ describe('cart reducer', () => {
       errors: [],
     },
   };
+
+  const stateAfterError = {
+    byId: {},
+    list: [],
+    productsInCart: [],
+    meta: {
+      loaded: false,
+      errors: [error],
+    },
+  };
   it('should return initial state', () => {
     expect(reducer(undefined, initialState)).toEqual(initialState);
   });
@@ -74,6 +86,10 @@ describe('cart reducer', () => {
     expect(reducer(stateAfterAddProduct, action.updateProductInCartSuccess(updateProduct))).toEqual(
       stateAfterUpdateProduct,
     );
+  });
+
+  it('should handle ERRORS_IN_CART', () => {
+    expect(reducer(initialState, action.errorInCart(error))).toEqual(stateAfterError);
   });
 
   it('should handle CLEAR_CART', () => {

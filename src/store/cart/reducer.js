@@ -51,6 +51,11 @@ const cart = (state = initialState, action) => {
       };
       return { ...state };
     }
+
+    case types.ERRORS_IN_CART: {
+      state.meta.errors = state.meta.errors.concat(action.payload);
+      return { ...state };
+    }
     case types.CLEAR_CART:
       return initialState;
     default:

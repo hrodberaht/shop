@@ -20,6 +20,11 @@ export const updateProductInCartSuccess = payload => ({
   payload,
 });
 
+export const errorInCart = payload => ({
+  type: types.ERRORS_IN_CART,
+  payload,
+});
+
 export const addProductToCart = (product, token) => (dispatch) => {
   fetch(`${config.url}orderPositions`, {
     method: 'post',
@@ -33,7 +38,7 @@ export const addProductToCart = (product, token) => (dispatch) => {
     .then((res) => {
       dispatch(addProductToCartSuccess(res));
     })
-    .catch(error => console.log(error));
+    .catch(error => errorInCart(error));
 };
 
 export const updateProductInCart = (product, token) => (dispatch) => {
@@ -49,5 +54,5 @@ export const updateProductInCart = (product, token) => (dispatch) => {
     .then((res) => {
       dispatch(updateProductInCartSuccess(res));
     })
-    .catch(error => console.log(error));
+    .catch(error => errorInCart(error));
 };
