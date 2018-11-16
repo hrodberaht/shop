@@ -1,5 +1,5 @@
 import * as types from './types';
-import config from '../../config/config';
+import dataFetcher from '../../shared/dataFetcher';
 
 export const addProductToCartSuccess = payload => ({
   type: types.ADD_TO_CART,
@@ -26,15 +26,7 @@ export const errorInCart = payload => ({
 });
 
 export const addProductToCart = (product, token) => (dispatch) => {
-  fetch(`${config.url}orderPositions`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(product),
-  })
-    .then(res => res.json())
+  dataFetcher('orderPositions', 'post', token, product)
     .then((res) => {
       dispatch(addProductToCartSuccess(res));
     })
@@ -42,15 +34,7 @@ export const addProductToCart = (product, token) => (dispatch) => {
 };
 
 export const updateProductInCart = (product, token) => (dispatch) => {
-  fetch(`${config.url}orderPositions`, {
-    method: 'put',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(product),
-  })
-    .then(res => res.json())
+  dataFetcher('orderPositions', 'put', token, product)
     .then((res) => {
       dispatch(updateProductInCartSuccess(res));
     })
