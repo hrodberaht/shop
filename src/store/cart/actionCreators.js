@@ -8,7 +8,6 @@ export const addProductToCartSuccess = payload => ({
 
 export const clearCart = () => ({
   type: types.CLEAR_CART,
-  empty: [],
 });
 
 export const removeFromCart = payload => ({

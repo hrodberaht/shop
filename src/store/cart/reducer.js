@@ -1,9 +1,13 @@
 import * as types from './types';
 
-const initialState = {
+export const initialState = {
   productsInCart: [],
   list: [],
   byId: {},
+  meta: {
+    loaded: false,
+    errors: [],
+  },
 };
 
 const cart = (state = initialState, action) => {
@@ -14,9 +18,12 @@ const cart = (state = initialState, action) => {
         payload: { id, productId },
       } = action;
       return {
-        productsInCart: [...state.productsInCart, productId],
-        list: [...state.list, id],
-        byId: { ...state.byId, [id]: payload },
+        ...state,
+        ...{
+          productsInCart: [...state.productsInCart, productId],
+          list: [...state.list, id],
+          byId: { ...state.byId, [id]: payload },
+        },
       };
     }
     case types.REMOVE_FROM_CART: {
@@ -25,9 +32,12 @@ const cart = (state = initialState, action) => {
       } = action;
       delete state.byId[id];
       return {
-        productsInCart: state.productsInCart.filter(item => item !== productId),
-        list: state.list.filter(item => item !== id),
-        byId: state.byId,
+        ...state,
+        ...{
+          productsInCart: state.productsInCart.filter(item => item !== productId),
+          list: state.list.filter(item => item !== id),
+          byId: state.byId,
+        },
       };
     }
     case types.UPDATE_IN_CART: {
@@ -42,7 +52,7 @@ const cart = (state = initialState, action) => {
       return { ...state };
     }
     case types.CLEAR_CART:
-      return action.empty;
+      return initialState;
     default:
       return state;
   }

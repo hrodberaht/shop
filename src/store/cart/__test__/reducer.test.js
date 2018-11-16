@@ -1,41 +1,82 @@
-import reducer from '../reducer';
-import * as types from '../types';
+import reducer, { initialState } from '../reducer';
+import * as action from '../actionCreators';
 
 describe('cart reducer', () => {
-  const product = [
-    {
-      id: '1',
-      name: 'fx',
-      price: 400,
-      pcs: 2,
-      totalPrice: 800,
+  const product = {
+    id: '1',
+    productId: '2',
+    name: 'fx',
+    price: 400,
+    pcs: 2,
+    totalPrice: 800,
+  };
+
+  const updateProduct = {
+    id: '1',
+    productId: '2',
+    name: 'fx',
+    price: 400,
+    pcs: 4,
+    totalPrice: 1600,
+  };
+
+  const stateAfterAddProduct = {
+    byId: {
+      1: {
+        id: '1',
+        productId: '2',
+        name: 'fx',
+        price: 400,
+        pcs: 2,
+        totalPrice: 800,
+      },
     },
-    {
-      id: '1',
-      name: 'fx',
-      price: 400,
-      pcs: 2,
-      totalPrice: 800,
+    list: ['1'],
+    productsInCart: ['2'],
+    meta: {
+      loaded: false,
+      errors: [],
     },
-  ];
+  };
+
+  const stateAfterUpdateProduct = {
+    byId: {
+      1: {
+        id: '1',
+        productId: '2',
+        name: 'fx',
+        price: 400,
+        pcs: 4,
+        totalPrice: 1600,
+      },
+    },
+    list: ['1'],
+    productsInCart: ['2'],
+    meta: {
+      loaded: false,
+      errors: [],
+    },
+  };
   it('should return initial state', () => {
-    expect(reducer(undefined, {})).toEqual([]);
+    expect(reducer(undefined, initialState)).toEqual(initialState);
   });
 
   it('should handle ADD_TO_CART', () => {
-    expect(
-      reducer([], {
-        type: types.ADD_TO_CART,
-        product,
-      }),
-    ).toEqual(product);
+    expect(reducer(initialState, action.addProductToCartSuccess(product))).toEqual(
+      stateAfterAddProduct,
+    );
   });
+  it('should handle REMOVE_FROM_CART', () => {
+    expect(reducer(stateAfterAddProduct, action.removeFromCart(product))).toEqual(initialState);
+  });
+
+  it('should handle UPDATE_IN_CART', () => {
+    expect(reducer(stateAfterAddProduct, action.updateProductInCartSuccess(updateProduct))).toEqual(
+      stateAfterUpdateProduct,
+    );
+  });
+
   it('should handle CLEAR_CART', () => {
-    expect(
-      reducer(product, {
-        type: types.CLEAR_CART,
-        empty: [],
-      }),
-    ).toEqual([]);
+    expect(reducer(stateAfterAddProduct, action.clearCart())).toEqual(initialState);
   });
 });
