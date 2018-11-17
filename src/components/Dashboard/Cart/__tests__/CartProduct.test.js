@@ -8,6 +8,7 @@ const defaultProps = {
     totalPrice: 800,
   },
   remove: jest.fn(),
+  changeQuantity: jest.fn(),
 };
 const setup = buildSetup(CartProduct, defaultProps);
 

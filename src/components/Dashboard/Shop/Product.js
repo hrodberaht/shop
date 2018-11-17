@@ -7,6 +7,7 @@ import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
+import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
 
 export class Product extends Component {
   state = {
@@ -36,8 +37,6 @@ export class Product extends Component {
     if (pcsOrder < 1) return this.setState({ pcsOrder: 1 });
     return this.setState({ error: null });
   };
-
-  calculateTotalPrice = (pcsOrder, price) => pcsOrder * price;
 
   showAddedToCart = () => {
     const { toggleAddedToCart } = this.state;
@@ -84,7 +83,7 @@ export class Product extends Component {
       },
     } = this.props;
     const { pcsOrder, error, toggleAddedToCart } = this.state;
-    const totalPrice = this.calculateTotalPrice(pcsOrder, price);
+    const totalPrice = calculateTotalPrice(pcsOrder, price);
     const productToCart = {
       productId: id,
       name,

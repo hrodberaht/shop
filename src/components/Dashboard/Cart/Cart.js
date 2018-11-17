@@ -5,7 +5,11 @@ import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
-import { clearCart, removeFromCart } from '../../../store/cart/actionCreators';
+import {
+  clearCart,
+  removeFromCart,
+  updateQuantityInCart,
+} from '../../../store/cart/actionCreators';
 import { addOrderToDB } from '../../../store/orders/actionCreators';
 import {
   getAuthUserId,
@@ -25,6 +29,11 @@ export class Cart extends Component {
       return sumary;
     });
     return sumary;
+  };
+
+  changeQuantity = (cartPosition) => {
+    const { change, token } = this.props;
+    change(cartPosition, token);
   };
 
   remove = product => this.props.removeFrom(product);
@@ -70,7 +79,12 @@ export class Cart extends Component {
               <th>Delete:</th>
             </tr>
             {list.map(item => (
-              <CartProduct key={byId[item].id} product={byId[item]} remove={this.remove} />
+              <CartProduct
+                key={byId[item].id}
+                product={byId[item]}
+                remove={this.remove}
+                changeQuantity={this.changeQuantity}
+              />
             ))}
           </tbody>
         </table>
@@ -107,6 +121,7 @@ export default connect(
     emptyCart: clearCart,
     createOrder: addOrderToDB,
     removeFrom: removeFromCart,
+    change: updateQuantityInCart,
   },
 )(Cart);
 
@@ -123,6 +138,7 @@ Cart.propTypes = {
   person: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   orderPositionIds: PropTypes.arrayOf(PropTypes.arrayOf).isRequired,
+  change: PropTypes.func.isRequired,
 };
 
 Cart.defaultProps = {

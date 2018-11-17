@@ -9,7 +9,11 @@ exports[`<CartProduct /> should render witout crash 1`] = `
     400
   </td>
   <td>
-    2
+    <input
+      onChange={[Function]}
+      type="number"
+      value={2}
+    />
   </td>
   <td>
     <span>

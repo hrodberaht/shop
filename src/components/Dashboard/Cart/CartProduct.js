@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
 
 export default class CartProduct extends Component {
+  state = {
+    quantity: this.props.product.pcsOrder,
+  };
+
   handleClick = () => {
     const { remove, product } = this.props;
     remove(product);
   };
 
+  handleOnChange = (e) => {
+    const { product, changeQuantity } = this.props;
+    const quantity = +e.target.value;
+    if (quantity < 1) {
+      this.setState({ quantity: 1 });
+    } else {
+      this.setState({ quantity });
+      const totalPrice = calculateTotalPrice(quantity, product.price);
+      const cartPosition = Object.assign(product, { pcsOrder: quantity, totalPrice });
+      changeQuantity(cartPosition);
+    }
+  };
+
   render() {
     const {
-      product: {
-        name, price, pcsOrder, totalPrice,
-      },
+      product: { name, price, totalPrice },
     } = this.props;
     return (
       <tr>
         <td>{name}</td>
         <td>{price}</td>
-        <td>{pcsOrder}</td>
+        <td>
+          <input value={this.state.quantity} type="number" onChange={this.handleOnChange} />
+        </td>
         <td>
           <span>$</span>
           {totalPrice}
@@ -40,4 +58,5 @@ CartProduct.propTypes = {
     totalPrice: PropTypes.number,
   }).isRequired,
   remove: PropTypes.func.isRequired,
+  changeQuantity: PropTypes.func.isRequired,
 };

@@ -29,6 +29,7 @@ exports[`<Cart /> should render witout crash 1`] = `
         </th>
       </tr>
       <CartProduct
+        changeQuantity={[Function]}
         key="1234"
         product={
           Object {
@@ -43,6 +44,7 @@ exports[`<Cart /> should render witout crash 1`] = `
         remove={[Function]}
       />
       <CartProduct
+        changeQuantity={[Function]}
         key="5678"
         product={
           Object {

@@ -25,14 +25,14 @@ export const errorInCart = payload => ({
   payload,
 });
 
-export const addProductToCart = (product, token) => dispatch => dataFetcher('orderPositions', 'post', token, product)
-  .then((res) => {
-    dispatch(addProductToCartSuccess(res));
-  })
+export const addProductToCart = (cartPosition, token) => dispatch => dataFetcher('orderPositions', 'post', token, cartPosition)
+  .then(res => dispatch(addProductToCartSuccess(res)))
   .catch(error => dispatch(errorInCart(error)));
 
-export const updateProductInCart = (product, token) => dispatch => dataFetcher('orderPositions', 'put', token, product)
-  .then((res) => {
-    dispatch(updateProductInCartSuccess(res));
-  })
+export const updateProductInCart = (cartPosition, token) => dispatch => dataFetcher('orderPositions', 'put', token, cartPosition)
+  .then(res => dispatch(updateProductInCartSuccess(res)))
+  .catch(error => dispatch(errorInCart(error)));
+
+export const updateQuantityInCart = (cartPosition, token) => dispatch => dataFetcher(`orderPositions/${cartPosition.id}`, 'put', token, cartPosition)
+  .then(res => dispatch(updateProductInCartSuccess(res)))
   .catch(error => dispatch(errorInCart(error)));

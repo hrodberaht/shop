@@ -242,6 +242,11 @@ server.post('/orderPositions', async (req, res) => {
     .value();
   return res.json(pos);
 });
+
+server.put('/orderPositions/:id', (req, res, next) => {
+  next();
+});
+
 server.put('/orderPositions/', async (req, res) => {
   const { orderPositionId, pcsOrder, totalPrice } = req.body;
   router.db
