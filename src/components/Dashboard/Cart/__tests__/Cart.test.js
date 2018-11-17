@@ -1,22 +1,32 @@
 import { Cart } from '../Cart';
 
 const defaultProps = {
-  products: [
-    {
-      id: '1',
-      name: 'fx',
-      price: 400,
-      pcsOrder: 2,
-      totalPrice: 800,
+  cart: {
+    productsInCart: ['1', '2'],
+    list: ['1234', '5678'],
+    byId: {
+      1234: {
+        id: '1234',
+        productId: '1',
+        name: 'fx',
+        price: 400,
+        pcsOrder: 2,
+        totalPrice: 800,
+      },
+      5678: {
+        id: '5678',
+        productId: '2',
+        name: 'fx2',
+        price: 600,
+        pcsOrder: 8,
+        totalPrice: 4800,
+      },
     },
-    {
-      id: '2',
-      name: 'fx2',
-      price: 600,
-      pcsOrder: 8,
-      totalPrice: 4800,
+    meta: {
+      loaded: false,
+      errors: [],
     },
-  ],
+  },
   emptyCart: jest.fn(),
   createOrder: jest.fn(),
   history: [],
@@ -35,12 +45,10 @@ describe('<Cart />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should call empty cart after click', () => {
+  it('should call empty cart after click', async () => {
     const { wrapper } = setup();
     wrapper.find('button').simulate('click');
-    setTimeout(() => {
-      expect(wrapper.instance().props.emptyCart).toHaveBeenCalled();
-    }, 1000);
+    expect(wrapper.instance().props.emptyCart).toHaveBeenCalled();
   });
 
   it('return sumary price', () => {

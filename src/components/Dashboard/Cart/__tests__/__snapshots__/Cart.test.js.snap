@@ -29,26 +29,28 @@ exports[`<Cart /> should render witout crash 1`] = `
         </th>
       </tr>
       <CartProduct
-        key="1"
+        key="1234"
         product={
           Object {
-            "id": "1",
+            "id": "1234",
             "name": "fx",
             "pcsOrder": 2,
             "price": 400,
+            "productId": "1",
             "totalPrice": 800,
           }
         }
         remove={[Function]}
       />
       <CartProduct
-        key="2"
+        key="5678"
         product={
           Object {
-            "id": "2",
+            "id": "5678",
             "name": "fx2",
             "pcsOrder": 8,
             "price": 600,
+            "productId": "2",
             "totalPrice": 4800,
           }
         }
