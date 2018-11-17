@@ -35,6 +35,14 @@ const defaultProps = {
   person: 'Tom Johns',
   token: '1234',
   orderPositionIds: [],
+  change: jest.fn(),
+  cartPosition: {
+    id: '1234',
+    name: 'fx',
+    price: 400,
+    pcsOrder: 3,
+    totalPrice: 1200,
+  },
 };
 
 const setup = buildSetup(Cart, defaultProps);
@@ -60,5 +68,13 @@ describe('<Cart />', () => {
     const { wrapper } = setup();
     wrapper.instance().remove();
     expect(wrapper.instance().props.removeFrom).toHaveBeenCalled();
+  });
+  it('remove should call change', () => {
+    const {
+      wrapper,
+      props: { cartPosition, token },
+    } = setup();
+    wrapper.instance().changeQuantity(cartPosition, token);
+    expect(wrapper.instance().props.change).toHaveBeenCalledWith(cartPosition, token);
   });
 });
