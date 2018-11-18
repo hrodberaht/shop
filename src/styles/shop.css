@@ -21,9 +21,28 @@
     
 }
 
+.product-item input {
+    outline: none;
+    border: none;
+    margin-top: 20px 0 20px 10px;
+    font-size: 16px;
+    width: 40px;
+    padding-left: 20px;
+ }
+
 .product-item h3 {
-    color: blue;
     letter-spacing: 2px;
+    text-align: center;
+    font-size: 24px;
+    color: rgb(65, 56, 56);
+}
+
+.product-item__buttons {
+    display: flex;
+}
+
+.product-item__buttons .btn {
+    width: 80px;
 }
 
 .product-item p {
@@ -54,16 +73,3 @@
     color: red;
 }
 
-.product-item input {
-   outline: none;
-   border: none;
-   margin-top: 20px 0 20px 10px;
-   font-size: 16px;
-   width: 40px;
-   padding-left: 20px;
-}
-
-.product-item .btn-danger {
-    width: 80px;
-    margin-left: 20px;
-}

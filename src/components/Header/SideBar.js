@@ -7,9 +7,7 @@ export default class SideBar extends Component {
     return (
       <ul className="sidebar__list">
         <li className="item">
-          <Link exact to="/">
-            Logo
-          </Link>
+          <Link to="/">Logo</Link>
         </li>
         <hr />
         <li className="item">

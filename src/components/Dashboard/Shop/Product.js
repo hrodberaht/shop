@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
@@ -95,6 +97,7 @@ export class Product extends Component {
       <div>
         <div className="product-item">
           <h3>{name}</h3>
+          <hr />
           <h5>{type}</h5>
           <p className="product-item__price">
             <span>$</span>
@@ -117,21 +120,23 @@ export class Product extends Component {
               {totalPrice}
             </span>
           </p>
-          <button
-            className="btn btn-primary"
-            type="button"
-            onClick={() => this.handleClick(productToCart)}
-            disabled={this.moreThanInStock()}
-          >
-            Add to cart
-          </button>
-          <button
-            className="btn btn-danger"
-            type="button"
-            onClick={() => this.handleClickWishlist(productToCart)}
-          >
-            Wish
-          </button>
+          <div className="product-item__buttons">
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => this.handleClick(productToCart)}
+              disabled={this.moreThanInStock()}
+            >
+              <FontAwesomeIcon icon={faCartPlus} />
+            </button>
+            <button
+              className="btn btn-danger"
+              type="button"
+              onClick={() => this.handleClickWishlist(productToCart)}
+            >
+              <FontAwesomeIcon icon={faHeart} />
+            </button>
+          </div>
         </div>
         {toggleAddedToCart && (
           <AddedToCart
