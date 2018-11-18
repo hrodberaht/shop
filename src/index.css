@@ -16,14 +16,12 @@
 body {
     margin: 0;
     padding: 0; 
+    background-color: rgb(231, 230, 230);
 }
 
 .container {
-    margin: none;
-    padding: 0;
     display: flex;
-    width: 100;
-    align-items: stretch;
-    background-color: rgb(231, 230, 230);
+    justify-content: center;
+    
 }
 
