@@ -7,6 +7,7 @@ import ConnectedOrdersList from './Order/OrdersList';
 import Inventory from './Inventory/Inventory';
 import ConnectedAuthorization from '../Auth/Authorization';
 import ConnectedWishlist from './Wishlist/Wishlist';
+import HeadBar from '../Header/HeadBar';
 
 export default class Dashboard extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class Dashboard extends Component {
             <Header />
           </div>
           <div className="content">
+            <HeadBar />
             <Switch>
               <Route exact path="/" component={Shop} />
               <Route path="/orders" component={ConnectedOrdersList} />
