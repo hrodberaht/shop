@@ -1,6 +1,7 @@
 .shop {
-    max-width: 850px;
     margin: auto;
+    max-width: 1200px;
+    margin-left: 50px;
 }
 .products-list {
     margin-top: 40px;
@@ -10,12 +11,13 @@
     
 }
 
+
 .product-item {
     padding: 20px;
     min-width: 220px;
-    border: 1px solid lightgray;
-    margin-right: 20px;
     margin-bottom: 20px;
+    margin-right: 10px;
+    background-color: white;
     
 }
 

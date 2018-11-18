@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar';
+import SideBar from './SideBar';
 
 export default class Header extends Component {
   render() {
-    return (
-      <div>
-        <NavBar />
-      </div>
-    );
+    return <SideBar />;
   }
 }

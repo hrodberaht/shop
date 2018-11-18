@@ -1,5 +1,6 @@
 @import './styles/login-form.css';
-@import './styles/nav-bar.css';
+@import './styles/content.css';
+@import './styles/sidebar.css';
 @import './styles/shop.css';
 @import './styles/buttons/btn.css';
 @import './styles/registration-form.css';
@@ -13,7 +14,16 @@
 @import './styles/add-product-inventory.css';
 
 body {
-    max-width: 1024px;
-    margin: auto;
+    margin: 0;
+    padding: 0; 
+}
+
+.container {
+    margin: none;
+    padding: 0;
+    display: flex;
+    width: 100;
+    align-items: stretch;
+    background-color: rgb(231, 230, 230);
 }
 
