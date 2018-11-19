@@ -36,7 +36,7 @@ export class AdminProduct extends Component {
     if (this.state.toggleEdit) {
       return (
         <React.Fragment>
-          <td colSpan="6">
+          <td className="edit-form" colSpan="6">
             <ConnectedAddProductForm product={product} onSubmit={this.submit} />
             <button
               id="closeButton"

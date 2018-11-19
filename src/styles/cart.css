@@ -31,6 +31,12 @@
     width: 50px;
 }
 
+.cart input {
+    box-sizing: border-box; 
+    padding-left: 5px;
+    width: 40px;
+}
+
 
 
 

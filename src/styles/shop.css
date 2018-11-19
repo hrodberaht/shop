@@ -1,5 +1,6 @@
 .shop {
     margin: auto;
+    font-size: 22px;
 }
 .products-list {
     margin-top: 40px;
@@ -8,7 +9,6 @@
     justify-content: flex-start;
     
 }
-
 
 .product-item {
     padding: 20px;
@@ -22,7 +22,7 @@
 .product-item input {
     outline: none;
     border: none;
-    margin-top: 20px 0 20px 10px;
+    margin: 20px 0 20px 10px;
     font-size: 16px;
     width: 40px;
     padding-left: 20px;
@@ -35,6 +35,10 @@
     color: rgb(65, 56, 56);
 }
 
+.product-item__price {
+    text-align: right;
+}
+
 .product-item__buttons {
     display: flex;
 }
@@ -43,29 +47,17 @@
     width: 80px;
 }
 
-.product-item p {
-    letter-spacing: 2px;
-}
-
 .product-item:nth-child(last) {
     margin-right: 0;
 }
 
 .product-item__price {
-    font-size: 22px;
+    
     font-weight: bold;
 }
 
-.product-item__order {
-    font-size: 22px;
-}
-
-.product-item__total {
-    font-size: 22px;
-}
-
 #total-price {
-    font-weight: bold
+    font-weight: bold;
 }
 #stock-error {
     color: red;

@@ -2,6 +2,14 @@
     text-align: center;
 }
 
+.inventory > button{
+    width: 200px;
+}
+
+.inventory > .btn-danger{
+    width: 100px;
+}
+
 .admin-product-list button {
     margin: 0;
     padding: 10px 0;
@@ -15,8 +23,7 @@
 .admin-product-list hr {
     max-width: 600px;
     border: 0;
-    border: 1px solid lightblue;
-    
+    border: 1px solid lightblue;  
 }
 
 .admin-product-list .error-text {

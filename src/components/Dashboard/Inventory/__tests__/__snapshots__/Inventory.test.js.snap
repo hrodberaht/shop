@@ -23,7 +23,7 @@ exports[`<Inventory /> should show AddProduct if toggle is true 1`] = `
   className="inventory"
 >
   <button
-    className="btn btn-primary"
+    className="btn btn-danger"
     onClick={[Function]}
     type="button"
   >

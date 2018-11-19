@@ -40,6 +40,7 @@ exports[`<AdminProduct /> should change state after click button close and hide 
 exports[`<AdminProduct /> should change state after click button edit and show form 1`] = `
 <Fragment>
   <td
+    className="edit-form"
     colSpan="6"
   >
     <Connect(ReduxForm)

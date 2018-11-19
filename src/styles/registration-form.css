@@ -4,17 +4,13 @@
 }
 
 .registration-form form {
-    
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .registration-select {
     outline: none;
     width:200px;
-    margin: auto;
-    font-size: 16px;
     background-color: #E7E6E6;
 }
 
@@ -22,5 +18,8 @@
     text-transform: uppercase;
     font-size: 18px;
     letter-spacing: 2px;
-    
+}
+
+.registartion-link a:link, a:visited {
+    color: #364150;
 }

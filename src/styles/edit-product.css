@@ -1,5 +1,14 @@
-.product-form label{
-    display: inline-block;
+.edit-form {
     text-align: center;
+}
+.edit-form form{
     margin: 20px 0;
+    text-align: center;
+}
+
+.edit-form form input{
+    text-align: center;
+    font-size: 16px;
+    background-color: white;
+    width: 100px;
 }
