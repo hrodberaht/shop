@@ -7,14 +7,12 @@ table {
 
 td, th {
     border: 1px solid #596679;
-    text-align: right;
     color: darkblue;
     padding: 8px;
+    text-align: center;
 }
 
 th {
-    text-align: right;
-    color: darkblue;
     padding: 15px;
     background-color: #364150;
     color: rgb(167, 162, 162);

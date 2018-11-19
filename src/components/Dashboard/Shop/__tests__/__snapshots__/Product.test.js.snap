@@ -1,66 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Product /> should render without crash 1`] = `
-<div>
+<div
+  className="product-item"
+>
+  <h3>
+    test
+  </h3>
+  <hr />
   <div
-    className="product-item"
+    className="product-desc"
   >
-    <h3>
-      test
-    </h3>
-    <hr />
     <h5>
       printer
     </h5>
     <p
-      className="product-item__price"
+      className="product-desc__price"
     >
       <span>
         $
       </span>
       12
     </p>
-    <p>
+    <p
+      className="product-desc__instock"
+    >
       <span>
         In stock:
       </span>
-      <span
-        id="stock-message"
-      >
-        medium supply
+      <span>
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                640,
+                512,
+                Array [],
+                "f242",
+                "M544 160v64h32v64h-32v64H64V160h480m16-64H48c-26.51 0-48 21.49-48 48v224c0 26.51 21.49 48 48 48h512c26.51 0 48-21.49 48-48v-16h8c13.255 0 24-10.745 24-24V184c0-13.255-10.745-24-24-24h-8v-16c0-26.51-21.49-48-48-48zm-240 96H96v128h224V192z",
+              ],
+              "iconName": "battery-half",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
       </span>
     </p>
     <p
-      className="product-item__order"
+      className="product-desc__order"
     >
-      Order:
-      <input
-        onChange={[Function]}
-        type="number"
-        value={1}
-      />
-      pcs
+      <span>
+        Order:
+      </span>
+      <span>
+        <input
+          onChange={[Function]}
+          type="number"
+          value={1}
+        />
+        pcs
+      </span>
     </p>
     <p
       id="stock-error"
     />
     <p
-      className="product-item__total"
+      className="product-desc__total"
     >
-      <span>
-        Total price:
-      </span>
+      Total price:
       <span
         id="total-price"
       >
-        <span>
-          $
-        </span>
+        $
         12
       </span>
     </p>
     <div
-      className="product-item__buttons"
+      className="product-desc__buttons"
     >
       <button
         className="btn btn-primary"

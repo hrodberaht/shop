@@ -18,24 +18,17 @@
     color: darkgreen;
 }
 
-.cart-produts__item th{
-    text-align: right;
-    color: darkblue;
-    padding: 15px;
-    background-color: #364150;
-    color: rgb(167, 162, 162);
-    text-transform: uppercase;
+.cart input {
+    box-sizing: border-box; 
+    padding-left: 5px;
+    width: 40px;
 }
 
 .cart-produts__item button {
     width: 50px;
 }
 
-.cart input {
-    box-sizing: border-box; 
-    padding-left: 5px;
-    width: 40px;
-}
+
 
 
 

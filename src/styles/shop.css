@@ -19,15 +19,6 @@
     
 }
 
-.product-item input {
-    outline: none;
-    border: none;
-    margin: 20px 0 20px 10px;
-    font-size: 16px;
-    width: 40px;
-    padding-left: 20px;
- }
-
 .product-item h3 {
     letter-spacing: 2px;
     text-align: center;
@@ -35,31 +26,42 @@
     color: rgb(65, 56, 56);
 }
 
-.product-item__price {
+.product-desc input {
+    outline: none;
+    border: none;
+    margin: 20px 0 20px 10px;
+    font-size: 16px;
+    width: 40px;
+    padding-left: 20px;
+    border-bottom: 1px solid  rgb(65, 56, 56);
+ }
+
+.product-desc__price {
+    text-align: right;
+    font-weight: bold;
+}
+
+.product-desc__order span {
     text-align: right;
 }
 
-.product-item__buttons {
+.product-desc__total, .product-desc__buttons, .product-desc__instock {
     display: flex;
+    justify-content: space-between;
+}
+.product-desc__total span {
+    font-weight: bold;
+    color: green;
 }
 
-.product-item__buttons .btn {
+.product-desc__buttons .btn {
     width: 80px;
 }
 
-.product-item:nth-child(last) {
-    margin-right: 0;
-}
-
-.product-item__price {
-    
-    font-weight: bold;
-}
-
-#total-price {
-    font-weight: bold;
-}
 #stock-error {
+    text-align: center;
+    text-transform: uppercase;
     color: red;
+    font-size: 16px;
 }
 
