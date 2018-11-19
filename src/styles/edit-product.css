@@ -1,9 +1,12 @@
 .edit-form {
     text-align: center;
 }
+
+.edit-form .btn-danger {
+    width: 100px;
+}
 .edit-form form{
     margin: 20px 0;
-    text-align: center;
 }
 
 .edit-form form input{

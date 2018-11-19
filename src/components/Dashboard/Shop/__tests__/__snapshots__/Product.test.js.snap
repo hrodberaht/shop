@@ -28,7 +28,9 @@ exports[`<Product /> should render without crash 1`] = `
       <span>
         In stock:
       </span>
-      <span>
+      <span
+        id="stock-message"
+      >
         <FontAwesomeIcon
           border={false}
           className=""

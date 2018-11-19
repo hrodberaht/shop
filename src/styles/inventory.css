@@ -10,23 +10,23 @@
     width: 100px;
 }
 
-.admin-product-list button {
+.admin-product__list button {
     margin: 0;
     padding: 10px 0;
     width: 100px;
 }
 
-.admin-product-list .btn-danger {
+.admin-product__list .btn-danger {
     width: 50px;
 }
 
-.admin-product-list hr {
+.admin-product__list hr {
     max-width: 600px;
     border: 0;
     border: 1px solid lightblue;  
 }
 
-.admin-product-list .error-text {
+.admin-product__list .error-text, .add-product-inventory .error-text {
     font-size: 12px;
 }
 

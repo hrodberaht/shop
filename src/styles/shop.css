@@ -41,7 +41,7 @@
     font-weight: bold;
 }
 
-.product-desc__order span {
+.product-desc__order {
     text-align: right;
 }
 

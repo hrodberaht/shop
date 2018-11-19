@@ -40,7 +40,7 @@ export class AdminProduct extends Component {
             <ConnectedAddProductForm product={product} onSubmit={this.submit} />
             <button
               id="closeButton"
-              className="btn btn-primary"
+              className="btn btn-danger"
               type="button"
               onClick={this.handleEditClick}
             >

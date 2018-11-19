@@ -10,12 +10,10 @@
 @import './styles/registration-form.css';
 @import './styles/cart.css';
 @import './styles/cart-popup.css';
-@import './styles/order.css';
 @import './styles/table.css';
 @import './styles/inventory.css';
 @import './styles/form.css';
 @import './styles/edit-product.css';
-@import './styles/add-product-inventory.css';
 
 body {
     margin: 0;

@@ -56,7 +56,7 @@ exports[`<AdminProduct /> should change state after click button edit and show f
       }
     />
     <button
-      className="btn btn-primary"
+      className="btn btn-danger"
       id="closeButton"
       onClick={[Function]}
       type="button"

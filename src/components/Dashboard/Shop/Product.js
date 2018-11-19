@@ -112,7 +112,7 @@ export class Product extends Component {
           </p>
           <p className="product-desc__instock">
             <span>In stock:</span>
-            <span>{this.changeInStockToText(+inStock)}</span>
+            <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
           </p>
           <p className="product-desc__order">
             <span>Order:</span>
