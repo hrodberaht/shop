@@ -168,7 +168,7 @@ Product.propTypes = {
 Product.defaultProps = {
   addProduct: null,
   token: null,
-  cart: [],
+  cart: {},
 };
 
 const mapStateToProps = state => ({

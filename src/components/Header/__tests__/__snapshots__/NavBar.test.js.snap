@@ -1,76 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<NavBar /> should render without crash 1`] = `
-<div
-  className="nav-bar"
+exports[`<SideBar /> should render without crash 1`] = `
+<ul
+  className="sidebar__list"
 >
-  <ul
-    className="nav-bar__list"
+  <li
+    className="item"
   >
-    <li
-      className="item"
+    <Link
+      replace={false}
+      to="/"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        exact={true}
-        to="/"
-      >
-        Shop
-      </NavLink>
-    </li>
-    <li
-      className="item"
+      Logo
+    </Link>
+  </li>
+  <hr />
+  <li
+    className="item"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      exact={true}
+      to="/"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        to="/orders"
-      >
-        Orders
-      </NavLink>
-    </li>
-    <li
-      className="item"
+      Shop
+    </NavLink>
+  </li>
+  <li
+    className="item"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/orders"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        to="/cart"
-      >
-        Cart
-      </NavLink>
-    </li>
-    <li
-      className="item"
+      Orders
+    </NavLink>
+  </li>
+  <li
+    className="item"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/cart"
     >
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        to="/wishlist"
+      Cart
+    </NavLink>
+  </li>
+  <li
+    className="item"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      to="/wishlist"
+    >
+      Wish list
+    </NavLink>
+  </li>
+  <Connect(Authorization)
+    render={true}
+    withRoleAdmin={
+      <li
+        className="item"
       >
-        Wish list
-      </NavLink>
-    </li>
-    <Connect(Authorization)
-      render={true}
-      withRoleAdmin={
-        <li
-          className="item"
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          to="/inventory"
         >
-          <NavLink
-            activeClassName="active"
-            aria-current="page"
-            to="/inventory"
-          >
-            Inventory
-          </NavLink>
-        </li>
-      }
-    />
-    <Connect(Authorization)
-      logout={[Function]}
-    />
-  </ul>
-</div>
+          Inventory
+        </NavLink>
+      </li>
+    }
+  />
+  <Connect(Authorization)
+    logout={[Function]}
+  />
+</ul>
 `;
