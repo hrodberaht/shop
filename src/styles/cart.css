@@ -1,37 +1,25 @@
 .cart {
-    text-align: right;
+
 }
 
 .cart h3 {
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 40px;
-    color: darkblue;
+    
 }
 
 .cart__sumary {
-    font-size: 26px;
-    font-weight: bold;
-    margin-right: 20px;
-    letter-spacing: 2px;
-    color: darkgreen;
+    
 }
 
 .cart-produts__item th{
-    border: 1px solid lightblue;
-    text-align: right;
-    color: darkblue;
-    padding: 15px;
-    background-color: rgb(108, 243, 243);
+    
 }
 
 .cart-produts__item button {
-    width: 50px;
+   
 }
 
 .cart-produts__item tr:nth-child(odd) {
-    background-color: rgb(228, 252, 252);
+    
 }
 
 

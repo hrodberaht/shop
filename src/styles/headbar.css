@@ -1,7 +1,14 @@
 .headbar { 
-    padding: 35px 0;
+    height: 25px;
+    padding: 15px;
 }
 
-.headbar hr { 
-    border: 1px solid darkgrey;
+.headbar span{
+    font-size: 34px;
+    
+}
+
+.headbar span{
+    font-size: 34px;
+    
 }

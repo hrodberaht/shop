@@ -19,18 +19,20 @@ export default class Dashboard extends Component {
           </div>
           <div className="content">
             <HeadBar />
-            <Switch>
-              <Route exact path="/" component={Shop} />
-              <Route path="/orders" component={ConnectedOrdersList} />
-              <Route path="/cart" component={ConnectedCart} />
-              <Route path="/wishlist" component={ConnectedWishlist} />
-              <ConnectedAuthorization
-                render
-                withRoleAdmin={<Route path="/inventory" component={Inventory} />}
-                withNoAdmin={<Route component={() => <p>Not Found</p>} />}
-              />
-              <Route component={() => <p>Not Found</p>} />
-            </Switch>
+            <div className="board">
+              <Switch>
+                <Route exact path="/" component={Shop} />
+                <Route path="/orders" component={ConnectedOrdersList} />
+                <Route path="/cart" component={ConnectedCart} />
+                <Route path="/wishlist" component={ConnectedWishlist} />
+                <ConnectedAuthorization
+                  render
+                  withRoleAdmin={<Route path="/inventory" component={Inventory} />}
+                  withNoAdmin={<Route component={() => <p>Not Found</p>} />}
+                />
+                <Route component={() => <p>Not Found</p>} />
+              </Switch>
+            </div>
           </div>
         </React.Fragment>
       </Router>
