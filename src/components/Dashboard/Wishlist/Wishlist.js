@@ -25,6 +25,13 @@ export class Wishlist extends Component {
         <h2>Wish list:</h2>
         <table>
           <tbody>
+            <tr>
+              <th>Name:</th>
+              <th>Price:</th>
+              <th>Pcs:</th>
+              <th>Total price:</th>
+              <th>Delete:</th>
+            </tr>
             {products.map(prod => (
               <ProductInWishlist product={prod} remove={this.remove} key={prod.productId} />
             ))}

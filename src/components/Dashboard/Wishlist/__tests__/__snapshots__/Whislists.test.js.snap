@@ -7,6 +7,23 @@ exports[`<Wishlist /> should render products list if loaded true 1`] = `
   </h2>
   <table>
     <tbody>
+      <tr>
+        <th>
+          Name:
+        </th>
+        <th>
+          Price:
+        </th>
+        <th>
+          Pcs:
+        </th>
+        <th>
+          Total price:
+        </th>
+        <th>
+          Delete:
+        </th>
+      </tr>
       <ProductInWishlist
         key="product-1"
         product={
