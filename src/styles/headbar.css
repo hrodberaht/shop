@@ -3,12 +3,9 @@
     padding: 15px;
 }
 
-.headbar span{
-    font-size: 34px;
-    
-}
-
-.headbar span{
-    font-size: 34px;
-    
+.headbar button{
+    font-size: 30px;
+    border: none;
+    outline: none;
+    background-color: #E7E6E6;
 }

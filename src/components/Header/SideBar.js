@@ -10,7 +10,7 @@ export class SideBar extends Component {
   render() {
     const { toggleSidebar } = this.props;
     return (
-      <div className={classNames({ sidebar: toggleSidebar, sidebarHide: toggleSidebar })}>
+      <div className={classNames({ sidebarHide: !toggleSidebar, sidebar: toggleSidebar })}>
         <ul className="sidebar__list">
           <li className="item">
             <Link to="/">Logo</Link>

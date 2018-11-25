@@ -5,6 +5,11 @@
     max-width: 250px;
     min-height: 100vh;
 }
+
+.sidebarHide {
+    position: absolute;
+    left: -250px;
+}
 .sidebar__list {
     list-style: none;
     display: block;
