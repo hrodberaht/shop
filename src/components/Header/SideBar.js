@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
   toggleSidebar: getNavigationSidebarValue(state),
 });
 
-export default connect(mapStateToProps)(SideBar);
+export default withRouter(connect(mapStateToProps)(SideBar));
 
 SideBar.propTypes = {
   toggleSidebar: PropTypes.bool.isRequired,

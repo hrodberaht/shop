@@ -14,11 +14,9 @@ export class HeadBar extends Component {
     return (
       <div className="headbar">
         <div className="headbar__icons">
-          <span>
-            <button type="button" onClick={this.handleClickSidebar}>
-              <FontAwesomeIcon icon={faBars} />
-            </button>
-          </span>
+          <button type="button" onClick={this.handleClickSidebar}>
+            <FontAwesomeIcon icon={faBars} />
+          </button>
         </div>
         <hr />
       </div>
