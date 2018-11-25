@@ -15,9 +15,7 @@ export default class Dashboard extends Component {
       <div className="dashboard">
         <Router>
           <React.Fragment>
-            <div className="sidebar">
-              <Header />
-            </div>
+            <Header />
             <div className="content">
               <ConnectedHeadBar />
               <div className="board">
