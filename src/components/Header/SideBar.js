@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { connect } from 'react-redux';
 import ConnectedAuthorization from '../Auth/Authorization';
+import { getNavigationSidebarValue } from '../../store/navigation/selectors';
 
-export default class SideBar extends Component {
+export class SideBar extends Component {
   render() {
+    const { toggleSidebar } = this.props;
     return (
-      <div className="sidebar">
+      <div className={classNames({ sidebar: toggleSidebar, sidebarHide: toggleSidebar })}>
         <ul className="sidebar__list">
           <li className="item">
             <Link to="/">Logo</Link>
@@ -47,3 +52,13 @@ export default class SideBar extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  toggleSidebar: getNavigationSidebarValue(state),
+});
+
+export default connect(mapStateToProps)(SideBar);
+
+SideBar.propTypes = {
+  toggleSidebar: PropTypes.bool.isRequired,
+};

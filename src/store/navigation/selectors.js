@@ -1,1 +1,1 @@
-export const getNavigationSidebarValue = ({ toggleSidebar }) => toggleSidebar;
+export const getNavigationSidebarValue = ({ navigation }) => navigation.toggleSidebar;

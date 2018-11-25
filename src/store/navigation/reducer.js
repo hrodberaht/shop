@@ -4,7 +4,7 @@ const initialState = {
   toggleSidebar: true,
 };
 
-export const navigation = (state = initialState, action) => {
+const navigation = (state = initialState, action) => {
   switch (action.type) {
     case types.TOGGLE_SIDEBAR:
       return { ...state, toggleSidebar: !state.toggleSidebar };

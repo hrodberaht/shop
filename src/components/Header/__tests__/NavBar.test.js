@@ -1,4 +1,4 @@
-import SideBar from '../SideBar';
+import { SideBar } from '../SideBar';
 
 const setup = buildSetup(SideBar, {});
 
