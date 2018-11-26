@@ -1,0 +1,39 @@
+.cart {
+  margin-top: 20px;
+
+  h3 {
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2b3542;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 40px;
+    background-color: #e7e6e6;
+    outline: none;
+    border: 0;
+    padding-left: 15px;
+    border-bottom: 2px solid black;
+  }
+
+  &__sumary {
+    margin-right: 60px;
+    letter-spacing: 2px;
+    color: darkgreen;
+    text-align: right;
+
+    p {
+      font-size: 24px;
+      margin-right: 25px;
+      font-weight: bold;
+    }
+  }
+
+  &-produts__item {
+    button {
+      width: 50px;
+    }
+  }
+}
