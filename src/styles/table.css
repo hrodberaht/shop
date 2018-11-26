@@ -5,12 +5,9 @@ table {
   width: 100%;
 }
 
-td,
-th {
-  color: darkblue;
+td {
   padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #8fa1b9;
 }
 
 th {
@@ -18,4 +15,8 @@ th {
   padding: 15px;
   border-bottom: 1px solid #364150;
   text-transform: uppercase;
+}
+
+tr {
+  border-bottom: 1px solid #364150;
 }

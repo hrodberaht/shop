@@ -2,16 +2,35 @@
 
 exports[`<Order /> should render without crash 1`] = `
 <Fragment>
-  <td>
-    1234
-  </td>
-  <td />
-  <td />
-  <td>
-    400
-  </td>
-  <td>
-    in-progress
-  </td>
+  <tr>
+    <td>
+      1234
+    </td>
+    <td />
+    <td />
+    <td>
+      400
+    </td>
+    <td>
+      in-progress
+    </td>
+    <td>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        \\/
+      </button>
+    </td>
+    <td>
+      <button
+        className="btn btn-submit"
+        disabled={false}
+        type="button"
+      >
+        Realise
+      </button>
+    </td>
+  </tr>
 </Fragment>
 `;
