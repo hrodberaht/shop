@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
 import Order from './Order';
-import ConnectedAuthorization from '../../Auth/Authorization';
+
 import { fetchOrders, fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 
@@ -31,22 +31,7 @@ export class OrdersList extends Component {
             <th>Admin:</th>
           </tr>
           {orders.map(order => (
-            <Order order={order} key={order.id} />
-            /* <td>
-                  <ConnectedAuthorization
-                    render
-                    withRoleAdmin={(
-                      <button
-                        className="btn btn-submit"
-                        type="button"
-                        disabled={order.status === 'realized'}
-                        onClick={() => handleClick(order.id, token)}
-                      >
-                        Realise
-                      </button>
-)}
-                  />
-                </td> */
+            <Order order={order} key={order.id} handleClick={handleClick} token={token} />
           ))}
         </tbody>
       </table>

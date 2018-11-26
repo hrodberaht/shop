@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProductsInOrder from './ProductsInOrder';
+import ConnectedAuthorization from '../../Auth/Authorization';
 
 export default class Order extends Component {
   state = {
@@ -13,6 +14,8 @@ export default class Order extends Component {
 
   render() {
     const {
+      handleClick,
+      token,
       order,
       order: {
         id, person, totalPrice, status, date,
@@ -32,14 +35,19 @@ export default class Order extends Component {
             </button>
           </td>
           <td>
-            <button
-              className="btn btn-submit"
-              type="button"
-              disabled={order.status === 'realized'}
-              // onClick={() => handleClick(order.id, token)}
-            >
-              Realise
-            </button>
+            <ConnectedAuthorization
+              render
+              withRoleAdmin={(
+                <button
+                  className="btn btn-submit"
+                  type="button"
+                  disabled={order.status === 'realized'}
+                  onClick={() => handleClick(order.id, token)}
+                >
+                  Realise
+                </button>
+)}
+            />
           </td>
         </tr>
         {this.state.details ? (
@@ -60,4 +68,6 @@ Order.propTypes = {
     totalPrice: PropTypes.number,
     status: PropTypes.string,
   }).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };

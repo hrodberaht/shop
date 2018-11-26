@@ -29,6 +29,7 @@ exports[`<OrderList /> should render if loaded true  1`] = `
       </th>
     </tr>
     <Order
+      handleClick={[MockFunction]}
       key="e1oPVJh"
       order={
         Object {
@@ -72,6 +73,7 @@ exports[`<OrderList /> should render if loaded true  1`] = `
           "userId": "user-3",
         }
       }
+      token={null}
     />
   </tbody>
 </table>

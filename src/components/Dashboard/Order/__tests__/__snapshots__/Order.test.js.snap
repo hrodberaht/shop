@@ -23,13 +23,19 @@ exports[`<Order /> should render without crash 1`] = `
       </button>
     </td>
     <td>
-      <button
-        className="btn btn-submit"
-        disabled={false}
-        type="button"
-      >
-        Realise
-      </button>
+      <Connect(Authorization)
+        render={true}
+        withRoleAdmin={
+          <button
+            className="btn btn-submit"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Realise
+          </button>
+        }
+      />
     </td>
   </tr>
 </Fragment>
