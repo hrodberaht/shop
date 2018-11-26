@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideBar /> should render with hide sidebar if toggleSidebar is false 1`] = `
+<div
+  className="sidebarHide"
+>
+  <ul
+    className="sidebar__list"
+  >
+    <li
+      className="item"
+    >
+      <Link
+        replace={false}
+        to="/"
+      >
+        Logo
+      </Link>
+    </li>
+    <hr />
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        exact={true}
+        to="/"
+      >
+        Shop
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/orders"
+      >
+        Orders
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/cart"
+      >
+        Cart
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/wishlist"
+      >
+        Wish list
+      </NavLink>
+    </li>
+    <Connect(Authorization)
+      render={true}
+      withRoleAdmin={
+        <li
+          className="item"
+        >
+          <NavLink
+            activeClassName="active"
+            aria-current="page"
+            to="/inventory"
+          >
+            Inventory
+          </NavLink>
+        </li>
+      }
+    />
+    <Connect(Authorization)
+      logout={[Function]}
+    />
+  </ul>
+</div>
+`;
+
+exports[`<SideBar /> should render with side bar if toggleSidebar is true 1`] = `
+<div
+  className="sidebar"
+>
+  <ul
+    className="sidebar__list"
+  >
+    <li
+      className="item"
+    >
+      <Link
+        replace={false}
+        to="/"
+      >
+        Logo
+      </Link>
+    </li>
+    <hr />
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        exact={true}
+        to="/"
+      >
+        Shop
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/orders"
+      >
+        Orders
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/cart"
+      >
+        Cart
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/wishlist"
+      >
+        Wish list
+      </NavLink>
+    </li>
+    <Connect(Authorization)
+      render={true}
+      withRoleAdmin={
+        <li
+          className="item"
+        >
+          <NavLink
+            activeClassName="active"
+            aria-current="page"
+            to="/inventory"
+          >
+            Inventory
+          </NavLink>
+        </li>
+      }
+    />
+    <Connect(Authorization)
+      logout={[Function]}
+    />
+  </ul>
+</div>
+`;
