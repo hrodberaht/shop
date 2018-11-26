@@ -21,6 +21,19 @@ exports[`<AddProductForm /> should render without crash 1`] = `
       />
     </label>
     <label
+      htmlFor="imgUrl"
+    >
+      <p>
+        ImgUrl:
+      </p>
+      <Field
+        component={[Function]}
+        id="imgUrl"
+        name="imgUrl"
+        type="text"
+      />
+    </label>
+    <label
       htmlFor="type"
     >
       <p>

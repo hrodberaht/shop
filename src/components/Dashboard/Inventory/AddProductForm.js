@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
+  imgUrl: yup.string().required(),
   type: yup.string().required(),
   price: yup.number().required(),
   inStock: yup.number().required(),
@@ -38,6 +39,10 @@ export class AddProductForm extends Component {
           <label htmlFor="name">
             <p>Name:</p>
             <Field id="name" name="name" component={this.renderField} type="text" />
+          </label>
+          <label htmlFor="imgUrl">
+            <p>ImgUrl:</p>
+            <Field id="imgUrl" name="imgUrl" component={this.renderField} type="text" />
           </label>
           <label htmlFor="type">
             <p>Type:</p>
