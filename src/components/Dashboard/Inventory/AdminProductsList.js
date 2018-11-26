@@ -21,6 +21,7 @@ export class AdminProductsList extends Component {
           <tbody>
             <tr>
               <th>Name:</th>
+              <th>Image:</th>
               <th>Type:</th>
               <th>Price:</th>
               <th>Stock:</th>

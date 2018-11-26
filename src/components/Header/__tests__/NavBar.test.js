@@ -1,6 +1,9 @@
 import { SideBar } from '../SideBar';
 
-const setup = buildSetup(SideBar, {});
+const defaultProps = {
+  toggleSidebar: true,
+};
+const setup = buildSetup(SideBar, defaultProps);
 
 describe('<SideBar />', () => {
   it('should render without crash', () => {
