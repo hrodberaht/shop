@@ -8,6 +8,10 @@ exports[`<Product /> should render without crash 1`] = `
     test
   </h3>
   <hr />
+  <img
+    alt="printer"
+    className="product-item__image"
+  />
   <div
     className="product-desc"
   >
