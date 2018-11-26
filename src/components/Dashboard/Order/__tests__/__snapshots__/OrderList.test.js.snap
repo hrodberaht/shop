@@ -24,9 +24,14 @@ exports[`<OrderList /> should render if loaded true  1`] = `
       <th>
         Actions:
       </th>
-      <th>
-        Admin:
-      </th>
+      <Connect(Authorization)
+        render={true}
+        withRoleAdmin={
+          <th>
+            Admin:
+          </th>
+        }
+      />
     </tr>
     <Order
       handleClick={[MockFunction]}
@@ -73,7 +78,7 @@ exports[`<OrderList /> should render if loaded true  1`] = `
           "userId": "user-3",
         }
       }
-      token={null}
+      token=""
     />
   </tbody>
 </table>

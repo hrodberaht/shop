@@ -2,12 +2,12 @@
 
 exports[`<ProductsInOrder /> should render without crash 1`] = `
 <td
-  colSpan="5"
+  colSpan="7"
 >
-  <table>
-    <tbody
-      className="order-table-products"
-    >
+  <table
+    className="order-table-products"
+  >
+    <tbody>
       <tr>
         <th>
           Name:

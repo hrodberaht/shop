@@ -7,9 +7,9 @@ export default class ProductsInOrder extends Component {
       order: { productsOrder },
     } = this.props;
     return (
-      <td colSpan="5">
-        <table>
-          <tbody className="order-table-products">
+      <td colSpan="7">
+        <table className="order-table-products">
+          <tbody>
             <tr>
               <th>Name:</th>
               <th>Pcs:</th>

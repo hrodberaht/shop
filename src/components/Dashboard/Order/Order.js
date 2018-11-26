@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import ProductsInOrder from './ProductsInOrder';
 import ConnectedAuthorization from '../../Auth/Authorization';
 
@@ -13,6 +15,7 @@ export default class Order extends Component {
   };
 
   render() {
+    const { details } = this.state;
     const {
       handleClick,
       token,
@@ -30,8 +33,12 @@ export default class Order extends Component {
           <td>{totalPrice}</td>
           <td>{status}</td>
           <td>
-            <button type="button" onClick={this.handleClickDetails}>
-              \/
+            <button type="button" className="btn-orders-detail" onClick={this.handleClickDetails}>
+              {details ? (
+                <FontAwesomeIcon icon={faAngleUp} />
+              ) : (
+                <FontAwesomeIcon icon={faAngleDown} />
+              )}
             </button>
           </td>
           <td>
@@ -50,7 +57,7 @@ export default class Order extends Component {
             />
           </td>
         </tr>
-        {this.state.details ? (
+        {details ? (
           <tr key={order.date}>
             <ProductsInOrder order={order} />
           </tr>

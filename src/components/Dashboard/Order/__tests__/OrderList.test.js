@@ -42,6 +42,7 @@ const defaultProps = {
   getOrdersFromServer: jest.fn(),
   handleClick: jest.fn(),
   loaded: false,
+  token: '',
 };
 const setup = buildSetup(OrdersList, defaultProps);
 

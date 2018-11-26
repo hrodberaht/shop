@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
+import ConnectedAuthorization from '../../Auth/Authorization';
 import Order from './Order';
 
 import { fetchOrders, fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
@@ -28,7 +29,7 @@ export class OrdersList extends Component {
             <th>Total price:</th>
             <th>Status:</th>
             <th>Actions:</th>
-            <th>Admin:</th>
+            <ConnectedAuthorization render withRoleAdmin={<th>Admin:</th>} />
           </tr>
           {orders.map(order => (
             <Order order={order} key={order.id} handleClick={handleClick} token={token} />
