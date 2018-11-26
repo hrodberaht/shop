@@ -3,9 +3,7 @@
 exports[`<OrderList /> should render if loaded true  1`] = `
 <div>
   <table>
-    <tbody
-      key="e1oPVJh"
-    >
+    <tbody>
       <tr
         className="order-table-title"
       >
@@ -24,17 +22,13 @@ exports[`<OrderList /> should render if loaded true  1`] = `
         <th>
           Status:
         </th>
-        <Connect(Authorization)
-          render={true}
-          withRoleAdmin={
-            <th>
-              Change status:
-            </th>
-          }
-        />
+        <th>
+          Actions:
+        </th>
       </tr>
       <tr
         className="order-table"
+        key="e1oPVJh"
       >
         <Order
           order={
@@ -80,10 +74,16 @@ exports[`<OrderList /> should render if loaded true  1`] = `
             }
           }
         />
-        <Connect(Authorization)
-          render={true}
-          withRoleAdmin={
-            <td>
+        <td>
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            \\/
+          </button>
+          <Connect(Authorization)
+            render={true}
+            withRoleAdmin={
               <button
                 className="btn btn-submit"
                 disabled={true}
@@ -92,57 +92,9 @@ exports[`<OrderList /> should render if loaded true  1`] = `
               >
                 Realise
               </button>
-            </td>
-          }
-        />
-      </tr>
-      <tr
-        key="2018-11-02T18:03:36.535Z"
-      >
-        <ProductsInOrder
-          order={
-            Object {
-              "companyId": "company-2",
-              "date": "2018-11-02T18:03:36.535Z",
-              "id": "e1oPVJh",
-              "orderPositionIds": Array [
-                "Ld6GsMELf",
-                "IQW79vU4W",
-                "4VgGGnrnV",
-              ],
-              "person": "Ben Morrison",
-              "productsOrder": Array [
-                Object {
-                  "id": "Ld6GsMELf",
-                  "name": "ZX3",
-                  "pcsOrder": 1,
-                  "price": 400,
-                  "productId": "product-1",
-                  "totalPrice": 400,
-                },
-                Object {
-                  "id": "IQW79vU4W",
-                  "name": "ZX5",
-                  "pcsOrder": 1,
-                  "price": 600,
-                  "productId": "product-2",
-                  "totalPrice": 600,
-                },
-                Object {
-                  "id": "4VgGGnrnV",
-                  "name": "ZX1",
-                  "pcsOrder": 8,
-                  "price": 200,
-                  "productId": "product-3",
-                  "totalPrice": 1600,
-                },
-              ],
-              "status": "realized",
-              "totalPrice": 2600,
-              "userId": "user-3",
             }
-          }
-        />
+          />
+        </td>
       </tr>
     </tbody>
   </table>

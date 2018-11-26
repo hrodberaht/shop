@@ -9,10 +9,18 @@ import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selecto
 import ProductsInOrder from './ProductsInOrder';
 
 export class OrdersList extends Component {
+  state = {
+    details: false,
+  };
+
   componentDidMount() {
     const { getOrdersFromServer, token, userId } = this.props;
     getOrdersFromServer(userId, token);
   }
+
+  handleClickDetails = () => {
+    this.setState({ details: true });
+  };
 
   render() {
     const {
@@ -22,39 +30,46 @@ export class OrdersList extends Component {
     return (
       <div>
         <table>
-          {orders.map(order => (
-            <tbody key={order.id}>
-              <tr className="order-table-title">
-                <th>Id:</th>
-                <th>Person:</th>
-                <th>Date:</th>
-                <th>Total price:</th>
-                <th>Status:</th>
-                <ConnectedAuthorization render withRoleAdmin={<th>Change status:</th>} />
-              </tr>
-              <tr className="order-table">
-                <Order order={order} />
-                <ConnectedAuthorization
-                  render
-                  withRoleAdmin={(
-                    <td>
-                      <button
-                        className="btn btn-submit"
-                        type="button"
-                        disabled={order.status === 'realized'}
-                        onClick={() => handleClick(order.id, token)}
-                      >
-                        Realise
-                      </button>
-                    </td>
+          <tbody>
+            <tr className="order-table-title">
+              <th>Id:</th>
+              <th>Person:</th>
+              <th>Date:</th>
+              <th>Total price:</th>
+              <th>Status:</th>
+              <th>Actions:</th>
+            </tr>
+            {orders.map(order => (
+              <React.Fragment>
+                <tr key={order.id} className="order-table">
+                  <Order order={order} />
+                  <td>
+                    <button type="button" onClick={this.handleClickDetails}>
+                      \/
+                    </button>
+                    <ConnectedAuthorization
+                      render
+                      withRoleAdmin={(
+                        <button
+                          className="btn btn-submit"
+                          type="button"
+                          disabled={order.status === 'realized'}
+                          onClick={() => handleClick(order.id, token)}
+                        >
+                          Realise
+                        </button>
 )}
-                />
-              </tr>
-              <tr key={order.date}>
-                <ProductsInOrder order={order} />
-              </tr>
-            </tbody>
-          ))}
+                    />
+                  </td>
+                </tr>
+                {this.state.details ? (
+                  <tr key={order.date}>
+                    <ProductsInOrder order={order} />
+                  </tr>
+                ) : null}
+              </React.Fragment>
+            ))}
+          </tbody>
         </table>
       </div>
     );
