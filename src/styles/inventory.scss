@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .inventory {
   text-align: center;
 }
@@ -32,7 +34,7 @@
     border: none;
     outline: none;
     font-size: 20px;
-    background-color: #e7e6e6;
+    background-color: $background-color;
     cursor: pointer;
   }
 }

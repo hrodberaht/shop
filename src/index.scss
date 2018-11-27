@@ -1,3 +1,4 @@
+@import './styles/variables.scss';
 @import './styles/login-form.scss';
 @import './styles/wishlist.scss';
 @import './styles/dashboard.scss';
@@ -19,7 +20,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(231, 230, 230);
+  background-color: $background-color;
 }
 
 h3 {

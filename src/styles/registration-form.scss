@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .registration {
   &-form {
     text-align: center;
@@ -12,7 +14,7 @@
   &-select {
     outline: none;
     width: 200px;
-    background-color: #e7e6e6;
+    background-color: $background-color;
   }
 
   &-link {

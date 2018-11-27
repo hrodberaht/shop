@@ -1,13 +1,15 @@
+@import './variables.scss';
+
 .form-input {
   margin: 10px;
   outline: none;
   border: 0;
   border-bottom: 2px solid darkgray;
-  background-color: rgb(231, 230, 230);
+  background-color: $background-color;
 }
 
 .form-input:focus {
-  background-color: rgb(231, 230, 230);
+  background-color: $background-color;
   outline: none;
   border-bottom: 2px solid blue;
 }

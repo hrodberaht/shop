@@ -1,5 +1,7 @@
+@import './variables';
+
 .sidebar {
-  background-color: #364150;
+  background-color: $sidebar-background;
   text-transform: uppercase;
   min-width: 250px;
   max-width: 250px;
