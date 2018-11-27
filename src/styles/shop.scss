@@ -5,10 +5,15 @@
 
 .product {
   &s-list {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
+
+    @media (min-width: 570px) {
+      display: flex;
+      justify-content: flex-start;
+    }
 
     #stock-error {
       text-align: center;
