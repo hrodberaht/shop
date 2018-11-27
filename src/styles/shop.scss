@@ -19,6 +19,7 @@
   }
 
   &-item {
+    box-shadow: 3px 3px 5px gray;
     padding: 20px;
     min-width: 220px;
     margin-bottom: 20px;
@@ -68,6 +69,7 @@
     &__buttons {
       .btn {
         width: 80px;
+        box-shadow: 3px 3px 5px gray;
       }
     }
 
