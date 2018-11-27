@@ -21,7 +21,7 @@ export default class Inventory extends Component {
             <span>Close</span>
           </button>
         ) : (
-          <button className="btn btn-primary" type="button" onClick={this.handleClick}>
+          <button className="btn btn-submit" type="button" onClick={this.handleClick}>
             <span>Add new item</span>
           </button>
         )}

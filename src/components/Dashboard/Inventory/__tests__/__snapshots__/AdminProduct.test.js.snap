@@ -46,8 +46,16 @@ exports[`<AdminProduct /> should change state after click button edit and show f
 <Fragment>
   <td
     className="edit-form"
-    colSpan="6"
+    colSpan="7"
   >
+    <button
+      className="btn btn-danger"
+      id="closeButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Close
+    </button>
     <Connect(ReduxForm)
       onSubmit={[Function]}
       product={
@@ -60,14 +68,6 @@ exports[`<AdminProduct /> should change state after click button edit and show f
         }
       }
     />
-    <button
-      className="btn btn-danger"
-      id="closeButton"
-      onClick={[Function]}
-      type="button"
-    >
-      Close
-    </button>
   </td>
 </Fragment>
 `;
