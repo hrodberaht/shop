@@ -1,0 +1,11 @@
+.btn-primary {
+  background-color: rgb(35, 170, 35);
+
+  &:hover {
+    background-color: lightgreen;
+  }
+
+  &:disabled {
+    background-color: rgb(200, 245, 200);
+  }
+}

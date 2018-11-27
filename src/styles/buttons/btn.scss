@@ -1,14 +1,14 @@
-@import './btn-primary.css';
-@import './btn-danger.css';
-@import './btn-submit.css';
+@import './btn-primary.scss';
+@import './btn-danger.scss';
+@import './btn-submit.scss';
 @import './btn-orders-detail.scss';
 
 .btn {
-  margin: 20px auto;
   border: 0;
-  color: white;
   outline: 0;
+  color: white;
   padding: 10px 20px;
+  margin: 20px auto;
   font-size: 1em;
   text-transform: uppercase;
   border-radius: 5px;

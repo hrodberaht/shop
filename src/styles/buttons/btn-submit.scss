@@ -1,0 +1,11 @@
+.btn-submit {
+  background-color: #5e8283;
+
+  &:hover {
+    background-color: rgb(122, 160, 161);
+  }
+
+  &:disabled {
+    background-color: rgb(156, 190, 192);
+  }
+}

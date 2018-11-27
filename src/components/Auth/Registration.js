@@ -119,7 +119,7 @@ export class Registration extends Component {
           <button className="btn btn-submit" type="submit" disabled={pristine}>
             Submit
           </button>
-          <div className="registartion-link">
+          <div className="registration-link">
             <Link to="/">Login</Link>
           </div>
         </form>

@@ -97,7 +97,7 @@ exports[`<Registration /> should render without crash 1`] = `
       Submit
     </button>
     <div
-      className="registartion-link"
+      className="registration-link"
     >
       <Link
         replace={false}
