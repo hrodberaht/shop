@@ -34,3 +34,21 @@
   background-color: #e7e6e6;
   cursor: pointer;
 }
+
+.product-form {
+  @media only screen and (min-width: 1299px) {
+    form {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        height: 40px;
+        margin: 30px 80px 0 0;
+      }
+
+      input {
+        width: 160px;
+      }
+    }
+  }
+}

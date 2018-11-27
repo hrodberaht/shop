@@ -1,5 +1,5 @@
 @import './styles/login-form.css';
-@import './styles/wishlist.css';
+@import './styles/wishlist.scss';
 @import './styles/dashboard.css';
 @import './styles/board.css';
 @import './styles/content.css';
@@ -20,4 +20,11 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(231, 230, 230);
+}
+
+h3 {
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #2b3542;
 }

@@ -1,25 +1,25 @@
 .registration-form {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .registration-form form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .registration-select {
-    outline: none;
-    width:200px;
-    background-color: #E7E6E6;
+  outline: none;
+  width: 200px;
+  background-color: #e7e6e6;
 }
 
 .registartion-link {
-    text-transform: uppercase;
-    font-size: 18px;
-    letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
-.registartion-link a:link, a:visited {
-    color: #364150;
+a:visited .registartion-link a:link {
+  color: #364150;
 }
