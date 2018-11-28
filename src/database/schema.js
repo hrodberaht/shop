@@ -15,7 +15,7 @@ const ProductType = new GraphQLObjectType({
     imgUrl: { type: GraphQLString },
     type: { type: GraphQLString },
     name: { type: GraphQLString },
-    price: { type: GraphQLInt },
+    price: { type: GraphQLString },
     inStock: { type: GraphQLInt },
   },
 });
