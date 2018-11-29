@@ -69,7 +69,11 @@ describe('<Cart />', () => {
       wrapper,
       props: { cartPosition, token },
     } = setup();
-    wrapper.instance().changeQuantity(cartPosition, token);
-    expect(wrapper.instance().props.change).toHaveBeenCalledWith(cartPosition, token);
+    const {
+      changeQuantity,
+      props: { change },
+    } = wrapper.instance();
+    changeQuantity(cartPosition, token);
+    expect(change).toHaveBeenCalledWith(cartPosition, token);
   });
 });

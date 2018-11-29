@@ -1,7 +1,7 @@
 import config from '../config/config';
 
 const tokenFromLocalStorage = localStorage.getItem('token');
-const dataFetcher = (url, method, token, params) => fetch(`${config.url}${url}`, {
+const dataFetcher = (url, method, params) => fetch(`${config.url}${url}`, {
   method,
   headers: {
     'Content-Type': 'application/json',

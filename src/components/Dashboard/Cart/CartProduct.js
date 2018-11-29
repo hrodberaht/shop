@@ -15,7 +15,7 @@ export default class CartProduct extends Component {
   handleOnChange = (e) => {
     const { product, changeQuantity } = this.props;
     const quantity = +e.target.value;
-    if (quantity < 1) {
+    if (quantity <= 0) {
       this.setState({ quantity: 1 });
     } else {
       this.setState({ quantity });

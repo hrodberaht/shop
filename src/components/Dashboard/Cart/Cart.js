@@ -32,8 +32,7 @@ export class Cart extends Component {
   };
 
   changeQuantity = (cartPosition) => {
-    const { change, token } = this.props;
-    change(cartPosition, token);
+    this.props.change(cartPosition);
   };
 
   handleClick = () => {
