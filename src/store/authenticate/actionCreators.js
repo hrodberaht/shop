@@ -34,11 +34,15 @@ export const login = (email, password) => dispatch => fetch(`${config.url}login`
 })
   .then(res => res.json())
   .then((res) => {
-    if (res.error) {
-      dispatch(loginFail(res.error));
+    const {
+      error, message, token, user,
+    } = res;
+    if (error) {
+      dispatch(loginFail(error));
     }
-    if (res.message) {
-      dispatch(loginSuccess(res.token, res.user));
+    if (message) {
+      dispatch(loginSuccess(token, user));
+      localStorage.setItem('token', token);
     }
   })
   .catch(() => {
