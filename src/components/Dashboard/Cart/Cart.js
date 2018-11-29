@@ -36,8 +36,6 @@ export class Cart extends Component {
     change(cartPosition, token);
   };
 
-  remove = product => this.props.removeFrom(product);
-
   handleClick = () => {
     const {
       emptyCart,
@@ -64,6 +62,7 @@ export class Cart extends Component {
 
   render() {
     const {
+      removeFrom,
       cart: { list, byId },
     } = this.props;
     return (
@@ -82,7 +81,7 @@ export class Cart extends Component {
               <CartProduct
                 key={byId[item].id}
                 product={byId[item]}
-                remove={this.remove}
+                remove={removeFrom}
                 changeQuantity={this.changeQuantity}
               />
             ))}

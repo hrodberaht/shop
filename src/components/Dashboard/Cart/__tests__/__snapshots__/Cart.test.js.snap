@@ -41,7 +41,7 @@ exports[`<Cart /> should render witout crash 1`] = `
             "totalPrice": 800,
           }
         }
-        remove={[Function]}
+        remove={[MockFunction]}
       />
       <CartProduct
         changeQuantity={[Function]}
@@ -56,7 +56,7 @@ exports[`<Cart /> should render witout crash 1`] = `
             "totalPrice": 4800,
           }
         }
-        remove={[Function]}
+        remove={[MockFunction]}
       />
     </tbody>
   </table>

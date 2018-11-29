@@ -64,11 +64,6 @@ describe('<Cart />', () => {
     wrapper.instance().sumaryPrice();
     expect(wrapper.instance().sumaryPrice()).toBe(5600);
   });
-  it('remove should call removeFrom', () => {
-    const { wrapper } = setup();
-    wrapper.instance().remove();
-    expect(wrapper.instance().props.removeFrom).toHaveBeenCalled();
-  });
   it('remove should call change', () => {
     const {
       wrapper,

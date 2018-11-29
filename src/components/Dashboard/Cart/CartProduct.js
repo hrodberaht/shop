@@ -20,7 +20,7 @@ export default class CartProduct extends Component {
     } else {
       this.setState({ quantity });
       const totalPrice = calculateTotalPrice(quantity, product.price);
-      const cartPosition = Object.assign(product, { pcsOrder: quantity, totalPrice });
+      const cartPosition = { ...product, ...{ pcsOrder: quantity, totalPrice } };
       changeQuantity(cartPosition);
     }
   };
