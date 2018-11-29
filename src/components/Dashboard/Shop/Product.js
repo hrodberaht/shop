@@ -67,12 +67,12 @@ export class Product extends Component {
     const idOfProduct = productsInCart.find(item => item === product.productId);
     if (idOfProduct) {
       const orderPositionId = list.find(item => byId[item].productId === idOfProduct);
-      const combProd = {
+      const combinedPcsProduct = {
         orderPositionId,
         pcsOrder: byId[orderPositionId].pcsOrder + pcsOrder,
         totalPrice: byId[orderPositionId].totalPrice + totalPrice,
       };
-      updateProduct(combProd, token);
+      updateProduct(combinedPcsProduct, token);
     } else {
       addProduct(product, token);
     }

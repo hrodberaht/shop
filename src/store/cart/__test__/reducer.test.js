@@ -20,8 +20,6 @@ describe('cart reducer', () => {
     totalPrice: 1600,
   };
 
-  const error = 'error';
-
   const stateAfterAddProduct = {
     byId: {
       1: {
@@ -41,34 +39,6 @@ describe('cart reducer', () => {
     },
   };
 
-  const stateAfterUpdateProduct = {
-    byId: {
-      1: {
-        id: '1',
-        productId: '2',
-        name: 'fx',
-        price: 400,
-        pcs: 4,
-        totalPrice: 1600,
-      },
-    },
-    list: ['1'],
-    productsInCart: ['2'],
-    meta: {
-      loaded: false,
-      errors: [],
-    },
-  };
-
-  const stateAfterError = {
-    byId: {},
-    list: [],
-    productsInCart: [],
-    meta: {
-      loaded: false,
-      errors: [error],
-    },
-  };
   it('should return initial state', () => {
     expect(reducer(undefined, initialState)).toEqual(initialState);
   });
@@ -78,17 +48,46 @@ describe('cart reducer', () => {
       stateAfterAddProduct,
     );
   });
+
   it('should handle REMOVE_FROM_CART', () => {
     expect(reducer(stateAfterAddProduct, action.removeFromCart(product))).toEqual(initialState);
   });
 
   it('should handle UPDATE_IN_CART', () => {
+    const stateAfterUpdateProduct = {
+      byId: {
+        1: {
+          id: '1',
+          productId: '2',
+          name: 'fx',
+          price: 400,
+          pcs: 4,
+          totalPrice: 1600,
+        },
+      },
+      list: ['1'],
+      productsInCart: ['2'],
+      meta: {
+        loaded: false,
+        errors: [],
+      },
+    };
     expect(reducer(stateAfterAddProduct, action.updateProductInCartSuccess(updateProduct))).toEqual(
       stateAfterUpdateProduct,
     );
   });
 
   it('should handle ERRORS_IN_CART', () => {
+    const error = 'error';
+    const stateAfterError = {
+      byId: {},
+      list: [],
+      productsInCart: [],
+      meta: {
+        loaded: false,
+        errors: [error],
+      },
+    };
     expect(reducer(initialState, action.errorInCart(error))).toEqual(stateAfterError);
   });
 
