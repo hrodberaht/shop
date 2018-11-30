@@ -17,7 +17,7 @@ export default class CartProduct extends Component {
     const quantity = e.target.value > 1 ? +e.target.value : 1;
     this.setState({ quantity });
     const totalPrice = calculateTotalPrice(quantity, product.price);
-    const cartPosition = { ...product, ...{ pcsOrder: quantity, totalPrice } };
+    const cartPosition = { ...product, pcsOrder: quantity, totalPrice };
     changeQuantity(cartPosition);
   };
 

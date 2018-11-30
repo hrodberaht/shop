@@ -14,7 +14,11 @@ import {
 import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
-import { getProductsInCart } from '../../../store/cart/selectors';
+import {
+  getProductsInCart,
+  getAllOrderPositionsInCart,
+  getIdsProductsInCart,
+} from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
 import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
 
@@ -58,25 +62,22 @@ export class Product extends Component {
 
   handleClickToCart = (product) => {
     const {
-      addProduct,
-      updateProduct,
-      cart: { productsInCart, list, byId },
-      token,
+      addProduct, updateProduct, idsProductsInCart, orderPositions,
     } = this.props;
     const { pcsOrder, totalPrice } = product;
-    const idOfProduct = productsInCart.find(item => item === product.productId);
-    if (idOfProduct) {
-      const orderPositionId = list.find(item => byId[item].productId === idOfProduct);
+    if (idsProductsInCart.includes(product.productId)) {
+      const orderPositionId = orderPositions.find(
+        position => position.productId === product.productId,
+      );
       const combinedPcsProduct = {
-        orderPositionId,
-        pcsOrder: byId[orderPositionId].pcsOrder + pcsOrder,
-        totalPrice: byId[orderPositionId].totalPrice + totalPrice,
+        orderPositionId: orderPositionId.id,
+        pcsOrder: orderPositionId.pcsOrder + pcsOrder,
+        totalPrice: orderPositionId.totalPrice + totalPrice,
       };
-      updateProduct(combinedPcsProduct, token);
+      updateProduct(combinedPcsProduct);
     } else {
-      addProduct(product, token);
+      addProduct(product);
     }
-
     this.showAddedToCart();
   };
 
@@ -167,9 +168,10 @@ Product.propTypes = {
     price: PropTypes.string,
     inStock: PropTypes.string,
   }).isRequired,
+  orderPositions: PropTypes.arrayOf.isRequired,
+  idsProductsInCart: PropTypes.arrayOf.isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
-  cart: PropTypes.objectOf(PropTypes.objectOf),
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,
@@ -178,13 +180,14 @@ Product.propTypes = {
 Product.defaultProps = {
   addProduct: null,
   token: null,
-  cart: {},
 };
 
 const mapStateToProps = state => ({
   token: getAuthToken(state),
   cart: getProductsInCart(state),
   userId: getAuthUserId(state),
+  orderPositions: getAllOrderPositionsInCart(state),
+  idsProductsInCart: getIdsProductsInCart(state),
 });
 export default withRouter(
   connect(

@@ -23,11 +23,7 @@ export class Cart extends Component {
     const {
       cart: { list, byId },
     } = this.props;
-    if (list.length === 0) return 0;
-    const sumary = list.length > 1
-      ? list.reduce((id, nextId) => byId[id].totalPrice + byId[nextId].totalPrice)
-      : byId[list[0]].totalPrice;
-    return sumary;
+    return list.reduce((sum, id) => sum + byId[id].totalPrice, 0);
   };
 
   changeQuantity = (cartPosition) => {
