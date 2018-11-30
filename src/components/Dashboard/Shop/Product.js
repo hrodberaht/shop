@@ -61,20 +61,9 @@ export class Product extends Component {
   redirectToCart = () => this.props.history.push('/cart');
 
   handleClickToCart = (product) => {
-    const {
-      addProduct, updateProduct, idsProductsInCart, orderPositions,
-    } = this.props;
-    const { pcsOrder, totalPrice } = product;
+    const { addProduct, updateProduct, idsProductsInCart } = this.props;
     if (idsProductsInCart.includes(product.productId)) {
-      const orderPositionId = orderPositions.find(
-        position => position.productId === product.productId,
-      );
-      const combinedPcsProduct = {
-        orderPositionId: orderPositionId.id,
-        pcsOrder: orderPositionId.pcsOrder + pcsOrder,
-        totalPrice: orderPositionId.totalPrice + totalPrice,
-      };
-      updateProduct(combinedPcsProduct);
+      updateProduct(product);
     } else {
       addProduct(product);
     }
@@ -168,7 +157,6 @@ Product.propTypes = {
     price: PropTypes.string,
     inStock: PropTypes.string,
   }).isRequired,
-  orderPositions: PropTypes.arrayOf.isRequired,
   idsProductsInCart: PropTypes.arrayOf.isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
