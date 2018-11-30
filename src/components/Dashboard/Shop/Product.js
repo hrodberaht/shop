@@ -56,11 +56,11 @@ export class Product extends Component {
 
   redirectToCart = () => this.props.history.push('/cart');
 
-  handleClick = (product) => {
+  handleClickToCart = (product) => {
     const {
       addProduct,
-      cart: { productsInCart, list, byId },
       updateProduct,
+      cart: { productsInCart, list, byId },
       token,
     } = this.props;
     const { pcsOrder, totalPrice } = product;
@@ -134,7 +134,7 @@ $
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => this.handleClick(productToCart)}
+              onClick={() => this.handleClickToCart(productToCart)}
               disabled={this.moreThanInStock()}
             >
               <FontAwesomeIcon icon={faCartPlus} />

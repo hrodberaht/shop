@@ -23,11 +23,10 @@ export class Cart extends Component {
     const {
       cart: { list, byId },
     } = this.props;
-    let sumary = 0;
-    list.map((item) => {
-      sumary += byId[item].totalPrice;
-      return sumary;
-    });
+    if (list.length === 0) return 0;
+    const sumary = list.length > 1
+      ? list.reduce((id, nextId) => byId[id].totalPrice + byId[nextId].totalPrice)
+      : byId[list[0]].totalPrice;
     return sumary;
   };
 

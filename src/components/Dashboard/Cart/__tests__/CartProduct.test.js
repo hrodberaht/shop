@@ -46,19 +46,11 @@ describe('<CartProduct />', () => {
     wrapper.find('input').simulate('change', { target: { value: '3' } });
     expect(wrapper.instance().props.changeQuantity).toHaveBeenCalledWith(productAfterUpdate);
   });
-  it('state should be 1 if input value is < 1 and pscOrder is >1 and call changeQuantity', () => {
+  it('state should be 1 if input value is < 1 and call changeQuantity', () => {
     const { wrapper } = setup();
     wrapper.find('input').simulate('change', { target: { value: '-1' } });
     expect(wrapper.state().quantity).toBe(1);
     expect(wrapper.instance().props.changeQuantity).toHaveBeenCalled();
-  });
-
-  it('state should be 1 if input value is < 1 and pscOrder is 1 and not call changeQuantity', () => {
-    const { wrapper } = setup();
-    wrapper.setState({ quantity: 1 });
-    wrapper.find('input').simulate('change', { target: { value: '-1' } });
-    expect(wrapper.state().quantity).toBe(1);
-    expect(wrapper.instance().props.changeQuantity).not.toHaveBeenCalled();
   });
 
   it('state should be this same as input value if input value is >= 1 and call changeQuantity', () => {

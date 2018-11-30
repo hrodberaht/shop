@@ -14,15 +14,11 @@ export default class CartProduct extends Component {
 
   handleOnChange = (e) => {
     const { product, changeQuantity } = this.props;
-    const quantity = +e.target.value;
-    if (quantity <= 0) {
-      this.setState({ quantity: 1 });
-    } else {
-      this.setState({ quantity });
-      const totalPrice = calculateTotalPrice(quantity, product.price);
-      const cartPosition = { ...product, ...{ pcsOrder: quantity, totalPrice } };
-      changeQuantity(cartPosition);
-    }
+    const quantity = e.target.value > 1 ? +e.target.value : 1;
+    this.setState({ quantity });
+    const totalPrice = calculateTotalPrice(quantity, product.price);
+    const cartPosition = { ...product, ...{ pcsOrder: quantity, totalPrice } };
+    changeQuantity(cartPosition);
   };
 
   render() {
