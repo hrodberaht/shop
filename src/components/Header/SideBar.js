@@ -34,6 +34,14 @@ export class SideBar extends Component {
             render
             withRoleAdmin={(
               <li className="item">
+                <NavLink to="/analytics">Analytics</NavLink>
+              </li>
+)}
+          />
+          <ConnectedAuthorization
+            render
+            withRoleAdmin={(
+              <li className="item">
                 <NavLink to="/inventory">Inventory</NavLink>
               </li>
 )}

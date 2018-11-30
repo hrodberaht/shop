@@ -8,6 +8,7 @@ import Authorization from '../Auth/Authorization';
 import Wishlist from './Wishlist/Wishlist';
 import HeadBar from '../Header/HeadBar';
 import SideBar from '../Header/SideBar';
+import Analytics from '../Analytics/Analytics';
 
 export default class Dashboard extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class Dashboard extends Component {
                   <Route path="/orders" component={OrdersList} />
                   <Route path="/cart" component={Cart} />
                   <Route path="/wishlist" component={Wishlist} />
+                  <Route path="/analytics" component={Analytics} />
                   <Authorization
                     render
                     withRoleAdmin={<Route path="/inventory" component={Inventory} />}
