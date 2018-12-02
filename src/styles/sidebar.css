@@ -1,39 +1,42 @@
 .sidebar {
-    background-color: #364150;
-    text-transform: uppercase;
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
+  background-color: #364150;
+  text-transform: uppercase;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
 }
+
+.sidebarHide {
+  position: absolute;
+  left: -250px;
+}
+
 .sidebar__list {
-    list-style: none;
-    display: block;
+  list-style: none;
+  display: block;
 }
 
 .sidebar__list hr {
-    color: darkgray;
-    width: 150px;
-    margin: 0 0 20px 0; 
+  color: darkgray;
+  width: 150px;
+  margin: 0 0 20px 0;
 }
 
 .sidebar__list .item {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-
 .sidebar__list .item a {
-    text-decoration: none;
-    color: rgb(167, 162, 162);
-    font-size: 24px;
-    
+  text-decoration: none;
+  color: rgb(167, 162, 162);
+  font-size: 24px;
 }
 
 .sidebar__list .item a:hover {
-    color: rgb(219, 212, 212);
-    
+  color: rgb(219, 212, 212);
 }
 
 .active {
-    font-weight: bolder;
-    letter-spacing: 2px;
+  font-weight: bolder;
+  letter-spacing: 2px;
 }

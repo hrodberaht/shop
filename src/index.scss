@@ -4,7 +4,7 @@
 @import './styles/board.css';
 @import './styles/content.css';
 @import './styles/sidebar.css';
-@import './styles/headbar.css';
+@import './styles/headbar.scss';
 @import './styles/shop.css';
 @import './styles/buttons/btn.css';
 @import './styles/registration-form.css';
@@ -16,8 +16,7 @@
 @import './styles/edit-product.css';
 
 body {
-    margin: 0;
-    padding: 0; 
-    background-color: rgb(231, 230, 230);
+  margin: 0;
+  padding: 0;
+  background-color: rgb(231, 230, 230);
 }
-

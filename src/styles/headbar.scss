@@ -1,0 +1,13 @@
+.headbar {
+  height: 25px;
+  padding: 15px;
+
+  &__icons {
+    button {
+      font-size: 30px;
+      border: none;
+      outline: none;
+      background-color: #e7e6e6;
+    }
+  }
+}
