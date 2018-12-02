@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SellChart from './SellChart';
 import CompaniesBuyChart from './CompaniesBuyChart';
+import { fetchSoldProducts } from '../../store/charts/actionCreators';
 
-export default class Analytics extends Component {
+export class Analytics extends Component {
   dataSellChart = [
     {
       name: 'Prod1',
@@ -23,6 +25,10 @@ export default class Analytics extends Component {
     },
   ];
 
+  componentDidMount() {
+    this.props.soldProducts();
+  }
+
   render() {
     const { dataSellChart } = this.props;
     return (
@@ -34,6 +40,12 @@ export default class Analytics extends Component {
   }
 }
 
+export default connect(
+  null,
+  { soldProducts: fetchSoldProducts },
+)(Analytics);
+
 Analytics.propTypes = {
   dataSellChart: PropTypes.arrayOf().isRequired,
+  soldProducts: PropTypes.func.isRequired,
 };
