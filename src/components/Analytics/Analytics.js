@@ -4,27 +4,9 @@ import PropTypes from 'prop-types';
 import SellChart from './SellChart';
 import CompaniesBuyChart from './CompaniesBuyChart';
 import { fetchSoldProducts } from '../../store/charts/actionCreators';
+import { getChartsDataSoldProducts } from '../../store/charts/selectors';
 
 export class Analytics extends Component {
-  dataSellChart = [
-    {
-      name: 'Prod1',
-      y: 62.0,
-    },
-    {
-      name: 'Prod2',
-      y: 18.0,
-    },
-    {
-      name: 'Prod3',
-      y: 15.0,
-    },
-    {
-      name: 'Prod4',
-      y: 5.0,
-    },
-  ];
-
   componentDidMount() {
     this.props.soldProducts();
   }
@@ -40,12 +22,16 @@ export class Analytics extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  dataSellChart: getChartsDataSoldProducts(state),
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { soldProducts: fetchSoldProducts },
 )(Analytics);
 
 Analytics.propTypes = {
-  dataSellChart: PropTypes.arrayOf().isRequired,
+  dataSellChart: PropTypes.arrayOf(PropTypes.object).isRequired,
   soldProducts: PropTypes.func.isRequired,
 };

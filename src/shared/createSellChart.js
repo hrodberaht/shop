@@ -8,11 +8,11 @@ const sellChart = data => Highcharts.chart('sell-chart', {
     type: 'pie',
   },
   title: {
-    text: 'Fruit Consumption',
+    text: 'Sold products',
   },
   series: [
     {
-      name: 'Brands',
+      name: 'pcs',
       colorByPoint: true,
       data,
     },
