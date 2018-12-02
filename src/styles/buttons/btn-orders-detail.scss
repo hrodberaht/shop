@@ -1,7 +1,9 @@
+@import '../variables';
+
 .btn-orders-detail {
   font-size: 24px;
   outline: none;
   border: none;
-  background-color: #e7e6e6;
+  background-color: $background-color;
   cursor: pointer;
 }

@@ -1,25 +1,26 @@
-@import './styles/login-form.css';
+@import './styles/variables.scss';
+@import './styles/login-form.scss';
 @import './styles/wishlist.scss';
-@import './styles/dashboard.css';
-@import './styles/board.css';
-@import './styles/content.css';
-@import './styles/sidebar.css';
+@import './styles/dashboard.scss';
+@import './styles/board.scss';
+@import './styles/content.scss';
+@import './styles/sidebar.scss';
 @import './styles/headbar.scss';
-@import './styles/shop.css';
-@import './styles/buttons/btn.css';
-@import './styles/registration-form.css';
+@import './styles/shop.scss';
+@import './styles/buttons/btn.scss';
+@import './styles/registration-form.scss';
 @import './styles/cart.scss';
-@import './styles/cart-popup.css';
-@import './styles/table.css';
+@import './styles/cart-popup.scss';
+@import './styles/table.scss';
 @import './styles/inventory.scss';
-@import './styles/form.css';
+@import './styles/form.scss';
 @import './styles/edit-product.scss';
 @import './styles/orders.scss';
 
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(231, 230, 230);
+  background-color: $background-color;
 }
 
 h3 {

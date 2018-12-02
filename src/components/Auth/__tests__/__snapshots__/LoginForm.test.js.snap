@@ -51,7 +51,7 @@ exports[`<LoginForm /> should render witout crash 1`] = `
       />
     </form>
     <div
-      className="registartion-link "
+      className="registration-link "
     >
       <Link
         replace={false}

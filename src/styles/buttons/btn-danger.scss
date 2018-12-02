@@ -1,0 +1,12 @@
+.btn-danger {
+  background-color: darkred;
+  box-shadow: 3px 3px 5px gray;
+
+  &:hover {
+    background-color: red;
+  }
+
+  &:disabled {
+    background-color: rgb(252, 161, 161);
+  }
+}
