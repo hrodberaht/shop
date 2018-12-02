@@ -5,7 +5,7 @@ exports[`<Inventory /> should render witout crash 1`] = `
   className="inventory"
 >
   <button
-    className="btn btn-primary"
+    className="btn btn-submit"
     onClick={[Function]}
     type="button"
   >

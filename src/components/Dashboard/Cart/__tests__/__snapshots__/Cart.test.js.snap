@@ -60,21 +60,21 @@ exports[`<Cart /> should render witout crash 1`] = `
       />
     </tbody>
   </table>
-  <p
+  <div
     className="cart__sumary"
   >
-    <span>
+    <p>
       $
-    </span>
-    5600
-  </p>
-  <button
-    className="btn btn-primary"
-    disabled={false}
-    onClick={[Function]}
-    type="button"
-  >
-    Buy
-  </button>
+      5600
+    </p>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Buy
+    </button>
+  </div>
 </div>
 `;

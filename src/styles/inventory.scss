@@ -1,0 +1,54 @@
+.inventory {
+  text-align: center;
+}
+
+.inventory > button {
+  width: 200px;
+}
+
+.inventory > .btn-danger {
+  width: 100px;
+}
+
+.admin-product__list {
+  hr {
+    max-width: 600px;
+    border: 0;
+    border: 1px solid lightblue;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .error-text {
+    font-size: 12px;
+  }
+}
+
+.admin-product__button {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  background-color: #e7e6e6;
+  cursor: pointer;
+}
+
+.product-form {
+  @media only screen and (min-width: 1299px) {
+    form {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        height: 40px;
+        margin: 30px 80px 0 0;
+      }
+
+      input {
+        width: 160px;
+      }
+    }
+  }
+}

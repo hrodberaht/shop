@@ -88,18 +88,20 @@ export class Cart extends Component {
             ))}
           </tbody>
         </table>
-        <p className="cart__sumary">
-          <span>$</span>
-          {this.sumaryPrice()}
-        </p>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={this.handleClick}
-          disabled={list.length === 0}
-        >
-          Buy
-        </button>
+        <div className="cart__sumary">
+          <p>
+$
+            {this.sumaryPrice()}
+          </p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={this.handleClick}
+            disabled={list.length === 0}
+          >
+            Buy
+          </button>
+        </div>
       </div>
     );
   }

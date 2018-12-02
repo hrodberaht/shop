@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import ConnectedAddProductForm from './AddProductForm';
 import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/authenticate/selectors';
@@ -36,8 +38,7 @@ export class AdminProduct extends Component {
     if (this.state.toggleEdit) {
       return (
         <React.Fragment>
-          <td className="edit-form" colSpan="6">
-            <ConnectedAddProductForm product={product} onSubmit={this.submit} />
+          <td className="edit-form" colSpan="7">
             <button
               id="closeButton"
               className="btn btn-danger"
@@ -46,6 +47,7 @@ export class AdminProduct extends Component {
             >
               Close
             </button>
+            <ConnectedAddProductForm product={product} onSubmit={this.submit} />
           </td>
         </React.Fragment>
       );
@@ -62,17 +64,17 @@ export class AdminProduct extends Component {
         <td>
           <button
             id="editButton"
-            className="btn btn-primary"
+            className="admin-product__button"
             type="button"
             onClick={this.handleEditClick}
           >
-            Edit
+            <FontAwesomeIcon icon={faEdit} />
           </button>
         </td>
         <td>
           <button
             id="removeButton"
-            className="btn btn-danger"
+            className="admin-product__button"
             type="button"
             onClick={() => this.handleRemoveClick(id)}
             disabled={remove}

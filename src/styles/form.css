@@ -1,26 +1,24 @@
 .form-input {
-    margin: 10px;
-    outline: none;
-    border: 0px;
-    border-bottom: 2px solid darkgray;
-    background-color: rgb(231, 230, 230);
+  margin: 10px;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid darkgray;
+  background-color: rgb(231, 230, 230);
 }
 
 .form-input:focus {
-    background-color: rgb(231, 230, 230);
-    outline: none;
-    border-bottom: 2px solid blue;
+  background-color: rgb(231, 230, 230);
+  outline: none;
+  border-bottom: 2px solid blue;
 }
 
 .error-text {
-    color: red;
-    letter-spacing: 1px;
-
+  color: red;
+  letter-spacing: 1px;
 }
 
 label {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold; 
-    
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
