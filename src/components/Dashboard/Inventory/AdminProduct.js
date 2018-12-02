@@ -30,7 +30,7 @@ export class AdminProduct extends Component {
     const {
       product,
       product: {
-        id, name, type, price, inStock, remove,
+        id, imgUrl, name, type, price, inStock, remove,
       },
     } = this.props;
     if (this.state.toggleEdit) {
@@ -53,6 +53,9 @@ export class AdminProduct extends Component {
     return (
       <React.Fragment>
         <td>{name}</td>
+        <td>
+          <img src={imgUrl} alt={type} />
+        </td>
         <td>{type}</td>
         <td>{+price}</td>
         <td>{+inStock}</td>

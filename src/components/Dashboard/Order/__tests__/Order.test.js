@@ -8,6 +8,8 @@ const defaultProps = {
     totalPrice: 400,
     status: 'in-progress',
   },
+  handleClick: jest.fn(),
+  token: '',
 };
 const setup = buildSetup(Order, defaultProps);
 

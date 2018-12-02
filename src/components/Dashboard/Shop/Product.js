@@ -88,7 +88,7 @@ export class Product extends Component {
   render() {
     const {
       product: {
-        id, name, type, price, inStock,
+        id, imgUrl, name, type, price, inStock,
       },
     } = this.props;
     const { pcsOrder, error, toggleAddedToCart } = this.state;
@@ -104,6 +104,7 @@ export class Product extends Component {
       <div className="product-item">
         <h3>{name}</h3>
         <hr />
+        <img className="product-item__image" src={imgUrl} alt={type} />
         <div className="product-desc">
           <h5>{type}</h5>
           <p className="product-desc__price">

@@ -1,152 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OrderList /> should render if loaded true  1`] = `
-<div>
-  <table>
-    <tbody
-      key="e1oPVJh"
+<table>
+  <tbody>
+    <tr
+      className="order-table-title"
     >
-      <tr
-        className="order-table-title"
-      >
-        <th>
-          Id:
-        </th>
-        <th>
-          Person:
-        </th>
-        <th>
-          Date:
-        </th>
-        <th>
-          Total price:
-        </th>
-        <th>
-          Status:
-        </th>
-        <Connect(Authorization)
-          render={true}
-          withRoleAdmin={
-            <th>
-              Change status:
-            </th>
-          }
-        />
-      </tr>
-      <tr
-        className="order-table"
-      >
-        <Order
-          order={
+      <th>
+        Id:
+      </th>
+      <th>
+        Person:
+      </th>
+      <th>
+        Date:
+      </th>
+      <th>
+        Total price:
+      </th>
+      <th>
+        Status:
+      </th>
+      <th>
+        Actions:
+      </th>
+      <Connect(Authorization)
+        render={true}
+        withRoleAdmin={
+          <th>
+            Admin:
+          </th>
+        }
+      />
+    </tr>
+    <Order
+      handleClick={[MockFunction]}
+      key="e1oPVJh"
+      order={
+        Object {
+          "companyId": "company-2",
+          "date": "2018-11-02T18:03:36.535Z",
+          "id": "e1oPVJh",
+          "orderPositionIds": Array [
+            "Ld6GsMELf",
+            "IQW79vU4W",
+            "4VgGGnrnV",
+          ],
+          "person": "Ben Morrison",
+          "productsOrder": Array [
             Object {
-              "companyId": "company-2",
-              "date": "2018-11-02T18:03:36.535Z",
-              "id": "e1oPVJh",
-              "orderPositionIds": Array [
-                "Ld6GsMELf",
-                "IQW79vU4W",
-                "4VgGGnrnV",
-              ],
-              "person": "Ben Morrison",
-              "productsOrder": Array [
-                Object {
-                  "id": "Ld6GsMELf",
-                  "name": "ZX3",
-                  "pcsOrder": 1,
-                  "price": 400,
-                  "productId": "product-1",
-                  "totalPrice": 400,
-                },
-                Object {
-                  "id": "IQW79vU4W",
-                  "name": "ZX5",
-                  "pcsOrder": 1,
-                  "price": 600,
-                  "productId": "product-2",
-                  "totalPrice": 600,
-                },
-                Object {
-                  "id": "4VgGGnrnV",
-                  "name": "ZX1",
-                  "pcsOrder": 8,
-                  "price": 200,
-                  "productId": "product-3",
-                  "totalPrice": 1600,
-                },
-              ],
-              "status": "realized",
-              "totalPrice": 2600,
-              "userId": "user-3",
-            }
-          }
-        />
-        <Connect(Authorization)
-          render={true}
-          withRoleAdmin={
-            <td>
-              <button
-                className="btn btn-submit"
-                disabled={true}
-                onClick={[Function]}
-                type="button"
-              >
-                Realise
-              </button>
-            </td>
-          }
-        />
-      </tr>
-      <tr
-        key="2018-11-02T18:03:36.535Z"
-      >
-        <ProductsInOrder
-          order={
+              "id": "Ld6GsMELf",
+              "name": "ZX3",
+              "pcsOrder": 1,
+              "price": 400,
+              "productId": "product-1",
+              "totalPrice": 400,
+            },
             Object {
-              "companyId": "company-2",
-              "date": "2018-11-02T18:03:36.535Z",
-              "id": "e1oPVJh",
-              "orderPositionIds": Array [
-                "Ld6GsMELf",
-                "IQW79vU4W",
-                "4VgGGnrnV",
-              ],
-              "person": "Ben Morrison",
-              "productsOrder": Array [
-                Object {
-                  "id": "Ld6GsMELf",
-                  "name": "ZX3",
-                  "pcsOrder": 1,
-                  "price": 400,
-                  "productId": "product-1",
-                  "totalPrice": 400,
-                },
-                Object {
-                  "id": "IQW79vU4W",
-                  "name": "ZX5",
-                  "pcsOrder": 1,
-                  "price": 600,
-                  "productId": "product-2",
-                  "totalPrice": 600,
-                },
-                Object {
-                  "id": "4VgGGnrnV",
-                  "name": "ZX1",
-                  "pcsOrder": 8,
-                  "price": 200,
-                  "productId": "product-3",
-                  "totalPrice": 1600,
-                },
-              ],
-              "status": "realized",
-              "totalPrice": 2600,
-              "userId": "user-3",
-            }
-          }
-        />
-      </tr>
-    </tbody>
-  </table>
-</div>
+              "id": "IQW79vU4W",
+              "name": "ZX5",
+              "pcsOrder": 1,
+              "price": 600,
+              "productId": "product-2",
+              "totalPrice": 600,
+            },
+            Object {
+              "id": "4VgGGnrnV",
+              "name": "ZX1",
+              "pcsOrder": 8,
+              "price": 200,
+              "productId": "product-3",
+              "totalPrice": 1600,
+            },
+          ],
+          "status": "realized",
+          "totalPrice": 2600,
+          "userId": "user-3",
+        }
+      }
+      token=""
+    />
+  </tbody>
+</table>
 `;
 
 exports[`<OrderList /> should render without crash 1`] = `

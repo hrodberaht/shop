@@ -40,6 +40,7 @@
     "products": [
       {
         "id": "product-1",
+        "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Printer",
         "name": "ZX3",
         "price": "400",
@@ -47,6 +48,7 @@
       },
       {
         "id": "product-2",
+        "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Printer",
         "name": "ZX5",
         "price": "600",
@@ -54,6 +56,7 @@
       },
       {
         "id": "product-3",
+        "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Printer",
         "name": "ZX1",
         "price": "200",
@@ -61,6 +64,7 @@
       },
       {
         "id": "product-4",
+        "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Fax",
         "name": "F2",
         "price": "45",
@@ -68,6 +72,7 @@
       },
       {
         "id": "product-5",
+        "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Fax",
         "name": "F4",
         "price": "50",

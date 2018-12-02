@@ -1,32 +1,37 @@
 .inventory {
-    text-align: center;
+  text-align: center;
 }
 
-.inventory > button{
-    width: 200px;
+.inventory > button {
+  width: 200px;
 }
 
-.inventory > .btn-danger{
-    width: 100px;
+.inventory > .btn-danger {
+  width: 100px;
 }
 
 .admin-product__list button {
-    margin: 0;
-    padding: 10px 0;
-    width: 100px;
+  margin: 0;
+  padding: 10px 0;
+  width: 100px;
 }
 
 .admin-product__list .btn-danger {
-    width: 50px;
+  width: 50px;
 }
 
 .admin-product__list hr {
-    max-width: 600px;
-    border: 0;
-    border: 1px solid lightblue;  
+  max-width: 600px;
+  border: 0;
+  border: 1px solid lightblue;
 }
 
-.admin-product__list .error-text, .add-product-inventory .error-text {
-    font-size: 12px;
+.admin-product__list img {
+  width: 50px;
+  height: 50px;
 }
 
+.admin-product__list .error-text,
+.add-product-inventory .error-text {
+  font-size: 12px;
+}

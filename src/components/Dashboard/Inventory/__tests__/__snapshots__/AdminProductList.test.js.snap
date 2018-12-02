@@ -11,6 +11,9 @@ exports[`<AdminProductsList /> should render list product component if loaded tr
           Name:
         </th>
         <th>
+          Image:
+        </th>
+        <th>
           Type:
         </th>
         <th>
