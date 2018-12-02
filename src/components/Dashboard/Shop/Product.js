@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreator';
+import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
 import AddedToCart from '../Cart/AddedToCart';
-import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
+import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
-import { addToWishlist } from '../../../store/wishlist/actionCerator';
+import { addToWishlist } from '../../../store/wishlist/actionCerators';
 
 export class Product extends Component {
   state = {
@@ -44,10 +44,7 @@ export class Product extends Component {
     this.setState({ toggleAddedToCart: !toggleAddedToCart });
   };
 
-  moreThanInStock = () => {
-    if (this.state.error) return true;
-    return false;
-  };
+  moreThanInStock = () => (!!this.state.error);
 
   redirectToCart = () => this.props.history.push('/cart');
 

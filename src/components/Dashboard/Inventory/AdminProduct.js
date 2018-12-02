@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConnectedAddProductForm from './AddProductForm';
-import { removeProduct, updateProduct } from '../../../store/products/actionCreator';
-import { getAuthToken } from '../../../store/auth/selectors';
+import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
+import { getAuthToken } from '../../../store/authenticate/selectors';
 
 export class AdminProduct extends Component {
   state = {
@@ -33,9 +33,9 @@ export class AdminProduct extends Component {
         id, name, type, price, inStock, remove,
       },
     } = this.props;
-    return (
-      <React.Fragment>
-        {this.state.toggleEdit ? (
+    if (this.state.toggleEdit) {
+      return (
+        <React.Fragment>
           <td colSpan="6">
             <ConnectedAddProductForm product={product} onSubmit={this.submit} />
             <button
@@ -47,35 +47,36 @@ export class AdminProduct extends Component {
               Close
             </button>
           </td>
-        ) : (
-          <React.Fragment>
-            <td>{name}</td>
-            <td>{type}</td>
-            <td>{+price}</td>
-            <td>{+inStock}</td>
-            <td>
-              <button
-                id="editButton"
-                className="btn btn-primary"
-                type="button"
-                onClick={this.handleEditClick}
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                id="removeButton"
-                className="btn btn-danger"
-                type="button"
-                onClick={() => this.handleRemoveClick(id)}
-                disabled={remove}
-              >
-                X
-              </button>
-            </td>
-          </React.Fragment>
-        )}
+        </React.Fragment>
+      );
+    }
+    return (
+      <React.Fragment>
+        <td>{name}</td>
+        <td>{type}</td>
+        <td>{+price}</td>
+        <td>{+inStock}</td>
+        <td>
+          <button
+            id="editButton"
+            className="btn btn-primary"
+            type="button"
+            onClick={this.handleEditClick}
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button
+            id="removeButton"
+            className="btn btn-danger"
+            type="button"
+            onClick={() => this.handleRemoveClick(id)}
+            disabled={remove}
+          >
+            X
+          </button>
+        </td>
       </React.Fragment>
     );
   }

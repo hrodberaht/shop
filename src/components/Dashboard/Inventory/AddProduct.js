@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { reset } from 'redux-form';
 import ConnectedAddProductForm from './AddProductForm';
-import { addProduct } from '../../../store/products/actionCreator';
-import { getAuthToken } from '../../../store/auth/selectors';
+import { addProduct } from '../../../store/products/actionCreators';
+import { getAuthToken } from '../../../store/authenticate/selectors';
 
 export class AddProduct extends Component {
   submit = (values) => {

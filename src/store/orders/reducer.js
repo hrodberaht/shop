@@ -8,13 +8,13 @@ const initalState = {
 
 const orders = (state = initalState, action) => {
   switch (action.type) {
-    case types.FETCH_ORDERS_SUCCES:
+    case types.FETCH_ORDERS_SUCCESS:
       return { ...state, ...{ orders: action.orders, loaded: action.loaded } };
     case types.FETCH_ORDERS_ERROR:
       return { ...state, ...{ errors: action.errors } };
     case types.ADD_ORDER_ERROR:
       return { ...state, ...{ errors: action.errors } };
-    case types.ADD_ORDER_SUCCES:
+    case types.ADD_ORDER_SUCCESS:
       return { ...state, orders: action.orders };
     case types.CHANGE_STATUS:
       return {

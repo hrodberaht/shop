@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductInWhislist /> should render without crash 1`] = `
+exports[`ProductInWishlist /> should render without crash 1`] = `
 <tr>
   <td>
     ZX3

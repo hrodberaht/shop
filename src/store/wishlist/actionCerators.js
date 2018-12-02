@@ -1,19 +1,19 @@
 import * as types from './types';
 import config from '../../config/config';
 
-const addtoWishlistSucces = (product, userId) => ({
+const addtoWishlistSuccess = (product, userId) => ({
   type: types.ADD_TO_WISHLIST,
   product,
   userId,
 });
 
-const fetchWishlistSucces = products => ({
+const fetchWishlistSuccess = products => ({
   type: types.FETCH_WISHLIST,
   products,
   loaded: true,
 });
 
-const removeProductFromWishlistSucces = productId => ({
+const removeProductFromWishlistSuccess = productId => ({
   type: types.REMOVE_FROM_WISHLIST,
   productId,
 });
@@ -33,11 +33,11 @@ export const fetchWishlist = (userId, token) => dispatch => fetch(`${config.url}
   .then(res => res.json())
   .then((res) => {
     const products = res.find(prod => prod.userId === userId);
-    dispatch(fetchWishlistSucces(products));
+    dispatch(fetchWishlistSuccess(products));
   })
   .catch(error => dispatch(wishlistsErrors(error)));
 
-export const addToWishlist = (product, userId, token) => dispatch => fetch(`${config.url}Wishlists`, {
+export const addToWishlist = (product, userId, token) => dispatch => fetch(`${config.url}wishlists`, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
@@ -48,11 +48,11 @@ export const addToWishlist = (product, userId, token) => dispatch => fetch(`${co
   .then(res => res.json())
   .then((res) => {
     if (res.message) return;
-    dispatch(addtoWishlistSucces(res.product, res.userId));
+    dispatch(addtoWishlistSuccess(res.product, res.userId));
   })
   .catch(error => dispatch(wishlistsErrors(error)));
 
-export const removeProductWishlist = (productId, userId, token) => dispatch => fetch(`${config.url}Wishlists`, {
+export const removeProductWishlist = (productId, userId, token) => dispatch => fetch(`${config.url}wishlists`, {
   method: 'delete',
   headers: {
     'Content-Type': 'application/json',
@@ -62,6 +62,6 @@ export const removeProductWishlist = (productId, userId, token) => dispatch => f
 })
   .then(res => res.json())
   .then((res) => {
-    dispatch(removeProductFromWishlistSucces(res));
+    dispatch(removeProductFromWishlistSuccess(res));
   })
   .catch(error => dispatch(wishlistsErrors(error)));

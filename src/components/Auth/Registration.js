@@ -14,8 +14,7 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .required()
-    .min(6)
-    .max(16),
+    .min(6),
   companyId: yup.string().required(),
 });
 

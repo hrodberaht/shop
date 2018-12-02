@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ProductInWhislist extends Component {
+export default class ProductInWishlist extends Component {
   handleClick = () => {
     const {
       remove,
@@ -35,7 +35,7 @@ export default class ProductInWhislist extends Component {
   }
 }
 
-ProductInWhislist.propTypes = {
+ProductInWishlist.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
     type: PropTypes.string,

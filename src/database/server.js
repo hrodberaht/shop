@@ -192,7 +192,6 @@ server.get('/companies', async (req, res) => {
 
 server.post('/login', async (req, res) => {
   const response = await isAuth(req);
-  console.log(response);
   if (response) {
     return res.send(response);
   }

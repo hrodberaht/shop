@@ -10,10 +10,10 @@ describe('auth reducer', () => {
       user: {},
     });
   });
-  it('should handle LOGIN_SUCCES', () => {
+  it('should handle LOGIN_SUCCESS', () => {
     expect(
       auth([], {
-        type: types.LOGIN_SUCCES,
+        type: types.LOGIN_SUCCESS,
         isAuth: true,
         token: '1234',
       }),

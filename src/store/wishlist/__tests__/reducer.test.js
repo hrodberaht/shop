@@ -1,4 +1,4 @@
-import whislist from '../reducer';
+import wishlist from '../reducer';
 import * as types from '../types';
 
 const initialState = {
@@ -8,21 +8,21 @@ const initialState = {
   errors: null,
 };
 
-describe('whislist reducer', () => {
+describe('wishlist reducer', () => {
   it('should return the initial state', () => {
-    expect(whislist(undefined, {})).toEqual({
+    expect(wishlist(undefined, {})).toEqual({
       products: [],
       loaded: false,
       userId: null,
       errors: null,
     });
   });
-  it('should handle FETCH_WHISLIST', () => {
+  it('should handle FETCH_WISHLIST', () => {
     expect(
-      whislist(
+      wishlist(
         {},
         {
-          type: types.FETCH_WHISLIST,
+          type: types.FETCH_WISHLIST,
           products: { products: [] },
           loaded: true,
         },
@@ -41,10 +41,10 @@ describe('whislist reducer', () => {
       inStock: '30',
     };
     expect(
-      whislist(
+      wishlist(
         { products: [] },
         {
-          type: types.ADD_TO_WHISLIST,
+          type: types.ADD_TO_WISHLIST,
           product,
         },
       ),
@@ -67,13 +67,13 @@ describe('whislist reducer', () => {
       inStock: '50',
     };
     expect(
-      whislist(initialState, {
-        type: types.REMOVE_FROM_WHISLIST,
+      wishlist(initialState, {
+        type: types.REMOVE_FROM_WISHLIST,
         product,
       }),
     ).toEqual(expected);
   });
-  it('should handle ERROR_WHISLIST', () => {
+  it('should handle ERROR_WISHLIST', () => {
     const error = 'error';
     const expected = {
       products: [],
@@ -83,8 +83,8 @@ describe('whislist reducer', () => {
     };
 
     expect(
-      whislist(initialState, {
-        type: types.ERROR_WHISLIST,
+      wishlist(initialState, {
+        type: types.ERROR_WISHLIST,
         error,
       }),
     ).toEqual(expected);

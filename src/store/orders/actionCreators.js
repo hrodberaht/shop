@@ -1,8 +1,8 @@
 import * as types from './types';
 import config from '../../config/config';
 
-const fetchOrdersSucces = orders => ({
-  type: types.FETCH_ORDERS_SUCCES,
+const fetchOrdersSuccess = orders => ({
+  type: types.FETCH_ORDERS_SUCCESS,
   orders,
   loaded: true,
 });
@@ -13,8 +13,8 @@ const fetchOrdersError = error => ({
   loaded: false,
 });
 
-const addOrderSucces = orders => ({
-  type: types.ADD_ORDER_SUCCES,
+const addOrderSuccess = orders => ({
+  type: types.ADD_ORDER_SUCCESS,
   orders,
 });
 
@@ -37,7 +37,7 @@ export const fetchOrders = (userId, token) => dispatch => fetch(`${config.url}or
   },
 })
   .then(res => res.json())
-  .then(orders => dispatch(fetchOrdersSucces(orders)))
+  .then(orders => dispatch(fetchOrdersSuccess(orders)))
   .catch(error => dispatch(fetchOrdersError(error)));
 
 export const addOrderToDB = (order, token) => dispatch => fetch(`${config.url}orders`, {
@@ -49,7 +49,7 @@ export const addOrderToDB = (order, token) => dispatch => fetch(`${config.url}or
   body: JSON.stringify(order),
 })
   .then(res => res.json())
-  .then(res => dispatch(addOrderSucces(res)))
+  .then(res => dispatch(addOrderSuccess(res)))
   .catch(error => dispatch(addOrderError(error)));
 
 export const fetchChangeOrderStatus = (orderId, token) => dispatch => fetch(`${config.url}orders/${orderId}`, {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchWishlist, removeProductWishlist } from '../../../store/wishlist/actionCerator';
-import { getAuthToken, getAuthUserId } from '../../../store/auth/selectors';
+import { fetchWishlist, removeProductWishlist } from '../../../store/wishlist/actionCerators';
+import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import { getWishlistLoaded, getWishlistProducts } from '../../../store/wishlist/selectors';
 import ProductInWishlist from './ProductInWishlist';
 

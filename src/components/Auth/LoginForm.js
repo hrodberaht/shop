@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getAuthError } from '../../store/auth/selectors';
-import { login, clearLoginErrors } from '../../store/auth/actionCreator';
+import { getAuthError } from '../../store/authenticate/selectors';
+import { login, clearLoginErrors } from '../../store/authenticate/actionCreators';
 
 export class LoginForm extends Component {
   state = {

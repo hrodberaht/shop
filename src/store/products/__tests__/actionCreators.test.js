@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock/es5/client';
 
 import {
   fetchProducts, addProduct, removeProduct, updateProduct,
-} from '../actionCreator';
+} from '../actionCreators';
 import * as types from '../types';
 
 const middlewares = [thunk];
@@ -15,7 +15,7 @@ describe('actions', () => {
   afterEach(() => {
     fetchMock.restore();
   });
-  it('call fetch succes action type when fetch data succes', () => {
+  it('call fetch success action type when fetch data success', () => {
     fetchMock.get(`${url}products`, {
       headers: { 'content-type': 'application/json' },
       body: {
@@ -42,7 +42,7 @@ describe('actions', () => {
     });
   });
 
-  it('call add product succes action type when fetch data succes', () => {
+  it('call add product success action type when fetch data success', () => {
     fetchMock.post(`${url}products`, {
       headers: { 'content-type': 'application/json' },
       body: {
@@ -57,7 +57,7 @@ describe('actions', () => {
       expect(store.getActions()[0]).toEqual(expect.objectContaining(expectedActionType));
     });
   });
-  it('call remove product action type when fetch data succes', () => {
+  it('call remove product action type when fetch data success', () => {
     fetchMock.put(`${url}products/1234`, {
       headers: { 'content-type': 'application/json' },
       body: {
@@ -72,7 +72,7 @@ describe('actions', () => {
       expect(store.getActions()[0]).toEqual(expect.objectContaining(expectedActionType));
     });
   });
-  it('call update product action type when fetch data succes', () => {
+  it('call update product action type when fetch data success', () => {
     fetchMock.post(`${url}product/1234`, {
       headers: { 'content-type': 'application/json' },
       body: {

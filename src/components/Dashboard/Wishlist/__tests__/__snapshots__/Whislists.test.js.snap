@@ -7,7 +7,7 @@ exports[`<Wishlist /> should render products list if loaded true 1`] = `
   </h2>
   <table>
     <tbody>
-      <ProductInWhislist
+      <ProductInWishlist
         key="product-1"
         product={
           Object {
@@ -20,7 +20,7 @@ exports[`<Wishlist /> should render products list if loaded true 1`] = `
         }
         remove={[Function]}
       />
-      <ProductInWhislist
+      <ProductInWishlist
         key="product-2"
         product={
           Object {
