@@ -2,36 +2,31 @@
     text-align: center;
 }
 
-.admin-product-list th, td {
-    text-align: center;
+.inventory > button{
+    width: 200px;
 }
 
-.admin-product-list th {
-    background-color: aqua;
+.inventory > .btn-danger{
+    width: 100px;
 }
 
-.admin-product-list tr:nth-child(odd) {
-    background-color: rgb(234, 250, 250);
-}
-
-.admin-product-list button {
+.admin-product__list button {
     margin: 0;
     padding: 10px 0;
     width: 100px;
 }
 
-.admin-product-list .btn-danger {
+.admin-product__list .btn-danger {
     width: 50px;
 }
 
-hr {
+.admin-product__list hr {
     max-width: 600px;
     border: 0;
-    border: 1px solid lightblue;
-    
+    border: 1px solid lightblue;  
 }
 
-.admin-product-list .error-text {
+.admin-product__list .error-text, .add-product-inventory .error-text {
     font-size: 12px;
 }
 

@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCartPlus,
+  faHeart,
+  faBatteryEmpty,
+  faBatteryQuarter,
+  faBatteryHalf,
+  faBatteryFull,
+} from '@fortawesome/free-solid-svg-icons';
 import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
@@ -17,11 +26,11 @@ export class Product extends Component {
   };
 
   changeInStockToText = (inStock) => {
-    if (inStock > 100) return 'full supply';
-    if (inStock > 10 && inStock <= 100) return 'medium supply';
-    if (inStock > 0 && inStock <= 10) return 'last pieces';
+    if (inStock > 100) return <FontAwesomeIcon icon={faBatteryFull} />;
+    if (inStock > 10 && inStock <= 100) return <FontAwesomeIcon icon={faBatteryHalf} />;
+    if (inStock > 0 && inStock <= 10) return <FontAwesomeIcon icon={faBatteryQuarter} />;
 
-    return 'not available';
+    return <FontAwesomeIcon icon={faBatteryEmpty} />;
   };
 
   handleChange = (e) => {
@@ -92,46 +101,51 @@ export class Product extends Component {
       totalPrice,
     };
     return (
-      <div>
-        <div className="product-item">
-          <h3>{name}</h3>
+      <div className="product-item">
+        <h3>{name}</h3>
+        <hr />
+        <div className="product-desc">
           <h5>{type}</h5>
-          <p className="product-item__price">
+          <p className="product-desc__price">
             <span>$</span>
             {price}
           </p>
-          <p>
+          <p className="product-desc__instock">
             <span>In stock:</span>
             <span id="stock-message">{this.changeInStockToText(+inStock)}</span>
           </p>
-          <p className="product-item__order">
-            Order:
-            <input type="number" value={pcsOrder} onChange={this.handleChange} />
-            pcs
+          <p className="product-desc__order">
+            <span>Order:</span>
+            <span>
+              <input type="number" value={pcsOrder} onChange={this.handleChange} />
+              pcs
+            </span>
           </p>
           <p id="stock-error">{error}</p>
-          <p className="product-item__total">
-            <span>Total price:</span>
+          <p className="product-desc__total">
+            Total price:
             <span id="total-price">
-              <span>$</span>
+$
               {totalPrice}
             </span>
           </p>
-          <button
-            className="btn btn-primary"
-            type="button"
-            onClick={() => this.handleClick(productToCart)}
-            disabled={this.moreThanInStock()}
-          >
-            Add to cart
-          </button>
-          <button
-            className="btn btn-danger"
-            type="button"
-            onClick={() => this.handleClickWishlist(productToCart)}
-          >
-            Wish
-          </button>
+          <div className="product-desc__buttons">
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => this.handleClick(productToCart)}
+              disabled={this.moreThanInStock()}
+            >
+              <FontAwesomeIcon icon={faCartPlus} />
+            </button>
+            <button
+              className="btn btn-danger"
+              type="button"
+              onClick={() => this.handleClickWishlist(productToCart)}
+            >
+              <FontAwesomeIcon icon={faHeart} />
+            </button>
+          </div>
         </div>
         {toggleAddedToCart && (
           <AddedToCart
@@ -163,7 +177,7 @@ Product.propTypes = {
 Product.defaultProps = {
   addProduct: null,
   token: null,
-  cart: [],
+  cart: {},
 };
 
 const mapStateToProps = state => ({

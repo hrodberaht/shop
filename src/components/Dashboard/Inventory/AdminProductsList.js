@@ -16,7 +16,7 @@ export class AdminProductsList extends Component {
     const { products, loaded } = this.props;
     if (!loaded) return <p>Loading...</p>;
     return (
-      <div className="admin-product-list">
+      <div className="admin-product__list">
         <table>
           <tbody>
             <tr>

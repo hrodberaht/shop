@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <ConnectedAuthorization withAuth={<Dashboard />} withOutAuth={<Auth />} />
       </div>
     );

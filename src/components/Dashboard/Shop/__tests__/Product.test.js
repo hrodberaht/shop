@@ -21,16 +21,16 @@ describe('<Product />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should show diffrent text message for diffrent value inStock', () => {
+  it('should show diffrent icon for diffrent value inStock', () => {
     const { wrapper } = setup();
     wrapper.setProps({ product: { inStock: '0' } });
-    expect(wrapper.find('#stock-message').text()).toBe('not available');
+    expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('empty battery');
     wrapper.setProps({ product: { inStock: '10' } });
-    expect(wrapper.find('#stock-message').text()).toBe('last pieces');
+    expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('quater battery');
     wrapper.setProps({ product: { inStock: '11' } });
-    expect(wrapper.find('#stock-message').text()).toBe('medium supply');
+    expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('medium battery');
     wrapper.setProps({ product: { inStock: '101' } });
-    expect(wrapper.find('#stock-message').text()).toBe('full supply');
+    expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('full battery');
   });
 
   it('should caltulate total price', () => {

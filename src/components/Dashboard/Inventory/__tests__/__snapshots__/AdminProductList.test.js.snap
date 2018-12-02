@@ -2,7 +2,7 @@
 
 exports[`<AdminProductsList /> should render list product component if loaded true 1`] = `
 <div
-  className="admin-product-list"
+  className="admin-product__list"
 >
   <table>
     <tbody>

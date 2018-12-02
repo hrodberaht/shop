@@ -1,8 +1,8 @@
-import NavBar from '../NavBar';
+import SideBar from '../SideBar';
 
-const setup = buildSetup(NavBar, {});
+const setup = buildSetup(SideBar, {});
 
-describe('<NavBar />', () => {
+describe('<SideBar />', () => {
   it('should render without crash', () => {
     const { wrapper } = setup();
     expect(wrapper).toMatchSnapshot();

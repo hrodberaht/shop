@@ -21,10 +21,17 @@ export class Wishlist extends Component {
     const { loaded, products } = this.props;
     if (!loaded) return <h4>Loading</h4>;
     return (
-      <div>
-        <h2>Wish list:</h2>
+      <div className="wishlist">
+        <h3>Wish list:</h3>
         <table>
           <tbody>
+            <tr>
+              <th>Name:</th>
+              <th>Price:</th>
+              <th>Pcs:</th>
+              <th>Total price:</th>
+              <th>Delete:</th>
+            </tr>
             {products.map(prod => (
               <ProductInWishlist product={prod} remove={this.remove} key={prod.productId} />
             ))}

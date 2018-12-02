@@ -1,19 +1,23 @@
 @import './styles/login-form.css';
-@import './styles/nav-bar.css';
+@import './styles/wishlist.css';
+@import './styles/dashboard.css';
+@import './styles/board.css';
+@import './styles/content.css';
+@import './styles/sidebar.css';
+@import './styles/headbar.css';
 @import './styles/shop.css';
 @import './styles/buttons/btn.css';
 @import './styles/registration-form.css';
 @import './styles/cart.css';
 @import './styles/cart-popup.css';
-@import './styles/order.css';
 @import './styles/table.css';
 @import './styles/inventory.css';
 @import './styles/form.css';
 @import './styles/edit-product.css';
-@import './styles/add-product-inventory.css';
 
 body {
-    max-width: 1024px;
-    margin: auto;
+    margin: 0;
+    padding: 0; 
+    background-color: rgb(231, 230, 230);
 }
 
