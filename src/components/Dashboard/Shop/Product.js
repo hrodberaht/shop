@@ -7,6 +7,7 @@ import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import { getProductsInCart } from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
+import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
 
 export class Product extends Component {
   state = {
@@ -37,31 +38,34 @@ export class Product extends Component {
     return this.setState({ error: null });
   };
 
-  calculateTotalPrice = (pcsOrder, price) => pcsOrder * price;
-
   showAddedToCart = () => {
     const { toggleAddedToCart } = this.state;
     this.setState({ toggleAddedToCart: !toggleAddedToCart });
   };
 
-  moreThanInStock = () => (!!this.state.error);
+  moreThanInStock = () => !!this.state.error;
 
   redirectToCart = () => this.props.history.push('/cart');
 
   handleClick = (product) => {
     const {
-      addProduct, cart, updateProduct, token,
+      addProduct,
+      cart: { productsInCart, list, byId },
+      updateProduct,
+      token,
     } = this.props;
-    const inCart = cart.find(prod => prod.productId === product.productId);
-
-    if (inCart) {
-      const combProd = Object.assign(inCart, {
-        pcsOrder: inCart.pcsOrder + product.pcsOrder,
-        totalPrice: inCart.totalPrice + product.totalPrice,
-      });
+    const { pcsOrder, totalPrice } = product;
+    const idOfProduct = productsInCart.find(item => item === product.productId);
+    if (idOfProduct) {
+      const orderPositionId = list.find(item => byId[item].productId === idOfProduct);
+      const combProd = {
+        orderPositionId,
+        pcsOrder: byId[orderPositionId].pcsOrder + pcsOrder,
+        totalPrice: byId[orderPositionId].totalPrice + totalPrice,
+      };
       updateProduct(combProd, token);
     } else {
-      addProduct(product, this.props.token);
+      addProduct(product, token);
     }
 
     this.showAddedToCart();
@@ -79,7 +83,7 @@ export class Product extends Component {
       },
     } = this.props;
     const { pcsOrder, error, toggleAddedToCart } = this.state;
-    const totalPrice = this.calculateTotalPrice(pcsOrder, price);
+    const totalPrice = calculateTotalPrice(pcsOrder, price);
     const productToCart = {
       productId: id,
       name,
@@ -150,7 +154,7 @@ Product.propTypes = {
   }).isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
-  cart: PropTypes.arrayOf(PropTypes.objectOf),
+  cart: PropTypes.objectOf(PropTypes.objectOf),
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,

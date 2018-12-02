@@ -36,7 +36,11 @@
         "depth": 3
       }
     ],
-    "react/prop-types": ["error", { "ignore": ["fields", "meta", "history"] }]
+    "react/prop-types": ["error", { "ignore": ["fields", "meta", "history"] }],
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["state", "req"] }
+    ]
   },
   "env": {
     "jest": true,

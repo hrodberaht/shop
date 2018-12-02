@@ -1,17 +1,63 @@
 import * as types from './types';
 
-const cart = (state = [], action) => {
+export const initialState = {
+  productsInCart: [],
+  list: [],
+  byId: {},
+  meta: {
+    loaded: false,
+    errors: [],
+  },
+};
+
+const cart = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_TO_CART:
-      return state.concat(action.product);
-    case types.REMOVE_FROM_CART:
-      return state.filter(prod => prod.id !== action.id);
-    case types.UPDATE_IN_CART:
-      return state.map(
-        prod => (prod.id === action.product.id ? Object.assign(prod, action.product) : prod),
-      );
+    case types.ADD_TO_CART: {
+      const {
+        payload,
+        payload: { id, productId },
+      } = action;
+      return {
+        ...state,
+        ...{
+          productsInCart: [...state.productsInCart, productId],
+          list: [...state.list, id],
+          byId: { ...state.byId, [id]: payload },
+        },
+      };
+    }
+    case types.REMOVE_FROM_CART: {
+      const {
+        payload: { id, productId },
+      } = action;
+      delete state.byId[id];
+      return {
+        ...state,
+        ...{
+          productsInCart: state.productsInCart.filter(item => item !== productId),
+          list: state.list.filter(item => item !== id),
+          byId: state.byId,
+        },
+      };
+    }
+    case types.UPDATE_IN_CART: {
+      const {
+        payload,
+        payload: { id },
+      } = action;
+      state.byId[id] = {
+        ...state.byId[id],
+        ...payload,
+      };
+      return { ...state };
+    }
+
+    case types.ERRORS_IN_CART: {
+      state.meta.errors = state.meta.errors.concat(action.payload);
+      return { ...state };
+    }
     case types.CLEAR_CART:
-      return action.empty;
+      return initialState;
     default:
       return state;
   }

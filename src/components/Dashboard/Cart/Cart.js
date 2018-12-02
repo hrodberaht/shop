@@ -5,7 +5,11 @@ import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { getProductsInCart, getOrderPositionIds } from '../../../store/cart/selectors';
 import CartProduct from './CartProduct';
-import { clearCart, removeFromCart } from '../../../store/cart/actionCreators';
+import {
+  clearCart,
+  removeFromCart,
+  updateQuantityInCart,
+} from '../../../store/cart/actionCreators';
 import { addOrderToDB } from '../../../store/orders/actionCreators';
 import {
   getAuthUserId,
@@ -16,19 +20,23 @@ import {
 
 export class Cart extends Component {
   sumaryPrice = () => {
-    const { products } = this.props;
+    const {
+      cart: { list, byId },
+    } = this.props;
     let sumary = 0;
-    products.map((product) => {
-      sumary += product.totalPrice;
+    list.map((item) => {
+      sumary += byId[item].totalPrice;
       return sumary;
     });
-
     return sumary;
   };
 
-  remove = (id) => {
-    this.props.removeFrom(id);
+  changeQuantity = (cartPosition) => {
+    const { change, token } = this.props;
+    change(cartPosition, token);
   };
+
+  remove = product => this.props.removeFrom(product);
 
   handleClick = () => {
     const {
@@ -55,7 +63,9 @@ export class Cart extends Component {
   };
 
   render() {
-    const { products } = this.props;
+    const {
+      cart: { list, byId },
+    } = this.props;
     return (
       <div className="cart">
         <h3>Products in your cart:</h3>
@@ -68,8 +78,13 @@ export class Cart extends Component {
               <th>Total price:</th>
               <th>Delete:</th>
             </tr>
-            {products.map(product => (
-              <CartProduct key={product.id} product={product} remove={this.remove} />
+            {list.map(item => (
+              <CartProduct
+                key={byId[item].id}
+                product={byId[item]}
+                remove={this.remove}
+                changeQuantity={this.changeQuantity}
+              />
             ))}
           </tbody>
         </table>
@@ -81,7 +96,7 @@ export class Cart extends Component {
           className="btn btn-primary"
           type="button"
           onClick={this.handleClick}
-          disabled={products.length === 0}
+          disabled={list.length === 0}
         >
           Buy
         </button>
@@ -92,7 +107,7 @@ export class Cart extends Component {
 
 withRouter(Cart);
 const mapStateToProps = state => ({
-  products: getProductsInCart(state),
+  cart: getProductsInCart(state),
   userId: getAuthUserId(state),
   token: getAuthToken(state),
   person: getAuthPerson(state),
@@ -106,11 +121,15 @@ export default connect(
     emptyCart: clearCart,
     createOrder: addOrderToDB,
     removeFrom: removeFromCart,
+    change: updateQuantityInCart,
   },
 )(Cart);
 
 Cart.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cart: PropTypes.shape({
+    list: PropTypes.array,
+    byId: PropTypes.object,
+  }).isRequired,
   emptyCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
   removeFrom: PropTypes.func.isRequired,
@@ -119,6 +138,7 @@ Cart.propTypes = {
   person: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   orderPositionIds: PropTypes.arrayOf(PropTypes.arrayOf).isRequired,
+  change: PropTypes.func.isRequired,
 };
 
 Cart.defaultProps = {

@@ -242,8 +242,23 @@ server.post('/orderPositions', async (req, res) => {
     .value();
   return res.json(pos);
 });
-server.put('/orderPositions/:id', async (req, res, next) => {
+
+server.put('/orderPositions/:id', (req, res, next) => {
   next();
+});
+
+server.put('/orderPositions/', async (req, res) => {
+  const { orderPositionId, pcsOrder, totalPrice } = req.body;
+  router.db
+    .get('orderPositions')
+    .find({ id: orderPositionId })
+    .assign({ pcsOrder, totalPrice })
+    .write();
+  const response = router.db
+    .get('orderPositions')
+    .find({ id: orderPositionId })
+    .value();
+  res.json(response);
 });
 
 server.post('/product/:id', async (req, res) => {

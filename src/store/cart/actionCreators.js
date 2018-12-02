@@ -1,54 +1,38 @@
 import * as types from './types';
-import config from '../../config/config';
+import dataFetcher from '../../shared/dataFetcher';
 
-export const addProductToCartSuccess = product => ({
+export const addProductToCartSuccess = payload => ({
   type: types.ADD_TO_CART,
-  product,
+  payload,
 });
 
 export const clearCart = () => ({
   type: types.CLEAR_CART,
-  empty: [],
 });
 
-export const removeFromCart = id => ({
+export const removeFromCart = payload => ({
   type: types.REMOVE_FROM_CART,
-  id,
+  payload,
 });
 
-export const updateProductInCartSuccess = product => ({
+export const updateProductInCartSuccess = payload => ({
   type: types.UPDATE_IN_CART,
-  product,
+  payload,
 });
 
-export const addProductToCart = (product, token) => (dispatch) => {
-  fetch(`${config.url}orderPositions`, {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(product),
-  })
-    .then(res => res.json())
-    .then((res) => {
-      dispatch(addProductToCartSuccess(res));
-    })
-    .catch(error => console.log(error));
-};
+export const errorInCart = payload => ({
+  type: types.ERRORS_IN_CART,
+  payload,
+});
 
-export const updateProductInCart = (product, token) => (dispatch) => {
-  fetch(`${config.url}orderPositions/${product.id}`, {
-    method: 'put',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(product),
-  })
-    .then(res => res.json())
-    .then((res) => {
-      dispatch(updateProductInCartSuccess(res));
-    })
-    .catch(error => console.log(error));
-};
+export const addProductToCart = (cartPosition, token) => dispatch => dataFetcher('orderPositions', 'post', token, cartPosition)
+  .then(res => dispatch(addProductToCartSuccess(res)))
+  .catch(error => dispatch(errorInCart(error)));
+
+export const updateProductInCart = (cartPosition, token) => dispatch => dataFetcher('orderPositions', 'put', token, cartPosition)
+  .then(res => dispatch(updateProductInCartSuccess(res)))
+  .catch(error => dispatch(errorInCart(error)));
+
+export const updateQuantityInCart = (cartPosition, token) => dispatch => dataFetcher(`orderPositions/${cartPosition.id}`, 'put', token, cartPosition)
+  .then(res => dispatch(updateProductInCartSuccess(res)))
+  .catch(error => dispatch(errorInCart(error)));

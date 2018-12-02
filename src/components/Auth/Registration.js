@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import * as yup from 'yup';
-import config from '../../config/config';
+import dataFetcher from '../../shared/dataFetcher';
 
 const schema = yup.object().shape({
   email: yup
@@ -37,8 +37,7 @@ export class Registration extends Component {
     this.fetchCompanies();
   }
 
-  fetchCompanies = () => fetch(`${config.url}companies`)
-    .then(data => data.json())
+  fetchCompanies = () => dataFetcher('companies', 'get')
     .then((data) => {
       this.setState({ companies: data, loaded: true });
     })
@@ -48,22 +47,14 @@ export class Registration extends Component {
 
   addUserToDB = (values) => {
     const errorsForm = {};
-    return fetch(`${config.url}registration`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    })
-      .then(data => data.json())
-      .then((res) => {
-        if (res.status === 422) {
-          errorsForm.email = res.error;
-          return errorsForm;
-        }
+    return dataFetcher('registration', 'post', null, values).then((res) => {
+      if (res.status === 422) {
+        errorsForm.email = res.error;
+        return errorsForm;
+      }
 
-        return res;
-      });
+      return res;
+    });
   };
 
   submit = async (values) => {
