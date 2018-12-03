@@ -1,7 +1,12 @@
 const graphql = require('graphql');
 
 const {
-  GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLString, GraphQLList,
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLInt,
+  GraphQLString,
+  GraphQLList,
+  GraphQLFloat,
 } = graphql;
 const fetch = require('node-fetch');
 
@@ -20,6 +25,19 @@ const ProductType = new GraphQLObjectType({
   },
 });
 
+const OrdersType = new GraphQLObjectType({
+  name: 'Orders',
+  description: 'orders',
+  fields: {
+    id: { type: GraphQLString },
+    userId: { type: GraphQLString },
+    person: { type: GraphQLString },
+    date: { type: GraphQLString },
+    companyId: { type: GraphQLString },
+    totalPrice: { type: GraphQLFloat },
+  },
+});
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -28,6 +46,20 @@ const RootQuery = new GraphQLObjectType({
       args: {},
       async resolve() {
         const products = await fetch('http://127.0.0.1:3004/products', {
+          method: 'get',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${testToken}`,
+          },
+        });
+        return products.json();
+      },
+    },
+    orders: {
+      type: new GraphQLList(OrdersType),
+      args: {},
+      async resolve() {
+        const products = await fetch('http://127.0.0.1:3004/orders?id=user-4', {
           method: 'get',
           headers: {
             'Content-Type': 'application/json',
