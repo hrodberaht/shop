@@ -115,10 +115,7 @@ export class Product extends Component {
           <p id="stock-error">{error}</p>
           <p className="product-desc__total">
             Total price:
-            <span id="total-price">
-$
-              {totalPrice}
-            </span>
+            <span id="total-price">{`$${totalPrice}`}</span>
           </p>
           <div className="product-desc__buttons">
             <button
