@@ -1,13 +1,13 @@
 import * as types from './types';
 
 const initialState = {
-  toggleSidebar: true,
+  isSidebarVisible: true,
 };
 
 const navigation = (state = initialState, action) => {
   switch (action.type) {
     case types.TOGGLE_SIDEBAR:
-      return { ...state, toggleSidebar: !state.toggleSidebar };
+      return { ...state, isSidebarVisible: !state.isSidebarVisible };
     default:
       return state;
   }
