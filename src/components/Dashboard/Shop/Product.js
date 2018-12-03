@@ -152,14 +152,14 @@ Product.propTypes = {
     name: PropTypes.string,
     type: PropTypes.string,
     price: PropTypes.string,
-    inStock: PropTypes.string,
+    inStock: PropTypes.number,
   }).isRequired,
-  idsProductsInCart: PropTypes.arrayOf.isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,
+  idsProductsInCart: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 Product.defaultProps = {

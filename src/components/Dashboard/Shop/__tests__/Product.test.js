@@ -4,8 +4,8 @@ const defaultProps = {
   product: {
     name: 'test',
     type: 'printer',
-    price: '12',
-    inStock: '30',
+    price: 12,
+    inStock: 30,
   },
   addProduct: jest.fn(),
   token: '1234',

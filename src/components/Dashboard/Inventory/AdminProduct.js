@@ -103,7 +103,7 @@ AdminProduct.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    inStock: PropTypes.string.isRequired,
+    inStock: PropTypes.number.isRequired,
   }).isRequired,
   removeProd: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
