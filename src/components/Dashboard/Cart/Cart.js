@@ -82,10 +82,7 @@ export class Cart extends Component {
           </tbody>
         </table>
         <div className="cart__sumary">
-          <p>
-$
-            {this.sumaryPrice()}
-          </p>
+          <p>{`$${this.sumaryPrice()}`}</p>
           <button
             className="btn btn-primary"
             type="button"
