@@ -5,3 +5,5 @@ export const getChartsDataSoldProducts = ({ charts }) => {
     y: byId[id].pcsOrder,
   }));
 };
+
+export default getChartsDataSoldProducts;
