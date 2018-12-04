@@ -8,10 +8,12 @@ import CompaniesBuyChart from './CompaniesBuyChart';
 
 import { fetchSoldProducts } from '../../store/charts/actionCreators';
 import { getChartsDataSoldProducts } from '../../store/charts/selectors';
+import { getAuthUserId } from '../../store/authenticate/selectors';
 
 export class Analytics extends Component {
   componentDidMount() {
-    this.props.soldProducts();
+    const { userId, soldProducts } = this.props;
+    soldProducts(userId);
   }
 
   render() {
@@ -42,6 +44,7 @@ export class Analytics extends Component {
 
 const mapStateToProps = state => ({
   dataSellChart: getChartsDataSoldProducts(state),
+  userId: getAuthUserId(state),
 });
 
 export default connect(
@@ -52,4 +55,5 @@ export default connect(
 Analytics.propTypes = {
   dataSellChart: PropTypes.arrayOf(PropTypes.object).isRequired,
   soldProducts: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
 };

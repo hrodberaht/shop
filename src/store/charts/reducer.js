@@ -5,6 +5,10 @@ export const initialState = {
     list: [],
     byId: {},
   },
+
+  meta: {
+    errors: [],
+  },
 };
 
 const charts = (state = initialState, action) => {
@@ -19,8 +23,14 @@ const charts = (state = initialState, action) => {
             {},
           ),
         },
+        meta: {
+          ...state.meta,
+          errors: [],
+        },
       };
     }
+    case types.CHART_ERRORS:
+      return { ...state, meta: { ...state.meta, errors: [...state.meta.errors, action.payload] } };
     default:
       return { ...state };
   }

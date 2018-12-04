@@ -31,6 +31,9 @@ describe('Charts reducer', () => {
           },
         },
       },
+      meta: {
+        errors: [],
+      },
     };
     expect(reducer(initialState, actions.soldProducts(payload))).toEqual(updateState);
   });
