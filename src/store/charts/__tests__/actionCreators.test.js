@@ -17,7 +17,22 @@ describe('Charts actionCreators', () => {
     expect(actions.soldProducts(payload)).toEqual(expectedAction);
   });
 
-  it('should call action with type SOLD_PRODUCTS', async () => {
+  it(`should create ${types.CHART_ERRORS}`, () => {
+    const payload = [];
+    const expectedAction = {
+      type: types.CHART_ERRORS,
+      payload,
+    };
+    expect(actions.chartsErrors(payload)).toEqual(expectedAction);
+  });
+  it(`should call action with type ${types.CHART_ERRORS}`, async () => {
+    const dispatch = jest.fn();
+    fetchMock.get(`${url}orders?id=1234`, { throws: Error });
+    await actions.fetchSoldProducts(1234)(dispatch);
+
+    expect(dispatch.mock.calls[0][0].type).toEqual(types.CHART_ERRORS);
+  });
+  it(`should call action with type ${types.SOLD_PRODUCTS}`, async () => {
     const dispatch = jest.fn();
     fetchMock.get(`${url}orders?id=1234`, {
       headers: { 'content-type': 'application/json' },
