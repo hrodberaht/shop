@@ -38,7 +38,7 @@ const QUERY_PRODUCTS = `{
  }
 }`;
 
-export const fetchProducts = token => dispatch => fetch(`http://127.0.0.1:4000/graphql?query=${QUERY_PRODUCTS}`)
+export const fetchProducts = () => dispatch => fetch(`http://127.0.0.1:4000/graphql?query=${QUERY_PRODUCTS}`)
   .then(res => res.json())
   .then((res) => {
     dispatch(fetchProductsSuccess(res.data.products));

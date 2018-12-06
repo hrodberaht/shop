@@ -6,6 +6,7 @@ exports[`<Analytics /> should render without crash 1`] = `
     Loading...
   </p>
   <Query
+    fetchPolicy="network-only"
     query={
       Object {
         "definitions": Array [
@@ -82,6 +83,7 @@ exports[`<Analytics /> should render without crash if retrive dataSellChart  1`]
     }
   />
   <Query
+    fetchPolicy="network-only"
     query={
       Object {
         "definitions": Array [
