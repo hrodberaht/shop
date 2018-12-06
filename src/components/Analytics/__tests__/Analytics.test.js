@@ -13,4 +13,10 @@ describe('<Analytics />', () => {
     const { wrapper } = setup();
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should render without crash if retrive dataSellChart ', () => {
+    const { wrapper } = setup();
+    wrapper.setProps({ dataSellChart: [{}] });
+    expect(wrapper).toMatchSnapshot();
+  });
 });

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import sellChart from '../../shared/createSellChart';
 
 export default class SellChart extends Component {
-  componentDidUpdate() {
+  componentDidMount() {
     sellChart(this.props.data);
   }
 

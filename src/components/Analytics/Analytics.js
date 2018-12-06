@@ -20,7 +20,7 @@ export class Analytics extends Component {
     const { dataSellChart } = this.props;
     return (
       <div>
-        <SellChart data={dataSellChart} />
+        {dataSellChart.length === 0 ? <p>Loading...</p> : <SellChart data={dataSellChart} />}
         <Query
           query={gql`
             {
