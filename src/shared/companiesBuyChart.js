@@ -4,9 +4,8 @@ import Exporting from 'highcharts/modules/exporting';
 Exporting(Highcharts);
 
 const companiesBuyChart = (data) => {
-  const companies = [...data.orders].filter(order => order.companyId !== '');
   const series = [];
-  companies.forEach((company) => {
+  data.orders.forEach((company) => {
     if (series.length === 0) return series.push(company);
     const index = series.findIndex(serie => serie.companyId === company.companyId);
     // eslint-disable-next-line no-return-assign
