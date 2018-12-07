@@ -5,6 +5,7 @@ const fetchProductsSuccess = products => ({
   type: types.FETCH_PRODUCTS,
   products,
   loaded: true,
+  error: null,
 });
 
 const addProductSuccess = product => ({
