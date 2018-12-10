@@ -15,13 +15,13 @@ export class HeadBar extends Component {
           <button type="button" onClick={toggle}>
             {navValue ? (
               <React.Fragment>
-                <FontAwesomeIcon icon={navValue ? faAngleLeft : faAngleRight} />
+                <FontAwesomeIcon className="menu-arrow" icon={navValue ? faAngleLeft : faAngleRight} />
                 <FontAwesomeIcon icon={faBars} />
               </React.Fragment>
             ) : (
               <React.Fragment>
                 <FontAwesomeIcon icon={faBars} />
-                <FontAwesomeIcon icon={navValue ? faAngleLeft : faAngleRight} />
+                <FontAwesomeIcon className="menu-arrow" icon={navValue ? faAngleLeft : faAngleRight} />
               </React.Fragment>
             )}
           </button>
