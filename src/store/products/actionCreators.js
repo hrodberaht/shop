@@ -27,16 +27,21 @@ const updateProductSuccess = product => ({
   product,
 });
 
-export const fetchProducts = token => dispatch => fetch(`${config.url}products`, {
-  method: 'get',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
-  },
-})
+const QUERY_PRODUCTS = `{
+ products{
+   id
+   imgUrl
+   type
+   name
+   price
+   inStock
+ }
+}`;
+
+export const fetchProducts = token => dispatch => fetch(`http://127.0.0.1:4000/graphql?query=${QUERY_PRODUCTS}`)
   .then(res => res.json())
   .then((res) => {
-    dispatch(fetchProductsSuccess(res));
+    dispatch(fetchProductsSuccess(res.data.products));
   })
   .catch(() => {
     dispatch(productErrors('Sorry server is down'));
