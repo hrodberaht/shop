@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
+import priceFix from '../../../shared/priceFix';
 
 export default class CartProduct extends Component {
   state = {
@@ -34,7 +35,7 @@ export default class CartProduct extends Component {
         </td>
         <td>
           <span>$</span>
-          {totalPrice}
+          {priceFix(totalPrice)}
         </td>
         <td>
           <button type="button" className="btn btn-danger" onClick={this.handleClick}>

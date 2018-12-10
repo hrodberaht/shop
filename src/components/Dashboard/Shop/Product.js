@@ -21,6 +21,7 @@ import {
 } from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
 import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
+import priceFix from '../../../shared/priceFix';
 
 export class Product extends Component {
   state = {
@@ -115,7 +116,7 @@ export class Product extends Component {
           <p id="stock-error">{error}</p>
           <p className="product-desc__total">
             Total price:
-            <span id="total-price">{`$${totalPrice}`}</span>
+            <span id="total-price">{`$${priceFix(totalPrice)}`}</span>
           </p>
           <div className="product-desc__buttons">
             <button
