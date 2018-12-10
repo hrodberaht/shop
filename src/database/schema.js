@@ -10,8 +10,6 @@ const {
 } = graphql;
 const fetch = require('node-fetch');
 
-const testToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmsuc0BvdXJfY29tcGFueS5jb20iLCJwYXNzd29yZCI6Im1hcmt0aGVhZG1pbjQiLCJpYXQiOjE1NDM0MDY0NDZ9.fyJO2wkBnIbYAJwSYaDpq4lVvCUyZMQcvugdvb3Fuiw';
-
 const ProductType = new GraphQLObjectType({
   name: 'Product',
   description: 'Product',
@@ -44,12 +42,12 @@ const RootQuery = new GraphQLObjectType({
     products: {
       type: new GraphQLList(ProductType),
       args: {},
-      async resolve() {
+      async resolve(parentValue, args, request) {
         const products = await fetch('http://127.0.0.1:3004/products', {
           method: 'get',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${testToken}`,
+            Authorization: `Bearer ${request.body.token}`,
           },
         });
         return products.json();
@@ -58,12 +56,12 @@ const RootQuery = new GraphQLObjectType({
     orders: {
       type: new GraphQLList(OrdersType),
       args: {},
-      async resolve() {
+      async resolve(parentValue, args, request) {
         const products = await fetch('http://127.0.0.1:3004/orders?id=user-4', {
           method: 'get',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${testToken}`,
+            Authorization: `Bearer ${request.body.token}`,
           },
         });
         return products.json();
