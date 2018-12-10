@@ -4,7 +4,7 @@ const defaultProps = {
   product: {
     name: 'test',
     type: 'printer',
-    price: 12,
+    price: 12.0,
     inStock: 30,
   },
   addProduct: jest.fn(),
@@ -36,7 +36,7 @@ describe('<Product />', () => {
   it('should caltulate total price', () => {
     const { wrapper } = setup();
     wrapper.find('input').simulate('change', { target: { value: 1 } });
-    expect(wrapper.find('#total-price').text()).toBe('$12');
+    expect(wrapper.find('#total-price').text()).toBe('$12.00');
   });
 
   it('should check is enough products in stock', () => {

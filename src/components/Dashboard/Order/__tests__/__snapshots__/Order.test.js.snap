@@ -9,7 +9,7 @@ exports[`<Order /> should render without crash 1`] = `
     <td />
     <td />
     <td>
-      400
+      400.00
     </td>
     <td>
       in-progress

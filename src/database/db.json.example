@@ -43,40 +43,40 @@
         "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Printer",
         "name": "ZX3",
-        "price": "400",
-        "inStock": "30"
+        "price": 400,
+        "inStock": 30
       },
       {
         "id": "product-2",
         "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Printer",
         "name": "ZX5",
-        "price": "600",
-        "inStock": "5"
+        "price": 600,
+        "inStock": 5
       },
       {
         "id": "product-3",
         "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Printer",
         "name": "ZX1",
-        "price": "200",
-        "inStock": "50"
+        "price": 200,
+        "inStock": 50
       },
       {
         "id": "product-4",
         "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Fax",
         "name": "F2",
-        "price": "45",
-        "inStock": "250"
+        "price": 45,
+        "inStock": 250
       },
       {
         "id": "product-5",
         "imgUrl": "http://toolsandtoys.net/wp-content/uploads/2015/09/dcfbf7ec-798d-4532-9e1d-fcf8c07cecb6._V345529109_.jpg",
         "type": "Fax",
         "name": "F4",
-        "price": "50",
-        "inStock": "180"
+        "price": 50,
+        "inStock": 180
       }
     ],
     "companies": [
@@ -106,7 +106,7 @@
             "id": "orderPosition-1",
             "productId": "product-2",
             "name": "ZX5",
-            "pcsOrder": "3",
+            "pcsOrder": 3,
             "price": 600,
             "totalPrice": 1800
           },
@@ -114,7 +114,7 @@
             "id": "orderPosition-2",
             "productId": "product-5",
             "name": "F4",
-            "pcsOrder": "5",
+            "pcsOrder": 5,
             "price": 50,
             "totalPrice": 200
           }
@@ -134,7 +134,7 @@
             "id": "orderPosition-3",
             "productId": "product-1",
             "name": "ZX3",
-            "pcsOrder": "5",
+            "pcsOrder": 5,
             "price": 400,
             "totalPrice": 2000
           }
@@ -146,7 +146,7 @@
         "id": "orderPosition-1",
         "productId": "product-2",
         "name": "ZX5",
-        "pcsOrder": "3",
+        "pcsOrder": 3,
         "price": 600,
         "totalPrice": 1800
       },
@@ -154,7 +154,7 @@
         "id": "orderPosition-2",
         "productId": "product-5",
         "name": "F4",
-        "pcsOrder": "5",
+        "pcsOrder": 5,
         "price": 50,
         "totalPrice": 200
       },
@@ -162,7 +162,7 @@
         "id": "orderPosition-3",
         "productId": "product-1",
         "name": "ZX3",
-        "pcsOrder": "5",
+        "pcsOrder": 5,
         "price": 400,
         "totalPrice": 2000
       },

@@ -102,7 +102,7 @@ AdminProduct.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
     inStock: PropTypes.number.isRequired,
   }).isRequired,
   removeProd: PropTypes.func.isRequired,

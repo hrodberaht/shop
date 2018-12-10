@@ -89,7 +89,7 @@ export class Product extends Component {
       name,
       price: +price,
       pcsOrder: +pcsOrder,
-      totalPrice,
+      totalPrice: +totalPrice,
     };
     return (
       <div className="product-item">
@@ -152,7 +152,7 @@ Product.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
     type: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     inStock: PropTypes.number,
   }).isRequired,
   addProduct: PropTypes.func,
@@ -160,12 +160,13 @@ Product.propTypes = {
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,
-  idsProductsInCart: PropTypes.arrayOf(PropTypes.string).isRequired,
+  idsProductsInCart: PropTypes.arrayOf(PropTypes.string),
 };
 
 Product.defaultProps = {
   addProduct: null,
   token: null,
+  idsProductsInCart: [],
 };
 
 const mapStateToProps = state => ({

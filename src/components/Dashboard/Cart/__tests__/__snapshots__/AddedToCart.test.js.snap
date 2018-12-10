@@ -35,7 +35,7 @@ exports[`<AddedToCart /> should render witout crash 1`] = `
         <span>
           Tota price:
         </span>
-        800
+        800.00
       </p>
       <div
         className="cart-popup__buttons"

@@ -49,7 +49,14 @@ export default connect(
 )(ProductsList);
 
 ProductsList.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      type: PropTypes.string,
+      price: PropTypes.number,
+      inStock: PropTypes.number,
+    }),
+  ).isRequired,
   handleFetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   loaded: PropTypes.bool.isRequired,

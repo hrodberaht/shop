@@ -271,6 +271,20 @@ server.post('/product/:id', async (req, res) => {
   const product = router.db.get('products').find({ id });
   return res.json(product);
 });
+
+server.put('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  router.db
+    .get('products')
+    .find({ id })
+    .assign({ remove: true })
+    .write();
+  const product = router.db
+    .get('products')
+    .find({ id })
+    .value();
+  return res.json(product);
+});
 server.post('/wishlists', (req, res) => {
   const {
     userId,
@@ -321,20 +335,6 @@ server.delete('/wishlists', (req, res) => {
     .write();
 
   res.json(productId);
-});
-
-server.put('/products/:id', async (req, res) => {
-  const { id } = req.params;
-  router.db
-    .get('products')
-    .find({ id })
-    .assign({ remove: true })
-    .write();
-  const product = router.db
-    .get('products')
-    .find({ id })
-    .value();
-  return res.json(product);
 });
 
 server.use(router);

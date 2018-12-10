@@ -20,6 +20,8 @@ const asyncValidate = values => schema.validate(values, { abortEarly: false }).c
   throw errorsForm;
 });
 
+const toNumber = value => +value;
+
 export class AddProductForm extends Component {
   renderField = ({ input, type, meta: { touched, error } }) => (
     <div>
@@ -50,11 +52,23 @@ export class AddProductForm extends Component {
           </label>
           <label htmlFor="price">
             <p>Price:</p>
-            <Field id="price" name="price" component={this.renderField} type="number" />
+            <Field
+              id="price"
+              name="price"
+              parse={toNumber}
+              component={this.renderField}
+              type="number"
+            />
           </label>
           <label htmlFor="inStock">
             <p>Stock:</p>
-            <Field id="inStock" name="inStock" component={this.renderField} type="number" />
+            <Field
+              id="inStock"
+              name="inStock"
+              parse={toNumber}
+              component={this.renderField}
+              type="number"
+            />
           </label>
           <button className="btn btn-submit" type="submit" disabled={pristine}>
             Add

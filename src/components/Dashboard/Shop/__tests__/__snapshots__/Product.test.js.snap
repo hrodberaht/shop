@@ -92,7 +92,7 @@ exports[`<Product /> should render without crash 1`] = `
       <span
         id="total-price"
       >
-        $12
+        $12.00
       </span>
     </p>
     <div
