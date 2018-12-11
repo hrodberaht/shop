@@ -4,8 +4,7 @@ import * as types from './types';
 const initialState = {
   auth: true,
   error: null,
-  token:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcmsuc0BvdXJfY29tcGFueS5jb20iLCJwYXNzd29yZCI6Im1hcmt0aGVhZG1pbjQiLCJpYXQiOjE1NDM0ODMwMTV9.W9PUrbw0869wnv7Bsvn0badOXqymhRLDeicJ3FixuLs',
+  token: process.env.REACT_APP_TOKEN,
   user: {
     id: 'user-4',
     firstName: 'Mark',
