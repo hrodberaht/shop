@@ -2,6 +2,7 @@ import { SideBar } from '../SideBar';
 
 const defaultProps = {
   toggleSidebar: true,
+  isSidebarVisible: true,
 };
 const setup = buildSetup(SideBar, defaultProps);
 

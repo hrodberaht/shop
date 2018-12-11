@@ -2,7 +2,7 @@
 
 exports[`<SideBar /> should render with hide sidebar if toggleSidebar is false 1`] = `
 <div
-  className="sidebarHide"
+  className="sidebar"
 >
   <ul
     className="sidebar__list"
@@ -104,7 +104,7 @@ exports[`<SideBar /> should render with hide sidebar if toggleSidebar is false 1
 
 exports[`<SideBar /> should render with side bar if toggleSidebar is true 1`] = `
 <div
-  className="sidebarHide"
+  className="sidebar"
 >
   <ul
     className="sidebar__list"
