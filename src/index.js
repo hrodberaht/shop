@@ -14,6 +14,14 @@ import './index.scss';
 
 const client = new ApolloClient({
   uri: config.graphql,
+  request: async (operation) => {
+    const token = await localStorage.getItem('token');
+    operation.setContext({
+      headers: {
+        authorization: token,
+      },
+    });
+  },
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

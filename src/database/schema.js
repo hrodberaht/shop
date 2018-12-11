@@ -61,7 +61,7 @@ const RootQuery = new GraphQLObjectType({
           method: 'get',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${request.body.token}`,
+            Authorization: `Bearer ${request.headers.authorization}`,
           },
         });
         return products.json();
