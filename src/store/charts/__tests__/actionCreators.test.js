@@ -1,10 +1,9 @@
 import fetchMock from 'fetch-mock/es5/client';
 import * as actions from '../actionCreators';
 import * as types from '../types';
-import config from '../../../config/config';
 
 describe('Charts actionCreators', () => {
-  const { url } = config;
+  const graphqlUrl = process.env.REACT_APP_GRAPHQL_API_URI;
   afterEach(() => {
     fetchMock.restore();
   });
@@ -27,14 +26,14 @@ describe('Charts actionCreators', () => {
   });
   it(`should call action with type ${types.CHART_ERRORS}`, async () => {
     const dispatch = jest.fn();
-    fetchMock.get(`${url}orders?id=1234`, { throws: Error });
+    fetchMock.get(`${graphqlUrl}orders?id=1234`, { throws: Error });
     await actions.fetchSoldProducts(1234)(dispatch);
 
     expect(dispatch.mock.calls[0][0].type).toEqual(types.CHART_ERRORS);
   });
   it(`should call action with type ${types.SOLD_PRODUCTS}`, async () => {
     const dispatch = jest.fn();
-    fetchMock.get(`${url}orders?id=1234`, {
+    fetchMock.get(`${graphqlUrl}orders?id=1234`, {
       headers: { 'content-type': 'application/json' },
       body: [
         {
