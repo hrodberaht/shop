@@ -42,7 +42,7 @@ const QUERY_PRODUCTS = {
 }`,
 };
 
-export const fetchProducts = () => dispatch => dataFetcherGraphQL('http://127.0.0.1:4000/graphql', QUERY_PRODUCTS)
+export const fetchProducts = () => dispatch => dataFetcherGraphQL(QUERY_PRODUCTS)
   .then(res => dispatch(fetchProductsSuccess(res.data.products)))
   .catch(() => dispatch(productErrors('Sorry server is down')));
 
