@@ -23,13 +23,13 @@ describe('<Product />', () => {
 
   it('should show diffrent icon for diffrent value inStock', () => {
     const { wrapper } = setup();
-    wrapper.setProps({ product: { inStock: '0' } });
+    wrapper.setProps({ product: { inStock: 0 } });
     expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('empty battery');
-    wrapper.setProps({ product: { inStock: '10' } });
+    wrapper.setProps({ product: { inStock: 10 } });
     expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('quater battery');
-    wrapper.setProps({ product: { inStock: '11' } });
+    wrapper.setProps({ product: { inStock: 11 } });
     expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('medium battery');
-    wrapper.setProps({ product: { inStock: '101' } });
+    wrapper.setProps({ product: { inStock: 101 } });
     expect(wrapper.find('#stock-message').props().children).toMatchSnapshot('full battery');
   });
 

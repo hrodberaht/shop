@@ -9,9 +9,9 @@ exports[`<ProductsList /> should render products list if loaded true 1`] = `
     product={
       Object {
         "id": "product-1",
-        "inStock": "30",
+        "inStock": 30,
         "name": "ZX3",
-        "price": "400",
+        "price": 400,
         "type": "Printer",
       }
     }
@@ -21,9 +21,9 @@ exports[`<ProductsList /> should render products list if loaded true 1`] = `
     product={
       Object {
         "id": "product-2",
-        "inStock": "5",
+        "inStock": 5,
         "name": "ZX5",
-        "price": "600",
+        "price": 600,
         "type": "Printer",
       }
     }

@@ -3,7 +3,7 @@ import * as action from '../actionCreators';
 import * as types from '../types';
 
 describe('cart actions', () => {
-  const url = 'http://localhost:3004/';
+  const url = `${process.env.REACT_APP_API_URI}orderPositions`;
   afterEach(() => {
     fetchMock.restore();
   });
@@ -53,25 +53,30 @@ describe('cart actions', () => {
   });
 
   it('updateProductInCart should call action with type UPDATE_IN_CART if response', async () => {
+    const state = { cart: { list: [1, 2], byId: { 1: 'test' } } };
     const dispatch = jest.fn();
-    fetchMock.put(`${url}orderPositions`, {
+    const getState = jest.fn(() => state);
+
+    fetchMock.put(url, {
       headers: { 'content-type': 'application/json' },
       body: { message: 'ok' },
     });
-    await action.updateProductInCart('toy', '123')(dispatch);
+    await action.updateProductInCart('toy')(dispatch, getState);
     expect(dispatch.mock.calls[0][0].type).toEqual(types.UPDATE_IN_CART);
   });
 
   it('updateProductInCart should call action with type ERRORS_IN_CART if error ', async () => {
+    const state = { cart: { list: [1, 2], byId: { 1: 'test' } } };
     const dispatch = jest.fn();
-    fetchMock.put(`${url}orderPositions`, { throws: Error });
-    await action.updateProductInCart('toy', '123')(dispatch);
+    const getState = jest.fn(() => state);
+    fetchMock.put(url, { throws: Error });
+    await action.updateProductInCart('toy', '123')(dispatch, getState);
     expect(dispatch.mock.calls[0][0].type).toEqual(types.ERRORS_IN_CART);
   });
 
   it('addProductToCart should call action with type ADD_TO_CART if response', async () => {
     const dispatch = jest.fn();
-    fetchMock.post(`${url}orderPositions`, {
+    fetchMock.post(url, {
       headers: { 'content-type': 'application/json' },
       body: { message: 'ok' },
     });
@@ -80,7 +85,7 @@ describe('cart actions', () => {
   });
   it('addProductToCart should call action with type ERRORS_IN_CART if error', async () => {
     const dispatch = jest.fn();
-    fetchMock.post(`${url}orderPositions`, { throws: Error });
+    fetchMock.post(url, { throws: Error });
     await action.addProductToCart('toy', '123')(dispatch);
     expect(dispatch.mock.calls[0][0].type).toEqual(types.ERRORS_IN_CART);
   });
