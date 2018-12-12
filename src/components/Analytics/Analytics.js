@@ -32,11 +32,7 @@ export class Analytics extends Component {
           `}
           fetchPolicy="network-only"
         >
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error :(</p>;
-            return <CompaniesBuyChart data={data} />;
-          }}
+          {data => <CompaniesBuyChart fetchedData={data} />}
         </Query>
       </div>
     );

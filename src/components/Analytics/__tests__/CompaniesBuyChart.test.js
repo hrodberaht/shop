@@ -1,15 +1,18 @@
-import ComapaniesBuyChart from '../CompaniesBuyChart';
+import { CompaniesBuyChart } from '../CompaniesBuyChart';
 import * as chart from '../../../shared/createChartPurchaseByCompanies';
 
 jest.mock('../../../shared/createChartPurchaseByCompanies');
 
 const defaultProps = {
-  data: {
-    orders: [{}, {}],
+  fetchedData: {
+    data: {
+      orders: [{}, {}],
+    },
+    loading: false,
   },
 };
 
-const setup = buildSetup(ComapaniesBuyChart, defaultProps);
+const setup = buildSetup(CompaniesBuyChart, defaultProps);
 
 describe('<ComapaniesBuyChart />', () => {
   it('should render without crash', () => {
@@ -19,9 +22,9 @@ describe('<ComapaniesBuyChart />', () => {
 
   it('should call companiesBuyChart', () => {
     const {
-      props: { data },
+      props: { fetchedData },
     } = setup();
     const spy = jest.spyOn(chart, 'default');
-    expect(spy).toHaveBeenCalledWith(data);
+    expect(spy).toHaveBeenCalledWith(fetchedData.data);
   });
 });

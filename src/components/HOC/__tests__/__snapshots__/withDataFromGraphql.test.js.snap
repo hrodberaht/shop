@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<withDataFromGrapql /> should render error if error and loading false 1`] = `
+<p>
+  Error :(
+</p>
+`;
+
+exports[`<withDataFromGrapql /> should render mockComponent if loading false 1`] = `
+<mockComponent
+  fetchedData={
+    Object {
+      "data": Object {
+        "orders": Array [
+          Object {},
+          Object {},
+        ],
+      },
+      "error": null,
+      "loading": false,
+    }
+  }
+/>
+`;
+
+exports[`<withDataFromGrapql /> should render without crash 1`] = `
+<p>
+  Loading...
+</p>
+`;
