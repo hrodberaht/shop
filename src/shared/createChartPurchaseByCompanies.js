@@ -3,7 +3,7 @@ import Exporting from 'highcharts/modules/exporting';
 
 Exporting(Highcharts);
 
-const companiesBuyChart = (data) => {
+const createChartPurchaseByCompanies = (data) => {
   const series = [];
   data.orders.forEach((company) => {
     if (series.length === 0) return series.push(company);
@@ -32,4 +32,4 @@ const companiesBuyChart = (data) => {
   });
 };
 
-export default companiesBuyChart;
+export default createChartPurchaseByCompanies;
