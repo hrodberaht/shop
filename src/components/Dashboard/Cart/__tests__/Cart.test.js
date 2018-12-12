@@ -64,17 +64,16 @@ describe('<Cart />', () => {
     wrapper.instance().sumaryPrice();
     expect(wrapper.instance().sumaryPrice()).toBe(5600);
   });
-  it('remove should call removeFrom', () => {
-    const { wrapper } = setup();
-    wrapper.instance().remove();
-    expect(wrapper.instance().props.removeFrom).toHaveBeenCalled();
-  });
   it('remove should call change', () => {
     const {
       wrapper,
       props: { cartPosition, token },
     } = setup();
-    wrapper.instance().changeQuantity(cartPosition, token);
-    expect(wrapper.instance().props.change).toHaveBeenCalledWith(cartPosition, token);
+    const {
+      changeQuantity,
+      props: { change },
+    } = wrapper.instance();
+    changeQuantity(cartPosition, token);
+    expect(change).toHaveBeenCalledWith(cartPosition);
   });
 });

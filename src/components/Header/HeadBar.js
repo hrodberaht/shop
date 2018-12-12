@@ -6,15 +6,11 @@ import { connect } from 'react-redux';
 import { toggleSidebar } from '../../store/navigation/actionCreators';
 
 export class HeadBar extends Component {
-  handleClickSidebar = () => {
-    this.props.toggleSidebar();
-  };
-
   render() {
     return (
       <div className="headbar">
         <div className="headbar__icons">
-          <button type="button" onClick={this.handleClickSidebar}>
+          <button type="button" onClick={this.props.toggleSidebar}>
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>

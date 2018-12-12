@@ -8,9 +8,9 @@ import { getNavigationSidebarValue } from '../../store/navigation/selectors';
 
 export class SideBar extends Component {
   render() {
-    const { toggleSidebar } = this.props;
+    const { isSidebarVisible } = this.props;
     return (
-      <div className={classNames({ sidebarHide: !toggleSidebar, sidebar: toggleSidebar })}>
+      <div className={classNames({ sidebarHide: !isSidebarVisible, sidebar: isSidebarVisible })}>
         <ul className="sidebar__list">
           <li className="item">
             <Link to="/">Logo</Link>
@@ -54,11 +54,11 @@ export class SideBar extends Component {
 }
 
 const mapStateToProps = state => ({
-  toggleSidebar: getNavigationSidebarValue(state),
+  isSidebarVisible: getNavigationSidebarValue(state),
 });
 
 export default withRouter(connect(mapStateToProps)(SideBar));
 
 SideBar.propTypes = {
-  toggleSidebar: PropTypes.bool.isRequired,
+  isSidebarVisible: PropTypes.bool.isRequired,
 };

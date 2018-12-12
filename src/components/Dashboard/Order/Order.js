@@ -34,11 +34,7 @@ export default class Order extends Component {
           <td>{status}</td>
           <td>
             <button type="button" className="btn-orders-detail" onClick={this.handleClickDetails}>
-              {details ? (
-                <FontAwesomeIcon icon={faAngleUp} />
-              ) : (
-                <FontAwesomeIcon icon={faAngleDown} />
-              )}
+              <FontAwesomeIcon icon={details ? faAngleUp : faAngleDown} />
             </button>
           </td>
           <ConnectedAuthorization
@@ -54,14 +50,14 @@ export default class Order extends Component {
                   <FontAwesomeIcon icon={faShippingFast} />
                 </button>
               </td>
-)}
+            )}
           />
         </tr>
-        {details ? (
+        {details && (
           <tr key={order.date}>
             <ProductsInOrder order={order} />
           </tr>
-        ) : null}
+        )}
       </React.Fragment>
     );
   }

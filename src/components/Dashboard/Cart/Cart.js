@@ -23,20 +23,12 @@ export class Cart extends Component {
     const {
       cart: { list, byId },
     } = this.props;
-    let sumary = 0;
-    list.map((item) => {
-      sumary += byId[item].totalPrice;
-      return sumary;
-    });
-    return sumary;
+    return list.reduce((sum, id) => sum + byId[id].totalPrice, 0);
   };
 
   changeQuantity = (cartPosition) => {
-    const { change, token } = this.props;
-    change(cartPosition, token);
+    this.props.change(cartPosition);
   };
-
-  remove = product => this.props.removeFrom(product);
 
   handleClick = () => {
     const {
@@ -64,6 +56,7 @@ export class Cart extends Component {
 
   render() {
     const {
+      removeFrom,
       cart: { list, byId },
     } = this.props;
     return (
@@ -82,17 +75,14 @@ export class Cart extends Component {
               <CartProduct
                 key={byId[item].id}
                 product={byId[item]}
-                remove={this.remove}
+                remove={removeFrom}
                 changeQuantity={this.changeQuantity}
               />
             ))}
           </tbody>
         </table>
         <div className="cart__sumary">
-          <p>
-$
-            {this.sumaryPrice()}
-          </p>
+          <p>{`$${this.sumaryPrice()}`}</p>
           <button
             className="btn btn-primary"
             type="button"

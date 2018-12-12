@@ -8,13 +8,6 @@ const defaultProps = {
     pcsOrder: 2,
     totalPrice: 800,
   },
-  productAfterUpdate: {
-    id: '1234',
-    name: 'fx',
-    price: 400,
-    pcsOrder: 3,
-    totalPrice: 1200,
-  },
   remove: jest.fn(),
   changeQuantity: jest.fn(),
 };
@@ -41,14 +34,29 @@ describe('<CartProduct />', () => {
     expect(wrapper.state().quantity).toBe(3);
   });
 
-  it('should call changeQuantit with productAfterUpdate if input value change', () => {
-    const { wrapper, props } = setup();
+  it('should call changeQuantity with productAfterUpdate if input value change', () => {
+    const productAfterUpdate = {
+      id: '1234',
+      name: 'fx',
+      price: 400,
+      pcsOrder: 3,
+      totalPrice: 1200,
+    };
+    const { wrapper } = setup();
     wrapper.find('input').simulate('change', { target: { value: '3' } });
-    expect(wrapper.instance().props.changeQuantity).toHaveBeenCalledWith(props.productAfterUpdate);
+    expect(wrapper.instance().props.changeQuantity).toHaveBeenCalledWith(productAfterUpdate);
   });
-  it('state should be 1 if input value is < 1 and ', () => {
+  it('state should be 1 if input value is < 1 and call changeQuantity', () => {
     const { wrapper } = setup();
     wrapper.find('input').simulate('change', { target: { value: '-1' } });
     expect(wrapper.state().quantity).toBe(1);
+    expect(wrapper.instance().props.changeQuantity).toHaveBeenCalled();
+  });
+
+  it('state should be this same as input value if input value is >= 1 and call changeQuantity', () => {
+    const { wrapper } = setup();
+    wrapper.find('input').simulate('change', { target: { value: '2' } });
+    expect(wrapper.state().quantity).toBe(2);
+    expect(wrapper.instance().props.changeQuantity).toHaveBeenCalled();
   });
 });

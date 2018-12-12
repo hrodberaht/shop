@@ -14,7 +14,11 @@ import {
 import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
 import AddedToCart from '../Cart/AddedToCart';
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
-import { getProductsInCart } from '../../../store/cart/selectors';
+import {
+  getProductsInCart,
+  getAllOrderPositionsInCart,
+  getIdsProductsInCart,
+} from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
 import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
 
@@ -56,27 +60,13 @@ export class Product extends Component {
 
   redirectToCart = () => this.props.history.push('/cart');
 
-  handleClick = (product) => {
-    const {
-      addProduct,
-      cart: { productsInCart, list, byId },
-      updateProduct,
-      token,
-    } = this.props;
-    const { pcsOrder, totalPrice } = product;
-    const idOfProduct = productsInCart.find(item => item === product.productId);
-    if (idOfProduct) {
-      const orderPositionId = list.find(item => byId[item].productId === idOfProduct);
-      const combProd = {
-        orderPositionId,
-        pcsOrder: byId[orderPositionId].pcsOrder + pcsOrder,
-        totalPrice: byId[orderPositionId].totalPrice + totalPrice,
-      };
-      updateProduct(combProd, token);
+  handleClickToCart = (product) => {
+    const { addProduct, updateProduct, idsProductsInCart } = this.props;
+    if (idsProductsInCart.includes(product.productId)) {
+      updateProduct(product);
     } else {
-      addProduct(product, token);
+      addProduct(product);
     }
-
     this.showAddedToCart();
   };
 
@@ -125,16 +115,13 @@ export class Product extends Component {
           <p id="stock-error">{error}</p>
           <p className="product-desc__total">
             Total price:
-            <span id="total-price">
-$
-              {totalPrice}
-            </span>
+            <span id="total-price">{`$${totalPrice}`}</span>
           </p>
           <div className="product-desc__buttons">
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => this.handleClick(productToCart)}
+              onClick={() => this.handleClickToCart(productToCart)}
               disabled={this.moreThanInStock()}
             >
               <FontAwesomeIcon icon={faCartPlus} />
@@ -167,9 +154,9 @@ Product.propTypes = {
     price: PropTypes.string,
     inStock: PropTypes.string,
   }).isRequired,
+  idsProductsInCart: PropTypes.arrayOf.isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
-  cart: PropTypes.objectOf(PropTypes.objectOf),
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,
@@ -178,13 +165,14 @@ Product.propTypes = {
 Product.defaultProps = {
   addProduct: null,
   token: null,
-  cart: {},
 };
 
 const mapStateToProps = state => ({
   token: getAuthToken(state),
   cart: getProductsInCart(state),
   userId: getAuthUserId(state),
+  orderPositions: getAllOrderPositionsInCart(state),
+  idsProductsInCart: getIdsProductsInCart(state),
 });
 export default withRouter(
   connect(

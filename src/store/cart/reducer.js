@@ -19,11 +19,9 @@ const cart = (state = initialState, action) => {
       } = action;
       return {
         ...state,
-        ...{
-          productsInCart: [...state.productsInCart, productId],
-          list: [...state.list, id],
-          byId: { ...state.byId, [id]: payload },
-        },
+        productsInCart: [...state.productsInCart, productId],
+        list: [...state.list, id],
+        byId: { ...state.byId, [id]: payload },
       };
     }
     case types.REMOVE_FROM_CART: {
@@ -33,11 +31,9 @@ const cart = (state = initialState, action) => {
       delete state.byId[id];
       return {
         ...state,
-        ...{
-          productsInCart: state.productsInCart.filter(item => item !== productId),
-          list: state.list.filter(item => item !== id),
-          byId: state.byId,
-        },
+        productsInCart: state.productsInCart.filter(item => item !== productId),
+        list: state.list.filter(item => item !== id),
+        byId: state.byId,
       };
     }
     case types.UPDATE_IN_CART: {
@@ -53,7 +49,7 @@ const cart = (state = initialState, action) => {
     }
 
     case types.ERRORS_IN_CART: {
-      state.meta.errors = state.meta.errors.concat(action.payload);
+      state.meta.errors = [...state.meta.errors, action.payload];
       return { ...state };
     }
     case types.CLEAR_CART:
