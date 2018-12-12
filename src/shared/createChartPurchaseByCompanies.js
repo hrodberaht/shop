@@ -3,19 +3,19 @@ import Exporting from 'highcharts/modules/exporting';
 
 Exporting(Highcharts);
 
-const createChartPurchaseByCompanies = data => {
+const createChartPurchaseByCompanies = (data) => {
   const series = [];
-  data.orders.forEach(company => {
+  data.orders.forEach((company) => {
     if (series.length === 0) return series.push(company);
-    const index = series.findIndex(
-      serie => serie.companyId === company.companyId,
-    );
-    return index > 0
-      ? (series[index] = {
-          ...company,
-          totalPrice: series[index].totalPrice + company.totalPrice,
-        })
-      : series.push(company);
+    const index = series.findIndex(serie => serie.companyId === company.companyId);
+    if (index > 0) {
+      series[index] = {
+        ...company,
+        totalPrice: series[index].totalPrice + company.totalPrice,
+      };
+      return series;
+    }
+    return series.push(company);
   });
   Highcharts.chart('companies-buy-chart', {
     chart: {
