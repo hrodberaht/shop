@@ -10,7 +10,12 @@ export class SideBar extends Component {
   render() {
     const { isSidebarVisible } = this.props;
     return (
-      <div className={classNames({ sidebarHide: !isSidebarVisible, sidebar: isSidebarVisible })}>
+      <div
+        className={classNames({
+          sidebarHide: !isSidebarVisible,
+          sidebar: isSidebarVisible,
+        })}
+      >
         <ul className="sidebar__list">
           <li className="item">
             <Link to="/">Logo</Link>
@@ -32,19 +37,19 @@ export class SideBar extends Component {
           </li>
           <ConnectedAuthorization
             render
-            withRoleAdmin={(
+            withRoleAdmin={
               <li className="item">
                 <NavLink to="/analytics">Analytics</NavLink>
               </li>
-)}
+            }
           />
           <ConnectedAuthorization
             render
-            withRoleAdmin={(
+            withRoleAdmin={
               <li className="item">
                 <NavLink to="/inventory">Inventory</NavLink>
               </li>
-)}
+            }
           />
           <ConnectedAuthorization
             logout={logout => (

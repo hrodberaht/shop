@@ -1,8 +1,12 @@
 {
   "extends": "airbnb",
   "parser": "babel-eslint",
+  "plugins": ["prettier"],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx"] }
+    ],
     "react/prefer-stateless-function": [0],
     "import/no-named-as-default": [0],
     "no-underscore-dangle": [
@@ -37,7 +41,10 @@
         "depth": 3
       }
     ],
-    "react/prop-types": ["error", { "ignore": ["fields", "meta", "history"] }]
+    "react/prop-types": [
+      "error",
+      { "ignore": ["fields", "meta", "history"] }
+    ]
   },
   "env": {
     "jest": true,

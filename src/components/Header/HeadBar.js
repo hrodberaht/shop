@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faAngleLeft,
+  faAngleRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { toggleSidebar } from '../../store/navigation/actionCreators';
 import getNavigationSidebarValue from '../../store/navigation/selectors';
@@ -13,9 +17,19 @@ export class HeadBar extends Component {
       <div className="headbar">
         <div className="headbar__icons">
           <button type="button" onClick={toggle}>
-            {navValue && <FontAwesomeIcon className="menu-arrow" icon={faAngleLeft} />}
+            {navValue && (
+              <FontAwesomeIcon
+                className="menu-arrow"
+                icon={faAngleLeft}
+              />
+            )}
             <FontAwesomeIcon icon={faBars} />
-            {!navValue && <FontAwesomeIcon className="menu-arrow" icon={faAngleRight} />}
+            {!navValue && (
+              <FontAwesomeIcon
+                className="menu-arrow"
+                icon={faAngleRight}
+              />
+            )}
           </button>
         </div>
         <hr />
