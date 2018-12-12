@@ -1,7 +1,7 @@
 import ComapaniesBuyChart from '../CompaniesBuyChart';
-import * as chart from '../../../shared/companiesBuyChart';
+import * as chart from '../../../shared/createChartPurchaseByCompanies';
 
-jest.mock('../../../shared/companiesBuyChart');
+jest.mock('../../../shared/createChartPurchaseByCompanies');
 
 const defaultProps = {
   data: {

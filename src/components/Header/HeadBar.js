@@ -13,17 +13,9 @@ export class HeadBar extends Component {
       <div className="headbar">
         <div className="headbar__icons">
           <button type="button" onClick={toggle}>
-            {navValue ? (
-              <React.Fragment>
-                <FontAwesomeIcon className="menu-arrow" icon={navValue ? faAngleLeft : faAngleRight} />
-                <FontAwesomeIcon icon={faBars} />
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <FontAwesomeIcon icon={faBars} />
-                <FontAwesomeIcon className="menu-arrow" icon={navValue ? faAngleLeft : faAngleRight} />
-              </React.Fragment>
-            )}
+            {navValue && <FontAwesomeIcon className="menu-arrow" icon={faAngleLeft} />}
+            <FontAwesomeIcon icon={faBars} />
+            {!navValue && <FontAwesomeIcon className="menu-arrow" icon={faAngleRight} />}
           </button>
         </div>
         <hr />
