@@ -3,7 +3,6 @@ import * as actions from '../actionCreators';
 import * as types from '../types';
 
 describe('Charts actionCreators', () => {
-  const graphqlUrl = process.env.REACT_APP_GRAPHQL_API_URI;
   afterEach(() => {
     fetchMock.restore();
   });
@@ -24,16 +23,22 @@ describe('Charts actionCreators', () => {
     };
     expect(actions.chartsErrors(payload)).toEqual(expectedAction);
   });
-  it(`should call action with type ${types.CHART_ERRORS}`, async () => {
+  it(`should call action with type ${
+    types.CHART_ERRORS
+  }`, async () => {
     const dispatch = jest.fn();
-    fetchMock.get(`${graphqlUrl}orders?id=1234`, { throws: Error });
+    fetchMock.get('end:orders?id=1234', { throws: Error });
     await actions.fetchSoldProducts(1234)(dispatch);
 
-    expect(dispatch.mock.calls[0][0].type).toEqual(types.CHART_ERRORS);
+    expect(dispatch.mock.calls[0][0].type).toEqual(
+      types.CHART_ERRORS,
+    );
   });
-  it(`should call action with type ${types.SOLD_PRODUCTS}`, async () => {
+  it(`should call action with type ${
+    types.SOLD_PRODUCTS
+  }`, async () => {
     const dispatch = jest.fn();
-    fetchMock.get(`${graphqlUrl}orders?id=1234`, {
+    fetchMock.get('end:orders?id=1234', {
       headers: { 'content-type': 'application/json' },
       body: [
         {
@@ -52,6 +57,8 @@ describe('Charts actionCreators', () => {
     });
     await actions.fetchSoldProducts(1234)(dispatch);
 
-    expect(dispatch.mock.calls[0][0].type).toEqual(types.SOLD_PRODUCTS);
+    expect(dispatch.mock.calls[0][0].type).toEqual(
+      types.SOLD_PRODUCTS,
+    );
   });
 });
