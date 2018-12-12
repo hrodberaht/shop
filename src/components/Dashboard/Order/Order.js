@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faShippingFast } from '@fortawesome/free-solid-svg-icons';
 import ProductsInOrder from './ProductsInOrder';
 import ConnectedAuthorization from '../../Auth/Authorization';
-import priceFix from '../../../shared/priceFix';
+import applyRounded from '../../../shared/applyRounded';
 
 export default class Order extends Component {
   state = {
@@ -31,7 +31,7 @@ export default class Order extends Component {
           <td>{id}</td>
           <td>{person}</td>
           <td>{date}</td>
-          <td>{priceFix(totalPrice)}</td>
+          <td>{applyRounded(totalPrice)}</td>
           <td>{status}</td>
           <td>
             <button type="button" className="btn-orders-detail" onClick={this.handleClickDetails}>

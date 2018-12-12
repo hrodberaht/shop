@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import priceFix from '../../../shared/priceFix';
+import applyRounded from '../../../shared/applyRounded';
 
 export default class AddedToCart extends Component {
   render() {
@@ -30,7 +30,7 @@ export default class AddedToCart extends Component {
             </p>
             <p>
               <span>Tota price:</span>
-              {priceFix(totalPrice)}
+              {applyRounded(totalPrice)}
             </p>
             <div className="cart-popup__buttons">
               <button id="more" className="btn btn-primary" type="button" onClick={show}>
