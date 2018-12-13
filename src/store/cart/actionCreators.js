@@ -39,7 +39,7 @@ export const updateProductInCart = product => (dispatch, getState) => {
     pcsOrder: orderPositionId.pcsOrder + pcsOrder,
     totalPrice: orderPositionId.totalPrice + totalPrice,
   };
-  dataFetcher('orderPositions', 'put', combinedPcsProduct)
+  return dataFetcher('orderPositions', 'put', combinedPcsProduct)
     .then(res => dispatch(updateProductInCartSuccess(res)))
     .catch(error => dispatch(errorInCart(error)));
 };

@@ -1,10 +1,12 @@
 import * as types from './types';
 import config from '../../config/config';
+import { dataFetcherGraphQL } from '../../shared/dataFetcher';
 
 const fetchProductsSuccess = products => ({
   type: types.FETCH_PRODUCTS,
   products,
   loaded: true,
+  error: null,
 });
 
 const addProductSuccess = product => ({
@@ -27,7 +29,8 @@ const updateProductSuccess = product => ({
   product,
 });
 
-const QUERY_PRODUCTS = `{
+const QUERY_PRODUCTS = {
+  query: `{
  products{
    id
    imgUrl
@@ -36,16 +39,12 @@ const QUERY_PRODUCTS = `{
    price
    inStock
  }
-}`;
+}`,
+};
 
-export const fetchProducts = token => dispatch => fetch(`http://127.0.0.1:4000/graphql?query=${QUERY_PRODUCTS}`)
-  .then(res => res.json())
-  .then((res) => {
-    dispatch(fetchProductsSuccess(res.data.products));
-  })
-  .catch(() => {
-    dispatch(productErrors('Sorry server is down'));
-  });
+export const fetchProducts = () => dispatch => dataFetcherGraphQL(QUERY_PRODUCTS)
+  .then(res => dispatch(fetchProductsSuccess(res.data.products)))
+  .catch(() => dispatch(productErrors('Sorry server is down')));
 
 export const addProduct = (product, token) => dispatch => fetch(`${config.url}products`, {
   method: 'post',

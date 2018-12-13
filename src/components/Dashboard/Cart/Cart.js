@@ -17,6 +17,7 @@ import {
   getAuthPerson,
   getAuthCompanyId,
 } from '../../../store/authenticate/selectors';
+import applyRounded from '../../../shared/applyRounded';
 
 export class Cart extends Component {
   sumaryPrice = () => {
@@ -82,7 +83,7 @@ export class Cart extends Component {
           </tbody>
         </table>
         <div className="cart__sumary">
-          <p>{`$${this.sumaryPrice()}`}</p>
+          <p>{`$${applyRounded(this.sumaryPrice())}`}</p>
           <button
             className="btn btn-primary"
             type="button"

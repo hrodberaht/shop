@@ -38,12 +38,8 @@ export class Registration extends Component {
   }
 
   fetchCompanies = () => dataFetcher('companies', 'get')
-    .then((data) => {
-      this.setState({ companies: data, loaded: true });
-    })
-    .catch(() => {
-      this.setState({ error: 'Server not working' });
-    });
+    .then(data => this.setState({ companies: data, loaded: true }))
+    .catch(() => this.setState({ error: 'Server not working' }));
 
   addUserToDB = (values) => {
     const errorsForm = {};

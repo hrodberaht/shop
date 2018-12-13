@@ -1,17 +1,16 @@
 import fetchMock from 'fetch-mock/es5/client';
 import { Registration } from '../Registration';
-import config from '../../../config/config';
 
 const defaultProps = {
   handleSubmit: jest.fn(),
 };
 const setup = buildSetup(Registration, defaultProps);
 
-afterEach(() => {
-  fetchMock.restore();
-});
-
 describe('<Registration />', () => {
+  const url = process.env.REACT_APP_API_URI;
+  afterEach(() => {
+    fetchMock.restore();
+  });
   it('should render without crash', () => {
     const { wrapper } = setup();
 
@@ -21,7 +20,7 @@ describe('<Registration />', () => {
   it('fetchCompanies set error in state if server not working', async () => {
     const { wrapper } = setup();
     const instance = wrapper.instance();
-    fetchMock.get(`${config.url}companies`, { throws: Error });
+    fetchMock.get(`${url}companies`, { throws: Error });
     await instance.fetchCompanies();
     expect(wrapper.state().error).toBe('Server not working');
   });
@@ -35,7 +34,7 @@ describe('<Registration />', () => {
         name: 'IBM',
       },
     ];
-    fetchMock.get(`${config.url}companies`, {
+    fetchMock.get(`${url}companies`, {
       headers: { 'content-type': 'application/json' },
       body: companies,
     });
@@ -48,7 +47,7 @@ describe('<Registration />', () => {
     const { wrapper } = setup();
     const instance = wrapper.instance();
     const error = { error: 'email is taken' };
-    fetchMock.post(`${config.url}registration`, {
+    fetchMock.post(`${url}registration`, {
       status: 422,
       body: error,
     });
@@ -59,7 +58,7 @@ describe('<Registration />', () => {
     const { wrapper } = setup();
     const instance = wrapper.instance();
     const response = { message: 'user added' };
-    fetchMock.post(`${config.url}registration`, {
+    fetchMock.post(`${url}registration`, {
       status: 422,
       body: response,
     });

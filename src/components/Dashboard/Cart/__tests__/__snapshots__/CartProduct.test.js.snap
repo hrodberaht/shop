@@ -19,7 +19,7 @@ exports[`<CartProduct /> should render witout crash 1`] = `
     <span>
       $
     </span>
-    800
+    800.00
   </td>
   <td>
     <button

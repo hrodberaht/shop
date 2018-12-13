@@ -64,7 +64,7 @@ exports[`<Cart /> should render witout crash 1`] = `
     className="cart__sumary"
   >
     <p>
-      $5600
+      $5600.00
     </p>
     <button
       className="btn btn-primary"

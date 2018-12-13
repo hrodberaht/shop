@@ -21,6 +21,7 @@ import {
 } from '../../../store/cart/selectors';
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
 import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
+import applyRounded from '../../../shared/applyRounded';
 
 export class Product extends Component {
   state = {
@@ -88,7 +89,7 @@ export class Product extends Component {
       name,
       price: +price,
       pcsOrder: +pcsOrder,
-      totalPrice,
+      totalPrice: +totalPrice,
     };
     return (
       <div className="product-item">
@@ -115,7 +116,7 @@ export class Product extends Component {
           <p id="stock-error">{error}</p>
           <p className="product-desc__total">
             Total price:
-            <span id="total-price">{`$${totalPrice}`}</span>
+            <span id="total-price">{`$${applyRounded(totalPrice)}`}</span>
           </p>
           <div className="product-desc__buttons">
             <button
@@ -151,20 +152,21 @@ Product.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string,
     type: PropTypes.string,
-    price: PropTypes.string,
-    inStock: PropTypes.string,
+    price: PropTypes.number,
+    inStock: PropTypes.number,
   }).isRequired,
-  idsProductsInCart: PropTypes.arrayOf.isRequired,
   addProduct: PropTypes.func,
   token: PropTypes.string,
   updateProduct: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   addToWish: PropTypes.func.isRequired,
+  idsProductsInCart: PropTypes.arrayOf(PropTypes.string),
 };
 
 Product.defaultProps = {
   addProduct: null,
   token: null,
+  idsProductsInCart: [],
 };
 
 const mapStateToProps = state => ({
