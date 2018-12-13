@@ -8,13 +8,13 @@ const createDataForSoldChart = (data) => {
       });
     }
 
-    const findedProduct = productsData.find(
+    const foundProduct = productsData.find(
       productItem => productItem.productId === product.productId,
     );
 
-    if (findedProduct) {
-      findedProduct.pcsOrder += +product.pcsOrder;
-      findedProduct.totalPrice += +product.totalPrice;
+    if (foundProduct) {
+      foundProduct.pcsOrder += +product.pcsOrder;
+      foundProduct.totalPrice += +product.totalPrice;
 
       return productsData;
     }
