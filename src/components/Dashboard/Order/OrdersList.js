@@ -20,7 +20,7 @@ export class OrdersList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  filteredOrders: getOrdersFiltered(state, ownProps.filters),
+  filteredOrders: getOrdersFiltered(state, ownProps.filterValues),
   token: getAuthToken(state),
 });
 

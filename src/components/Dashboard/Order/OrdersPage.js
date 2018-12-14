@@ -11,6 +11,8 @@ import OrdersSearch from './OrdersSearch';
 import OrdersList from './OrdersList';
 
 export class OrdersPage extends Component {
+  defaultState = {};
+
   state = {
     status: 'all',
   };
@@ -26,6 +28,7 @@ export class OrdersPage extends Component {
 
   render() {
     const { orders, loaded } = this.props;
+    const { status } = this.state;
     if (!loaded) return <p>Loading...</p>;
     return (
       <React.Fragment>
@@ -43,7 +46,10 @@ export class OrdersPage extends Component {
               <th>Actions:</th>
               <ConnectedAuthorization render withRoleAdmin={<th>Admin:</th>} />
             </tr>
-            <OrdersList filters={this.state.status} orders={orders} />
+            <OrdersList
+              filterValues={status === 'all' ? this.defaultState : this.state}
+              orders={orders}
+            />
           </tbody>
         </table>
       </React.Fragment>
