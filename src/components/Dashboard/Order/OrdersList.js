@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getOrdersFiltered } from '../../../store/orders/selectors';
+import { getOrdersFiltered, getOrdersFilterValues } from '../../../store/orders/selectors';
 import Order from './Order';
 import { fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
 import { getAuthToken } from '../../../store/authenticate/selectors';
@@ -21,6 +21,7 @@ export class OrdersList extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   filteredOrders: getOrdersFiltered(state, ownProps.filterValues),
+  filterValues: getOrdersFilterValues(state, ownProps),
   token: getAuthToken(state),
 });
 
