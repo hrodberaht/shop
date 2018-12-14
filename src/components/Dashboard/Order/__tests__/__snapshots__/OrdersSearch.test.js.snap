@@ -2,10 +2,25 @@
 
 exports[`<OrdersSearch> should render without crash 1`] = `
 <div>
-  Search
-  <input
-    onClick={[MockFunction]}
-    type="checkbox"
-  />
+  Orders: 
+  <select
+    onChange={[MockFunction]}
+  >
+    <option
+      value="all"
+    >
+      All
+    </option>
+    <option
+      value="realized"
+    >
+      Realized
+    </option>
+    <option
+      value="in-progress"
+    >
+      In progress
+    </option>
+  </select>
 </div>
 `;

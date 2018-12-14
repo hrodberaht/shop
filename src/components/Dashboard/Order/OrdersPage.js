@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import compose from 'lodash/fp/compose';
-
 import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
 import ConnectedAuthorization from '../../Auth/Authorization';
 
@@ -14,7 +12,7 @@ import OrdersList from './OrdersList';
 
 export class OrdersPage extends Component {
   state = {
-    isOnlyUnrealizedOrders: false,
+    status: 'all',
   };
 
   componentDidMount() {
@@ -22,25 +20,9 @@ export class OrdersPage extends Component {
     getOrdersFromServer(userId, token);
   }
 
-  toggleUnrelizedOrders = () => {
-    this.setState(state => ({ isOnlyUnrealizedOrders: !state.isOnlyUnrealizedOrders }));
+  handleSelect = (e) => {
+    this.setState({ status: e.target.value });
   };
-
-  toggleRealizedOrders = () => {
-    this.setState(state => ({ isOnlyRealizedOrders: !state.isOnlyRealizedOrders }));
-  };
-
-  createUrnrealizedOrdersList = orders => (this.state.isOnlyUnrealizedOrders
-    ? orders.filter(order => order.status === 'in-progress')
-    : orders);
-
-  // const filters = {status: "realized", }
-  createRealizedOrdersList = orders => (this.state.isOnlyRealizedOrders ? orders.filter(order => order.status === 'realized') : orders);
-
-  filteredOrdersList = orders => compose(
-    this.createRealizedOrdersList,
-    this.createUrnrealizedOrdersList,
-  )(orders);
 
   render() {
     const { orders, loaded } = this.props;
@@ -48,8 +30,7 @@ export class OrdersPage extends Component {
     return (
       <React.Fragment>
         <div>
-          <OrdersSearch title="Show unrealized orders" handleCheck={this.toggleUnrelizedOrders} />
-          <OrdersSearch title="Show realized orders" handleCheck={this.toggleRealizedOrders} />
+          <OrdersSearch handleSelect={this.handleSelect} />
         </div>
         <table>
           <tbody>
@@ -62,7 +43,7 @@ export class OrdersPage extends Component {
               <th>Actions:</th>
               <ConnectedAuthorization render withRoleAdmin={<th>Admin:</th>} />
             </tr>
-            <OrdersList filters={{ status: 'realized' }} orders={orders} />
+            <OrdersList filters={this.state.status} orders={orders} />
           </tbody>
         </table>
       </React.Fragment>

@@ -56,12 +56,4 @@ describe('<OrderList />', () => {
     wrapper.setProps({ loaded: true });
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('toggleUnrealizedOrders should change state after call', () => {
-    const { wrapper } = setup();
-    wrapper.instance().toggleUnrelizedOrders();
-    expect(wrapper.state()).toEqual({ isOnlyUnrealizedOrders: true });
-    wrapper.instance().toggleUnrelizedOrders();
-    expect(wrapper.state()).toEqual({ isOnlyUnrealizedOrders: false });
-  });
 });

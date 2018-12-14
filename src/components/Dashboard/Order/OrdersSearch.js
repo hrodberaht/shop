@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 
 export default class OrdersSearch extends Component {
   static propTypes = {
-    handleCheck: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
+    handleSelect: PropTypes.func.isRequired,
   };
 
   render() {
-    const { handleCheck, title } = this.props;
+    const { handleSelect } = this.props;
     return (
       <div>
-        {title}
-        <input type="checkbox" onClick={handleCheck} />
+        {'Orders: '}
+        <select onChange={handleSelect}>
+          <option value="all">All</option>
+          <option value="realized">Realized</option>
+          <option value="in-progress">In progress</option>
+        </select>
       </div>
     );
   }
