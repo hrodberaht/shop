@@ -1,4 +1,4 @@
-import { OrdersList } from '../OrdersList';
+import { OrdersPage } from '../OrdersPage';
 
 const defaultProps = {
   orders: [
@@ -44,7 +44,7 @@ const defaultProps = {
   loaded: false,
   token: '',
 };
-const setup = buildSetup(OrdersList, defaultProps);
+const setup = buildSetup(OrdersPage, defaultProps);
 
 describe('<OrderList />', () => {
   it('should render without crash', () => {

@@ -44,52 +44,56 @@ exports[`<OrderList /> should render if loaded true  1`] = `
           }
         />
       </tr>
-      <Order
-        handleClick={[MockFunction]}
-        key="e1oPVJh"
-        order={
+      <Connect(OrdersList)
+        filters={
           Object {
-            "companyId": "company-2",
-            "date": "2018-11-02T18:03:36.535Z",
-            "id": "e1oPVJh",
-            "orderPositionIds": Array [
-              "Ld6GsMELf",
-              "IQW79vU4W",
-              "4VgGGnrnV",
-            ],
-            "person": "Ben Morrison",
-            "productsOrder": Array [
-              Object {
-                "id": "Ld6GsMELf",
-                "name": "ZX3",
-                "pcsOrder": 1,
-                "price": 400,
-                "productId": "product-1",
-                "totalPrice": 400,
-              },
-              Object {
-                "id": "IQW79vU4W",
-                "name": "ZX5",
-                "pcsOrder": 1,
-                "price": 600,
-                "productId": "product-2",
-                "totalPrice": 600,
-              },
-              Object {
-                "id": "4VgGGnrnV",
-                "name": "ZX1",
-                "pcsOrder": 8,
-                "price": 200,
-                "productId": "product-3",
-                "totalPrice": 1600,
-              },
-            ],
             "status": "realized",
-            "totalPrice": 2600,
-            "userId": "user-3",
           }
         }
-        token=""
+        orders={
+          Array [
+            Object {
+              "companyId": "company-2",
+              "date": "2018-11-02T18:03:36.535Z",
+              "id": "e1oPVJh",
+              "orderPositionIds": Array [
+                "Ld6GsMELf",
+                "IQW79vU4W",
+                "4VgGGnrnV",
+              ],
+              "person": "Ben Morrison",
+              "productsOrder": Array [
+                Object {
+                  "id": "Ld6GsMELf",
+                  "name": "ZX3",
+                  "pcsOrder": 1,
+                  "price": 400,
+                  "productId": "product-1",
+                  "totalPrice": 400,
+                },
+                Object {
+                  "id": "IQW79vU4W",
+                  "name": "ZX5",
+                  "pcsOrder": 1,
+                  "price": 600,
+                  "productId": "product-2",
+                  "totalPrice": 600,
+                },
+                Object {
+                  "id": "4VgGGnrnV",
+                  "name": "ZX1",
+                  "pcsOrder": 8,
+                  "price": 200,
+                  "productId": "product-3",
+                  "totalPrice": 1600,
+                },
+              ],
+              "status": "realized",
+              "totalPrice": 2600,
+              "userId": "user-3",
+            },
+          ]
+        }
       />
     </tbody>
   </table>
