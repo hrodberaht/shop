@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 export default class ProductInWishlist extends Component {
@@ -12,9 +14,11 @@ export default class ProductInWishlist extends Component {
 
   render() {
     const {
+      product,
       product: {
         name, price, pcsOrder, totalPrice,
       },
+      handleClickToCart,
     } = this.props;
     return (
       <tr>
@@ -30,6 +34,15 @@ export default class ProductInWishlist extends Component {
             X
           </button>
         </td>
+        <td>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => handleClickToCart(product)}
+          >
+            <FontAwesomeIcon icon={faCartPlus} />
+          </button>
+        </td>
       </tr>
     );
   }
@@ -42,4 +55,5 @@ ProductInWishlist.propTypes = {
     price: PropTypes.number,
   }).isRequired,
   remove: PropTypes.func.isRequired,
+  handleClickToCart: PropTypes.func.isRequired,
 };
