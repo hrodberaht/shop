@@ -32,16 +32,4 @@ describe('ProductInWishlist />', () => {
       .simulate('click');
     expect(wrapper.instance().props.remove).toHaveBeenCalledWith(productId);
   });
-
-  it('should call handleClickToCart when click', () => {
-    const {
-      wrapper,
-      props: { product },
-    } = setup();
-    wrapper
-      .find('button')
-      .at(1)
-      .simulate('click');
-    expect(wrapper.instance().props.handleClickToCart).toHaveBeenCalledWith(product);
-  });
 });

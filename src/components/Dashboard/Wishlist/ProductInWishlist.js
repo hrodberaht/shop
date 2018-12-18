@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import AddToCartButton from '../../shared/AddToCartButton';
 
 export default class ProductInWishlist extends Component {
   handleClick = () => {
@@ -35,13 +34,11 @@ export default class ProductInWishlist extends Component {
           </button>
         </td>
         <td>
-          <button
-            type="button"
+          <AddToCartButton
             className="btn btn-primary"
-            onClick={() => handleClickToCart(product)}
-          >
-            <FontAwesomeIcon icon={faCartPlus} />
-          </button>
+            product={product}
+            handleClickToCart={handleClickToCart}
+          />
         </td>
       </tr>
     );
