@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCartPlus,
   faHeart,
   faBatteryEmpty,
   faBatteryQuarter,
@@ -22,6 +21,7 @@ import {
 import { addToWishlist } from '../../../store/wishlist/actionCerators';
 import calculateTotalPrice from '../../../shared/calcutalteTotalPrice';
 import applyRounded from '../../../shared/applyRounded';
+import AddToCartButton from '../../shared/AddToCartButton';
 
 export class Product extends Component {
   state = {
@@ -119,14 +119,12 @@ export class Product extends Component {
             <span id="total-price">{`$${applyRounded(totalPrice)}`}</span>
           </p>
           <div className="product-desc__buttons">
-            <button
+            <AddToCartButton
+              product={productToCart}
               className="btn btn-primary"
-              type="button"
-              onClick={() => this.handleClickToCart(productToCart)}
+              handleClickToCart={this.handleClickToCart}
               disabled={this.moreThanInStock()}
-            >
-              <FontAwesomeIcon icon={faCartPlus} />
-            </button>
+            />
             <button
               className="btn btn-danger"
               type="button"

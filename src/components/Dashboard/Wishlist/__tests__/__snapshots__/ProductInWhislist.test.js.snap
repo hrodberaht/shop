@@ -26,6 +26,7 @@ exports[`ProductInWishlist /> should render without crash 1`] = `
   <td>
     <AddToCartButton
       className="btn btn-primary"
+      disabled={false}
       handleClickToCart={[MockFunction]}
       product={
         Object {

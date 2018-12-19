@@ -12,12 +12,24 @@ export default class AddToCartButton extends Component {
     }).isRequired,
     handleClickToCart: PropTypes.func.isRequired,
     className: PropTypes.string.isRequired,
+    disabled: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    disabled: false,
   };
 
   render() {
-    const { className, handleClickToCart, product } = this.props;
+    const {
+      className, handleClickToCart, product, disabled,
+    } = this.props;
     return (
-      <button type="button" className={className} onClick={() => handleClickToCart(product)}>
+      <button
+        type="button"
+        className={className}
+        onClick={() => handleClickToCart(product)}
+        disabled={disabled}
+      >
         <FontAwesomeIcon icon={faCartPlus} />
       </button>
     );
