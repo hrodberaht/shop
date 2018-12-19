@@ -26,10 +26,7 @@ describe('ProductInWishlist />', () => {
         product: { productId },
       },
     } = setup();
-    wrapper
-      .find('button')
-      .at(0)
-      .simulate('click');
+    wrapper.find('button').simulate('click');
     expect(wrapper.instance().props.remove).toHaveBeenCalledWith(productId);
   });
 });
