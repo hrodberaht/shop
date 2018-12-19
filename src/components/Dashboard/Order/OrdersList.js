@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import { getOrdersFiltered, getOrdersFilterValues } from '../../../store/orders/selectors';
 import Order from './Order';
 import { fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
-import { getAuthToken } from '../../../store/authenticate/selectors';
 
 export class OrdersList extends Component {
   render() {
-    const { filteredOrders, handleClick, token } = this.props;
+    const { filteredOrders, handleClick } = this.props;
     return (
       <React.Fragment>
         {filteredOrders.map(order => (
-          <Order order={order} key={order.id} handleClick={handleClick} token={token} />
+          <Order order={order} key={order.id} handleClick={handleClick} />
         ))}
       </React.Fragment>
     );
@@ -22,7 +21,6 @@ export class OrdersList extends Component {
 const mapStateToProps = (state, ownProps) => ({
   filteredOrders: getOrdersFiltered(state, ownProps.filterValues),
   filterValues: getOrdersFilterValues(state, ownProps),
-  token: getAuthToken(state),
 });
 
 export default connect(
@@ -34,6 +32,5 @@ export default connect(
 
 OrdersList.propTypes = {
   filteredOrders: PropTypes.arrayOf(PropTypes.object).isRequired,
-  token: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
