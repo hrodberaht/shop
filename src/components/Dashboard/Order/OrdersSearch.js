@@ -12,16 +12,16 @@ export default class OrdersSearch extends Component {
     return (
       <div className="search">
         <div>
-          <span>Orders:</span>
-          <select className="search__select" onChange={handleSelect}>
+          <label htmlFor="search-select">Orders:</label>
+          <select id="search-select" className="search__select" onChange={handleSelect}>
             <option value="all">All</option>
             <option value="realized">Realized</option>
             <option value="in-progress">In progress</option>
           </select>
         </div>
         <div className="search__id">
-          <span>Id:</span>
-          <input className="search__input" type="text" onChange={handleChange} />
+          <label htmlFor="search-input">Id:</label>
+          <input id="search-input" className="search__input" type="text" onChange={handleChange} />
         </div>
       </div>
     );

@@ -10,8 +10,12 @@
     outline: none;
     border: none;
     background-color: $background-color;
-    border-bottom: 2px solid darkgray;
+    border-bottom: 2px solid $form-bottom-border;
     text-transform: uppercase;
+
+    &:focus {
+      border-bottom: 2px solid $form-focus-bottom-border;
+    }
   }
 
   &__id {
@@ -21,14 +25,14 @@
   &__input {
     margin-left: 5px;
     outline: none;
-    border: 0;
-    border-bottom: 2px solid darkgray;
+    border: none;
+    border-bottom: 2px solid $form-bottom-border;
     background-color: $background-color;
 
     &:focus {
       background-color: $background-color;
       outline: none;
-      border-bottom: 2px solid rgb(97, 96, 96);
+      border-bottom: 2px solid $form-focus-bottom-border;
     }
   }
 }

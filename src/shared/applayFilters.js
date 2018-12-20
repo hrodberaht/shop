@@ -1,8 +1,13 @@
 const applayFiletrs = (data, filterValues) => {
+  if (Object.keys(filterValues).length === 0) {
+    return data;
+  }
   const regexp = new RegExp(filterValues.id, 'i');
-  return (filterValues.status
+  const filteredByStatus = filterValues.status
     ? data.filter(order => order.status === filterValues.status)
-    : data
-  ).filter(order => (filterValues.id ? regexp.test(order.id) : true));
+    : data;
+  return filterValues.id
+    ? filteredByStatus.filter(order => regexp.test(order.id))
+    : filteredByStatus;
 };
 export default applayFiletrs;
