@@ -2,6 +2,7 @@ import OrdersSearch from '../OrdersSearch';
 
 const defaultProps = {
   handleSelect: jest.fn(),
+  handleChange: jest.fn(),
   title: 'Search',
 };
 
@@ -13,7 +14,7 @@ describe('<OrdersSearch>', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should call handleSelect if checkbox is clicked', () => {
+  it('should call handleSelect if value is selected', () => {
     const { wrapper } = setup();
     wrapper.find('select').simulate('change', { target: { value: 'realized' } });
     expect(wrapper.instance().props.handleSelect).toHaveBeenCalled();

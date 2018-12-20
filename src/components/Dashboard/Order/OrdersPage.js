@@ -15,6 +15,7 @@ export class OrdersPage extends Component {
 
   state = {
     status: 'all',
+    id: '',
   };
 
   componentDidMount() {
@@ -26,14 +27,24 @@ export class OrdersPage extends Component {
     this.setState({ status: e.target.value });
   };
 
+  handleChange = (e) => {
+    this.setState({ id: e.target.value });
+  };
+
+  filterValues = () => {
+    const values = { ...this.state };
+    if (this.state.status === 'all') delete values.status;
+    if (this.state.id === '') delete values.id;
+    return values;
+  };
+
   render() {
     const { orders, loaded } = this.props;
-    const { status } = this.state;
     if (!loaded) return <p>Loading...</p>;
     return (
       <React.Fragment>
         <div>
-          <OrdersSearch handleSelect={this.handleSelect} />
+          <OrdersSearch handleSelect={this.handleSelect} handleChange={this.handleChange} />
         </div>
         <table>
           <tbody>
@@ -46,10 +57,7 @@ export class OrdersPage extends Component {
               <th>Actions:</th>
               <ConnectedAuthorization render withRoleAdmin={<th>Admin:</th>} />
             </tr>
-            <OrdersList
-              filterValues={status === 'all' ? this.defaultState : this.state}
-              orders={orders}
-            />
+            <OrdersList filterValues={this.filterValues()} orders={orders} />
           </tbody>
         </table>
       </React.Fragment>

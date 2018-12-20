@@ -2,25 +2,33 @@
 
 exports[`<OrdersSearch> should render without crash 1`] = `
 <div>
-  Orders: 
-  <select
-    onChange={[MockFunction]}
-  >
-    <option
-      value="all"
+  <div>
+    Orders: 
+    <select
+      onChange={[MockFunction]}
     >
-      All
-    </option>
-    <option
-      value="realized"
-    >
-      Realized
-    </option>
-    <option
-      value="in-progress"
-    >
-      In progress
-    </option>
-  </select>
+      <option
+        value="all"
+      >
+        All
+      </option>
+      <option
+        value="realized"
+      >
+        Realized
+      </option>
+      <option
+        value="in-progress"
+      >
+        In progress
+      </option>
+    </select>
+  </div>
+  <div>
+    <input
+      onChange={[MockFunction]}
+      type="text"
+    />
+  </div>
 </div>
 `;

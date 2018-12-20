@@ -4,6 +4,7 @@ exports[`<OrderList /> should render if loaded true  1`] = `
 <Fragment>
   <div>
     <OrdersSearch
+      handleChange={[Function]}
       handleSelect={[Function]}
     />
   </div>
