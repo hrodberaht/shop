@@ -4,13 +4,12 @@ exports[`<OrdersSearch> should render without crash 1`] = `
 <div
   className="search"
 >
-  <div
-    className="-select"
-  >
+  <div>
     <span>
       Orders:
     </span>
     <select
+      className="search__select"
       onChange={[MockFunction]}
     >
       <option
@@ -31,12 +30,13 @@ exports[`<OrdersSearch> should render without crash 1`] = `
     </select>
   </div>
   <div
-    className="-input"
+    className="search__id"
   >
     <span>
       Id:
     </span>
     <input
+      className="search__input"
       onChange={[MockFunction]}
       type="text"
     />

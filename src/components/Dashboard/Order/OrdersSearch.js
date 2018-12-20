@@ -11,17 +11,17 @@ export default class OrdersSearch extends Component {
     const { handleSelect, handleChange } = this.props;
     return (
       <div className="search">
-        <div className="-select">
+        <div>
           <span>Orders:</span>
-          <select onChange={handleSelect}>
+          <select className="search__select" onChange={handleSelect}>
             <option value="all">All</option>
             <option value="realized">Realized</option>
             <option value="in-progress">In progress</option>
           </select>
         </div>
-        <div className="-input">
+        <div className="search__id">
           <span>Id:</span>
-          <input type="text" onChange={handleChange} />
+          <input className="search__input" type="text" onChange={handleChange} />
         </div>
       </div>
     );
