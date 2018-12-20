@@ -10,16 +10,17 @@ export default class OrdersSearch extends Component {
   render() {
     const { handleSelect, handleChange } = this.props;
     return (
-      <div>
-        <div>
-          {'Orders: '}
+      <div className="search">
+        <div className="-select">
+          <span>Orders:</span>
           <select onChange={handleSelect}>
             <option value="all">All</option>
             <option value="realized">Realized</option>
             <option value="in-progress">In progress</option>
           </select>
         </div>
-        <div>
+        <div className="-input">
+          <span>Id:</span>
           <input type="text" onChange={handleChange} />
         </div>
       </div>

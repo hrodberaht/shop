@@ -1,9 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<OrdersSearch> should render without crash 1`] = `
-<div>
-  <div>
-    Orders: 
+<div
+  className="search"
+>
+  <div
+    className="-select"
+  >
+    <span>
+      Orders:
+    </span>
     <select
       onChange={[MockFunction]}
     >
@@ -24,7 +30,12 @@ exports[`<OrdersSearch> should render without crash 1`] = `
       </option>
     </select>
   </div>
-  <div>
+  <div
+    className="-input"
+  >
+    <span>
+      Id:
+    </span>
     <input
       onChange={[MockFunction]}
       type="text"

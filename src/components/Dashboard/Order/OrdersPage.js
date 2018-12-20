@@ -45,6 +45,7 @@ export class OrdersPage extends Component {
       <React.Fragment>
         <div>
           <OrdersSearch handleSelect={this.handleSelect} handleChange={this.handleChange} />
+          <hr />
         </div>
         <table>
           <tbody>
