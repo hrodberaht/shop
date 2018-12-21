@@ -42,7 +42,12 @@ exports[`<OrderList /> should render if loaded true  1`] = `
         />
       </tr>
       <Connect(OrdersList)
-        filterValues={Object {}}
+        filterValues={
+          Object {
+            "id": "",
+            "status": "all",
+          }
+        }
         orders={
           Array [
             Object {

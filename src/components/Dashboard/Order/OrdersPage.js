@@ -11,7 +11,10 @@ import OrdersSearch from './OrdersSearch';
 import OrdersList from './OrdersList';
 
 export class OrdersPage extends Component {
-  state = {};
+  state = {
+    status: 'all',
+    id: '',
+  };
 
   componentDidMount() {
     const { getOrdersFromServer, token, userId } = this.props;
@@ -24,13 +27,6 @@ export class OrdersPage extends Component {
 
   handleChange = (e) => {
     this.setState({ id: e.target.value });
-  };
-
-  filterValues = () => {
-    const values = { ...this.state };
-    if (this.state.status === 'all') delete values.status;
-    if (this.state.id === '') delete values.id;
-    return values;
   };
 
   render() {
@@ -53,7 +49,7 @@ export class OrdersPage extends Component {
               <th>Actions:</th>
               <ConnectedAuthorization render withRoleAdmin={<th>Admin:</th>} />
             </tr>
-            <OrdersList filterValues={this.filterValues()} orders={orders} />
+            <OrdersList filterValues={{ ...this.state }} orders={orders} />
           </tbody>
         </table>
       </React.Fragment>

@@ -3,10 +3,10 @@ const applayFiletrs = (data, filterValues) => {
     return data;
   }
   const regexp = new RegExp(filterValues.id, 'i');
-  const filteredByStatus = filterValues.status
+  const filteredByStatus = filterValues.status !== 'all'
     ? data.filter(order => order.status === filterValues.status)
     : data;
-  return filterValues.id
+  return filterValues.id !== ''
     ? filteredByStatus.filter(order => regexp.test(order.id))
     : filteredByStatus;
 };

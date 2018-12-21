@@ -21,9 +21,12 @@ describe('<OrdersPage />', () => {
     } = setup();
     expect(wrapper.instance().props.getOrdersFromServer).toHaveBeenCalledWith(userId, token);
   });
-  it('state should be empty', () => {
+  it('state should be', () => {
     const { wrapper } = setup();
-    expect(wrapper.state()).toEqual({});
+    expect(wrapper.state()).toEqual({
+      status: 'all',
+      id: '',
+    });
   });
 
   it('should change state after call handleSelect', () => {
