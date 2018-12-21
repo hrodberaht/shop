@@ -19,4 +19,9 @@ describe('<OrdersSearch>', () => {
     wrapper.find('select').simulate('change', { target: { value: 'realized' } });
     expect(wrapper.instance().props.handleSelect).toHaveBeenCalled();
   });
+  it('should call handleChange if if input value change', () => {
+    const { wrapper } = setup();
+    wrapper.find('input').simulate('change', { target: { value: 'a' } });
+    expect(wrapper.instance().props.handleChange).toHaveBeenCalled();
+  });
 });

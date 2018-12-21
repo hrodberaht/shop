@@ -11,12 +11,7 @@ import OrdersSearch from './OrdersSearch';
 import OrdersList from './OrdersList';
 
 export class OrdersPage extends Component {
-  defaultState = {};
-
-  state = {
-    status: 'all',
-    id: '',
-  };
+  state = {};
 
   componentDidMount() {
     const { getOrdersFromServer, token, userId } = this.props;
