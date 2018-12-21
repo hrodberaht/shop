@@ -41,4 +41,9 @@ describe('<OrdersPage />', () => {
     wrapper.instance().handleChange(e);
     expect(wrapper.state('id')).toBe('a');
   });
+  it('should render if loaded true ', () => {
+    const { wrapper } = setup();
+    wrapper.setProps({ loaded: true });
+    expect(wrapper).toMatchSnapshot();
+  });
 });

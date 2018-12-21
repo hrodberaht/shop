@@ -1,7 +1,8 @@
-import { OrdersPage } from '../OrdersPage';
+import { OrdersList } from '../OrdersList';
 
 const defaultProps = {
-  orders: [
+  handleClick: jest.fn(),
+  filteredOrders: [
     {
       userId: 'user-3',
       person: 'Ben Morrison',
@@ -39,21 +40,12 @@ const defaultProps = {
       ],
     },
   ],
-  getOrdersFromServer: jest.fn(),
-  handleClick: jest.fn(),
-  loaded: false,
-  token: '',
 };
-const setup = buildSetup(OrdersPage, defaultProps);
+const setup = buildSetup(OrdersList, defaultProps);
 
 describe('<OrderList />', () => {
   it('should render without crash', () => {
     const { wrapper } = setup();
-    expect(wrapper).toMatchSnapshot();
-  });
-  it('should render if loaded true ', () => {
-    const { wrapper } = setup();
-    wrapper.setProps({ loaded: true });
     expect(wrapper).toMatchSnapshot();
   });
 });
