@@ -74,11 +74,24 @@ describe('actions', () => {
       },
     });
 
-    const expectedActionType = { type: types.UDATE_PRODUCT };
+    const expectedActionType = { type: types.UPDATE_PRODUCT };
     const store = mockStore();
 
     return store.dispatch(action.updateProduct({ id: '1234' })).then(() => {
       expect(store.getActions()[0]).toEqual(expect.objectContaining(expectedActionType));
     });
+  });
+  it('call update product action type when undeletedProduct ', async () => {
+    const dispatch = jest.fn();
+    fetchMock.put('end:/1234', {
+      headers: { 'content-type': 'application/json' },
+      body: {
+        product: {},
+      },
+    });
+
+    await action.undeleteProductInDb('1234')(dispatch);
+
+    expect(dispatch.mock.calls[0][0].type).toEqual(types.UPDATE_PRODUCT);
   });
 });

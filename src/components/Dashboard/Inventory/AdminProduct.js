@@ -110,7 +110,7 @@ export class AdminProduct extends Component {
         <td>
           {remove ? (
             <button
-              id="removeButton"
+              id="undeleteProductButton"
               className="admin-product__button"
               type="button"
               onClick={this.handleUndeletedProduct}

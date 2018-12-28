@@ -25,7 +25,7 @@ const removeProductSuccess = product => ({
 });
 
 const updateProductSuccess = product => ({
-  type: types.UDATE_PRODUCT,
+  type: types.UPDATE_PRODUCT,
   product,
 });
 

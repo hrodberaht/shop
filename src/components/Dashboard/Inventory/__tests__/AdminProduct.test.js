@@ -7,10 +7,12 @@ const defaultProps = {
     name: 'ZX3',
     price: 400,
     inStock: 30,
+    remove: false,
   },
   removeProd: jest.fn(),
   token: '1234',
   updateProductInDB: jest.fn(),
+  undeletedProduct: jest.fn(),
 };
 
 const setup = buildSetup(AdminProduct, defaultProps);
@@ -30,6 +32,21 @@ describe('<AdminProduct />', () => {
     const { wrapper } = setup();
     wrapper.find('#editButton').simulate('click');
     expect(wrapper.state().isEditVisable).toBe(true);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should show undeleteButton when product is remove', () => {
+    const { wrapper } = setup();
+    wrapper.setProps({
+      product: {
+        id: 'product-1',
+        type: 'Printer',
+        name: 'ZX3',
+        price: 400,
+        inStock: 30,
+        remove: true,
+      },
+    });
     expect(wrapper).toMatchSnapshot();
   });
   it('should change state after click button close and hide form', () => {
@@ -69,5 +86,26 @@ describe('<AdminProduct />', () => {
     wrapper.instance().submit();
 
     expect(wrapper.instance().props.updateProductInDB).toHaveBeenCalled();
+  });
+
+  it('should call undeletedProduct after click undeletedProductButton', () => {
+    const {
+      wrapper,
+      props: {
+        product: { id },
+      },
+    } = setup();
+    wrapper.setProps({
+      product: {
+        id: 'product-1',
+        type: 'Printer',
+        name: 'ZX3',
+        price: 400,
+        inStock: 30,
+        remove: true,
+      },
+    });
+    wrapper.find('#undeleteProductButton').simulate('click');
+    expect(wrapper.instance().props.undeletedProduct).toHaveBeenCalledWith(id);
   });
 });

@@ -19,7 +19,7 @@ const products = (state = initialState, action) => {
       return { ...state, errors: action.errors };
     case types.ADD_PRODUCT:
       return { ...state, products: state.products.concat(action.product) };
-    case types.UDATE_PRODUCT:
+    case types.UPDATE_PRODUCT:
       return {
         ...state,
         products: state.products.map(
