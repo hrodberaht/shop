@@ -10,13 +10,13 @@ import Modal from '../../shared/Modal';
 
 export class AdminProduct extends Component {
   state = {
-    toggleEdit: false,
+    isEditVisable: false,
     isModalVisable: false,
   };
 
   handleEditClick = () => {
     this.setState(state => ({
-      toggleEdit: !state.toggleEdit,
+      isEditVisable: !state.isEditVisable,
     }));
   };
 
@@ -52,8 +52,8 @@ export class AdminProduct extends Component {
         imgUrl, name, type, price, inStock, remove,
       },
     } = this.props;
-    const { isModalVisable, toggleEdit } = this.state;
-    if (toggleEdit) {
+    const { isModalVisable, isEditVisable } = this.state;
+    if (isEditVisable) {
       return (
         <React.Fragment>
           <td className="edit-form" colSpan="7">
