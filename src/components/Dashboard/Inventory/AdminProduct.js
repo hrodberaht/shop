@@ -26,7 +26,7 @@ export class AdminProduct extends Component {
     }));
   };
 
-  handleYesClick = () => {
+  handleConfirmClick = () => {
     const {
       removeProd,
       token,
@@ -36,7 +36,7 @@ export class AdminProduct extends Component {
     removeProd(id, token);
   };
 
-  handleNoClick = () => {
+  handleCancelClick = () => {
     this.toggleModal();
   };
 
@@ -74,9 +74,8 @@ export class AdminProduct extends Component {
       <React.Fragment>
         {isModalVisable && (
           <Modal
-            className="modal"
-            handleYesClick={this.handleYesClick}
-            handleNoClick={this.handleNoClick}
+            handleConfirmClick={this.handleConfirmClick}
+            handleCancelClick={this.handleCancelClick}
           />
         )}
         <td>{name}</td>

@@ -4,22 +4,25 @@ import PropTypes from 'prop-types';
 
 export default class Modal extends Component {
   static propTypes = {
-    className: PropTypes.string.isRequired,
-    handleNoClick: PropTypes.func.isRequired,
-    handleYesClick: PropTypes.func.isRequired,
+    handleCancelClick: PropTypes.func.isRequired,
+    handleConfirmClick: PropTypes.func.isRequired,
   };
 
   render() {
-    const { className, handleYesClick, handleNoClick } = this.props;
+    const { handleConfirmClick, handleCancelClick } = this.props;
     return ReactDOM.createPortal(
-      <div className={className}>
-        <p>Are you sure</p>
-        <button type="button" onClick={handleYesClick}>
-          Yes
-        </button>
-        <button type="button" onClick={handleNoClick}>
-          No
-        </button>
+      <div className="modal">
+        <div className="inner-modal">
+          <h2>Are you sure?</h2>
+          <div className="inner-modal__buttons">
+            <button type="button" className="btn btn-submit" onClick={handleCancelClick}>
+              Cancel
+            </button>
+            <button type="button" className="btn btn-danger" onClick={handleConfirmClick}>
+              Confirm
+            </button>
+          </div>
+        </div>
       </div>,
       document.body,
     );
