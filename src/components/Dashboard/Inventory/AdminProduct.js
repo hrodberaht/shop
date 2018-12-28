@@ -6,10 +6,12 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import ConnectedAddProductForm from './AddProductForm';
 import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/authenticate/selectors';
+import Modal from '../../shared/Modal';
 
 export class AdminProduct extends Component {
   state = {
     toggleEdit: false,
+    isModalVisable: false,
   };
 
   handleEditClick = () => {
@@ -18,9 +20,24 @@ export class AdminProduct extends Component {
     }));
   };
 
-  handleRemoveClick = (id) => {
-    const { removeProd, token } = this.props;
+  toggleModal = () => {
+    this.setState(state => ({
+      isModalVisable: !state.isModalVisable,
+    }));
+  };
+
+  handleYesClick = () => {
+    const {
+      removeProd,
+      token,
+      product: { id },
+    } = this.props;
+    this.toggleModal();
     removeProd(id, token);
+  };
+
+  handleNoClick = () => {
+    this.toggleModal();
   };
 
   submit = (values) => {
@@ -32,10 +49,11 @@ export class AdminProduct extends Component {
     const {
       product,
       product: {
-        id, imgUrl, name, type, price, inStock, remove,
+        imgUrl, name, type, price, inStock, remove,
       },
     } = this.props;
-    if (this.state.toggleEdit) {
+    const { isModalVisable, toggleEdit } = this.state;
+    if (toggleEdit) {
       return (
         <React.Fragment>
           <td className="edit-form" colSpan="7">
@@ -54,6 +72,13 @@ export class AdminProduct extends Component {
     }
     return (
       <React.Fragment>
+        {isModalVisable && (
+          <Modal
+            className="modal"
+            handleYesClick={this.handleYesClick}
+            handleNoClick={this.handleNoClick}
+          />
+        )}
         <td>{name}</td>
         <td>
           <img src={imgUrl} alt={type} />
@@ -76,7 +101,7 @@ export class AdminProduct extends Component {
             id="removeButton"
             className="admin-product__button"
             type="button"
-            onClick={() => this.handleRemoveClick(id)}
+            onClick={this.toggleModal}
             disabled={remove}
           >
             X

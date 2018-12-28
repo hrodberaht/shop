@@ -10,6 +10,7 @@ export default class Inventory extends Component {
   handleClick = () => {
     this.setState(state => ({
       toggleAddProduct: !state.toggleAddProduct,
+      toggleModal: !state.toggleModal,
     }));
   };
 
