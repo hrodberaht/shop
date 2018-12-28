@@ -7,6 +7,7 @@ const {
   GraphQLString,
   GraphQLList,
   GraphQLFloat,
+  GraphQLBoolean,
 } = graphql;
 const fetch = require('node-fetch');
 
@@ -20,6 +21,7 @@ const ProductType = new GraphQLObjectType({
     name: { type: GraphQLString },
     price: { type: GraphQLFloat },
     inStock: { type: GraphQLInt },
+    remove: { type: GraphQLBoolean },
   },
 });
 

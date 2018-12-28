@@ -1,6 +1,6 @@
 import * as types from './types';
 import config from '../../config/config';
-import { dataFetcherGraphQL } from '../../shared/dataFetcher';
+import dataFetcher, { dataFetcherGraphQL } from '../../shared/dataFetcher';
 
 const fetchProductsSuccess = products => ({
   type: types.FETCH_PRODUCTS,
@@ -38,6 +38,7 @@ const QUERY_PRODUCTS = {
    name
    price
    inStock
+   remove
  }
 }`,
 };
@@ -84,4 +85,8 @@ export const updateProduct = (product, token) => dispatch => fetch(`${config.url
   .then((res) => {
     dispatch(updateProductSuccess(res));
   })
+  .catch(error => dispatch(productErrors(error)));
+
+export const undeleteProductInDb = id => dispatch => dataFetcher(`products/${id}`, 'put', { remove: false })
+  .then(res => dispatch(updateProductSuccess(res)))
   .catch(error => dispatch(productErrors(error)));

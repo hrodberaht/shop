@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import ConnectedAddProductForm from './AddProductForm';
-import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
+import {
+  removeProduct,
+  updateProduct,
+  undeleteProductInDb,
+} from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/authenticate/selectors';
 import Modal from '../../shared/Modal';
 
@@ -43,6 +47,14 @@ export class AdminProduct extends Component {
   submit = (values) => {
     const { updateProductInDB, token } = this.props;
     updateProductInDB(values, token);
+  };
+
+  handleUndeletedProduct = () => {
+    const {
+      product: { id },
+      undeletedProduct,
+    } = this.props;
+    undeletedProduct(id);
   };
 
   render() {
@@ -96,15 +108,26 @@ export class AdminProduct extends Component {
           </button>
         </td>
         <td>
-          <button
-            id="removeButton"
-            className="admin-product__button"
-            type="button"
-            onClick={this.toggleModal}
-            disabled={remove}
-          >
-            X
-          </button>
+          {remove ? (
+            <button
+              id="removeButton"
+              className="admin-product__button"
+              type="button"
+              onClick={this.handleUndeletedProduct}
+            >
+              +
+            </button>
+          ) : (
+            <button
+              id="removeButton"
+              className="admin-product__button"
+              type="button"
+              onClick={this.toggleModal}
+              disabled={remove}
+            >
+              X
+            </button>
+          )}
         </td>
       </React.Fragment>
     );
@@ -119,6 +142,7 @@ export default connect(
   {
     removeProd: removeProduct,
     updateProductInDB: updateProduct,
+    undeletedProduct: undeleteProductInDb,
   },
 )(AdminProduct);
 
@@ -132,4 +156,5 @@ AdminProduct.propTypes = {
   removeProd: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   updateProductInDB: PropTypes.func.isRequired,
+  undeletedProduct: PropTypes.func.isRequired,
 };
