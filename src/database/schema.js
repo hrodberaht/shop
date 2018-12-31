@@ -59,13 +59,16 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(OrdersType),
       args: {},
       async resolve(parentValue, args, request) {
-        const products = await fetch('http://127.0.0.1:3004/orders?id=user-4', {
-          method: 'get',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${request.headers.authorization}`,
+        const products = await fetch(
+          `http://127.0.0.1:3004/orders?id=${request.body.variables.id}`,
+          {
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${request.headers.authorization}`,
+            },
           },
-        });
+        );
         return products.json();
       },
     },
