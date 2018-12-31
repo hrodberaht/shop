@@ -35,6 +35,9 @@ export class SideBar extends Component {
           <li className="item">
             <NavLink to="/wishlist">Wish list</NavLink>
           </li>
+          <li className="item">
+            <NavLink to="/documents">Documents</NavLink>
+          </li>
           <ConnectedAuthorization
             render
             withRoleAdmin={

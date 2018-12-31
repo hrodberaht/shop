@@ -9,6 +9,7 @@ import Wishlist from './Wishlist/Wishlist';
 import HeadBar from '../Header/HeadBar';
 import SideBar from '../Header/SideBar';
 import Analytics from '../Analytics/Analytics';
+import { Invoices } from './Documents/Invoices';
 
 export default class Dashboard extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class Dashboard extends Component {
                   <Route path="/orders" component={OrdersList} />
                   <Route path="/cart" component={Cart} />
                   <Route path="/wishlist" component={Wishlist} />
+                  <Route path="/documents" component={Invoices} />
                   <Route path="/analytics" component={Analytics} />
                   <Authorization
                     render
