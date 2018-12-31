@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
-export class Invoices extends Component {
+export default class Invoices extends Component {
   state = {
     isVisableAddInvoice: false,
   };
 
-  static propTypes = {
-    prop: PropTypes,
-  };
+  static propTypes = {};
 
-  toggleAddInvoice = () => {
-    this.setState(state => ({ isVisableAddInvoice: !state.isVisableAddInvoicee }));
+  handleClick = () => {
+    this.setState(state => ({ isVisableAddInvoice: !state.isVisableAddInvoice }));
   };
 
   render() {
     return (
       <div>
-        <button type="button" onClick={this.toggleAddInvoice}>
+        <button type="button" onClick={this.handleClick}>
           Add invoice
         </button>
         {this.state.isVisableAddInvoice && <p>Form</p>}
@@ -26,12 +23,3 @@ export class Invoices extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Invoices);

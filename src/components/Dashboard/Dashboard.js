@@ -9,7 +9,7 @@ import Wishlist from './Wishlist/Wishlist';
 import HeadBar from '../Header/HeadBar';
 import SideBar from '../Header/SideBar';
 import Analytics from '../Analytics/Analytics';
-import { Invoices } from './Documents/Invoices';
+import Invoices from './Documents/Invoices';
 
 export default class Dashboard extends Component {
   render() {

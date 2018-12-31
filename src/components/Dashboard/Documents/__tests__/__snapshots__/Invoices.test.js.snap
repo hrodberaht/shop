@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Invoices /> should render without crash 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Add invoice
+  </button>
+</div>
+`;
+
+exports[`<Invoices /> should show form if state isVisableAddInvoice is true 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Add invoice
+  </button>
+  <p>
+    Form
+  </p>
+</div>
+`;
