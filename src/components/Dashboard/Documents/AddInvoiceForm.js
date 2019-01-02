@@ -9,6 +9,7 @@ import applyRounded from '../../../shared/applyRounded';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
+import { getProductsAll } from '../../../store/products/selectors';
 
 const selector = formValueSelector('addInvoice');
 
@@ -39,6 +40,12 @@ export class AddInvoiceForm extends Component {
     </div>
   );
 
+  serchProductByEan = (ean) => {
+    const { productsInStore } = this.props;
+    const found = productsInStore.find(product => ean === product.id);
+    return found ? found.name : null;
+  };
+
   renderProducts = ({ fields, change }) => (
     <React.Fragment>
       <ol>
@@ -47,7 +54,13 @@ export class AddInvoiceForm extends Component {
             <button type="button" onClick={() => fields.remove(index)}>
               X
             </button>
-            <Field name={`${product}.ean`} component={this.renderField} label="EAN: " type="text" />
+            <Field
+              name={`${product}.ean`}
+              onChange={e => change(`${product}.name`, this.serchProductByEan(e.target.value))}
+              component={this.renderField}
+              label="EAN: "
+              type="text"
+            />
             <Field
               name={`${product}.name`}
               component={this.renderField}
@@ -123,7 +136,10 @@ export class AddInvoiceForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ products: selector(state, 'products') });
+const mapStateToProps = state => ({
+  products: selector(state, 'products'),
+  productsInStore: getProductsAll(state),
+});
 
 export default connect(
   mapStateToProps,
