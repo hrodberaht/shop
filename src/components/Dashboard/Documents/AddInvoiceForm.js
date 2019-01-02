@@ -24,6 +24,8 @@ export class AddInvoiceForm extends Component {
 
   parseToRoundedAmount = value => +applyRounded(+value);
 
+  countGrossPrice = ({ pcs, price, vat }) => +applyRounded(pcs * price * (1 + vat / 100));
+
   renderDataPick = ({ input: { onChange, value } }) => (
     <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
   );
@@ -42,11 +44,13 @@ export class AddInvoiceForm extends Component {
     </div>
   );
 
-  renderProducts = ({ fields }) => (
+  renderProducts = ({ fields, change }) => (
     <React.Fragment>
       <ol>
         {fields.map((product, index) => (
           <li key={`${product}`}>
+            {console.log(fields.getAll()[index])}
+            {}
             <button type="button" onClick={() => fields.remove(index)}>
               X
             </button>
@@ -77,7 +81,7 @@ export class AddInvoiceForm extends Component {
               parse={this.parseToRoundedAmount}
             />
             <label>VAT: </label>
-            <Field name={`${product}.vat`} component="select">
+            <Field name={`${product}.vat`} component="select" parse={this.parseToNumber}>
               <option />
               <option value="0">0%</option>
               <option value="5">5%</option>
@@ -85,11 +89,16 @@ export class AddInvoiceForm extends Component {
               <option value="23">23%</option>
             </Field>
             <Field
-              name={`${product}.total`}
+              name={`${product}.grossPrice`}
               component={this.renderField}
               label="Gross price: "
               type="number"
               parse={this.parseToRoundedAmount}
+              onFocus={e => change(
+                `products[${index}].grossPrice`,
+                this.countGrossPrice(fields.getAll()[index]),
+              )
+              }
             />
           </li>
         ))}
@@ -101,25 +110,26 @@ export class AddInvoiceForm extends Component {
   );
 
   render() {
-    const { handleSubmit, products } = this.props;
+    const { handleSubmit, products, change } = this.props;
     return (
       <form onSubmit={handleSubmit(this.submit)}>
         <label htmlFor="date">Date: </label>
         <Field format={value => value || null} name="date" component={this.renderDataPick} />
         <Field name="company" component={this.renderField} label="Company: " type="text" />
         <Field name="number" component={this.renderField} label="Number: " type="text" />
-        <FieldArray name="products" component={this.renderProducts} />
+        <FieldArray name="products" component={this.renderProducts} change={change} />
         <Field
           name="total"
           component={this.renderField}
           label="Total price: "
           type="number"
           parse={this.parseToRoundedAmount}
+          onFocus={() => change('total', products.reduce((sum, product) => sum + product.grossPrice, 0))
+          }
         />
         <p>
           <button type="submit">Add</button>
         </p>
-        {console.log(products)}
       </form>
     );
   }
