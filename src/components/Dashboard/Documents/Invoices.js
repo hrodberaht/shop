@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import AddInvoiceForm from './AddInvoiceForm';
 
 export default class Invoices extends Component {
   state = {
-    isVisableAddInvoice: false,
+    isVisableAddInvoice: true,
   };
 
   static propTypes = {};
@@ -18,7 +19,7 @@ export default class Invoices extends Component {
         <button type="button" onClick={this.handleClick}>
           Add invoice
         </button>
-        {this.state.isVisableAddInvoice && <p>Form</p>}
+        {this.state.isVisableAddInvoice && <AddInvoiceForm />}
       </div>
     );
   }
