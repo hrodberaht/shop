@@ -7,6 +7,7 @@ import orders from './orders/reducer';
 import wishlist from './wishlist/reducer';
 import navigation from './navigation/reducer';
 import charts from './charts/reducer';
+import documents from './documents/reducer';
 
 import * as types from './authenticate/types';
 
@@ -18,6 +19,7 @@ const appReducer = combineReducers({
   wishlist,
   navigation,
   charts,
+  documents,
   form: formReducer,
 });
 

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import applyRounded from '../../../shared/applyRounded';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
 
 const selector = formValueSelector('addInvoice');
 
@@ -16,7 +17,10 @@ export class AddInvoiceForm extends Component {
     handleSubmit: PropTypes.func.isRequired,
   };
 
-  submit = values => console.log(values);
+  submit = (values) => {
+    const { addInvoice } = this.props;
+    addInvoice(values);
+  };
 
   parseToNumber = value => +value;
 
@@ -121,7 +125,10 @@ export class AddInvoiceForm extends Component {
 
 const mapStateToProps = state => ({ products: selector(state, 'products') });
 
-export default connect(mapStateToProps)(
+export default connect(
+  mapStateToProps,
+  { addInvoice: addInvoicesSuccess },
+)(
   reduxForm({
     form: 'addInvoice',
   })(AddInvoiceForm),
