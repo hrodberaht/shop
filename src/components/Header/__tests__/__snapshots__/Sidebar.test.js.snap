@@ -63,6 +63,17 @@ exports[`<SideBar /> should render with hide sidebar if toggleSidebar is false 1
         Wish list
       </NavLink>
     </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/documents"
+      >
+        Documents
+      </NavLink>
+    </li>
     <Connect(Authorization)
       render={true}
       withRoleAdmin={
@@ -163,6 +174,17 @@ exports[`<SideBar /> should render with side bar if toggleSidebar is true 1`] = 
         to="/wishlist"
       >
         Wish list
+      </NavLink>
+    </li>
+    <li
+      className="item"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        to="/documents"
+      >
+        Documents
       </NavLink>
     </li>
     <Connect(Authorization)

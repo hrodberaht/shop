@@ -9,8 +9,6 @@ import applyRounded from '../../../shared/applyRounded';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const asyncValidate = values => console.log(values);
-
 const selector = formValueSelector('addInvoice');
 
 export class AddInvoiceForm extends Component {
@@ -24,7 +22,7 @@ export class AddInvoiceForm extends Component {
 
   parseToRoundedAmount = value => +applyRounded(+value);
 
-  countGrossPrice = ({ pcs, price, vat }) => +applyRounded(pcs * price * (1 + vat / 100));
+  countGrossPrice = ({ pcs, netPrice, vat }) => +applyRounded(pcs * netPrice * (1 + vat / 100));
 
   renderDataPick = ({ input: { onChange, value } }) => (
     <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
@@ -32,14 +30,7 @@ export class AddInvoiceForm extends Component {
 
   renderField = ({ input, label, type }) => (
     <div>
-      <label>{label}</label>
-      <input {...input} type={type} />
-    </div>
-  );
-
-  renderFieldWithOnChenge = ({ input, label, type }) => (
-    <div>
-      <label>{label}</label>
+      <label htmlFor={label}>{label}</label>
       <input {...input} type={type} />
     </div>
   );
@@ -49,17 +40,10 @@ export class AddInvoiceForm extends Component {
       <ol>
         {fields.map((product, index) => (
           <li key={`${product}`}>
-            {console.log(fields.getAll()[index])}
-            {}
             <button type="button" onClick={() => fields.remove(index)}>
               X
             </button>
-            <Field
-              name={`${product}.ean`}
-              component={this.renderFieldWithOnChenge}
-              label="EAN: "
-              type="text"
-            />
+            <Field name={`${product}.ean`} component={this.renderField} label="EAN: " type="text" />
             <Field
               name={`${product}.name`}
               component={this.renderField}
@@ -74,13 +58,13 @@ export class AddInvoiceForm extends Component {
               parse={this.parseToNumber}
             />
             <Field
-              name={`${product}.price`}
+              name={`${product}.netPrice`}
               component={this.renderField}
               label="Net price: "
               type="number"
               parse={this.parseToRoundedAmount}
             />
-            <label>VAT: </label>
+            <label htmlFor="vat">VAT: </label>
             <Field name={`${product}.vat`} component="select" parse={this.parseToNumber}>
               <option />
               <option value="0">0%</option>
@@ -94,7 +78,7 @@ export class AddInvoiceForm extends Component {
               label="Gross price: "
               type="number"
               parse={this.parseToRoundedAmount}
-              onFocus={e => change(
+              onFocus={() => change(
                 `products[${index}].grossPrice`,
                 this.countGrossPrice(fields.getAll()[index]),
               )
@@ -140,6 +124,5 @@ const mapStateToProps = state => ({ products: selector(state, 'products') });
 export default connect(mapStateToProps)(
   reduxForm({
     form: 'addInvoice',
-    // asyncValidate,
   })(AddInvoiceForm),
 );

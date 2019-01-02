@@ -19,8 +19,6 @@ exports[`<Invoices /> should show form if state isVisableAddInvoice is true 1`] 
   >
     Add invoice
   </button>
-  <p>
-    Form
-  </p>
+  <Connect(ReduxForm) />
 </div>
 `;

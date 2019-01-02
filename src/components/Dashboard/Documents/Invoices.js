@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import AddInvoiceForm from './AddInvoiceForm';
 
 export default class Invoices extends Component {
   state = {
-    isVisableAddInvoice: true,
+    isVisableAddInvoice: false,
   };
 
   static propTypes = {};
