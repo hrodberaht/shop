@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { reduxForm, Field, FieldArray } from 'redux-form';
+import { connect } from 'react-redux';
+import {
+  reduxForm, Field, FieldArray, formValueSelector,
+} from 'redux-form';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
 import applyRounded from '../../../shared/applyRounded';
@@ -7,6 +10,8 @@ import applyRounded from '../../../shared/applyRounded';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const asyncValidate = values => console.log(values);
+
+const selector = formValueSelector('addInvoice');
 
 export class AddInvoiceForm extends Component {
   static propTypes = {
@@ -96,7 +101,7 @@ export class AddInvoiceForm extends Component {
   );
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, products } = this.props;
     return (
       <form onSubmit={handleSubmit(this.submit)}>
         <label htmlFor="date">Date: </label>
@@ -114,12 +119,17 @@ export class AddInvoiceForm extends Component {
         <p>
           <button type="submit">Add</button>
         </p>
+        {console.log(products)}
       </form>
     );
   }
 }
 
-export default reduxForm({
-  form: 'addInvoice',
-  // asyncValidate,
-})(AddInvoiceForm);
+const mapStateToProps = state => ({ products: selector(state, 'products') });
+
+export default connect(mapStateToProps)(
+  reduxForm({
+    form: 'addInvoice',
+    // asyncValidate,
+  })(AddInvoiceForm),
+);
