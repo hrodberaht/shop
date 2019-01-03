@@ -12,6 +12,54 @@ import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
 import { getProductsAll } from '../../../store/products/selectors';
 
 const selector = formValueSelector('addInvoice');
+const validate = (values) => {
+  const errors = {};
+  if (!values.company) errors.company = 'Required';
+  if (!values.date) errors.date = 'Required';
+  if (!values.number) errors.number = 'Required';
+  if (!values.total) errors.total = 'Required';
+
+  const productsArrayErrors = [];
+  if (!values.products) {
+    errors.products = { _error: 'At least one product must be entered' };
+  } else {
+    const productErrors = {};
+    values.products.forEach((product, productIndex) => {
+      if (!product.ean) {
+        productErrors.ean = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (!product.name) {
+        productErrors.name = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (!product.pcs) {
+        productErrors.pcs = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (!product.netPrice) {
+        productErrors.netPrice = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (!product.vat) {
+        productErrors.vat = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (!product.grossPrice) {
+        productErrors.grossPrice = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+    });
+
+    errors.products = productsArrayErrors;
+  }
+  return errors;
+};
 
 export class AddInvoiceForm extends Component {
   static propTypes = {
@@ -27,17 +75,30 @@ export class AddInvoiceForm extends Component {
 
   parseToRoundedAmount = value => +applyRounded(+value);
 
-  countGrossPrice = ({ pcs, netPrice, vat }) => +applyRounded(pcs * netPrice * (1 + vat / 100));
+  countGrossPrice = ({ pcs, netPrice, vat }) => (pcs && netPrice && vat ? +applyRounded(pcs * netPrice * (1 + vat / 100)) : 0);
 
-  renderDataPick = ({ input: { onChange, value } }) => (
-    <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
+  renderDataPick = ({ input: { onChange, value }, meta: { error, submitFailed } }) => (
+    <React.Fragment>
+      <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
+      <p>{submitFailed && error && <span>{error}</span>}</p>
+    </React.Fragment>
   );
 
-  renderField = ({ input, label, type }) => (
+  renderField = ({
+    input, label, type, meta: { error, touched },
+  }) => (
     <div>
       <label htmlFor={label}>{label}</label>
       <input {...input} type={type} />
+      <p>{touched && (error && <span>{error}</span>)}</p>
     </div>
+  );
+
+  renderSelect = ({ input, children, meta: { touched, error } }) => (
+    <React.Fragment>
+      <select {...input}>{children}</select>
+      {touched && error && <p>{error}</p>}
+    </React.Fragment>
   );
 
   serchProductByEan = (ean) => {
@@ -46,7 +107,7 @@ export class AddInvoiceForm extends Component {
     return found ? found.name : null;
   };
 
-  renderProducts = ({ fields, change }) => (
+  renderProducts = ({ fields, change, meta: { error, submitFailed } }) => (
     <React.Fragment>
       <ol>
         {fields.map((product, index) => (
@@ -82,7 +143,7 @@ export class AddInvoiceForm extends Component {
               parse={this.parseToRoundedAmount}
             />
             <label htmlFor="vat">VAT: </label>
-            <Field name={`${product}.vat`} component="select" parse={this.parseToNumber}>
+            <Field name={`${product}.vat`} component={this.renderSelect} parse={this.parseToNumber}>
               <option />
               <option value="0">0%</option>
               <option value="5">5%</option>
@@ -107,6 +168,7 @@ export class AddInvoiceForm extends Component {
       <button type="button" onClick={() => fields.push({})}>
         Add product
       </button>
+      <p>{submitFailed && error && <span>{error}</span>}</p>
     </React.Fragment>
   );
 
@@ -147,5 +209,6 @@ export default connect(
 )(
   reduxForm({
     form: 'addInvoice',
+    validate,
   })(AddInvoiceForm),
 );

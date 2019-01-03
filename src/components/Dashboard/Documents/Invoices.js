@@ -3,7 +3,7 @@ import AddInvoiceForm from './AddInvoiceForm';
 
 export default class Invoices extends Component {
   state = {
-    isVisableAddInvoice: false,
+    isVisableAddInvoice: true,
   };
 
   static propTypes = {};
