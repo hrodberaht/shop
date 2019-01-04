@@ -35,17 +35,17 @@ const validate = (values) => {
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.pcs) {
+      if (!Number.isInteger(product.pcs)) {
         productErrors.pcs = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.netPrice) {
+      if (!Number.isInteger(product.netPrice)) {
         productErrors.netPrice = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.vat) {
+      if (!Number.isInteger(product.vat)) {
         productErrors.vat = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
@@ -67,15 +67,16 @@ export class AddInvoiceForm extends Component {
   };
 
   submit = (values) => {
-    const { addInvoice } = this.props;
+    const { addInvoice, resetForm } = this.props;
     addInvoice(values);
+    resetForm();
   };
 
   parseToNumber = value => +value;
 
   parseToRoundedAmount = value => +applyRounded(+value);
 
-  countGrossPrice = ({ pcs, netPrice, vat }) => (pcs && netPrice && vat ? +applyRounded(pcs * netPrice * (1 + vat / 100)) : 0);
+  countGrossPrice = ({ pcs, netPrice, vat }) => (pcs && netPrice && Number.isInteger(vat) ? +applyRounded(pcs * netPrice * (1 + vat / 100)) : 0);
 
   renderDataPick = ({ input: { onChange, value }, meta: { error, submitFailed } }) => (
     <React.Fragment>
@@ -187,7 +188,10 @@ export class AddInvoiceForm extends Component {
           label="Total price: "
           type="number"
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('total', products.reduce((sum, product) => sum + product.grossPrice, 0))
+          onFocus={() => change(
+            'total',
+            products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : null,
+          )
           }
         />
         <p>
