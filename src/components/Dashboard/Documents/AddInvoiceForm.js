@@ -72,6 +72,8 @@ export class AddInvoiceForm extends Component {
     resetForm();
   };
 
+  countVATS = (products, vat) => (products ? products.reduce((sum, product) => (product.vat === vat ? sum + (product.grossPrice - product.netPrice * product.pcs) : sum + 0), 0) : 0);
+
   parseToNumber = value => +value;
 
   parseToRoundedAmount = value => +applyRounded(+value);
@@ -207,6 +209,42 @@ export class AddInvoiceForm extends Component {
             'total',
             products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : null,
           )
+          }
+        />
+        <Field
+          name="vat23"
+          component={this.renderField}
+          label="VAT 23 "
+          type="number"
+          parse={this.parseToRoundedAmount}
+          onFocus={() => change('vat23', this.countVATS(products, 23))
+          }
+        />
+        <Field
+          name="vat8"
+          component={this.renderField}
+          label="VAT 8: "
+          type="number"
+          parse={this.parseToRoundedAmount}
+          onFocus={() => change('vat8', this.countVATS(products, 8))
+          }
+        />
+        <Field
+          name="vat5"
+          component={this.renderField}
+          label="VAT 5: "
+          type="number"
+          parse={this.parseToRoundedAmount}
+          onFocus={() => change('vat5', this.countVATS(products, 5))
+          }
+        />
+        <Field
+          name="vat0"
+          component={this.renderField}
+          label="VAT 0: "
+          type="number"
+          parse={this.parseToRoundedAmount}
+          onFocus={() => change('vat0', this.countVATS(products, 0))
           }
         />
         <p>
