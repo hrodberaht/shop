@@ -67,12 +67,19 @@ export class AddInvoiceForm extends Component {
   };
 
   submit = (values) => {
-    const { addInvoice, resetForm } = this.props;
+    const { addInvoice, reset } = this.props;
     addInvoice(values);
-    resetForm();
+    reset();
   };
 
-  countVATS = (products, vat) => (products ? products.reduce((sum, product) => (product.vat === vat ? sum + (product.grossPrice - product.netPrice * product.pcs) : sum + 0), 0) : 0);
+  countVATS = (products, vat) => (products
+    ? products.reduce(
+      (sum, product) => (product.vat === vat
+        ? sum + (product.grossPrice - product.netPrice * product.pcs)
+        : sum + 0),
+      0,
+    )
+    : 0);
 
   parseToNumber = value => +value;
 
@@ -80,17 +87,23 @@ export class AddInvoiceForm extends Component {
 
   countGrossPricePcs = (value, product, change, index) => {
     const { netPrice, vat } = product;
-    return (value && netPrice && Number.isInteger(vat) ? change(`products[${index}].grossPrice`, +applyRounded(value * netPrice * (1 + vat / 100))) : 0);
+    return value && netPrice && Number.isInteger(vat)
+      ? change(`products[${index}].grossPrice`, +applyRounded(value * netPrice * (1 + vat / 100)))
+      : 0;
   };
 
   countGrossPriceNetPrice = (value, product, change, index) => {
     const { pcs, vat } = product;
-    return (pcs && value && Number.isInteger(vat) ? change(`products[${index}].grossPrice`, +applyRounded(pcs * value * (1 + vat / 100))) : 0);
+    return pcs && value && Number.isInteger(vat)
+      ? change(`products[${index}].grossPrice`, +applyRounded(pcs * value * (1 + vat / 100)))
+      : 0;
   };
 
   countGrossPriceVat = (value, product, change, index) => {
     const { pcs, netPrice } = product;
-    return (pcs && netPrice && value ? change(`products[${index}].grossPrice`, +applyRounded(pcs * netPrice * (1 + value / 100))) : 0);
+    return pcs && netPrice && value
+      ? change(`products[${index}].grossPrice`, +applyRounded(pcs * netPrice * (1 + value / 100)))
+      : 0;
   };
 
   renderDataPick = ({ input: { onChange, value }, meta: { error, submitFailed } }) => (
@@ -150,7 +163,8 @@ export class AddInvoiceForm extends Component {
               label="Pcs: "
               type="number"
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPricePcs(e.target.value, fields.getAll()[index], change, index)}
+              onChange={e => this.countGrossPricePcs(e.target.value, fields.getAll()[index], change, index)
+              }
             />
             <Field
               name={`${product}.netPrice`}
@@ -158,14 +172,16 @@ export class AddInvoiceForm extends Component {
               label="Net price: "
               type="number"
               parse={this.parseToRoundedAmount}
-              onChange={e => this.countGrossPriceNetPrice(e.target.value, fields.getAll()[index], change, index)}
+              onChange={e => this.countGrossPriceNetPrice(e.target.value, fields.getAll()[index], change, index)
+              }
             />
             <label htmlFor="vat">VAT: </label>
             <Field
               name={`${product}.vat`}
               component={this.renderSelect}
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPriceVat(e.target.value, fields.getAll()[index], change, index)}
+              onChange={e => this.countGrossPriceVat(e.target.value, fields.getAll()[index], change, index)
+              }
             >
               <option />
               <option value="0">0%</option>
@@ -217,8 +233,7 @@ export class AddInvoiceForm extends Component {
           label="VAT 23 "
           type="number"
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat23', this.countVATS(products, 23))
-          }
+          onFocus={() => change('vat23', this.countVATS(products, 23))}
         />
         <Field
           name="vat8"
@@ -226,8 +241,7 @@ export class AddInvoiceForm extends Component {
           label="VAT 8: "
           type="number"
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat8', this.countVATS(products, 8))
-          }
+          onFocus={() => change('vat8', this.countVATS(products, 8))}
         />
         <Field
           name="vat5"
@@ -235,8 +249,7 @@ export class AddInvoiceForm extends Component {
           label="VAT 5: "
           type="number"
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat5', this.countVATS(products, 5))
-          }
+          onFocus={() => change('vat5', this.countVATS(products, 5))}
         />
         <Field
           name="vat0"
@@ -244,8 +257,7 @@ export class AddInvoiceForm extends Component {
           label="VAT 0: "
           type="number"
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat0', this.countVATS(products, 0))
-          }
+          onFocus={() => change('vat0', this.countVATS(products, 0))}
         />
         <p>
           <button type="submit">Add</button>
