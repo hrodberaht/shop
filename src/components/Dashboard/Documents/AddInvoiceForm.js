@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  reduxForm, Field, FieldArray, formValueSelector,
+  reduxForm, Field, FieldArray, formValueSelector, change,
 } from 'redux-form';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
@@ -215,7 +215,6 @@ export class AddInvoiceForm extends Component {
 
   render() {
     const { handleSubmit, products, change } = this.props;
-    console.log(products);
     return (
       <form onSubmit={handleSubmit(this.submit)}>
         <label htmlFor="date">Date: </label>
@@ -228,44 +227,32 @@ export class AddInvoiceForm extends Component {
           component={this.renderField}
           label="Total price: "
           type="number"
+          format={this.parseToRoundedAmount}
           parse={this.parseToRoundedAmount}
-          onFocus={() => change(
-            'total',
-            products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : null,
-          )
-          }
         />
         <Field
           name="vat23"
           component={this.renderField}
           label="VAT 23 "
           type="number"
+          format={this.parseToRoundedAmount}
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat23', this.countVATS(products, 23))}
         />
         <Field
           name="vat8"
           component={this.renderField}
           label="VAT 8: "
           type="number"
+          format={this.parseToRoundedAmount}
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat8', this.countVATS(products, 8))}
         />
         <Field
           name="vat5"
           component={this.renderField}
           label="VAT 5: "
           type="number"
+          format={this.parseToRoundedAmount}
           parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat5', this.countVATS(products, 5))}
-        />
-        <Field
-          name="vat0"
-          component={this.renderField}
-          label="VAT 0: "
-          type="number"
-          parse={this.parseToRoundedAmount}
-          onFocus={() => change('vat0', this.countVATS(products, 0))}
         />
         <p>
           <button type="submit">Add</button>
@@ -274,6 +261,27 @@ export class AddInvoiceForm extends Component {
     );
   }
 }
+
+const countVATS = (products, vat) => (products
+  ? products.reduce(
+    (sum, product) => (product.vat === vat
+      ? sum + (product.grossPrice - product.netPrice * product.pcs)
+      : sum + 0),
+    0,
+  )
+  : 0);
+
+const countTotalGrossPrice = products => (products
+  ? products.reduce((sum, product) => sum + product.grossPrice, 0)
+  : 0);
+
+
+const setVatsAndTotalPriceAfterValuesChanged = (products, dispatch) => { 
+  dispatch(change('addInvoice', 'vat23', countVATS(products, 23)));
+  dispatch(change('addInvoice', 'vat8', countVATS(products, 8)));
+  dispatch(change('addInvoice', 'vat5', countVATS(products, 5)));
+  dispatch(change('addInvoice', 'total', countTotalGrossPrice(products)));
+};
 
 const mapStateToProps = state => ({
   products: selector(state, 'products'),
@@ -287,5 +295,6 @@ export default connect(
   reduxForm({
     form: 'addInvoice',
     validate,
+    onChange: (values, dispatch) => setVatsAndTotalPriceAfterValuesChanged(values.products, dispatch),
   })(AddInvoiceForm),
 );
