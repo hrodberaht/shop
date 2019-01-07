@@ -85,25 +85,38 @@ export class AddInvoiceForm extends Component {
 
   parseToRoundedAmount = value => +applyRounded(+value);
 
+  setGrossPriceAfterValuesChanged = (change, value, index) => change(`products[${index}].grossPrice`, +applyRounded(value));
+
+  checkIfAllValuesAreSet = (pcs, netPrice, vat) => pcs && netPrice && vat;
+
   countGrossPricePcs = (value, product, change, index) => {
     const { netPrice, vat } = product;
-    return value && netPrice && Number.isInteger(vat)
-      ? change(`products[${index}].grossPrice`, +applyRounded(value * netPrice * (1 + vat / 100)))
+    const grossPrice = value * netPrice * (1 + vat / 100);
+    return this.checkIfAllValuesAreSet(value, netPrice, vat)
+      ? this.setGrossPriceAfterValuesChanged(change, grossPrice, index)
       : 0;
   };
 
   countGrossPriceNetPrice = (value, product, change, index) => {
     const { pcs, vat } = product;
-    return pcs && value && Number.isInteger(vat)
-      ? change(`products[${index}].grossPrice`, +applyRounded(pcs * value * (1 + vat / 100)))
+    const grossPrice = pcs * value * (1 + vat / 100);
+    return this.checkIfAllValuesAreSet(pcs, value, vat)
+      ? this.setGrossPriceAfterValuesChanged(change, grossPrice, index)
       : 0;
   };
 
   countGrossPriceVat = (value, product, change, index) => {
     const { pcs, netPrice } = product;
-    return pcs && netPrice && value
-      ? change(`products[${index}].grossPrice`, +applyRounded(pcs * netPrice * (1 + value / 100)))
+    const grossPrice = pcs * netPrice * (1 + value / 100);
+    return this.checkIfAllValuesAreSet(pcs, netPrice, value)
+      ? this.setGrossPriceAfterValuesChanged(change, grossPrice, index)
       : 0;
+  };
+
+  serchProductByEan = (ean) => {
+    const { productsInStore } = this.props;
+    const found = productsInStore.find(product => ean === product.id);
+    return found ? found.name : null;
   };
 
   renderDataPick = ({ input: { onChange, value }, meta: { error, submitFailed } }) => (
@@ -129,12 +142,6 @@ export class AddInvoiceForm extends Component {
       {touched && error && <p>{error}</p>}
     </React.Fragment>
   );
-
-  serchProductByEan = (ean) => {
-    const { productsInStore } = this.props;
-    const found = productsInStore.find(product => ean === product.id);
-    return found ? found.name : null;
-  };
 
   renderProducts = ({ fields, change, meta: { error, submitFailed } }) => (
     <React.Fragment>
@@ -208,6 +215,7 @@ export class AddInvoiceForm extends Component {
 
   render() {
     const { handleSubmit, products, change } = this.props;
+    console.log(products);
     return (
       <form onSubmit={handleSubmit(this.submit)}>
         <label htmlFor="date">Date: </label>
