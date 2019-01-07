@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  reduxForm, Field, FieldArray, formValueSelector, change,
+  reduxForm, Field, FieldArray, formValueSelector, change as changeInDispatch,
 } from 'redux-form';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
@@ -35,17 +35,17 @@ const validate = (values) => {
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!Number.isInteger(product.pcs)) {
+      if (!product.pcs) {
         productErrors.pcs = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!Number.isInteger(product.netPrice)) {
+      if (!product.netPrice) {
         productErrors.netPrice = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!Number.isInteger(product.vat)) {
+      if (!product.vat) {
         productErrors.vat = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
@@ -81,9 +81,9 @@ export class AddInvoiceForm extends Component {
     )
     : 0);
 
-  parseToNumber = value => +value;
+  parseToNumber = value => (value ? +value : 0);
 
-  parseToRoundedAmount = value => +applyRounded(+value);
+  parseToRoundedAmount = value => (value ? +applyRounded(+value) : 0);
 
   setGrossPriceAfterValuesChanged = (change, value, index) => change(`products[${index}].grossPrice`, +applyRounded(value));
 
@@ -170,7 +170,12 @@ export class AddInvoiceForm extends Component {
               label="Pcs: "
               type="number"
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPricePcs(e.target.value, fields.getAll()[index], change, index)
+              onChange={e => this.countGrossPricePcs(
+                e.target.value,
+                fields.get(index),
+                change,
+                index,
+              )
               }
             />
             <Field
@@ -179,7 +184,12 @@ export class AddInvoiceForm extends Component {
               label="Net price: "
               type="number"
               parse={this.parseToRoundedAmount}
-              onChange={e => this.countGrossPriceNetPrice(e.target.value, fields.getAll()[index], change, index)
+              onChange={e => this.countGrossPriceNetPrice(
+                e.target.value,
+                fields.get(index),
+                change,
+                index,
+              )
               }
             />
             <label htmlFor="vat">VAT: </label>
@@ -187,7 +197,12 @@ export class AddInvoiceForm extends Component {
               name={`${product}.vat`}
               component={this.renderSelect}
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPriceVat(e.target.value, fields.getAll()[index], change, index)
+              onChange={e => this.countGrossPriceVat(
+                e.target.value,
+                fields.get(index),
+                change,
+                index,
+              )
               }
             >
               <option />
@@ -289,11 +304,11 @@ const countTotalNetPrice = products => (products
 
 
 const setVatTotalPriceAfterValuesChanged = (products, dispatch) => {
-  dispatch(change('addInvoice', 'vat23', countVATS(products, 23)));
-  dispatch(change('addInvoice', 'vat8', countVATS(products, 8)));
-  dispatch(change('addInvoice', 'vat5', countVATS(products, 5)));
-  dispatch(change('addInvoice', 'totalGrossPrice', countTotalGrossPrice(products)));
-  dispatch(change('addInvoice', 'totalNetPrice', countTotalNetPrice(products)));
+  dispatch(changeInDispatch('addInvoice', 'vat23', countVATS(products, 23)));
+  dispatch(changeInDispatch('addInvoice', 'vat8', countVATS(products, 8)));
+  dispatch(changeInDispatch('addInvoice', 'vat5', countVATS(products, 5)));
+  dispatch(changeInDispatch('addInvoice', 'totalGrossPrice', countTotalGrossPrice(products)));
+  dispatch(changeInDispatch('addInvoice', 'totalNetPrice', countTotalNetPrice(products)));
 };
 
 const mapStateToProps = state => ({
