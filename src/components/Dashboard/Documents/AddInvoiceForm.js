@@ -214,7 +214,7 @@ export class AddInvoiceForm extends Component {
   );
 
   render() {
-    const { handleSubmit, products, change } = this.props;
+    const { handleSubmit, change } = this.props;
     return (
       <form onSubmit={handleSubmit(this.submit)}>
         <label htmlFor="date">Date: </label>
@@ -223,9 +223,17 @@ export class AddInvoiceForm extends Component {
         <Field name="number" component={this.renderField} label="Number: " type="text" />
         <FieldArray name="products" component={this.renderProducts} change={change} />
         <Field
-          name="total"
+          name="totalGrossPrice"
           component={this.renderField}
-          label="Total price: "
+          label="Total gross price: "
+          type="number"
+          format={this.parseToRoundedAmount}
+          parse={this.parseToRoundedAmount}
+        />
+        <Field
+          name="totalNetPrice"
+          component={this.renderField}
+          label="Total net price: "
           type="number"
           format={this.parseToRoundedAmount}
           parse={this.parseToRoundedAmount}
@@ -275,12 +283,17 @@ const countTotalGrossPrice = products => (products
   ? products.reduce((sum, product) => sum + product.grossPrice, 0)
   : 0);
 
+const countTotalNetPrice = products => (products
+  ? products.reduce((sum, product) => sum + (product.netPrice * product.pcs), 0)
+  : 0);
 
-const setVatsAndTotalPriceAfterValuesChanged = (products, dispatch) => { 
+
+const setVatTotalPriceAfterValuesChanged = (products, dispatch) => {
   dispatch(change('addInvoice', 'vat23', countVATS(products, 23)));
   dispatch(change('addInvoice', 'vat8', countVATS(products, 8)));
   dispatch(change('addInvoice', 'vat5', countVATS(products, 5)));
-  dispatch(change('addInvoice', 'total', countTotalGrossPrice(products)));
+  dispatch(change('addInvoice', 'totalGrossPrice', countTotalGrossPrice(products)));
+  dispatch(change('addInvoice', 'totalNetPrice', countTotalNetPrice(products)));
 };
 
 const mapStateToProps = state => ({
@@ -295,6 +308,6 @@ export default connect(
   reduxForm({
     form: 'addInvoice',
     validate,
-    onChange: (values, dispatch) => setVatsAndTotalPriceAfterValuesChanged(values.products, dispatch),
+    onChange: (values, dispatch) => setVatTotalPriceAfterValuesChanged(values.products, dispatch),
   })(AddInvoiceForm),
 );
