@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  reduxForm, Field, FieldArray, formValueSelector, change as changeInDispatch,
+  reduxForm,
+  Field,
+  FieldArray,
+  formValueSelector,
+  change as changeInDispatch,
 } from 'redux-form';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
@@ -10,6 +14,7 @@ import applyRounded from '../../../shared/applyRounded';
 import 'react-datepicker/dist/react-datepicker.css';
 import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
 import { getProductsAll } from '../../../store/products/selectors';
+import ShowErrorsInForm from './ShowErrorsInForm';
 
 const selector = formValueSelector('addInvoice');
 const validate = (values) => {
@@ -119,27 +124,27 @@ export class AddInvoiceForm extends Component {
     return found ? found.name : null;
   };
 
-  renderDataPick = ({ input: { onChange, value }, meta: { error, submitFailed } }) => (
+  renderDataPick = ({ input: { onChange, value }, meta }) => (
     <React.Fragment>
       <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
-      <p>{submitFailed && error && <span>{error}</span>}</p>
+      <ShowErrorsInForm {...meta} />
     </React.Fragment>
   );
 
   renderField = ({
-    input, label, type, meta: { error, touched },
+    input, label, type, meta,
   }) => (
     <div>
       <label htmlFor={label}>{label}</label>
       <input {...input} type={type} />
-      <p>{touched && (error && <span>{error}</span>)}</p>
+      <ShowErrorsInForm {...meta} />
     </div>
   );
 
-  renderSelect = ({ input, children, meta: { touched, error } }) => (
+  renderSelect = ({ input, children, meta }) => (
     <React.Fragment>
       <select {...input}>{children}</select>
-      {touched && error && <p>{error}</p>}
+      <ShowErrorsInForm {...meta} />
     </React.Fragment>
   );
 
@@ -151,6 +156,7 @@ export class AddInvoiceForm extends Component {
             <button type="button" onClick={() => fields.remove(index)}>
               X
             </button>
+            <hr />
             <Field
               name={`${product}.ean`}
               onChange={e => change(`${product}.name`, this.serchProductByEan(e.target.value))}
@@ -170,12 +176,7 @@ export class AddInvoiceForm extends Component {
               label="Pcs: "
               type="number"
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPricePcs(
-                e.target.value,
-                fields.get(index),
-                change,
-                index,
-              )
+              onChange={e => this.countGrossPricePcs(e.target.value, fields.get(index), change, index)
               }
             />
             <Field
@@ -184,12 +185,7 @@ export class AddInvoiceForm extends Component {
               label="Net price: "
               type="number"
               parse={this.parseToRoundedAmount}
-              onChange={e => this.countGrossPriceNetPrice(
-                e.target.value,
-                fields.get(index),
-                change,
-                index,
-              )
+              onChange={e => this.countGrossPriceNetPrice(e.target.value, fields.get(index), change, index)
               }
             />
             <label htmlFor="vat">VAT: </label>
@@ -197,12 +193,7 @@ export class AddInvoiceForm extends Component {
               name={`${product}.vat`}
               component={this.renderSelect}
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPriceVat(
-                e.target.value,
-                fields.get(index),
-                change,
-                index,
-              )
+              onChange={e => this.countGrossPriceVat(e.target.value, fields.get(index), change, index)
               }
             >
               <option />
@@ -231,56 +222,68 @@ export class AddInvoiceForm extends Component {
   render() {
     const { handleSubmit, change } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.submit)}>
-        <label htmlFor="date">Date: </label>
-        <Field format={value => value || null} name="date" component={this.renderDataPick} />
-        <Field name="company" component={this.renderField} label="Company: " type="text" />
-        <Field name="number" component={this.renderField} label="Number: " type="text" />
-        <FieldArray name="products" component={this.renderProducts} change={change} />
-        <Field
-          name="totalGrossPrice"
-          component={this.renderField}
-          label="Total gross price: "
-          type="number"
-          format={this.parseToRoundedAmount}
-          parse={this.parseToRoundedAmount}
-        />
-        <Field
-          name="totalNetPrice"
-          component={this.renderField}
-          label="Total net price: "
-          type="number"
-          format={this.parseToRoundedAmount}
-          parse={this.parseToRoundedAmount}
-        />
-        <Field
-          name="vat23"
-          component={this.renderField}
-          label="VAT 23 "
-          type="number"
-          format={this.parseToRoundedAmount}
-          parse={this.parseToRoundedAmount}
-        />
-        <Field
-          name="vat8"
-          component={this.renderField}
-          label="VAT 8: "
-          type="number"
-          format={this.parseToRoundedAmount}
-          parse={this.parseToRoundedAmount}
-        />
-        <Field
-          name="vat5"
-          component={this.renderField}
-          label="VAT 5: "
-          type="number"
-          format={this.parseToRoundedAmount}
-          parse={this.parseToRoundedAmount}
-        />
-        <p>
-          <button type="submit">Add</button>
-        </p>
-      </form>
+      <div className="invoice">
+        <form onSubmit={handleSubmit(this.submit)}>
+          <div className="invoice__date">
+            <label htmlFor="date">Date: </label>
+            <Field format={value => value || null} name="date" component={this.renderDataPick} />
+            <hr />
+          </div>
+          <div className="invoice__info">
+            <Field name="company" component={this.renderField} label="Company: " type="text" />
+            <Field name="number" component={this.renderField} label="Number: " type="text" />
+            <hr />
+          </div>
+          <div className="invoice__products-list">
+            <FieldArray name="products" component={this.renderProducts} change={change} />
+          </div>
+          <div className="invoice__vat">
+            <Field
+              name="totalGrossPrice"
+              component={this.renderField}
+              label="Total gross price: "
+              type="number"
+              format={this.parseToRoundedAmount}
+              parse={this.parseToRoundedAmount}
+            />
+            <Field
+              name="totalNetPrice"
+              component={this.renderField}
+              label="Total net price: "
+              type="number"
+              format={this.parseToRoundedAmount}
+              parse={this.parseToRoundedAmount}
+            />
+            <Field
+              name="vat23"
+              component={this.renderField}
+              label="VAT 23: "
+              type="number"
+              format={this.parseToRoundedAmount}
+              parse={this.parseToRoundedAmount}
+            />
+            <Field
+              name="vat8"
+              component={this.renderField}
+              label="VAT 8: "
+              type="number"
+              format={this.parseToRoundedAmount}
+              parse={this.parseToRoundedAmount}
+            />
+            <Field
+              name="vat5"
+              component={this.renderField}
+              label="VAT 5: "
+              type="number"
+              format={this.parseToRoundedAmount}
+              parse={this.parseToRoundedAmount}
+            />
+          </div>
+          <div className="invoice-add-button">
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
@@ -294,14 +297,9 @@ const countVATS = (products, vat) => (products
   )
   : 0);
 
-const countTotalGrossPrice = products => (products
-  ? products.reduce((sum, product) => sum + product.grossPrice, 0)
-  : 0);
+const countTotalGrossPrice = products => (products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : 0);
 
-const countTotalNetPrice = products => (products
-  ? products.reduce((sum, product) => sum + (product.netPrice * product.pcs), 0)
-  : 0);
-
+const countTotalNetPrice = products => (products ? products.reduce((sum, product) => sum + product.netPrice * product.pcs, 0) : 0);
 
 const setVatTotalPriceAfterValuesChanged = (products, dispatch) => {
   dispatch(changeInDispatch('addInvoice', 'vat23', countVATS(products, 23)));
