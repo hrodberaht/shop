@@ -1,0 +1,38 @@
+.invoice {
+  max-width: 800px;
+
+  &__date {
+    text-align: right;
+  }
+
+  &__info {
+    display: inline-block;
+    text-align: right;
+  }
+
+  &__products-list {
+    text-align: center;
+
+    li {
+      max-width: 800px;
+      text-align: right;
+    }
+
+    input {
+      margin: 5px 0;
+      width: 500px;
+    }
+
+    select {
+      width: 504px;
+      margin: 5px 0;
+      background-color: white;
+      padding: 1px;
+    }
+  }
+
+  &__vat {
+    padding: 0 0 0 40px;
+    text-align: right;
+  }
+}
