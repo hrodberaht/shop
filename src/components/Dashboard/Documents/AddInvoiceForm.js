@@ -14,7 +14,7 @@ import applyRounded from '../../../shared/applyRounded';
 import 'react-datepicker/dist/react-datepicker.css';
 import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
 import { getProductsAll } from '../../../store/products/selectors';
-import ShowErrorsInForm from './ShowErrorsInForm';
+import ShowErrorInForm from './ShowErrorInForm';
 
 const selector = formValueSelector('addInvoice');
 const validate = (values) => {
@@ -127,7 +127,7 @@ export class AddInvoiceForm extends Component {
   renderDataPick = ({ input: { onChange, value }, meta }) => (
     <React.Fragment>
       <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
-      <ShowErrorsInForm {...meta} />
+      <ShowErrorInForm className="error-text" {...meta} />
     </React.Fragment>
   );
 
@@ -137,14 +137,14 @@ export class AddInvoiceForm extends Component {
     <div>
       <label htmlFor={label}>{label}</label>
       <input {...input} type={type} />
-      <ShowErrorsInForm {...meta} />
+      <ShowErrorInForm className="error-text" {...meta} />
     </div>
   );
 
   renderSelect = ({ input, children, meta }) => (
     <React.Fragment>
       <select {...input}>{children}</select>
-      <ShowErrorsInForm {...meta} />
+      <ShowErrorInForm className="error-text" {...meta} />
     </React.Fragment>
   );
 
