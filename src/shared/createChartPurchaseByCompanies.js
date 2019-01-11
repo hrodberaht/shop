@@ -8,7 +8,7 @@ const createChartPurchaseByCompanies = (data) => {
   data.orders.forEach((company) => {
     if (series.length === 0) return series.push(company);
     const index = series.findIndex(serie => serie.companyId === company.companyId);
-    if (index > 0) {
+    if (index >= 0) {
       series[index] = {
         ...company,
         totalPrice: series[index].totalPrice + company.totalPrice,

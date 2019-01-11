@@ -4,23 +4,44 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import ConnectedAddProductForm from './AddProductForm';
-import { removeProduct, updateProduct } from '../../../store/products/actionCreators';
+import {
+  removeProduct,
+  updateProduct,
+  undeleteProductInDb,
+} from '../../../store/products/actionCreators';
 import { getAuthToken } from '../../../store/authenticate/selectors';
+import Modal from '../../shared/Modal';
 
 export class AdminProduct extends Component {
   state = {
-    toggleEdit: false,
+    isEditVisable: false,
+    isModalVisable: false,
   };
 
   handleEditClick = () => {
     this.setState(state => ({
-      toggleEdit: !state.toggleEdit,
+      isEditVisable: !state.isEditVisable,
     }));
   };
 
-  handleRemoveClick = (id) => {
-    const { removeProd, token } = this.props;
+  toggleModal = () => {
+    this.setState(state => ({
+      isModalVisable: !state.isModalVisable,
+    }));
+  };
+
+  handleConfirmClick = () => {
+    const {
+      removeProd,
+      token,
+      product: { id },
+    } = this.props;
+    this.toggleModal();
     removeProd(id, token);
+  };
+
+  handleCancelClick = () => {
+    this.toggleModal();
   };
 
   submit = (values) => {
@@ -28,14 +49,23 @@ export class AdminProduct extends Component {
     updateProductInDB(values, token);
   };
 
+  handleUndeletedProduct = () => {
+    const {
+      product: { id },
+      undeletedProduct,
+    } = this.props;
+    undeletedProduct(id);
+  };
+
   render() {
     const {
       product,
       product: {
-        id, imgUrl, name, type, price, inStock, remove,
+        imgUrl, name, type, price, inStock, remove,
       },
     } = this.props;
-    if (this.state.toggleEdit) {
+    const { isModalVisable, isEditVisable } = this.state;
+    if (isEditVisable) {
       return (
         <React.Fragment>
           <td className="edit-form" colSpan="7">
@@ -54,6 +84,12 @@ export class AdminProduct extends Component {
     }
     return (
       <React.Fragment>
+        {isModalVisable && (
+          <Modal
+            handleConfirmClick={this.handleConfirmClick}
+            handleCancelClick={this.handleCancelClick}
+          />
+        )}
         <td>{name}</td>
         <td>
           <img src={imgUrl} alt={type} />
@@ -72,15 +108,26 @@ export class AdminProduct extends Component {
           </button>
         </td>
         <td>
-          <button
-            id="removeButton"
-            className="admin-product__button"
-            type="button"
-            onClick={() => this.handleRemoveClick(id)}
-            disabled={remove}
-          >
-            X
-          </button>
+          {remove ? (
+            <button
+              id="undeleteProductButton"
+              className="admin-product__button"
+              type="button"
+              onClick={this.handleUndeletedProduct}
+            >
+              +
+            </button>
+          ) : (
+            <button
+              id="removeButton"
+              className="admin-product__button"
+              type="button"
+              onClick={this.toggleModal}
+              disabled={remove}
+            >
+              X
+            </button>
+          )}
         </td>
       </React.Fragment>
     );
@@ -95,6 +142,7 @@ export default connect(
   {
     removeProd: removeProduct,
     updateProductInDB: updateProduct,
+    undeletedProduct: undeleteProductInDb,
   },
 )(AdminProduct);
 
@@ -108,4 +156,5 @@ AdminProduct.propTypes = {
   removeProd: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   updateProductInDB: PropTypes.func.isRequired,
+  undeletedProduct: PropTypes.func.isRequired,
 };

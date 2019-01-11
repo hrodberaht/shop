@@ -274,10 +274,12 @@ server.post('/product/:id', async (req, res) => {
 
 server.put('/products/:id', async (req, res) => {
   const { id } = req.params;
+  const { remove } = req.body;
+
   router.db
     .get('products')
     .find({ id })
-    .assign({ remove: true })
+    .assign({ remove })
     .write();
   const product = router.db
     .get('products')
@@ -285,6 +287,7 @@ server.put('/products/:id', async (req, res) => {
     .value();
   return res.json(product);
 });
+
 server.post('/wishlists', (req, res) => {
   const {
     userId,

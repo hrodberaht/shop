@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> should render without crash 1`] = `
+<Portal
+  containerInfo={<body />}
+>
+  <div
+    className="modal"
+  >
+    <div
+      className="inner-modal"
+    >
+      <h2>
+        Are you sure?
+      </h2>
+      <div
+        className="inner-modal__buttons"
+      >
+        <button
+          className="btn btn-submit"
+          onClick={[MockFunction]}
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={[MockFunction]}
+          type="button"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</Portal>
+`;

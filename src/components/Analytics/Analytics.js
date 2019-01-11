@@ -17,7 +17,7 @@ export class Analytics extends Component {
   }
 
   render() {
-    const { dataSellChart } = this.props;
+    const { dataSellChart, userId } = this.props;
     return (
       <div>
         {dataSellChart.length === 0 ? <p>Loading...</p> : <SellChart data={dataSellChart} />}
@@ -31,6 +31,7 @@ export class Analytics extends Component {
             }
           `}
           fetchPolicy="network-only"
+          variables={{ id: userId }}
         >
           {data => <CompaniesBuyChart fetchedData={data} />}
         </Query>

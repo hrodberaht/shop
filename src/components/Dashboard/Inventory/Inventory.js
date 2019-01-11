@@ -10,13 +10,15 @@ export default class Inventory extends Component {
   handleClick = () => {
     this.setState(state => ({
       toggleAddProduct: !state.toggleAddProduct,
+      toggleModal: !state.toggleModal,
     }));
   };
 
   render() {
+    const { toggleAddProduct } = this.state;
     return (
       <div className="inventory">
-        {this.state.toggleAddProduct ? (
+        {toggleAddProduct ? (
           <button className="btn btn-danger" type="button" onClick={this.handleClick}>
             <span>Close</span>
           </button>
@@ -26,7 +28,7 @@ export default class Inventory extends Component {
           </button>
         )}
 
-        {this.state.toggleAddProduct && <ConnectedAddProduct />}
+        {toggleAddProduct && <ConnectedAddProduct />}
         <hr />
         <ConnectedAdminProductsList />
       </div>
