@@ -5,7 +5,7 @@ import {
   Field,
   FieldArray,
   formValueSelector,
-  change as changeInDispatch,
+  change as changeInDispatch
 } from 'redux-form';
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ import { getProductsAll } from '../../../store/products/selectors';
 import ShowErrorInForm from './ShowErrorInForm';
 
 const selector = formValueSelector('addInvoice');
-const validate = (values) => {
+const validate = values => {
   const errors = {};
   if (!values.company) errors.company = 'Required';
   if (!values.date) errors.date = 'Required';
@@ -68,29 +68,32 @@ const validate = (values) => {
 
 export class AddInvoiceForm extends Component {
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired
   };
 
-  submit = (values) => {
+  submit = values => {
     const { addInvoice, reset } = this.props;
     addInvoice(values);
     reset();
   };
 
-  countVATS = (products, vat) => (products
-    ? products.reduce(
-      (sum, product) => (product.vat === vat
-        ? sum + (product.grossPrice - product.netPrice * product.pcs)
-        : sum + 0),
-      0,
-    )
-    : 0);
+  countVATS = (products, vat) =>
+    products
+      ? products.reduce(
+          (sum, product) =>
+            product.vat === vat
+              ? sum + (product.grossPrice - product.netPrice * product.pcs)
+              : sum + 0,
+          0
+        )
+      : 0;
 
   parseToNumber = value => (value ? +value : 0);
 
   parseToRoundedAmount = value => (value ? +applyRounded(+value) : 0);
 
-  setGrossPriceAfterValuesChanged = (change, value, index) => change(`products[${index}].grossPrice`, +applyRounded(value));
+  setGrossPriceAfterValuesChanged = (change, value, index) =>
+    change(`products[${index}].grossPrice`, +applyRounded(value));
 
   checkIfAllValuesAreSet = (pcs, netPrice, vat) => pcs && netPrice && vat;
 
@@ -118,7 +121,7 @@ export class AddInvoiceForm extends Component {
       : 0;
   };
 
-  searchProductByEan = (ean) => {
+  searchProductByEan = ean => {
     const { productsInStore } = this.props;
     const found = productsInStore.find(product => ean === product.id);
     return found ? found.name : null;
@@ -126,14 +129,16 @@ export class AddInvoiceForm extends Component {
 
   renderDataPick = ({ input: { onChange, value }, meta }) => (
     <React.Fragment>
-      <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
+      <DatePicker
+        selected={value}
+        onChange={onChange}
+        dateFormat="yyyy/MM/dd"
+      />
       <ShowErrorInForm className="error-text" {...meta} />
     </React.Fragment>
   );
 
-  renderField = ({
-    input, label, type, meta,
-  }) => (
+  renderField = ({ input, label, type, meta }) => (
     <div>
       <label htmlFor={label}>{label}</label>
       <input {...input} type={type} />
@@ -159,7 +164,12 @@ export class AddInvoiceForm extends Component {
             <hr />
             <Field
               name={`${product}.ean`}
-              onChange={e => change(`${product}.name`, this.searchProductByEan(e.target.value))}
+              onChange={e =>
+                change(
+                  `${product}.name`,
+                  this.searchProductByEan(e.target.value)
+                )
+              }
               component={this.renderField}
               label="EAN: "
               type="text"
@@ -176,7 +186,13 @@ export class AddInvoiceForm extends Component {
               label="Pcs: "
               type="number"
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPricePcs(e.target.value, fields.get(index), change, index)
+              onChange={e =>
+                this.countGrossPricePcs(
+                  e.target.value,
+                  fields.get(index),
+                  change,
+                  index
+                )
               }
             />
             <Field
@@ -185,7 +201,13 @@ export class AddInvoiceForm extends Component {
               label="Net price: "
               type="number"
               parse={this.parseToRoundedAmount}
-              onChange={e => this.countGrossPriceNetPrice(e.target.value, fields.get(index), change, index)
+              onChange={e =>
+                this.countGrossPriceNetPrice(
+                  e.target.value,
+                  fields.get(index),
+                  change,
+                  index
+                )
               }
             />
             <label htmlFor="vat">VAT: </label>
@@ -193,7 +215,13 @@ export class AddInvoiceForm extends Component {
               name={`${product}.vat`}
               component={this.renderSelect}
               parse={this.parseToNumber}
-              onChange={e => this.countGrossPriceVat(e.target.value, fields.get(index), change, index)
+              onChange={e =>
+                this.countGrossPriceVat(
+                  e.target.value,
+                  fields.get(index),
+                  change,
+                  index
+                )
               }
             >
               <option />
@@ -227,16 +255,34 @@ export class AddInvoiceForm extends Component {
         <form onSubmit={handleSubmit(this.submit)}>
           <div className="invoice__date">
             <label htmlFor="date">Date: </label>
-            <Field format={value => value || null} name="date" component={this.renderDataPick} />
+            <Field
+              format={value => value || null}
+              name="date"
+              component={this.renderDataPick}
+            />
             <hr />
           </div>
           <div className="invoice__info">
-            <Field name="company" component={this.renderField} label="Company: " type="text" />
-            <Field name="number" component={this.renderField} label="Number: " type="text" />
+            <Field
+              name="company"
+              component={this.renderField}
+              label="Company: "
+              type="text"
+            />
+            <Field
+              name="number"
+              component={this.renderField}
+              label="Number: "
+              type="text"
+            />
             <hr />
           </div>
           <div className="invoice__products-list">
-            <FieldArray name="products" component={this.renderProducts} change={change} />
+            <FieldArray
+              name="products"
+              component={this.renderProducts}
+              change={change}
+            />
           </div>
           <div className="invoice__vat">
             <Field
@@ -289,39 +335,58 @@ export class AddInvoiceForm extends Component {
   }
 }
 
-const countVATS = (products, vat) => (products
-  ? products.reduce(
-    (sum, product) => (product.vat === vat
-      ? sum + (product.grossPrice - product.netPrice * product.pcs)
-      : sum + 0),
-    0,
-  )
-  : 0);
+const countVATS = (products, vat) =>
+  products
+    ? products.reduce(
+        (sum, product) =>
+          product.vat === vat
+            ? sum + (product.grossPrice - product.netPrice * product.pcs)
+            : sum + 0,
+        0
+      )
+    : 0;
 
-const countTotalGrossPrice = products => (products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : 0);
+const countTotalGrossPrice = products =>
+  products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : 0;
 
-const countTotalNetPrice = products => (products ? products.reduce((sum, product) => sum + product.netPrice * product.pcs, 0) : 0);
+const countTotalNetPrice = products =>
+  products
+    ? products.reduce((sum, product) => sum + product.netPrice * product.pcs, 0)
+    : 0;
 
 const setVatTotalPriceAfterValuesChanged = (products, dispatch) => {
   dispatch(changeInDispatch('addInvoice', 'vat23', countVATS(products, 23)));
   dispatch(changeInDispatch('addInvoice', 'vat8', countVATS(products, 8)));
   dispatch(changeInDispatch('addInvoice', 'vat5', countVATS(products, 5)));
-  dispatch(changeInDispatch('addInvoice', 'totalGrossPrice', countTotalGrossPrice(products)));
-  dispatch(changeInDispatch('addInvoice', 'totalNetPrice', countTotalNetPrice(products)));
+  dispatch(
+    changeInDispatch(
+      'addInvoice',
+      'totalGrossPrice',
+      countTotalGrossPrice(products)
+    )
+  );
+  dispatch(
+    changeInDispatch(
+      'addInvoice',
+      'totalNetPrice',
+      countTotalNetPrice(products)
+    )
+  );
 };
 
 const mapStateToProps = state => ({
   products: selector(state, 'products'),
-  productsInStore: getProductsAll(state),
+  productsInStore: getProductsAll(state)
 });
 
 export default connect(
   mapStateToProps,
-  { addInvoice: addInvoicesSuccess },
+  { addInvoice: addInvoicesSuccess }
 )(
   reduxForm({
     form: 'addInvoice',
     validate,
-    onChange: (values, dispatch) => setVatTotalPriceAfterValuesChanged(values.products, dispatch),
-  })(AddInvoiceForm),
+    onChange: (values, dispatch) =>
+      setVatTotalPriceAfterValuesChanged(values.products, dispatch)
+  })(AddInvoiceForm)
 );
