@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Shop from './Shop/Shop';
 import Cart from './Cart/Cart';
-import OrdersList from './Order/OrdersList';
+import OrdersPage from './Order/OrdersPage';
 import Inventory from './Inventory/Inventory';
 import Authorization from '../Auth/Authorization';
 import Wishlist from './Wishlist/Wishlist';
@@ -22,7 +22,7 @@ export default class Dashboard extends Component {
               <div className="board">
                 <Switch>
                   <Route exact path="/" component={Shop} />
-                  <Route path="/orders" component={OrdersList} />
+                  <Route path="/orders" component={OrdersPage} />
                   <Route path="/cart" component={Cart} />
                   <Route path="/wishlist" component={Wishlist} />
                   <Route path="/analytics" component={Analytics} />

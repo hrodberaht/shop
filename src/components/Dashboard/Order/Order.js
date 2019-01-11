@@ -19,7 +19,6 @@ export default class Order extends Component {
     const { details } = this.state;
     const {
       handleClick,
-      token,
       order,
       order: {
         id, person, totalPrice, status, date,
@@ -40,18 +39,18 @@ export default class Order extends Component {
           </td>
           <ConnectedAuthorization
             render
-            withRoleAdmin={(
+            withRoleAdmin={
               <td className="orders_realized">
                 <button
                   className="btn btn-submit"
                   type="button"
                   disabled={order.status === 'realized'}
-                  onClick={() => handleClick(order.id, token)}
+                  onClick={() => handleClick(order.id)}
                 >
                   <FontAwesomeIcon icon={faShippingFast} />
                 </button>
               </td>
-)}
+            }
           />
         </tr>
         {details && (
@@ -73,5 +72,4 @@ Order.propTypes = {
     status: PropTypes.string,
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
 };

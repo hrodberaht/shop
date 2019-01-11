@@ -5,6 +5,8 @@ import { fetchWishlist, removeProductWishlist } from '../../../store/wishlist/ac
 import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
 import { getWishlistLoaded, getWishlistProducts } from '../../../store/wishlist/selectors';
 import ProductInWishlist from './ProductInWishlist';
+import { addProductToCart, updateProductInCart } from '../../../store/cart/actionCreators';
+import { getIdsProductsInCart } from '../../../store/cart/selectors';
 
 export class Wishlist extends Component {
   componentDidMount() {
@@ -15,6 +17,16 @@ export class Wishlist extends Component {
   remove = (productId) => {
     const { removeProd, userId, token } = this.props;
     removeProd(productId, userId, token);
+  };
+
+  handleClickToCart = (product) => {
+    const { addProduct, updateProduct, idsProductsInCart } = this.props;
+    if (idsProductsInCart.includes(product.productId)) {
+      updateProduct(product);
+    } else {
+      addProduct(product);
+    }
+    this.remove(product.productId);
   };
 
   render() {
@@ -31,9 +43,15 @@ export class Wishlist extends Component {
               <th>Pcs:</th>
               <th>Total price:</th>
               <th>Delete:</th>
+              <th>Add to cart:</th>
             </tr>
             {products.map(prod => (
-              <ProductInWishlist product={prod} remove={this.remove} key={prod.productId} />
+              <ProductInWishlist
+                product={prod}
+                remove={this.remove}
+                key={prod.productId}
+                handleClickToCart={this.handleClickToCart}
+              />
             ))}
           </tbody>
         </table>
@@ -47,6 +65,7 @@ const mapStateToProps = state => ({
   userId: getAuthUserId(state),
   loaded: getWishlistLoaded(state),
   products: getWishlistProducts(state),
+  idsProductsInCart: getIdsProductsInCart(state),
 });
 
 export default connect(
@@ -54,6 +73,8 @@ export default connect(
   {
     getWishlist: fetchWishlist,
     removeProd: removeProductWishlist,
+    addProduct: addProductToCart,
+    updateProduct: updateProductInCart,
   },
 )(Wishlist);
 
@@ -64,6 +85,9 @@ Wishlist.propTypes = {
   loaded: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.objectOf),
   removeProd: PropTypes.func.isRequired,
+  addProduct: PropTypes.func.isRequired,
+  updateProduct: PropTypes.func.isRequired,
+  idsProductsInCart: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 Wishlist.defaultProps = {

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OrdersPage /> should render if loaded true  1`] = `
+<Fragment>
+  <div>
+    <OrdersSearch
+      handleChange={[Function]}
+      handleSelect={[Function]}
+    />
+    <hr />
+  </div>
+  <table>
+    <tbody>
+      <tr
+        className="order-table-title"
+      >
+        <th>
+          Id:
+        </th>
+        <th>
+          Person:
+        </th>
+        <th>
+          Date:
+        </th>
+        <th>
+          Total price:
+        </th>
+        <th>
+          Status:
+        </th>
+        <th>
+          Actions:
+        </th>
+        <Connect(Authorization)
+          render={true}
+          withRoleAdmin={
+            <th>
+              Admin:
+            </th>
+          }
+        />
+      </tr>
+      <Connect(OrdersList)
+        filterValues={
+          Object {
+            "id": "",
+            "status": "all",
+          }
+        }
+        orders={Array []}
+      />
+    </tbody>
+  </table>
+</Fragment>
+`;
+
+exports[`<OrdersPage /> should render without crash 1`] = `
+<p>
+  Loading...
+</p>
+`;

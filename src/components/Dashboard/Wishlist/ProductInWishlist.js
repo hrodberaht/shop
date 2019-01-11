@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import AddToCartButton from '../../shared/AddToCartButton';
 
 export default class ProductInWishlist extends Component {
   handleClick = () => {
@@ -12,9 +13,11 @@ export default class ProductInWishlist extends Component {
 
   render() {
     const {
+      product,
       product: {
         name, price, pcsOrder, totalPrice,
       },
+      handleClickToCart,
     } = this.props;
     return (
       <tr>
@@ -30,6 +33,13 @@ export default class ProductInWishlist extends Component {
             X
           </button>
         </td>
+        <td>
+          <AddToCartButton
+            className="btn btn-primary"
+            product={product}
+            handleClickToCart={handleClickToCart}
+          />
+        </td>
       </tr>
     );
   }
@@ -42,4 +52,5 @@ ProductInWishlist.propTypes = {
     price: PropTypes.number,
   }).isRequired,
   remove: PropTypes.func.isRequired,
+  handleClickToCart: PropTypes.func.isRequired,
 };

@@ -1,5 +1,6 @@
 import * as types from './types';
 import config from '../../config/config';
+import dataFetcher from '../../shared/dataFetcher';
 
 const fetchOrdersSuccess = orders => ({
   type: types.FETCH_ORDERS_SUCCESS,
@@ -52,16 +53,6 @@ export const addOrderToDB = (order, token) => dispatch => fetch(`${config.url}or
   .then(res => dispatch(addOrderSuccess(res)))
   .catch(error => dispatch(addOrderError(error)));
 
-export const fetchChangeOrderStatus = (orderId, token) => dispatch => fetch(`${config.url}orders/${orderId}`, {
-  method: 'put',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${token}`,
-  },
-  body: JSON.stringify({ status: 'realized' }),
-})
-  .then(res => res.json())
-  .then((res) => {
-    if (res.message) dispatch(changeOrderStatus(orderId));
-  })
+export const fetchChangeOrderStatus = orderId => dispatch => dataFetcher(`orders/${orderId}`, 'PUT', { status: 'realized' })
+  .then(() => dispatch(changeOrderStatus(orderId)))
   .catch(error => dispatch(fetchOrdersError(error)));

@@ -9,6 +9,7 @@ const defaultProps = {
     inStock: '30',
   },
   remove: jest.fn(),
+  handleClickToCart: jest.fn(),
 };
 
 const setup = buildSetup(ProductInWishlist, defaultProps);
@@ -19,8 +20,13 @@ describe('ProductInWishlist />', () => {
     expect(wrapper).toMatchSnapshot();
   });
   it('should call remove after click', () => {
-    const { wrapper, props } = setup();
+    const {
+      wrapper,
+      props: {
+        product: { productId },
+      },
+    } = setup();
     wrapper.find('button').simulate('click');
-    expect(wrapper.instance().props.remove).toHaveBeenCalledWith(props.product.productId);
+    expect(wrapper.instance().props.remove).toHaveBeenCalledWith(productId);
   });
 });

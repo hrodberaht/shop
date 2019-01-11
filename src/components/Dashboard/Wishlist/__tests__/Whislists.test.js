@@ -22,6 +22,9 @@ const defaultProps = {
   token: '12345',
   loaded: false,
   removeProd: jest.fn(),
+  addProduct: jest.fn(),
+  updateProduct: jest.fn(),
+  idsProductsInCart: ['product-1'],
 };
 
 const setup = buildSetup(Wishlist, defaultProps);
@@ -51,5 +54,27 @@ describe('<Wishlist />', () => {
     const { productId } = products[0];
     wrapper.instance().remove(productId);
     expect(wrapper.instance().props.removeProd).toHaveBeenCalledWith(productId, userId, token);
+  });
+  it('should call addProduct when products is not in cart and not call updateProduct', () => {
+    const {
+      wrapper,
+      props: { products },
+    } = setup();
+    const instance = wrapper.instance();
+    instance.handleClickToCart(products[1]);
+    expect(wrapper.instance().props.updateProduct).not.toHaveBeenCalled();
+    expect(wrapper.instance().props.addProduct).toHaveBeenCalledWith(products[1]);
+  });
+
+  it('should call update updateProduct when products is in cart and not call addProduct', () => {
+    const {
+      wrapper,
+      props: { products },
+    } = setup();
+    const instance = wrapper.instance();
+    instance.props.addProduct.mockClear();
+    instance.handleClickToCart(products[0]);
+    expect(wrapper.instance().props.updateProduct).toHaveBeenCalledWith(products[0]);
+    expect(wrapper.instance().props.addProduct).not.toHaveBeenCalled();
   });
 });
