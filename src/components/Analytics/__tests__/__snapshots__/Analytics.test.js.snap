@@ -67,6 +67,11 @@ exports[`<Analytics /> should render without crash 1`] = `
         },
       }
     }
+    variables={
+      Object {
+        "id": "1234",
+      }
+    }
   >
     <Component />
   </Query>
@@ -142,6 +147,11 @@ exports[`<Analytics /> should render without crash if retrive dataSellChart  1`]
           "end": 131,
           "start": 0,
         },
+      }
+    }
+    variables={
+      Object {
+        "id": "1234",
       }
     }
   >
