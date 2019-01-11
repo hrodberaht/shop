@@ -1,69 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getOrders, getLoadedStatus } from '../../../store/orders/selectors';
-import ConnectedAuthorization from '../../Auth/Authorization';
+import { getOrdersFiltered, getOrdersFilterValues } from '../../../store/orders/selectors';
 import Order from './Order';
-
-import { fetchOrders, fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
-import { getAuthToken, getAuthUserId } from '../../../store/authenticate/selectors';
+import { fetchChangeOrderStatus } from '../../../store/orders/actionCreators';
 
 export class OrdersList extends Component {
-  componentDidMount() {
-    const { getOrdersFromServer, token, userId } = this.props;
-    getOrdersFromServer(userId, token);
-  }
-
   render() {
-    const {
-      orders, handleClick, loaded, token,
-    } = this.props;
-    if (!loaded) return <p>Loading...</p>;
+    const { filteredOrders, handleClick } = this.props;
     return (
-      <table>
-        <tbody>
-          <tr className="order-table-title">
-            <th>Id:</th>
-            <th>Person:</th>
-            <th>Date:</th>
-            <th>Total price:</th>
-            <th>Status:</th>
-            <th>Actions:</th>
-            <ConnectedAuthorization render withRoleAdmin={<th>Admin:</th>} />
-          </tr>
-          {orders.map(order => (
-            <Order order={order} key={order.id} handleClick={handleClick} token={token} />
-          ))}
-        </tbody>
-      </table>
+      <React.Fragment>
+        {filteredOrders.map(order => (
+          <Order order={order} key={order.id} handleClick={handleClick} />
+        ))}
+      </React.Fragment>
     );
   }
 }
-const mapStateToProps = state => ({
-  orders: getOrders(state),
-  loaded: getLoadedStatus(state),
-  token: getAuthToken(state),
-  userId: getAuthUserId(state),
+
+const mapStateToProps = (state, ownProps) => ({
+  filteredOrders: getOrdersFiltered(state, ownProps.filterValues),
+  filterValues: getOrdersFilterValues(state, ownProps),
 });
 
 export default connect(
   mapStateToProps,
   {
     handleClick: fetchChangeOrderStatus,
-    getOrdersFromServer: fetchOrders,
   },
 )(OrdersList);
 
 OrdersList.propTypes = {
-  orders: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filteredOrders: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleClick: PropTypes.func.isRequired,
-  loaded: PropTypes.bool.isRequired,
-  getOrdersFromServer: PropTypes.func.isRequired,
-  token: PropTypes.string,
-  userId: PropTypes.string,
-};
-
-OrdersList.defaultProps = {
-  token: null,
-  userId: null,
 };

@@ -8,8 +8,14 @@ const schema = yup.object().shape({
   name: yup.string().required(),
   imgUrl: yup.string().required(),
   type: yup.string().required(),
-  price: yup.number().required(),
-  inStock: yup.number().required(),
+  price: yup
+    .number()
+    .min(1)
+    .required(),
+  inStock: yup
+    .number()
+    .min(0)
+    .required(),
 });
 
 const asyncValidate = values => schema.validate(values, { abortEarly: false }).catch((err) => {
