@@ -118,7 +118,7 @@ export class AddInvoiceForm extends Component {
       : 0;
   };
 
-  serchProductByEan = (ean) => {
+  searchProductByEan = (ean) => {
     const { productsInStore } = this.props;
     const found = productsInStore.find(product => ean === product.id);
     return found ? found.name : null;
@@ -159,7 +159,7 @@ export class AddInvoiceForm extends Component {
             <hr />
             <Field
               name={`${product}.ean`}
-              onChange={e => change(`${product}.name`, this.serchProductByEan(e.target.value))}
+              onChange={e => change(`${product}.name`, this.searchProductByEan(e.target.value))}
               component={this.renderField}
               label="EAN: "
               type="text"
@@ -215,6 +215,7 @@ export class AddInvoiceForm extends Component {
       <button type="button" onClick={() => fields.push({})}>
         Add product
       </button>
+
       <p>{submitFailed && error && <span>{error}</span>}</p>
     </React.Fragment>
   );
