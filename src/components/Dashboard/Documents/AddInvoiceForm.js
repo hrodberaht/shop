@@ -31,11 +31,23 @@ const countVATS = (products, vat) =>
     : 0;
 
 const countTotalGrossPrice = products =>
-  products ? products.reduce((sum, product) => sum + product.grossPrice, 0) : 0;
+  products
+    ? products.reduce(
+        (sum, product) =>
+          product.grossPrice ? sum + product.grossPrice : sum + 0,
+        0
+      )
+    : 0;
 
 const countTotalNetPrice = products =>
   products
-    ? products.reduce((sum, product) => sum + product.netPrice * product.pcs, 0)
+    ? products.reduce(
+        (sum, product) =>
+          product.netPrice && product.pcs
+            ? sum + product.netPrice * product.pcs
+            : sum + 0,
+        0
+      )
     : 0;
 
 const setVatAndTotalPriceAfterValuesChanged = (products, dispatch) => {
