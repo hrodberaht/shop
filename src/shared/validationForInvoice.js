@@ -6,7 +6,7 @@ const validate = values => {
   if (!values.total) errors.total = 'Required';
 
   const productsArrayErrors = [];
-  if (!values.products) {
+  if (!values.products || !values.products.length) {
     errors.products = { _error: 'At least one product must be entered' };
   } else {
     values.products.forEach((product, productIndex) => {
