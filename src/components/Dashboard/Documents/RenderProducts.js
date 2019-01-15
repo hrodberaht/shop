@@ -12,7 +12,8 @@ import ShowErrorInForm from './ShowErrorInForm';
 const setGrossPriceAfterValuesChanged = (change, value, index) =>
   change(`products[${index}].grossPrice`, +applyRounded(value));
 
-const checkIfAllValuesAreSet = (pcs, netPrice, vat) => pcs && netPrice && vat;
+const checkIfAllValuesAreSet = (pcs, netPrice, vat) =>
+  pcs && netPrice && vat >= 0;
 
 const countGrossPricePcs = (value, product, change, index) => {
   const { netPrice, vat } = product;
