@@ -15,56 +15,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
 import { getProductsAll } from '../../../store/products/selectors';
 import ShowErrorInForm from './ShowErrorInForm';
+import validate from '../../../shared/validationForInvoice';
 
 const selector = formValueSelector('addInvoice');
-const validate = values => {
-  const errors = {};
-  if (!values.company) errors.company = 'Required';
-  if (!values.date) errors.date = 'Required';
-  if (!values.number) errors.number = 'Required';
-  if (!values.total) errors.total = 'Required';
-
-  const productsArrayErrors = [];
-  if (!values.products) {
-    errors.products = { _error: 'At least one product must be entered' };
-  } else {
-    const productErrors = {};
-    values.products.forEach((product, productIndex) => {
-      if (!product.ean) {
-        productErrors.ean = 'Required';
-        productsArrayErrors[productIndex] = productErrors;
-      }
-
-      if (!product.name) {
-        productErrors.name = 'Required';
-        productsArrayErrors[productIndex] = productErrors;
-      }
-
-      if (!product.pcs) {
-        productErrors.pcs = 'Required';
-        productsArrayErrors[productIndex] = productErrors;
-      }
-
-      if (!product.netPrice) {
-        productErrors.netPrice = 'Required';
-        productsArrayErrors[productIndex] = productErrors;
-      }
-
-      if (!product.vat) {
-        productErrors.vat = 'Required';
-        productsArrayErrors[productIndex] = productErrors;
-      }
-
-      if (!product.grossPrice) {
-        productErrors.grossPrice = 'Required';
-        productsArrayErrors[productIndex] = productErrors;
-      }
-    });
-
-    errors.products = productsArrayErrors;
-  }
-  return errors;
-};
 
 export class AddInvoiceForm extends Component {
   static propTypes = {
@@ -76,17 +29,6 @@ export class AddInvoiceForm extends Component {
     addInvoice(values);
     reset();
   };
-
-  countVATS = (products, vat) =>
-    products
-      ? products.reduce(
-          (sum, product) =>
-            product.vat === vat
-              ? sum + (product.grossPrice - product.netPrice * product.pcs)
-              : sum + 0,
-          0
-        )
-      : 0;
 
   parseToNumber = value => (value ? +value : 0);
 
@@ -354,7 +296,7 @@ const countTotalNetPrice = products =>
     ? products.reduce((sum, product) => sum + product.netPrice * product.pcs, 0)
     : 0;
 
-const setVatTotalPriceAfterValuesChanged = (products, dispatch) => {
+const setVatAndTotalPriceAfterValuesChanged = (products, dispatch) => {
   dispatch(changeInDispatch('addInvoice', 'vat23', countVATS(products, 23)));
   dispatch(changeInDispatch('addInvoice', 'vat8', countVATS(products, 8)));
   dispatch(changeInDispatch('addInvoice', 'vat5', countVATS(products, 5)));
@@ -387,6 +329,6 @@ export default connect(
     form: 'addInvoice',
     validate,
     onChange: (values, dispatch) =>
-      setVatTotalPriceAfterValuesChanged(values.products, dispatch)
+      setVatAndTotalPriceAfterValuesChanged(values.products, dispatch)
   })(AddInvoiceForm)
 );
