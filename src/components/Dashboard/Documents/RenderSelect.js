@@ -2,10 +2,13 @@ import React from 'react';
 import ShowErrorInForm from './ShowErrorInForm';
 
 const RenderSelect = ({ input, children, meta }) => (
-  <React.Fragment>
-    <select {...input}>{children}</select>
+  <div>
+    <label htmlFor="vat">VAT: </label>
+    <select className="invoice-select" {...input}>
+      {children}
+    </select>
     <ShowErrorInForm className="error-text" {...meta} />
-  </React.Fragment>
+  </div>
 );
 
 export default RenderSelect;

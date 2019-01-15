@@ -162,7 +162,9 @@ export class AddInvoiceForm extends Component {
             />
           </div>
           <div className="invoice-add-button">
-            <button type="submit">Add</button>
+            <button className="btn btn-submit" type="submit">
+              Add
+            </button>
           </div>
         </form>
       </div>

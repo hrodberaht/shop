@@ -4,7 +4,12 @@ import ShowErrorInForm from './ShowErrorInForm';
 
 const RenderDataPick = ({ input: { onChange, value }, meta }) => (
   <React.Fragment>
-    <DatePicker selected={value} onChange={onChange} dateFormat="yyyy/MM/dd" />
+    <DatePicker
+      className="form-input"
+      selected={value}
+      onChange={onChange}
+      dateFormat="yyyy/MM/dd"
+    />
     <ShowErrorInForm className="error-text" {...meta} />
   </React.Fragment>
 );

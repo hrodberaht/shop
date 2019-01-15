@@ -47,7 +47,11 @@ const RenderProducts = ({
     <ol>
       {fields.map((product, index) => (
         <li key={`${product}`}>
-          <button type="button" onClick={() => fields.remove(index)}>
+          <button
+            type="button"
+            className="btn btn-danger -shorter"
+            onClick={() => fields.remove(index)}
+          >
             X
           </button>
           <hr />
@@ -99,10 +103,10 @@ const RenderProducts = ({
               )
             }
           />
-          <label htmlFor="vat">VAT: </label>
           <Field
             name={`${product}.vat`}
             component={RenderSelect}
+            className="registration-select"
             parse={parseToNumber}
             onChange={e =>
               countGrossPriceVat(
@@ -129,7 +133,11 @@ const RenderProducts = ({
         </li>
       ))}
     </ol>
-    <button type="button" onClick={() => fields.push({})}>
+    <button
+      type="button"
+      className="btn btn-primary -longer"
+      onClick={() => fields.push({})}
+    >
       Add product
     </button>
 

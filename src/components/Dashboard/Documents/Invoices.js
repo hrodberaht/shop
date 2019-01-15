@@ -3,22 +3,28 @@ import AddInvoiceForm from './AddInvoiceForm';
 
 export default class Invoices extends Component {
   state = {
-    isVisableAddInvoice: false,
+    isVisibleAddInvoice: false
   };
 
   static propTypes = {};
 
   handleClick = () => {
-    this.setState(state => ({ isVisableAddInvoice: !state.isVisableAddInvoice }));
+    this.setState(state => ({
+      isVisibleAddInvoice: !state.isVisibleAddInvoice
+    }));
   };
 
   render() {
     return (
       <div>
-        <button type="button" onClick={this.handleClick}>
+        <button
+          className="btn btn-submit -longer"
+          type="button"
+          onClick={this.handleClick}
+        >
           Add invoice
         </button>
-        {this.state.isVisableAddInvoice && <AddInvoiceForm />}
+        {this.state.isVisibleAddInvoice && <AddInvoiceForm />}
       </div>
     );
   }
