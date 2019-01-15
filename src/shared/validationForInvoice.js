@@ -16,28 +16,38 @@ const validate = values => {
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.name) {
+      if (!product || !product.name) {
         productErrors.name = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.pcs) {
+      if (!product || !product.pcs) {
         productErrors.pcs = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.netPrice) {
+      if (!product || !product.netPrice) {
         productErrors.netPrice = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.vat) {
+      if (!product || product.vat === undefined) {
         productErrors.vat = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }
 
-      if (!product.grossPrice) {
+      if (!product || !product.grossPrice) {
         productErrors.grossPrice = 'Required';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (product.pcs <= 0) {
+        productErrors.pcs = 'Pcs should be bigger than 0';
+        productsArrayErrors[productIndex] = productErrors;
+      }
+
+      if (product.netPrice <= 0) {
+        productErrors.netPrice = 'Net price should be bigger than 0';
         productsArrayErrors[productIndex] = productErrors;
       }
     });
