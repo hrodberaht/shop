@@ -9,9 +9,9 @@ const validate = values => {
   if (!values.products) {
     errors.products = { _error: 'At least one product must be entered' };
   } else {
-    const productErrors = {};
     values.products.forEach((product, productIndex) => {
-      if (!product.ean) {
+      const productErrors = {};
+      if (!product || !product.ean) {
         productErrors.ean = 'Required';
         productsArrayErrors[productIndex] = productErrors;
       }

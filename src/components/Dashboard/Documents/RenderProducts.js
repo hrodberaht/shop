@@ -7,6 +7,7 @@ import parseToRoundedAmount from '../../../shared/parseToRoundedAmount';
 import RenderSelect from './RenderSelect';
 import searchProductByEan from '../../../shared/searchProductByEan';
 import applyRounded from '../../../shared/applyRounded';
+import ShowErrorInForm from './ShowErrorInForm';
 
 const setGrossPriceAfterValuesChanged = (change, value, index) =>
   change(`products[${index}].grossPrice`, +applyRounded(value));
@@ -37,12 +38,7 @@ const countGrossPriceVat = (value, product, change, index) => {
     : 0;
 };
 
-const RenderProducts = ({
-  fields,
-  change,
-  meta: { error, submitFailed },
-  productsInStore
-}) => (
+const RenderProducts = ({ fields, change, meta, productsInStore }) => (
   <React.Fragment>
     <ol>
       {fields.map((product, index) => (
@@ -141,7 +137,7 @@ const RenderProducts = ({
       Add product
     </button>
 
-    <p>{submitFailed && error && <span>{error}</span>}</p>
+    <ShowErrorInForm className="error-text" {...meta} />
   </React.Fragment>
 );
 
