@@ -3,6 +3,7 @@
 exports[`<Invoices /> should render without crash 1`] = `
 <div>
   <button
+    className="btn btn-submit -longer"
     onClick={[Function]}
     type="button"
   >
@@ -11,9 +12,10 @@ exports[`<Invoices /> should render without crash 1`] = `
 </div>
 `;
 
-exports[`<Invoices /> should show form if state isVisableAddInvoice is true 1`] = `
+exports[`<Invoices /> should show form if state isVisibleAddInvoice is true 1`] = `
 <div>
   <button
+    className="btn btn-submit -longer"
     onClick={[Function]}
     type="button"
   >

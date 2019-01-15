@@ -163,7 +163,7 @@ export class AddInvoiceForm extends Component {
           </div>
           <div className="invoice-add-button">
             <button className="btn btn-submit" type="submit">
-              Add
+              Save
             </button>
           </div>
         </form>

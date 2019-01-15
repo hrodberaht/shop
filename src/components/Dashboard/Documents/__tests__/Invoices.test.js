@@ -10,20 +10,20 @@ describe('<Invoices />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('initial state isVisableAddInvoice should be false ', () => {
+  it('initial state isVisibleAddInvoice should be false ', () => {
     const { wrapper } = setup();
-    expect(wrapper.state().isVisableAddInvoice).toBe(false);
+    expect(wrapper.state().isVisibleAddInvoice).toBe(false);
   });
 
-  it('should show form if state isVisableAddInvoice is true', () => {
+  it('should show form if state isVisibleAddInvoice is true', () => {
     const { wrapper } = setup();
-    wrapper.setState({ isVisableAddInvoice: true });
+    wrapper.setState({ isVisibleAddInvoice: true });
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('state isVisableAddInvoice should be true after handleClick call ', () => {
+  it('state isVisibleAddInvoice should be true after handleClick call ', () => {
     const { wrapper } = setup();
     wrapper.instance().handleClick();
-    expect(wrapper.state().isVisableAddInvoice).toBe(true);
+    expect(wrapper.state().isVisibleAddInvoice).toBe(true);
   });
 });
