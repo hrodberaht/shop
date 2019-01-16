@@ -7,39 +7,28 @@ import parseToRoundedAmount from '../../../shared/parseToRoundedAmount';
 import RenderSelect from './RenderSelect';
 import searchProductByEan from '../../../shared/searchProductByEan';
 import applyRounded from '../../../shared/applyRounded';
-import ShowErrorInForm from './ShowErrorInForm';
 
-const setGrossPriceAfterValuesChanged = (change, value, index) =>
-  change(`products[${index}].grossPrice`, +applyRounded(value));
+const setGrossPriceAfterValuesChanged = (change, grossPrice, index) =>
+  Number.isNaN(grossPrice)
+    ? 0
+    : change(`products[${index}].grossPrice`, +applyRounded(grossPrice));
 
-const checkIfAllValuesAreSet = (pcs, netPrice, vat) =>
-  pcs && netPrice && vat >= 0;
-
-const countGrossPricePcs = (value, product, change, index) => {
-  const { netPrice, vat } = product;
-  const grossPrice = value * netPrice * (1 + vat / 100);
-  return checkIfAllValuesAreSet(value, netPrice, vat)
-    ? setGrossPriceAfterValuesChanged(change, grossPrice, index)
-    : 0;
+const countGrossPrice = (inputData, product, change, index) => {
+  const { value, name } = inputData;
+  const { netPrice, vat, pcs } = product;
+  let grossPrice;
+  if (name.includes('pcs')) grossPrice = value * netPrice * (1 + vat / 100);
+  if (name.includes('netPrice')) grossPrice = pcs * value * (1 + vat / 100);
+  if (name.includes('vat')) grossPrice = pcs * netPrice * (1 + value / 100);
+  return setGrossPriceAfterValuesChanged(change, grossPrice, index);
 };
 
-const countGrossPriceNetPrice = (value, product, change, index) => {
-  const { pcs, vat } = product;
-  const grossPrice = pcs * value * (1 + vat / 100);
-  return checkIfAllValuesAreSet(pcs, value, vat)
-    ? setGrossPriceAfterValuesChanged(change, grossPrice, index)
-    : 0;
-};
-
-const countGrossPriceVat = (value, product, change, index) => {
-  const { pcs, netPrice } = product;
-  const grossPrice = pcs * netPrice * (1 + value / 100);
-  return checkIfAllValuesAreSet(pcs, netPrice, value)
-    ? setGrossPriceAfterValuesChanged(change, grossPrice, index)
-    : 0;
-};
-
-const RenderProducts = ({ fields, change, meta, productsInStore }) => (
+const RenderProducts = ({
+  fields,
+  change,
+  meta: { submitFailed, error },
+  productsInStore
+}) => (
   <React.Fragment>
     <ol>
       {fields.map((product, index) => (
@@ -77,12 +66,7 @@ const RenderProducts = ({ fields, change, meta, productsInStore }) => (
             type="number"
             parse={parseToNumber}
             onChange={e =>
-              countGrossPricePcs(
-                e.target.value,
-                fields.get(index),
-                change,
-                index
-              )
+              countGrossPrice(e.target, fields.get(index), change, index)
             }
           />
           <Field
@@ -92,12 +76,7 @@ const RenderProducts = ({ fields, change, meta, productsInStore }) => (
             type="number"
             parse={parseToRoundedAmount}
             onChange={e =>
-              countGrossPriceNetPrice(
-                e.target.value,
-                fields.get(index),
-                change,
-                index
-              )
+              countGrossPrice(e.target, fields.get(index), change, index)
             }
           />
           <Field
@@ -106,12 +85,7 @@ const RenderProducts = ({ fields, change, meta, productsInStore }) => (
             className="registration-select"
             parse={parseToNumber}
             onChange={e =>
-              countGrossPriceVat(
-                e.target.value,
-                fields.get(index),
-                change,
-                index
-              )
+              countGrossPrice(e.target, fields.get(index), change, index)
             }
           >
             <option />
@@ -138,7 +112,9 @@ const RenderProducts = ({ fields, change, meta, productsInStore }) => (
       Add product
     </button>
 
-    <ShowErrorInForm className="error-text" {...meta} />
+    <p className="error-text">
+      {submitFailed && error && <span>{error}</span>}
+    </p>
   </React.Fragment>
 );
 
