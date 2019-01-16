@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  reduxForm,
-  Field,
-  FieldArray,
-  formValueSelector,
-  change as changeInDispatch
-} from 'redux-form';
+import { reduxForm, Field, FieldArray, formValueSelector } from 'redux-form';
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
 import { addInvoicesSuccess } from '../../../store/documents/actionCreators';
@@ -16,59 +10,9 @@ import RenderField from './RenderField';
 import RenderProducts from './RenderProducts';
 import parseToRoundedAmount from '../../../shared/parseToRoundedAmount';
 import RenderDataPick from './RenderDataPick';
+import { setVatAndTotalPriceAfterValuesChanged } from '../../../shared/setVatAndTotalPriceAfterValuesChanged';
 
 const selector = formValueSelector('addInvoice');
-
-const countVATS = (products, vat) =>
-  products
-    ? products.reduce(
-        (sum, product) =>
-          product.vat === vat
-            ? sum + (product.grossPrice - product.netPrice * product.pcs)
-            : sum + 0,
-        0
-      )
-    : 0;
-
-const countTotalGrossPrice = products =>
-  products
-    ? products.reduce(
-        (sum, product) =>
-          product.grossPrice ? sum + product.grossPrice : sum + 0,
-        0
-      )
-    : 0;
-
-const countTotalNetPrice = products =>
-  products
-    ? products.reduce(
-        (sum, product) =>
-          product.netPrice && product.pcs
-            ? sum + product.netPrice * product.pcs
-            : sum + 0,
-        0
-      )
-    : 0;
-
-const setVatAndTotalPriceAfterValuesChanged = (products, dispatch) => {
-  dispatch(changeInDispatch('addInvoice', 'vat23', countVATS(products, 23)));
-  dispatch(changeInDispatch('addInvoice', 'vat8', countVATS(products, 8)));
-  dispatch(changeInDispatch('addInvoice', 'vat5', countVATS(products, 5)));
-  dispatch(
-    changeInDispatch(
-      'addInvoice',
-      'totalGrossPrice',
-      countTotalGrossPrice(products)
-    )
-  );
-  dispatch(
-    changeInDispatch(
-      'addInvoice',
-      'totalNetPrice',
-      countTotalNetPrice(products)
-    )
-  );
-};
 
 export class AddInvoiceForm extends Component {
   static propTypes = {

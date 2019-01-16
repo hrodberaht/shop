@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddInvoiceForm /> should render without crash 1`] = `
+<div
+  className="invoice"
+>
+  <form>
+    <div
+      className="invoice__date"
+    >
+      <label
+        htmlFor="date"
+      >
+        Date: 
+      </label>
+      <Field
+        component={[Function]}
+        format={[Function]}
+        name="date"
+      />
+      <hr />
+    </div>
+    <div
+      className="invoice__info"
+    >
+      <Field
+        component={[Function]}
+        label="Company: "
+        name="company"
+        type="text"
+      />
+      <Field
+        component={[Function]}
+        label="Number: "
+        name="number"
+        type="text"
+      />
+      <hr />
+    </div>
+    <div
+      className="invoice__products-list"
+    >
+      <FieldArray
+        change={[MockFunction]}
+        component={[Function]}
+        name="products"
+        productsInStore={Array []}
+      />
+    </div>
+    <div
+      className="invoice__vat"
+    >
+      <Field
+        component={[Function]}
+        format={[Function]}
+        label="Total gross price: "
+        name="totalGrossPrice"
+        parse={[Function]}
+        type="number"
+      />
+      <Field
+        component={[Function]}
+        format={[Function]}
+        label="Total net price: "
+        name="totalNetPrice"
+        parse={[Function]}
+        type="number"
+      />
+      <Field
+        component={[Function]}
+        format={[Function]}
+        label="VAT 23: "
+        name="vat23"
+        parse={[Function]}
+        type="number"
+      />
+      <Field
+        component={[Function]}
+        format={[Function]}
+        label="VAT 8: "
+        name="vat8"
+        parse={[Function]}
+        type="number"
+      />
+      <Field
+        component={[Function]}
+        format={[Function]}
+        label="VAT 5: "
+        name="vat5"
+        parse={[Function]}
+        type="number"
+      />
+    </div>
+    <div
+      className="invoice-add-button"
+    >
+      <button
+        className="btn btn-submit"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+`;
