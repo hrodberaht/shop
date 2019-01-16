@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ShowErrorInForm /> should render without crash 1`] = `
+<p
+  className="btn"
+/>
+`;
+
+exports[`<ShowErrorInForm /> when touched should show error 1`] = `
+<p
+  className="btn"
+>
+  <span>
+    error
+  </span>
+</p>
+`;

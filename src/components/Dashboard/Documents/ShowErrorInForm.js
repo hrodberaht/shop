@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShowErrorInForm = ({ className, submitFailed, touched, error }) => (
-  <p className={className}>
-    {submitFailed && touched && (error && <span>{error}</span>)}
-  </p>
+const ShowErrorInForm = ({ className, touched, error }) => (
+  <p className={className}>{touched && (error && <span>{error}</span>)}</p>
 );
 
 ShowErrorInForm.defaultProps = {
   error: null,
-  touched: true,
-  submitFailed: false
+  touched: false,
+  className: null
 };
 
 ShowErrorInForm.propTypes = {
-  submitFailed: PropTypes.bool,
   touched: PropTypes.bool,
   error: PropTypes.string,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string
 };
 
 export default ShowErrorInForm;
