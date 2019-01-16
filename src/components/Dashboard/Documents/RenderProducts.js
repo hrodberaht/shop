@@ -80,6 +80,7 @@ const RenderProducts = ({
             }
           />
           <Field
+            label="VAT: "
             name={`${product}.vat`}
             component={RenderSelect}
             className="registration-select"

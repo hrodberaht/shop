@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RenderProducts /> should render without crash 1`] = `
+<Fragment>
+  <ol />
+  <button
+    className="btn btn-primary -longer"
+    onClick={[Function]}
+    type="button"
+  >
+    Add product
+  </button>
+  <p
+    className="error-text"
+  />
+</Fragment>
+`;

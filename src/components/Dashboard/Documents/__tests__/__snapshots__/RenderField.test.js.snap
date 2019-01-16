@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RenderField /> when initialized should render without crash 1`] = `
+<div>
+  <label
+    htmlFor="Company"
+  >
+    Company
+  </label>
+  <input
+    className="form-input"
+  />
+  <ShowErrorInForm
+    className="error-text"
+    error={null}
+    touched={false}
+  />
+</div>
+`;

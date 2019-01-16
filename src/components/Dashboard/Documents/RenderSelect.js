@@ -1,9 +1,9 @@
 import React from 'react';
 import ShowErrorInForm from './ShowErrorInForm';
 
-const RenderSelect = ({ input, children, meta }) => (
+const RenderSelect = ({ input, children, meta, label }) => (
   <div>
-    <label htmlFor="vat">VAT: </label>
+    <label htmlFor={label}>{label}</label>
     <select className="invoice-select" {...input}>
       {children}
     </select>

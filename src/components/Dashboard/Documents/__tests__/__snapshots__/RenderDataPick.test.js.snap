@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RenderDataPick /> should render without crash 1`] = `
+<Fragment>
+  <DatePicker
+    allowSameDay={false}
+    className="form-input"
+    dateFormat="yyyy/MM/dd"
+    dateFormatCalendar="LLLL yyyy"
+    disabled={false}
+    disabledKeyboardNavigation={false}
+    dropdownMode="scroll"
+    monthsShown={1}
+    nextMonthButtonLabel="Next month"
+    onBlur={[Function]}
+    onChange={[MockFunction]}
+    onClickOutside={[Function]}
+    onFocus={[Function]}
+    onInputClick={[Function]}
+    onInputError={[Function]}
+    onKeyDown={[Function]}
+    onMonthChange={[Function]}
+    onSelect={[Function]}
+    onYearChange={[Function]}
+    preventOpenOnFocus={false}
+    previousMonthButtonLabel="Previous Month"
+    readOnly={false}
+    renderDayContents={[Function]}
+    shouldCloseOnSelect={true}
+    showTimeSelect={false}
+    timeCaption="Time"
+    timeIntervals={30}
+    withPortal={false}
+  />
+  <ShowErrorInForm
+    className="error-text"
+    error={null}
+    touched={false}
+  />
+</Fragment>
+`;
